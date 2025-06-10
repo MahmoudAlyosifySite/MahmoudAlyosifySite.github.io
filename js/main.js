@@ -117,3 +117,49 @@
     
 })(jQuery);
 
+$(document).ready(function () {
+    const certificateFiles = [
+           "iti 1.JPG",
+        "iti 2.JPG",
+        "iti 3.JPG",
+        "iti 4.JPG",
+        "iti 5.JPG",
+        "1678810507402.jpeg",
+        "Annotation 2020-07-04 231855.jpg",
+        "Annotation 2020-07-25 131550.jpg",
+        "IMG_0340.JPG",  
+        "IMG_0598.JPG",
+        "IMG_0600.JPG",
+        "IMG_1602.JPG",
+        "IMG_2648.jpg",
+        "IMG_3992.JPG",
+        "IMG_3993.JPG",
+        "IMG_3994.JPG",
+        "IMG_3995.JPG",
+        "IMG_4014.JPG",
+        "IMG_4015.JPG",
+        "IMG_4832.JPG",
+        "IMG_4833.JPG",  
+        "IMG_6131.JPG",
+        "IMG_7887.JPG",
+        "Screenshot 2025-02-13 023245.png",
+        "Screenshot 2025-06-10 155852.png",
+        "Screenshot 2025-06-10 160235.png",
+         "IMG_0342.JPG",
+            "IMG_5413.JPG",
+            "IMG_9390.JPG"
+    ];
+
+    const container = $('#certGrid');
+
+    certificateFiles.forEach((file, index) => {
+        const html = `
+            <div class="cert-col mb-4 px-2">
+                <img class="img-fluid rounded w-100 mb-2" src="Certificates/${file}" alt="Certificate ${index + 1}">
+                <h6 class="text-center">Certificate ${index + 1}</h6>
+                <a class="btn btn-sm btn-outline-primary btn-block" href="Certificates/${file}" target="_blank">View Full</a>
+            </div>
+        `;
+        container.append(html);
+    });
+});
