@@ -145,6 +145,7 @@ $(document).ready(function () {
         "Screenshot 2025-02-13 023245.png",
         "Screenshot 2025-06-10 155852.png",
         "Screenshot 2025-06-10 160235.png",
+        "Screenshot 2025-06-24 102044.png",
          "IMG_0342.JPG",
             "IMG_5413.JPG",
             "IMG_9390.JPG"
