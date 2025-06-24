@@ -766,7 +766,7 @@ He has strong experience in AI, deep learning, back-end development, and signal 
 <!-- My Courses End -->
 
 
-    <!-- Testimonial Start -->
+    <!-- Recommendations Start -->
     <div class="container-fluid py-5" id="testimonial">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
@@ -830,7 +830,7 @@ throughout our time together, he consistently exhibited strong leadership qualit
                         </div>
                         <div class="text-center">
                             <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <h4 class="font-weight-light mb-4">Mahmoud is smart at work in the team wok and a Good Leader and have a youtube channel explaining the material of Faculty for free to the Student and is an instructor in Udemy, Good thinking outside the box in the Project , have leadership skills, and can easily acquire skills</h4>
+                            <h4 class="font-weight-light mb-4">I am pleased to provide a heartfelt recommendation for Mahmoud. Throughout our four years of close collaboration at the Faculty of Computers and Information, Assiut University, I have observed his unwavering diligence in his work and his consistent efforts to develop his skills and creative problem-solving methods. As a leader, Mahmoud's exceptional qualities shine through in his effective management and inspiration of his team, recognizing individual strengths and fostering a positive work environment. His unique perspective and analytical mindset enable him to swiftly address challenges and devise simple yet effective solutions to complex technical problems. Mahmoud's dedication to personal and professional growth is evident as he actively seeks opportunities to enhance his knowledge and embrace new technologies. Moreover, his positive and supportive demeanor creates an enjoyable work atmosphere where everyone feels valued and motivated to excel. I have learned significantly from Mahmoud's leadership and problem-solving approach, and I highly recommend him for any leadership position, particularly within the software industry. During our collaboration on the graduation project, Vitalism, of which he was the leader, Mahmoud demonstrated his relentless commitment to producing the project with utmost accuracy and creativity. His diligence and determination in finding innovative solutions to the challenges we encountered made him a truly outstanding leader.</h4>
                             <img class="img-fluid rounded-circle mx-auto mb-3" src="img/Mina.jpg" style="width: 90px; height: 90px;">
                             <h5 class="font-weight-bold m-0">Mina Nashat</h5>
                             <span>Data & Analytics Engineer @ Ejada | Python & Django Developer | BI</span>
@@ -840,7 +840,7 @@ throughout our time together, he consistently exhibited strong leadership qualit
                             <h4 class="font-weight-light mb-4">I know Mahmoud very well as we are colleagues in the same college, he was a helpful student and a wonderful colleague throughout our college days as he did many courses on his YouTube channel explaining a lot of scientific topics to us, in addition he was an excellent leader in all college projects where he was Manages team tasks, monitors team progress and checks end results.</h4>
                             <img class="img-fluid rounded-circle mx-auto mb-3" src="img/Moataz.jpg" style="width: 90px; height: 90px;">
                             <h5 class="font-weight-bold m-0">Moataz Noaman</h5>
-                            <span>Native Android Devoloper | Open Source at iTi</span>
+                            <span>Freelancer | Native Android Devoloper | Open Source at iTi</span>
                         </div>
                     </div>
                   
@@ -849,7 +849,32 @@ throughout our time together, he consistently exhibited strong leadership qualit
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
+    <!-- Recommendations End -->
+
+<!-- Custom CSS -->
+<style>
+    .gold-name {
+        color: #FFD700;
+        font-weight: bold;
+    }
+
+    .justify-text {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+</style>
+
+<!-- Highlight Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const testimonials = document.querySelectorAll(".testimonial-carousel h4, .testimonial-carousel h5");
+
+        testimonials.forEach(function (el) {
+            el.innerHTML = el.innerHTML.replace(/Mahmoud/g, '<span class="gold-name">Mahmoud</span>');
+        });
+    });
+</script>
+
 
     <!-- Blog Start -->
     <div class="container-fluid pt-5" id="blog">
