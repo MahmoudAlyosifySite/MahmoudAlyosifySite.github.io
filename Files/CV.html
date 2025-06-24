@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mahmoud Alyosify | CV</title>
+  <title>Mahmoud Alyosify | CVs</title>
 
-  <!-- Favicon -->
   <link rel="icon" href="MahmoudIcon.ico" type="image/x-icon" />
-
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
@@ -32,7 +29,6 @@
       background-color: var(--background);
       color: var(--text-color);
       padding: 20px;
-      line-height: 1.6;
     }
 
     h1 {
@@ -41,12 +37,12 @@
       font-size: 2rem;
     }
 
-    .nav-links {
+    .nav-links, .cv-buttons {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 20px 0;
     }
 
-    .nav-links a {
+    .nav-links a, .cv-buttons button {
       display: inline-block;
       background-color: var(--main-color);
       color: white;
@@ -55,37 +51,23 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      background-color: var(--hover-color);
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      background-color: var(--main-color);
-      color: white;
-      padding: 14px;
       border: none;
-      font-size: 18px;
-      margin: 20px 0;
-      border-radius: 6px;
       cursor: pointer;
       transition: 0.3s;
     }
 
-    .btn:hover {
+    .nav-links a:hover,
+    .cv-buttons button:hover {
       background-color: var(--hover-color);
     }
 
     .container {
       position: relative;
-      padding-top: 56.25%; /* 16:9 ratio */
+      padding-top: 56.25%;
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
     }
 
     .responsive-iframe {
@@ -108,7 +90,7 @@
         font-size: 1.5rem;
       }
 
-      .nav-links a, .btn {
+      .nav-links a, .cv-buttons button {
         font-size: 16px;
         padding: 10px;
       }
@@ -117,30 +99,38 @@
 </head>
 <body>
 
-  <h1>This is the Resume of</h1>
   <h1>Mahmoud Sayed Youssef</h1>
+  <h1>Choose Resume to View</h1>
 
   <div class="nav-links">
     <a href="../index.html"><i class="fa fa-arrow-left"></i> Back to Website</a>
-    <a href="Mahmoud-Alyosify-Resume-2023.html">Go to Resume <i class="fa fa-arrow-right"></i></a>
   </div>
 
-  <hr />
-
-  <form action="https://drive.google.com/file/d/1cJyOF5GsZKaNlP1DXF-KLEr3tuYI7wy9/view?usp=sharing" target="_blank">
-    <button class="btn"><i class="fa fa-download"></i> Download Mahmoud's CV</button>
-  </form>
+  <div class="cv-buttons">
+    <button onclick="showCV('ta')">Teaching Assistant CV</button>
+    <button onclick="showCV('ml')">Machine Learning Engineer CV</button>
+  </div>
 
   <hr />
 
   <div class="container">
-    <iframe class="responsive-iframe" src="Mahmoud Alyosify Resume 2023.pdf"></iframe>
+    <iframe id="cvFrame" class="responsive-iframe" src="Mahmoud-Alyosify-ML-CV.pdf"></iframe>
   </div>
+
+  <script>
+    function showCV(type) {
+      const frame = document.getElementById('cvFrame');
+      if (type === 'ta') {
+        frame.src = 'Mahmoud-Alyosify-TA-CV.pdf';
+      } else if (type === 'ml') {
+        frame.src = 'Mahmoud-Alyosify-ML-CV.pdf';
+      }
+    }
+  </script>
 
   <noscript>
     <p style="text-align:center; color:red; font-weight:bold;">
-      JavaScript is disabled. You can download the CV 
-      <a href="Mahmoud Alyosify Resume 2023.pdf" target="_blank">here</a>.
+      JavaScript is disabled. You can download the CVs manually from your browser.
     </p>
   </noscript>
 
