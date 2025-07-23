@@ -78,7 +78,7 @@
                 
             </div>
             
-            <a href="mailto:mahmoud.alyosify@gmail.com?subject=Hiring Ai Engineer &body=Hi Mahmoud Alyosify,  I found your portfolio and thought you might be suitable for this position. so if you interested please reply with 'interested' to this mail.  Thanks" class="btn btn-outline-primary d-none d-lg-block" target="_blank">Hire Me</a>
+            <a href="mailto:mahmoud.alyosify@gmail.com?subject=Hiring Ai Engineer &body=Hi Mahmoud Alyosify,  I found your portfolio and thought you might be suitable for this position. so if you interested please reply with 'interested' to this mail.  Thanks" class="btn btn-outline-primary d-none d-lg-block" target="_blank">Hire</a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -174,8 +174,21 @@
                     <a class="btn btn-light btn-social mr-4" href="https://www.linkedin.com/in/mahmoudalyosify/" target="_blank" style="height: 55px; width: 55px;"><i class="fab fa-linkedin-in fa-2x"></i></a>
                     <a class="btn btn-light btn-social" href="https://www.kaggle.com/mahmoudalyosify" target="_blank" style="height: 55px; width: 55px;"><i class="fab fa-kaggle fa-2x"></i></a>
                 </div>
+<div class="row align-items-center mb-4" style="margin-top: 30px;">
+  <div class="col-md-8">
+    <h6 class="text-primary mb-2">🎧 Introduction Audio about Mahmoud</h6>
+    <div id="waveform-intro" style="height: 60px; background-color: #f8f9fa; border-radius: 5px;"></div>
+  </div>
+  <div class="col-md-4 d-flex justify-content-start justify-content-md-end align-items-center mt-3 mt-md-0">
+<button id="playPauseBtn" onclick="toggleAudio()" class="btn btn-primary mr-3 px-4 py-2">Play</button>
+    <a href="mailto:mahmoudalyosify@gmail.com?subject=Hiring Ai Engineer&body=Hi Mahmoud Alyosify, I found your website and thought you might be suitable for this position. If you're interested, please reply with 'interested'. Thanks." class="btn btn-outline-primary px-4 py-2" target="_blank">Hire</a>
+  </div>
+</div>
 
-                <a href="mailto:mahmoudalyosify@gmail.com?subject=Hiring Ai Engineer&body=Hi Mahmoud Alyosify, I found your website and thought you might be suitable for this position. If you're interested, please reply with 'interested'. Thanks." class="btn btn-outline-primary mr-4" target="_blank">Hire Me</a>
+
+
+
+
             </div>
         </div>
     </div>
@@ -1198,7 +1211,48 @@ throughout our time together, he consistently exhibited strong leadership qualit
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    
+</script>
+<script src="js/wavesurfer.min.js"></script>
+<script src="js/wavesurfer.min.js"></script>
+<script src="js/wavesurfer.min.js"></script>
+<script>
+  const wavesurferIntro = WaveSurfer.create({
+    container: '#waveform-intro',
+    waveColor: '#ced4da',
+    progressColor: '#007bff',
+    height: 60,
+    barWidth: 2,
+    responsive: true,
+  });
+
+  wavesurferIntro.load('audio/mahmoud-intro.wav');
+
+  const playPauseBtn = document.getElementById('playPauseBtn');
+
+  function updateBtn(text, colorClass) {
+    playPauseBtn.innerText = text;
+    playPauseBtn.classList.remove('btn-primary', 'btn-danger');
+    playPauseBtn.classList.add(colorClass);
+  }
+
+  function toggleAudio() {
+    wavesurferIntro.playPause();
+  }
+
+  wavesurferIntro.on('play', () => {
+    updateBtn('Pause', 'btn-danger');
+  });
+
+  wavesurferIntro.on('pause', () => {
+    updateBtn('Play', 'btn-primary');
+  });
+
+  wavesurferIntro.on('finish', () => {
+    updateBtn('Play', 'btn-primary');
+  });
+</script>
+
+
 </body>
 
 </html>
