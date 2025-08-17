@@ -119,11 +119,13 @@
 
 $(document).ready(function () {
     const certificateFiles = [
+        
            "iti 1.JPG",
         "iti 2.JPG",
         "iti 3.JPG",
         "iti 4.JPG",
         "iti 5.JPG",
+        "AI in Cybersecurity.png",
         "1678810507402.jpeg",
         "Annotation 2020-07-04 231855.jpg",
         "Annotation 2020-07-25 131550.jpg",
