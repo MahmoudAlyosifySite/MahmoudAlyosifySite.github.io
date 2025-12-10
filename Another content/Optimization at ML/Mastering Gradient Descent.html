@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Descent: Interactive Optimization Lab by Mahmoud Alyosify</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <!-- Font for Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Placeholder Comments Required -->
+    <!-- Chosen Palette: Warm Neutrals & Academic Accents. Background: #FAFAF9 (Warm Gray), Text: #1F2937 (Gray 900), Accents: Blue (Batch), Red (SGD), Emerald (Mini-batch) for distinct visual encoding. -->
+    
+    <!-- Application Structure Plan: 
+         1. Hero Section: Introduction to the core concept of Gradient Descent.
+         2. "The Descent Paths" (Interactive Simulation): A split-view comparing Batch, SGD, and Mini-batch using a 2D contour plot (Plotly). Users can toggle paths to see the "Visual Characteristic" (Straight vs Zig-Zag vs Wavy) mentioned in the report. This groups the "Types" section.
+         3. "Hyperparameter Tuner" (Conceptual Interaction): A dashboard allowing users to adjust Learning Rate, Epochs, and Batch size sliders to see real-time textual feedback on what happens (e.g., "Overshooting" vs "Slow"). This covers the "Hyperparameters" section.
+         4. "Convergence Monitor" (Dynamic Charting): A Learning Curve simulator (Chart.js) where users select scenarios (High LR, Low LR, etc.) to visualize the "Loss vs Epochs" graph, directly addressing the "Concept of Convergence" section.
+         5. Summary Matrix: A clean data table for quick reference of the Pros/Cons.
+         Why: This structure moves from visual intuition (The Paths) to configuration (Hyperparameters) to result analysis (Convergence), mirroring the workflow of a machine learning engineer.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Report: Types of GD -> Goal: Compare Paths -> Viz: Plotly Contour Plot -> Interaction: Toggle Traces -> Justification: The report explicitly describes "Visual Characteristics" (Straight, Zig-zag). A static image fails to convey the *movement*; Plotly allows zooming and toggling.
+         2. Report: Convergence/Learning Curves -> Goal: Monitor Stability -> Viz: Chart.js Line Chart -> Interaction: Scenario Buttons -> Justification: Users need to see *how* the curve changes (plateau, diverge) based on settings. Chart.js is lightweight and perfect for line graphs.
+         3. Report: Hyperparameters -> Goal: Understand Trade-offs -> Viz: Interactive Sliders + State Text -> Interaction: Sliding input changes description -> Justification: Abstract numbers like 0.01 vs 0.1 are hard to grasp without context. Interactive feedback connects the value to the outcome immediately.
+         4. NO SVG/Mermaid confirmation: All diagrams are built with HTML/CSS or Canvas-based libraries (Chart.js/Plotly).
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9; /* Warm neutral background */
+            color: #1f2937;
+        }
+
+        /* Custom Chart Container Styles as per requirements */
+        .chart-container-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Tailwind max-w-3xl approx */
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+
+        /* Specific for Plotly to ensure it fills the wrapper */
+        .plotly-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Utility for card hover effects */
+        .hover-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+            margin-top: -6px; 
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800">
+
+  <!-- Navigation -->
+<nav class="bg-white border-b border-stone-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center space-x-3">
+                
+                <!-- Logo -->
+                <img src="logo-Mahmoud.png" alt="Logo" class="h-10 w-10 object-contain">
+
+                <!-- Text -->
+                <span class="text-2xl font-bold text-indigo-700">
+                    GD<span class="text-slate-800">Lab - Mahmoud Alyosify</span>
+                </span>
+
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="scrollToSection('visualize')" class="text-sm font-medium hover:text-indigo-600">Visualizer</button>
+                <button onclick="scrollToSection('parameters')" class="text-sm font-medium hover:text-indigo-600">Parameters</button>
+                <button onclick="scrollToSection('convergence')" class="text-sm font-medium hover:text-indigo-600">Convergence</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Mastering Gradient Descent
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">
+            An interactive exploration of optimization algorithms. Understand how machines "learn" by finding the lowest error through different pathing strategies.
+        </p>
+        <div class="flex justify-center gap-4 text-sm text-slate-500">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-600"></span> Batch GD</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-500"></span> Stochastic GD</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Mini-batch GD</span>
+        </div>
+    </div>
+
+    <!-- SECTION 1: The Descent Paths (Types of GD) -->
+    <section id="visualize" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-stone-200">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">1. Types of Gradient Descent</h2>
+            <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+                The core difference between optimization algorithms lies in <strong>data strategy</strong>: how much data is used to calculate the gradient step? This section visualizes the specific "paths" described in Lecture 3. Notice how <strong>Batch GD</strong> moves directly to the center, while <strong>Stochastic GD</strong> creates a chaotic "zig-zag" pattern, and <strong>Mini-batch</strong> offers a balanced, slightly wavy approach.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Controls & Info -->
+            <div class="lg:col-span-1 space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover-card">
+                    <h3 class="font-bold text-indigo-700 mb-2">Simulation Controls</h3>
+                    <p class="text-sm text-slate-500 mb-4">Toggle paths to compare their behavior on the cost landscape.</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50">
+                            <input type="checkbox" id="check-batch" checked onchange="updatePlotly()" class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500">
+                            <div>
+                                <span class="block font-semibold text-blue-700">Batch GD</span>
+                                <span class="text-xs text-slate-500">Straight line, stable, slow updates.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50">
+                            <input type="checkbox" id="check-sgd" checked onchange="updatePlotly()" class="w-5 h-5 text-red-600 rounded focus:ring-red-500">
+                            <div>
+                                <span class="block font-semibold text-red-600">Stochastic GD</span>
+                                <span class="text-xs text-slate-500">Zig-zag, noisy, fast updates.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50">
+                            <input type="checkbox" id="check-mini" checked onchange="updatePlotly()" class="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500">
+                            <div>
+                                <span class="block font-semibold text-emerald-600">Mini-batch GD</span>
+                                <span class="text-xs text-slate-500">Wavy line, balanced speed/stability.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="details-box" class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h4 class="font-bold text-indigo-900 text-sm uppercase tracking-wide mb-2">Key Takeaway</h4>
+                    <p class="text-sm text-indigo-800" id="path-desc">
+                        <strong>Mini-batch</strong> is the standard for a reason. It allows GPU parallelization (like Batch) but updates weights frequently enough to converge faster than Batch (like SGD).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visualization -->
+            <div class="lg:col-span-2">
+                <div class="chart-container-wrapper">
+                    <div id="contourPlot" class="plotly-container"></div>
+                </div>
+                <div class="mt-2 text-center text-xs text-slate-400">
+                    Interactive Plot: Zoom, Pan, or Hover over points. The star represents the Global Minimum.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Hyperparameters (Interactive Tuning) -->
+    <section id="parameters" class="bg-white py-12 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">2. Key Hyperparameters</h2>
+                <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+                    Hyperparameters are the settings configured <em>before</em> training begins. They dictate the behavior of the optimization process. Use the interactive sliders below to understand the trade-offs of <strong>Learning Rate</strong>, <strong>Epochs</strong>, and <strong>Batch Size</strong>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Learning Rate Card -->
+                <div class="bg-stone-50 p-6 rounded-xl border border-stone-200 hover:border-indigo-300 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-slate-800">Learning Rate (&alpha;)</h3>
+                        <span id="lr-val" class="text-xs font-mono bg-slate-200 px-2 py-1 rounded">0.01</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6 h-12">Controls step size. Vital for convergence stability.</p>
+                    
+                    <input type="range" min="1" max="100" value="50" class="w-full mb-4" id="lr-slider" oninput="updateParamUI('lr')">
+                    
+                    <div id="lr-feedback" class="text-sm font-semibold text-emerald-600 bg-emerald-50 p-3 rounded">
+                        Balanced: Good convergence speed.
+                    </div>
+                </div>
+
+                <!-- Epochs Card -->
+                <div class="bg-stone-50 p-6 rounded-xl border border-stone-200 hover:border-indigo-300 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-slate-800">Number of Epochs</h3>
+                        <span id="epoch-val" class="text-xs font-mono bg-slate-200 px-2 py-1 rounded">50</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6 h-12">Total passes through the entire dataset.</p>
+                    
+                    <input type="range" min="1" max="100" value="50" class="w-full mb-4" id="epoch-slider" oninput="updateParamUI('epoch')">
+                    
+                    <div id="epoch-feedback" class="text-sm font-semibold text-blue-600 bg-blue-50 p-3 rounded">
+                        Moderate training time.
+                    </div>
+                </div>
+
+                <!-- Batch Size Card -->
+                <div class="bg-stone-50 p-6 rounded-xl border border-stone-200 hover:border-indigo-300 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-slate-800">Batch Size</h3>
+                        <span id="batch-val" class="text-xs font-mono bg-slate-200 px-2 py-1 rounded">32</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6 h-12">Examples per iteration. Powers of 2 preferred.</p>
+                    
+                    <input type="range" min="1" max="4" value="2" class="w-full mb-4" id="batch-slider" oninput="updateParamUI('batch')">
+                    
+                    <div id="batch-feedback" class="text-sm font-semibold text-indigo-600 bg-indigo-50 p-3 rounded">
+                        Standard: Balance of noise & speed.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Convergence (Learning Curves) -->
+    <section id="convergence" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">3. Concept of Convergence</h2>
+            <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+                Convergence is reached when the Loss Function stops decreasing significantly. We monitor this using a <strong>Learning Curve</strong> (Loss vs. Epochs). Below, simulate different scenarios to see how "bad" hyperparameters affect the curve.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Scenarios -->
+            <div class="lg:col-span-1 space-y-2">
+                <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Select Scenario</p>
+                <button onclick="updateConvergenceChart('ideal')" class="w-full text-left px-4 py-3 rounded-lg border border-stone-200 bg-white hover:bg-emerald-50 hover:border-emerald-300 transition-all group focus:ring-2 focus:ring-emerald-500">
+                    <span class="block font-bold text-emerald-700 group-hover:text-emerald-800">Ideal Convergence</span>
+                    <span class="text-xs text-slate-500">Smooth, steady decrease.</span>
+                </button>
+                <button onclick="updateConvergenceChart('diverge')" class="w-full text-left px-4 py-3 rounded-lg border border-stone-200 bg-white hover:bg-red-50 hover:border-red-300 transition-all group focus:ring-2 focus:ring-red-500">
+                    <span class="block font-bold text-red-700 group-hover:text-red-800">High Learning Rate</span>
+                    <span class="text-xs text-slate-500">Overshooting & Divergence.</span>
+                </button>
+                <button onclick="updateConvergenceChart('slow')" class="w-full text-left px-4 py-3 rounded-lg border border-stone-200 bg-white hover:bg-yellow-50 hover:border-yellow-300 transition-all group focus:ring-2 focus:ring-yellow-500">
+                    <span class="block font-bold text-yellow-700 group-hover:text-yellow-800">Low Learning Rate</span>
+                    <span class="text-xs text-slate-500">Plateaus too early/slowly.</span>
+                </button>
+                <button onclick="updateConvergenceChart('noisy')" class="w-full text-left px-4 py-3 rounded-lg border border-stone-200 bg-white hover:bg-indigo-50 hover:border-indigo-300 transition-all group focus:ring-2 focus:ring-indigo-500">
+                    <span class="block font-bold text-indigo-700 group-hover:text-indigo-800">Small Batch / SGD</span>
+                    <span class="text-xs text-slate-500">High fluctuation/noise.</span>
+                </button>
+            </div>
+
+            <!-- Chart -->
+            <div class="lg:col-span-3">
+                <div class="chart-container-wrapper relative">
+                    <canvas id="convergenceChart"></canvas>
+                    <div id="chart-overlay-text" class="absolute top-4 right-4 bg-white/90 p-3 rounded shadow text-sm font-medium text-slate-600 hidden md:block">
+                        Current: Ideal Convergence
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Summary Matrix -->
+    <section class="bg-slate-900 text-white py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-8 text-center">Quick Reference Matrix</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="p-4 text-slate-400 font-medium">Feature</th>
+                            <th class="p-4 text-blue-400 font-bold">Batch GD</th>
+                            <th class="p-4 text-red-400 font-bold">Stochastic GD</th>
+                            <th class="p-4 text-emerald-400 font-bold">Mini-batch GD</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                            <td class="p-4 font-medium">Data per Step</td>
+                            <td class="p-4">Entire Dataset (m)</td>
+                            <td class="p-4">1 Random Example</td>
+                            <td class="p-4">Set (e.g., 32, 64)</td>
+                        </tr>
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                            <td class="p-4 font-medium">Speed per Step</td>
+                            <td class="p-4 text-slate-300">Slow</td>
+                            <td class="p-4 text-slate-300">Very Fast</td>
+                            <td class="p-4 text-slate-300">Fast</td>
+                        </tr>
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                            <td class="p-4 font-medium">Accuracy/Stability</td>
+                            <td class="p-4">High (Stable)</td>
+                            <td class="p-4">Low (Noisy)</td>
+                            <td class="p-4">Balanced</td>
+                        </tr>
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+                            <td class="p-4 font-medium">Memory (RAM)</td>
+                            <td class="p-4 text-red-300">High</td>
+                            <td class="p-4 text-emerald-300">Low</td>
+                            <td class="p-4 text-blue-300">Medium</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">Visual Path</td>
+                            <td class="p-4">Straight Line</td>
+                            <td class="p-4">Chaotic Zig-Zag</td>
+                            <td class="p-4">Wavy Line</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-500 py-8 text-center text-sm border-t border-slate-800">
+         <p>Copyright &copy; 2025 Mahmoud Alyosify. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. PLOTLY VISUALIZATION (TYPES) ---
+        // Simulating the "Cost Landscape" with a Contour Plot
+        // Z values create a "bowl" shape.
+        const size = 100;
+        const x = [], y = [], z = [];
+        for(let i = 0; i < size; i++) {
+            let row = [];
+            for(let j = 0; j < size; j++) {
+                // Simple quadratic bowl function: x^2 + y^2
+                let valX = (i - 50)/10;
+                let valY = (j - 50)/10;
+                row.push(valX*valX + valY*valY); 
+            }
+            z.push(row);
+        }
+
+        // Define Paths (Simulated coordinates for visual accuracy based on lecture description)
+        
+        // Batch: Straight to center (50, 50)
+        const batchPath = {
+            x: [10, 20, 30, 40, 48, 50],
+            y: [10, 20, 30, 40, 48, 50],
+            mode: 'lines+markers',
+            name: 'Batch GD',
+            line: {color: 'blue', width: 3},
+            type: 'scatter'
+        };
+
+        // SGD: Chaotic Zig-Zag
+        const sgdPath = {
+            x: [10, 25, 15, 40, 30, 60, 45, 55, 48, 52, 50],
+            y: [10, 12, 35, 25, 50, 40, 60, 45, 55, 48, 50],
+            mode: 'lines+markers',
+            name: 'Stochastic GD',
+            line: {color: 'red', width: 1, dash: 'dot'}, // Thinner, noisy
+            marker: {symbol: 'circle-open'},
+            type: 'scatter'
+        };
+
+        // Mini-batch: Wavy
+        const miniPath = {
+            x: [10, 18, 28, 35, 45, 50],
+            y: [10, 22, 28, 42, 45, 50],
+            mode: 'lines+markers',
+            name: 'Mini-batch GD',
+            line: {color: '#10b981', width: 2},
+            type: 'scatter'
+        };
+
+        const globalMin = {
+            x: [50], y: [50], mode: 'markers', name: 'Global Min',
+            marker: {symbol: 'star', size: 15, color: 'black'}
+        };
+
+        const layout = {
+            title: 'Gradient Descent Convergence Paths',
+            autosize: true,
+            margin: {l: 40, r: 40, t: 50, b: 40},
+            hovermode: 'closest',
+            showlegend: true,
+            legend: {orientation: "h", y: -0.1},
+            xaxis: {showgrid: false, showticklabels: false, title: 'Theta 0'},
+            yaxis: {showgrid: false, showticklabels: false, title: 'Theta 1'}
+        };
+
+        // Render Function
+        function updatePlotly() {
+            const showBatch = document.getElementById('check-batch').checked;
+            const showSGD = document.getElementById('check-sgd').checked;
+            const showMini = document.getElementById('check-mini').checked;
+
+            const data = [
+                {z: z, type: 'contour', colorscale: 'Viridis', opacity: 0.3, showscale: false}, // Background
+                globalMin
+            ];
+
+            if(showBatch) data.push(batchPath);
+            if(showSGD) data.push(sgdPath);
+            if(showMini) data.push(miniPath);
+
+            Plotly.newPlot('contourPlot', data, layout, {responsive: true, displayModeBar: false});
+        }
+
+        // Initialize Plotly
+        updatePlotly();
+
+
+        // --- 2. HYPERPARAMETER UI LOGIC ---
+        
+        function updateParamUI(type) {
+            if(type === 'lr') {
+                const val = document.getElementById('lr-slider').value;
+                const display = document.getElementById('lr-val');
+                const feedback = document.getElementById('lr-feedback');
+                
+                // Map slider 1-100 to logic
+                let realVal; 
+                if(val < 20) {
+                    realVal = "0.0001";
+                    feedback.innerHTML = "⚠️ Too Low: Learning will be painfully slow. Risk of getting stuck.";
+                    feedback.className = "text-sm font-semibold text-yellow-600 bg-yellow-50 p-3 rounded";
+                } else if (val > 80) {
+                    realVal = "1.5";
+                    feedback.innerHTML = "⚠️ Too High: Risk of overshooting minimum and diverging!";
+                    feedback.className = "text-sm font-semibold text-red-600 bg-red-50 p-3 rounded";
+                } else {
+                    realVal = "0.01";
+                    feedback.innerHTML = "✅ Balanced: Good convergence speed.";
+                    feedback.className = "text-sm font-semibold text-emerald-600 bg-emerald-50 p-3 rounded";
+                }
+                display.innerText = realVal;
+            }
+            
+            if(type === 'epoch') {
+                const val = document.getElementById('epoch-slider').value;
+                document.getElementById('epoch-val').innerText = val;
+                const feedback = document.getElementById('epoch-feedback');
+                
+                if(val < 10) {
+                    feedback.innerText = "Underfitting: Model might not see data enough times.";
+                    feedback.className = "text-sm font-semibold text-yellow-600 bg-yellow-50 p-3 rounded";
+                } else if (val > 80) {
+                    feedback.innerText = "Overfitting Risk: Model memorizing noise if not stopped.";
+                    feedback.className = "text-sm font-semibold text-indigo-600 bg-indigo-50 p-3 rounded";
+                } else {
+                    feedback.innerText = "Moderate training time.";
+                    feedback.className = "text-sm font-semibold text-blue-600 bg-blue-50 p-3 rounded";
+                }
+            }
+
+            if(type === 'batch') {
+                const sliderVal = document.getElementById('batch-slider').value;
+                // Map 1-4 to Powers of 2: 32, 64, 128, 256
+                const realVals = [32, 64, 128, 256];
+                const actualBatch = realVals[sliderVal - 1];
+                document.getElementById('batch-val').innerText = actualBatch;
+                const feedback = document.getElementById('batch-feedback');
+
+                if(actualBatch === 32) {
+                    feedback.innerText = "Small Batch: More noise, helps escape local minima.";
+                } else if(actualBatch === 256) {
+                    feedback.innerText = "Large Batch: Stable, but requires more RAM.";
+                } else {
+                    feedback.innerText = "Standard: Balance of noise & speed.";
+                }
+            }
+        }
+
+
+        // --- 3. CONVERGENCE CHART (CHART.JS) ---
+
+        const ctx = document.getElementById('convergenceChart').getContext('2d');
+        
+        // Data Generators for Scenarios
+        const epochs = Array.from({length: 20}, (_, i) => i + 1);
+        
+        const dataIdeal = [10, 6, 4, 2.5, 1.8, 1.2, 0.9, 0.7, 0.5, 0.4, 0.35, 0.3, 0.28, 0.26, 0.25, 0.24, 0.23, 0.22, 0.21, 0.2];
+        const dataDiverge = [10, 8, 12, 15, 20, 28, 40, 55, 75, 100, 130, 170, 220, 300, 400, 550, 700, 900, 1200, 1500];
+        const dataSlow = [10, 9.5, 9.0, 8.5, 8.0, 7.5, 7.0, 6.5, 6.0, 5.5, 5.0, 4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.5];
+        const dataNoisy = [10, 4, 8, 3, 7, 2.5, 6, 2, 5, 1.8, 4, 1.5, 3.5, 1.2, 3, 1.0, 2.8, 0.9, 2.5, 0.8];
+
+        let convergenceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: epochs,
+                datasets: [{
+                    label: 'Cost J(θ)',
+                    data: dataIdeal,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Loss (Cost)' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Epochs' }
+                    }
+                },
+                plugins: {
+                    legend: { display: true },
+                    tooltip: { mode: 'index', intersect: false }
+                }
+            }
+        });
+
+        function updateConvergenceChart(scenario) {
+            const overlay = document.getElementById('chart-overlay-text');
+            
+            if(scenario === 'ideal') {
+                convergenceChart.data.datasets[0].data = dataIdeal;
+                convergenceChart.data.datasets[0].borderColor = '#10b981'; // Emerald
+                convergenceChart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                overlay.innerText = "Current: Ideal Convergence";
+                overlay.className = "absolute top-4 right-4 bg-emerald-50 text-emerald-800 p-3 rounded shadow text-sm font-medium hidden md:block";
+            } else if (scenario === 'diverge') {
+                convergenceChart.data.datasets[0].data = dataDiverge;
+                convergenceChart.data.datasets[0].borderColor = '#ef4444'; // Red
+                convergenceChart.data.datasets[0].backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                overlay.innerText = "Current: High Learning Rate (Divergence)";
+                overlay.className = "absolute top-4 right-4 bg-red-50 text-red-800 p-3 rounded shadow text-sm font-medium hidden md:block";
+            } else if (scenario === 'slow') {
+                convergenceChart.data.datasets[0].data = dataSlow;
+                convergenceChart.data.datasets[0].borderColor = '#f59e0b'; // Amber
+                convergenceChart.data.datasets[0].backgroundColor = 'rgba(245, 158, 11, 0.1)';
+                overlay.innerText = "Current: Low Learning Rate (Slow)";
+                overlay.className = "absolute top-4 right-4 bg-yellow-50 text-yellow-800 p-3 rounded shadow text-sm font-medium hidden md:block";
+            } else if (scenario === 'noisy') {
+                convergenceChart.data.datasets[0].data = dataNoisy;
+                convergenceChart.data.datasets[0].borderColor = '#6366f1'; // Indigo
+                convergenceChart.data.datasets[0].backgroundColor = 'rgba(99, 102, 241, 0.1)';
+                overlay.innerText = "Current: Small Batch / SGD (Noisy)";
+                overlay.className = "absolute top-4 right-4 bg-indigo-50 text-indigo-800 p-3 rounded shadow text-sm font-medium hidden md:block";
+            }
+            convergenceChart.update();
+        }
+
+        // Navigation Helper
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+        }
+
+    </script>
+</body>
+</html>
