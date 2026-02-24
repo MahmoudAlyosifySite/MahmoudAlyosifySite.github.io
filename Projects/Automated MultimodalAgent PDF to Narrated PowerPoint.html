@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Narrated PowerPoint by Mahmoud & Mirna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066CC;
+            --secondary: #FF6B35;
+            --accent: #00D9FF;
+            --dark: #1A1A2E;
+            --light: #f8fafc;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        .agent-card:hover .agent-icon {
+            transform: scale(1.1);
+            color: var(--secondary);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .step-active {
+            border-left: 4px solid var(--primary);
+            background: #eff6ff;
+        }
+    </style>
+    <!-- Chosen Palette: Industrial Professional - Primary: #0066CC (Professional Blue), Secondary: #FF6B35 (Action Orange), Accent: #00D9FF (Tech Cyan), Background: #f8fafc (Clean Gray) -->
+    <!-- Application Structure Plan: 
+        1. Executive Narrative: A high-level introduction to the "Think -> Plan -> Act" paradigm shift.
+        2. The 8-Agent Interactive Workflow: A central navigation component allowing users to click through the agents (1-8) to see specific models (LayoutLMv3, Mistral 7B, Suno Bark) and functional roles.
+        3. Strategic Takeaway Dashboard: Cards highlighting "Inference-Only Efficiency" and "Contextual Grounding" with supporting data visualizations.
+        4. Technical Performance Insights: Chart.js visualizations showing processing loads and the "Multimodal Layer" constraints.
+        5. Quick-Start Terminal: A visual representation of the directory structure and deployment commands.
+        Rationale: This structure breaks down a dense 8-step technical process into digestible, non-linear modules, allowing users to focus on specific phases (Extraction vs. Creation) based on their interest.
+    -->
+    <!-- Visualization & Content Choices: 
+        - Pipeline stages -> Interactive Progress Flow -> Goal: Visualize dependencies -> Method: HTML Grid with JS state.
+        - Process Load -> Horizontal Bar Chart (Chart.js) -> Goal: Show complexity -> Justification: TTS and Parsing are identified as high-resource.
+        - Semantic Roles -> Donut Chart (Chart.js) -> Goal: Categorization -> Method: Percentage distribution of chunk types.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. 
+    -->
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-50 w-full glass-panel shadow-sm px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="font-bold text-xl tracking-tight uppercase">Automated Multimodal Agent: PDF to Narrated PowerPoint</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
+                <a href="#vision" class="hover:text-blue-600 transition">VISION</a>
+                <a href="#agents" class="hover:text-blue-600 transition">THE AGENTS</a>
+                <a href="#tech" class="hover:text-blue-600 transition">TECHNICALS</a>
+                <a href="#outputs" class="hover:text-blue-600 transition">OUTPUTS</a>
+            </div>
+            <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition">DEPLOY SYSTEM</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        
+        <!-- Hero Section -->
+        <section id="vision" class="mb-24">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-3/5">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Beyond Static Documents: <br>
+                        <span class="text-blue-600 italic">The Multimodal Shift</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Transitioning from simple prompt-response interactions toward sophisticated, multi-agent <span class="font-bold text-blue-700">"Think → Plan → Act"</span> workflows. Automate the conversion of research articles into narrated, pedagogical presentations without manual fine-tuning.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white border border-gray-200 px-6 py-4 rounded-xl shadow-sm flex items-center space-x-4">
+                            <i class="fa-solid fa-microchip text-blue-500 text-2xl"></i>
+                            <div>
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Logic Layer</p>
+                                <p class="font-bold">Mistral 7B</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-gray-200 px-6 py-4 rounded-xl shadow-sm flex items-center space-x-4">
+                            <i class="fa-solid fa-file-pdf text-red-500 text-2xl"></i>
+                            <div>
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Parsing</p>
+                                <p class="font-bold">LayoutLMv3</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-gray-200 px-6 py-4 rounded-xl shadow-sm flex items-center space-x-4">
+                            <i class="fa-solid fa-waveform text-teal-500 text-2xl"></i>
+                            <div>
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Audio Synthesis</p>
+                                <p class="font-bold">Suno Bark</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/5 w-full">
+                    <div class="bg-dark rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
+                        <h3 class="text-2xl font-bold mb-6">Strategic Advantage</h3>
+                        <ul class="space-y-6">
+                            <li class="flex items-start space-x-4">
+                                <div class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></div>
+                                <div>
+                                    <p class="font-bold text-blue-300 uppercase text-xs">Modularity</p>
+                                    <p class="text-sm text-gray-300">8 specialized agents provide "best-in-class" processing at every stage.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-4">
+                                <div class="w-6 h-6 rounded-full bg-orange-500 flex-shrink-0 mt-1"></div>
+                                <div>
+                                    <p class="font-bold text-orange-300 uppercase text-xs">Grounded Reasoning</p>
+                                    <p class="text-sm text-gray-300">FAISS-based Vector DB eliminates hallucinations by anchoring content to PDF text.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-4">
+                                <div class="w-6 h-6 rounded-full bg-teal-500 flex-shrink-0 mt-1"></div>
+                                <div>
+                                    <p class="font-bold text-teal-300 uppercase text-xs">Scalable Efficiency</p>
+                                    <p class="text-sm text-gray-300">Inference-only workflow requires no custom fine-tuning or specialized training.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Demo Section -->
+        <section class="mb-24">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">See It In Action</h2>
+                    <p class="text-lg text-gray-600">Watch a live demonstration of how the pipeline transforms research documents into narrated PowerPoint presentations.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=srhrPcwGKZo" target="_blank" rel="noopener noreferrer" class="block group">
+                    <div class="bg-gradient-to-br from-gray-900 to-black rounded-3xl overflow-hidden shadow-xl border border-gray-200 aspect-video flex items-center justify-center hover:shadow-2xl transition-shadow">
+                        <div class="text-center">
+                            <div class="mb-6">
+                                <i class="fa-brands fa-youtube text-red-600 text-8xl"></i>
+                            </div>
+                            <h3 class="text-white text-2xl font-bold mb-2">Watch on YouTube</h3>
+                            <p class="text-gray-400 text-lg mb-6">Click to view the full demo video</p>
+                            <div class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                                <i class="fa-solid fa-play mr-2"></i>View Demo
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 1: THE ARCHITECTURE (Structured HTML - NO MERMAID) -->
+        <section>
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">The "Think → Plan → Act" Architecture</h2>
+                <p class="text-lg text-gray-600">
+                    Unlike simple OCR, this pipeline employs a cognitive loop. It deconstructs the document, plans a pedagogical narrative, and then synthesizes media.
+                </p>
+            </div>
+
+            <div class="relative max-w-5xl mx-auto">
+                <!-- CSS Grid Flowchart -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+                    
+                    <!-- Stage 1: THINK -->
+                    <div class="md:col-span-1 space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600 shadow-sm h-full">
+                            <h3 class="text-blue-900 font-bold mb-2 text-lg">🧠 THINK</h3>
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded shadow-sm border border-blue-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 1</div>
+                                    <div class="font-semibold text-gray-800">Layout Analyzer</div>
+                                    <div class="text-xs text-gray-500 mt-1">Extracts Bounding Boxes</div>
+                                </div>
+                                <div class="bg-white p-3 rounded shadow-sm border border-blue-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 2</div>
+                                    <div class="font-semibold text-gray-800">Chunker</div>
+                                    <div class="text-xs text-gray-500 mt-1">Semantic Segmentation</div>
+                                </div>
+                                <div class="bg-white p-3 rounded shadow-sm border border-blue-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 3</div>
+                                    <div class="font-semibold text-gray-800">Vector Indexer</div>
+                                    <div class="text-xs text-gray-500 mt-1">FAISS Database</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow for Desktop -->
+                    <div class="hidden md:flex items-center justify-center">
+                        <div class="text-3xl text-gray-300">➜</div>
+                    </div>
+
+                    <!-- Stage 2: PLAN -->
+                    <div class="md:col-span-1 space-y-4">
+                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-600 shadow-sm h-full">
+                            <h3 class="text-purple-900 font-bold mb-2 text-lg">📝 PLAN</h3>
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded shadow-sm border border-purple-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 4</div>
+                                    <div class="font-semibold text-gray-800">Narrative Planner</div>
+                                    <div class="text-xs text-gray-500 mt-1">Designing the Flow</div>
+                                </div>
+                                <div class="bg-white p-3 rounded shadow-sm border border-purple-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 5</div>
+                                    <div class="font-semibold text-gray-800">Script Gen</div>
+                                    <div class="text-xs text-gray-500 mt-1">Writing the Lecture</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow for Desktop -->
+                    <div class="hidden md:flex items-center justify-center">
+                        <div class="text-3xl text-gray-300">➜</div>
+                    </div>
+
+                    <!-- Stage 3: ACT -->
+                    <div class="md:col-span-1 space-y-4">
+                        <div class="bg-pink-50 p-4 rounded-lg border-l-4 border-pink-600 shadow-sm h-full">
+                            <h3 class="text-pink-900 font-bold mb-2 text-lg">⚡ ACT</h3>
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded shadow-sm border border-pink-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 6</div>
+                                    <div class="font-semibold text-gray-800">Visual Builder</div>
+                                    <div class="text-xs text-gray-500 mt-1">Slide Composition</div>
+                                </div>
+                                <div class="bg-white p-3 rounded shadow-sm border border-pink-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 7</div>
+                                    <div class="font-semibold text-gray-800">TTS Generator</div>
+                                    <div class="text-xs text-gray-500 mt-1">Audio Synthesis</div>
+                                </div>
+                                <div class="bg-white p-3 rounded shadow-sm border border-pink-100">
+                                    <div class="text-xs font-bold text-gray-400 uppercase">Agent 8</div>
+                                    <div class="font-semibold text-gray-800">PPTX Assembler</div>
+                                    <div class="text-xs text-gray-500 mt-1">Final Compilation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- The 8-Agent Pipeline Interactive Selector -->
+        <section id="agents" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Inside the Pipeline: 8 Specialized Nodes</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore how each agent contributes to the transformation from raw pixels to pedagogical narration. Click a step to view the logic.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Navigation Steps -->
+                <div class="lg:col-span-4 flex flex-col space-y-2">
+                    <button onclick="showAgent(1)" id="agent-btn-1" class="agent-nav-btn text-left p-4 rounded-xl transition-all step-active">
+                        <p class="text-xs font-bold text-gray-400">STAGE 1: EXTRACTION</p>
+                        <p class="font-bold text-lg">Agent 1: PDF Layout Analyzer</p>
+                    </button>
+                    <button onclick="showAgent(2)" id="agent-btn-2" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 1: EXTRACTION</p>
+                        <p class="font-bold text-lg">Agent 2: Semantic Chunker</p>
+                    </button>
+                    <button onclick="showAgent(3)" id="agent-btn-3" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 1: EXTRACTION</p>
+                        <p class="font-bold text-lg">Agent 3: Vector DB Agent</p>
+                    </button>
+                    <button onclick="showAgent(4)" id="agent-btn-4" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 2: COGNITIVE BRAIN</p>
+                        <p class="font-bold text-lg">Agent 4: Slide Planner</p>
+                    </button>
+                    <button onclick="showAgent(5)" id="agent-btn-5" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 2: COGNITIVE BRAIN</p>
+                        <p class="font-bold text-lg">Agent 5: Slide Generator</p>
+                    </button>
+                    <button onclick="showAgent(6)" id="agent-btn-6" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 3: MULTIMODAL</p>
+                        <p class="font-bold text-lg">Agent 6: Script Agent</p>
+                    </button>
+                    <button onclick="showAgent(7)" id="agent-btn-7" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 3: MULTIMODAL</p>
+                        <p class="font-bold text-lg">Agent 7: TTS (Suno Bark)</p>
+                    </button>
+                    <button onclick="showAgent(8)" id="agent-btn-8" class="agent-nav-btn text-left p-4 rounded-xl transition-all">
+                        <p class="text-xs font-bold text-gray-400">STAGE 4: MATERIALIZATION</p>
+                        <p class="font-bold text-lg">Agent 8: PPTX Builder</p>
+                    </button>
+                </div>
+
+                <!-- Display Content -->
+                <div class="lg:col-span-8">
+                    <div id="agent-display" class="bg-white border border-gray-200 rounded-3xl p-10 shadow-sm h-full relative transition-all duration-300">
+                        <!-- Content Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Analysis Dashboard -->
+        <section id="tech" class="mb-24 py-16 bg-white rounded-3xl border border-gray-200 px-8 shadow-sm">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Technical Performance Insights</h2>
+                    <p class="text-gray-600 mb-8">Data visualization highlighting the relative processing loads and semantic breakdown of the pipeline.</p>
+                    
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
+                        <h4 class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Process Load Distribution</h4>
+                        <div class="chart-container">
+                            <canvas id="loadChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-2">
+                                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold">A</div>
+                                <h4 class="font-bold text-xl text-gray-800">Layout Awareness (Agent 1)</h4>
+                            </div>
+                            <p class="text-gray-600 pl-14">Preserving "bounding boxes" ensures the system respects original hierarchy—distinguishing primary headers from footnotes to maintain context.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-4 mb-2">
+                                <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold">B</div>
+                                <h4 class="font-bold text-xl text-gray-800">Inference-Only Scaling</h4>
+                            </div>
+                            <p class="text-gray-600 pl-14">No custom RAG retraining required. The system pivots from academic texts to medical journals instantly using Mistral 7B's base reasoning capabilities.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-4 mb-2">
+                                <div class="w-10 h-10 bg-teal-100 text-teal-600 rounded-lg flex items-center justify-center font-bold">C</div>
+                                <h4 class="font-bold text-xl text-gray-800">Pedagogical Constraints</h4>
+                            </div>
+                            <p class="text-gray-600 pl-14">Visuals follow the 5/12 rule (Max 5 bullets, Max 12 words) while the Script Agent adopting an "Academic Lecturer" persona provides the depth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Outputs & Deployment -->
+        <section id="outputs" class="mb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Pipeline Execution Results</h2>
+                <p class="text-gray-600">The culmination of the 8-agent effort results in a standardized structure within the <code class="bg-gray-200 px-2 rounded">output/</code> directory.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">output/slides/</h3>
+                    <p class="text-gray-500 text-sm mb-6 flex-grow">The finalized .pptx file with text, layout, and linked narration audio ready for delivery.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center text-xs font-bold text-blue-600">
+                        <i class="fa-solid fa-check-circle mr-2"></i> MASTER PPTX GENERATED
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="w-16 h-16 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">output/audio/</h3>
+                    <p class="text-gray-500 text-sm mb-6 flex-grow">Individual .wav and .mp4 files. Optimized via Dynamic Range Compression to prevent clipping.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center text-xs font-bold text-teal-600">
+                        <i class="fa-solid fa-check-circle mr-2"></i> 24kHz PCM 16-BIT AUDIO
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-folder-tree"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">output/metadata/</h3>
+                    <p class="text-gray-500 text-sm mb-6 flex-grow">Execution JSON logs tracking agent dependencies and grounding IDs for full auditability.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center text-xs font-bold text-purple-600">
+                        <i class="fa-solid fa-check-circle mr-2"></i> LOG DATA PERSISTED
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Implementation Section -->
+            <div class="mt-16 bg-dark rounded-3xl p-8 shadow-2xl overflow-hidden relative">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span class="ml-4 text-xs font-mono text-gray-500 uppercase tracking-widest">Master Orchestrator Terminal</span>
+                </div>
+                <div class="font-mono text-sm space-y-2">
+                    <p class="text-green-400">$ python "Agentic Systems/Master Orchestrator Agent/master_agent.py"</p>
+                    <p class="text-gray-400">[*] Initializing Agentic Pipeline...</p>
+                    <p class="text-gray-400">[*] Agent 1: Parsing PDF Layout [DONE]</p>
+                    <p class="text-gray-400">[*] Agent 3: Vector Indexing Chunks [DONE]</p>
+                    <p class="text-gray-400">[*] Agent 7: Synthesizing Audio with Suno Bark (Temp 0.7) [IN PROGRESS]</p>
+                    <p class="text-blue-400 animate-pulse">|############################----------| 75%</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <span class="font-bold text-lg text-gray-800 tracking-tighter uppercase">Multimodal Agentic Workflow</span>
+                <p class="text-sm text-gray-400 mt-1">Transforming Document Intelligence for Modern Education.</p>
+                <p class="text-sm text-gray-400 mt-1">By Mahmoud Alyosify & Mirna Embaby</p>
+            </div>
+            <div class="text-xs text-gray-400">
+                VALIDATED ON PYTORCH 2.0 | LANGGRAPH 0.0.7 | STREAMLIT 1.28
+            </div>
+        </div>
+    </footer>
+    <footer class="bg-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy;Mahmoud & Mirna 2026</p>
+        </div>
+    </footer>
+    <script>
+        const agents = {
+            1: {
+                title: "Agent 1: PDF Parser & Layout Analyzer",
+                model: "LayoutLMv3",
+                desc: "The foundation for all reasoning. Identifies Title, Section Header, Paragraph, and List Item blocks. Records exact bounding box coordinates to ensure spatial awareness.",
+                takeaway: "Preserves the 'Reading Order' ensuring structural fidelity.",
+                color: "blue"
+            },
+            2: {
+                title: "Agent 2: Semantic Chunker",
+                model: "Mistral 7B",
+                desc: "Moves beyond arbitrary token limits. Groups content based on topic continuity and assigns semantic roles: definition, goal, process, or explanation.",
+                takeaway: "Assigns 'Importance Scores' to prioritize instructional value.",
+                color: "indigo"
+            },
+            3: {
+                title: "Agent 3: Vector DB & Embeddings",
+                model: "FAISS + Dense Embeddings",
+                desc: "A non-generative, deterministic grounding layer. Indexes semantic chunks to original text to prevent LLM hallucinations during generation.",
+                takeaway: "Ensures the system is 'anchored' in evidence, not weights.",
+                color: "teal"
+            },
+            4: {
+                title: "Agent 4: Slide Planner",
+                model: "Mistral 7B (Strategy Engine)",
+                desc: "The cognitive brain of the system. Filters complex information, enforces 'one main idea per slide', and outlines a narrative blueprint for 5-10 slides.",
+                takeaway: "Controls narrative flow and cognitive load.",
+                color: "purple"
+            },
+            5: {
+                title: "Agent 5: Slide Generator",
+                model: "Mistral 7B (Content compression)",
+                desc: "Materializes blueprints into precise bullet points. Operates on strict pedagogical constraints: Max 5 bullets, Max 12 words per bullet.",
+                takeaway: "Defines a 1280x720 canvas with professional hex-code themes.",
+                color: "pink"
+            },
+            6: {
+                title: "Agent 6: Script Agent",
+                model: "Mistral 7B (Academic Persona)",
+                desc: "Adopts the persona of an academic lecturer. Interprets slide intent to generate a 60-90 second conversational script that complements visual bullets.",
+                takeaway: "Avoids visual-auditory redundancy.",
+                color: "orange"
+            },
+            7: {
+                title: "Agent 7: TTS (Text-to-Speech)",
+                model: "Suno Bark (v2/en_speaker_1)",
+                desc: "Converts script to high-quality audio at 24kHz. Uses tuned temperature settings (Text: 0.7, Wave: 0.8) for non-robotic delivery.",
+                takeaway: "Normalized with 4:1 compression to ensure peak clarity.",
+                color: "emerald"
+            },
+            8: {
+                title: "Agent 8: PPTX Builder",
+                model: "python-pptx library",
+                desc: "The final materialization node. A deterministic tool that compiles JSON slide layouts and audio files into a standard PowerPoint format.",
+                takeaway: "The 'Assembler' that relies on inputs from Agents 5 and 7.",
+                color: "cyan"
+            }
+        };
+
+        function showAgent(id) {
+            const agent = agents[id];
+            const display = document.getElementById('agent-display');
+            const btns = document.querySelectorAll('.agent-nav-btn');
+            
+            // Toggle active styles
+            btns.forEach(b => b.classList.remove('step-active'));
+            document.getElementById(`agent-btn-${id}`).classList.add('step-active');
+
+            // Inject Content
+            display.style.opacity = '0';
+            setTimeout(() => {
+                display.innerHTML = `
+                    <div class="h-full flex flex-col">
+                        <div class="mb-8">
+                            <span class="px-4 py-1 bg-${agent.color}-100 text-${agent.color}-700 rounded-full text-xs font-bold uppercase tracking-widest">
+                                Processing Step ${id}
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-4">${agent.title}</h2>
+                        <div class="flex items-center space-x-3 mb-8">
+                            <p class="text-sm font-bold text-gray-400 uppercase">Core Model:</p>
+                            <p class="bg-gray-100 px-3 py-1 rounded text-sm font-mono font-bold text-gray-700">${agent.model}</p>
+                        </div>
+                        <p class="text-xl text-gray-600 leading-relaxed mb-8">${agent.desc}</p>
+                        
+                        <div class="mt-auto bg-${agent.color}-50 p-6 rounded-2xl border border-${agent.color}-100 flex items-center">
+                            <i class="fa-solid fa-lightbulb text-3xl text-${agent.color}-600 mr-6"></i>
+                            <div>
+                                <p class="text-xs font-bold text-${agent.color}-500 uppercase tracking-widest">Strategic Takeaway</p>
+                                <p class="text-lg font-bold text-gray-800">${agent.takeaway}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                display.style.opacity = '1';
+            }, 300);
+        }
+
+        // Initialize Charts
+        window.onload = function() {
+            showAgent(1);
+
+            const ctxLoad = document.getElementById('loadChart').getContext('2d');
+            new Chart(ctxLoad, {
+                type: 'bar',
+                data: {
+                    labels: ['Parser', 'Chunker', 'Vector DB', 'Planner', 'Generator', 'Scripting', 'TTS Gen', 'Builder'],
+                    datasets: [{
+                        label: 'Relative Resource Intensity (%)',
+                        data: [20, 5, 8, 12, 10, 15, 30, 5],
+                        backgroundColor: 'rgba(0, 102, 204, 0.6)',
+                        borderColor: '#0066CC',
+                        borderWidth: 1,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { display: false },
+                        y: { grid: { display: false }, ticks: { font: { weight: 'bold' } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
