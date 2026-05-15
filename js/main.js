@@ -118,49 +118,89 @@
 })(jQuery);
 
 $(document).ready(function () {
-    const certificateFiles = [
+    // Certificate data - Synchronized with CV exactly
+    const certificates = [
+        // AWS Academy Certifications
+        { file: "IMG_4014.JPG", name: "AWS Academy Graduate — Data Engineering", issuer: "Amazon Web Services", year: "2026" },
+        { file: "IMG_0340.JPG", name: "AWS Academy Graduate — Machine Learning for NLP", issuer: "Amazon Web Services", year: "2025" },
+        { file: "IMG_4832.JPG", name: "AWS Academy Graduate — Machine Learning Foundations", issuer: "Amazon Web Services", year: "2025" },
         
-           "iti 1.JPG",
-        "iti 2.JPG",
-        "iti 3.JPG",
-        "iti 4.JPG",
-        "iti 5.JPG",
-        "AI in Cybersecurity.png",
-        "1678810507402.jpeg",
-        "Annotation 2020-07-04 231855.jpg",
-        "Annotation 2020-07-25 131550.jpg",
-        "IMG_0340.JPG",  
-        "IMG_0598.JPG",
-        "IMG_0600.JPG",
-        "IMG_1602.JPG",
-        "IMG_2648.jpg",
-        "IMG_3992.JPG",
-        "IMG_3993.JPG",
-        "IMG_3994.JPG",
-        "IMG_3995.JPG",
-        "IMG_4014.JPG",
-        "IMG_4015.JPG",
-        "IMG_4832.JPG",
-        "IMG_4833.JPG",  
-        "IMG_6131.JPG",
-        "IMG_7887.JPG",
-        "Screenshot 2025-02-13 023245.png",
-        "Screenshot 2025-06-10 155852.png",
-        "Screenshot 2025-06-10 160235.png",
-        "Screenshot 2025-06-24 102044.png",
-         "IMG_0342.JPG",
-            "IMG_5413.JPG",
-            "IMG_9390.JPG"
+        // Coursera Specializations
+        { file: "Annotation 2020-07-04 231855.jpg", name: "Machine Learning Specialization", issuer: "Coursera / DeepLearning.AI", instructor: "Andrew Ng" },
+        { file: "Annotation 2020-07-25 131550.jpg", name: "Mathematics for Machine Learning", issuer: "Coursera", year: "" },
+        
+        // Certification Credentials
+        { file: "IMG_0600.JPG", name: "HCIP — AI (Huawei Certified ICT Professional)", issuer: "Huawei", year: "" },
+        { file: "IMG_1602.JPG", name: "Microsoft Certified: Data Analyst Associate", issuer: "Microsoft", credential: "Power BI" },
+        
+        // Generative AI & AI Specialization
+        { file: "IMG_2648.jpg", name: "Generative AI & Prompt Engineering Essentials", issuer: "IBM / Coursera", year: "" },
+        { file: "IMG_3992.JPG", name: "Generative AI: Boost Your Cybersecurity Career", issuer: "IBM", year: "" },
+        
+        // NTI & Professional Training
+        { file: "AI in Cybersecurity.png", name: "AI in Cybersecurity", issuer: "NTI", hours: "420 hours (Mar 2025 – Jul 2025)" },
+        
+        // Internships & Professional Development
+        { file: "IMG_3993.JPG", name: "Machine Learning Internship", issuer: "ITIDA / Egypt Makes Electronics", hours: "200 hours (Jul – Sep 2023)" },
+        { file: "IMG_3994.JPG", name: "Full Stack Development Diploma (.NET & Angular)", issuer: "Route Academy", duration: "May 2023 – Feb 2024" },
+        
+        // Data Analysis Training
+        { file: "IMG_3995.JPG", name: "Data Analysis Training using R", issuer: "Children's Cancer Hospital Foundation 57357", year: "" },
+        
+        // ITI Technical Training Programs
+        { file: "iti 1.JPG", name: ".NET Web Development", issuer: "ITI", hours: "120 hrs", details: "(ASP.NET MVC, Web API, Razor, Blazor, SignalR, Identity)" },
+        { file: "iti 2.JPG", name: "SQL Server & C#", issuer: "ITI", hours: "90 hrs", details: "(DB design, stored procedures, LINQ, Entity Framework)" },
+        { file: "iti 3.JPG", name: "MERN Stack Development", issuer: "ITI", hours: "60 hrs", details: "(MongoDB, Express.js, React.js, Node.js)" },
+        { file: "iti 4.JPG", name: "UI/UX Design", issuer: "ITI", hours: "60 hrs", details: "(UX fundamentals, design process, prototyping)" },
+        { file: "iti 5.JPG", name: "Android Mobile Development", issuer: "ITI", hours: "30 hrs", details: "(Android Studio, Java, XML)" }
     ];
 
     const container = $('#certGrid');
 
-    certificateFiles.forEach((file, index) => {
+    certificates.forEach((cert) => {
+        // Build info details dynamically
+        let infoDetails = '';
+        
+        if (cert.hours) {
+            infoDetails += `<p class="small text-muted mb-2"><i class="fas fa-clock mr-2"></i>${cert.hours}</p>`;
+        }
+        if (cert.year) {
+            infoDetails += `<p class="small text-muted mb-2"><i class="fas fa-calendar mr-2"></i>${cert.year}</p>`;
+        }
+        if (cert.instructor) {
+            infoDetails += `<p class="small text-muted mb-2"><i class="fas fa-user-tie mr-2"></i>${cert.instructor}</p>`;
+        }
+        if (cert.credential) {
+            infoDetails += `<p class="small text-muted mb-2"><i class="fas fa-certificate mr-2"></i>${cert.credential}</p>`;
+        }
+        if (cert.duration) {
+            infoDetails += `<p class="small text-muted mb-2"><i class="fas fa-hourglass mr-2"></i>${cert.duration}</p>`;
+        }
+        if (cert.details) {
+            infoDetails += `<p class="small text-info mb-2" style="font-style: italic;">${cert.details}</p>`;
+        }
+        
         const html = `
-            <div class="cert-col mb-4 px-2">
-                <img class="img-fluid rounded w-100 mb-2" src="Certificates/${file}" alt="Certificate ${index + 1}">
-                <h6 class="text-center">Certificate ${index + 1}</h6>
-                <a class="btn btn-sm btn-outline-primary btn-block" href="Certificates/${file}" target="_blank">View Full</a>
+            <div class="col-lg-4 col-md-6 mb-4 cert-card" style="transition: transform 0.3s ease;">
+                <div class="cert-container h-100 border rounded-lg shadow-sm" style="transition: all 0.3s ease; cursor: pointer;" 
+                     onmouseover="this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'; this.style.transform='translateY(-5px)';"
+                     onmouseout="this.style.boxShadow=''; this.style.transform='translateY(0)';">
+                    <div class="cert-image-wrapper overflow-hidden rounded-top" style="height: 250px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                        <img class="img-fluid w-100 h-100" src="Certificates/${cert.file}" alt="${cert.name}" style="object-fit: cover; transition: transform 0.3s ease;" 
+                             onmouseover="this.style.transform='scale(1.05)';"
+                             onmouseout="this.style.transform='scale(1)';">
+                    </div>
+                    <div class="cert-info p-4">
+                        <h6 class="font-weight-bold mb-2 text-primary">${cert.name}</h6>
+                        <p class="small mb-2 text-muted">
+                            <i class="fas fa-building mr-2"></i><strong>${cert.issuer}</strong>
+                        </p>
+                        ${infoDetails}
+                        <a class="btn btn-sm btn-outline-primary w-100" href="Certificates/${cert.file}" target="_blank">
+                            <i class="fas fa-expand mr-2"></i>View Certificate
+                        </a>
+                    </div>
+                </div>
             </div>
         `;
         container.append(html);

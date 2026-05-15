@@ -10000,28 +10000,214 @@ h6,
   padding: 0;
   list-style-type: none;
 }
-.cert-col {
-  flex: 0 0 20%;
-  max-width: 20%;
+/* Enhanced Certificate Card Styling */
+.cert-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.cert-container {
+  background: white;
+  border: 1px solid #e9ecef !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-container:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-8px);
+  border-color: #039BE5 !important;
+}
+
+.cert-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.cert-image-wrapper img {
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cert-container:hover .cert-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.cert-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-info h6 {
+  font-size: 0.95rem;
+  color: #039BE5;
+  line-height: 1.4;
+  min-height: 2.8rem;
+}
+
+.cert-info p {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.cert-info .btn {
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.cert-info .btn:hover {
+  background-color: #039BE5;
+  color: white;
+  border-color: #039BE5;
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+.transition {
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 992px) {
-  .cert-col {
-    flex: 0 0 33.333%;
-    max-width: 33.333%;
+  .cert-card {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  .cert-col {
+  .cert-card {
     flex: 0 0 50%;
     max-width: 50%;
   }
 }
 
 @media (max-width: 576px) {
-  .cert-col {
+  .cert-card {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+  
+  .cert-image-wrapper {
+    height: 200px !important;
+  }
+}
+
+/* Enhanced Achievements Card Styling */
+.achievement-card {
+  border-left: 4px solid #039BE5;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(180deg, #039BE5 0%, #0277BD 100%);
+  transition: height 0.3s ease;
+}
+
+.achievement-card:hover {
+  box-shadow: 0 8px 24px rgba(3, 155, 229, 0.15) !important;
+  transform: translateX(8px);
+}
+
+.achievement-card:hover::before {
+  height: 100%;
+}
+
+.achievement-card h5 {
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.achievement-card:hover h5 {
+  color: #0277BD !important;
+}
+
+.achievement-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.achievement-links .btn {
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.achievement-links .btn:hover {
+  background-color: #039BE5;
+  color: white;
+  border-color: #039BE5;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .achievement-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .achievement-links .btn {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Enhanced Projects Card Styling */
+.project-card {
+  border: 1px solid #e9ecef;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.project-card:hover {
+  box-shadow: 0 12px 28px rgba(3, 155, 229, 0.2) !important;
+  transform: translateY(-6px);
+  border-color: #039BE5;
+}
+
+.project-card .card-title {
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .card-title {
+  color: #0277BD !important;
+}
+
+.project-card .btn {
+  transition: all 0.3s ease;
+}
+
+.project-card .btn:hover {
+  background-color: #039BE5;
+  color: white;
+  border-color: #039BE5;
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-card .card-body {
+    padding: 1.25rem !important;
+  }
+  
+  .project-card .card-title {
+    font-size: 0.95rem;
   }
 }
