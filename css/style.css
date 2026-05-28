@@ -9961,6 +9961,46 @@ h6,
   height: calc(100% - 60px);
   top: 30px;
   left: 30px;
+  padding: 20px;
+}
+
+.portfolio-item .portfolio-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.portfolio-item .portfolio-btn i {
+  display: block;
+  font-style: normal;
+  line-height: 1.6;
+  white-space: normal;
+  overflow: auto;
+  max-height: 100%;
+  text-align: center;
+}
+
+.portfolio-item img {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 991.98px) {
+  .portfolio-item .portfolio-btn {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    top: 20px;
+    left: 20px;
+  }
+
+  .portfolio-item .portfolio-btn i {
+    font-size: 0.95rem;
+    padding: 0 8px;
+  }
 }
 
 .testimonial-carousel .owl-dots {
