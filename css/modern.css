@@ -67,13 +67,64 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  direction: ltr;
+  text-align: left;
 }
+
+body[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+body[dir="rtl"] .section-label { flex-direction: row-reverse; }
+body[dir="rtl"] .section-label::before { margin-left: 8px; margin-right: 0; }
+body[dir="rtl"] .nav__inner,
+body[dir="rtl"] .nav__links,
+body[dir="rtl"] .hero__actions,
+body[dir="rtl"] .hero__social,
+body[dir="rtl"] .hero__stats,
+body[dir="rtl"] .about__fact,
+body[dir="rtl"] .skill-card__header,
+body[dir="rtl"] .project-card__header,
+body[dir="rtl"] .teaching-platform,
+body[dir="rtl"] .achievement-card,
+body[dir="rtl"] .rec-card__author,
+body[dir="rtl"] .footer__inner {
+  direction: rtl;
+}
+body[dir="rtl"] .nav__inner { flex-direction: row-reverse; }
+body[dir="rtl"] .nav__links { flex-direction: row-reverse; gap: 24px; }
+body[dir="rtl"] .hero__actions { justify-content: flex-start; }
+body[dir="rtl"] .hero__social { justify-content: flex-start; }
+body[dir="rtl"] .hero__stats { justify-content: flex-start; }
+body[dir="rtl"] .about__fact { gap: 16px; }
+body[dir="rtl"] .timeline { padding-left: 0; padding-right: 32px; }
+body[dir="rtl"] .timeline::before { left: auto; right: 0; }
+body[dir="rtl"] .timeline__dot { left: auto; right: -38px; }
+body[dir="rtl"] .timeline__desc li,
+body[dir="rtl"] .project-card__desc li,
+body[dir="rtl"] .edu-card__detail li {
+  padding-left: 0;
+  padding-right: 14px;
+}
+body[dir="rtl"] .timeline__desc li::before,
+body[dir="rtl"] .project-card__desc li::before,
+body[dir="rtl"] .edu-card__detail li::before {
+  left: auto;
+  right: 0;
+}
+body[dir="rtl"] .back-to-top { right: auto; left: 32px; }
 
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--accent-cyan); text-decoration: none; transition: color var(--transition); }
 a:hover { color: #22d3ee; }
 ul { list-style: none; }
 button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+.nav__lang-toggle {
+  margin-inline: 12px;
+  white-space: nowrap;
+}
 
 /* ── Container ───────────────────────────────────────────── */
 .container {
