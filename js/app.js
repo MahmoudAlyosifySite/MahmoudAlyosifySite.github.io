@@ -35,6 +35,7 @@ function setLanguage(lang) {
     hero: {
       badge: isArabic ? 'متاح لفرص البحث والتطوير في الذكاء الاصطناعي والهندسة' : 'Available for AI R&D and engineering opportunities',
       name: 'Mahmoud Alyosify',
+      alias: isArabic ? 'محمود اليوسفي · محمود سيد يوسف' : 'Mahmoud Alyosify · Mahmoud Sayed Youssef',
       summary: isArabic ? 'ماجستير الذكاء الاصطناعي في <strong>جامعة كوينز، كندا</strong> — وحصلت على <strong>منحة الرئاسة</strong>. أعمل على بناء أنظمة جاهزة للإنتاج بالاعتماد على <strong>نماذج اللغات الكبيرة</strong>، وسلاسل <strong>التعلّم غير الخاضع للإشراف</strong>، ومحسّنات <strong>التعلّم المعزز</strong>، ومنتجات <strong>الذكاء الاصطناعي التوليدي</strong> قابلة للتوسّع. وقد علّمت <strong>أكثر من 10,000</strong> متعلّم عبر مصر.' : 'MSc AI at <strong>Queen\'s University, Canada</strong> — supported by the <strong>Presidential Scholarship</strong>. I build production-ready systems around <strong>large language models</strong>, <strong>self-supervised learning</strong>, <strong>reinforcement learning</strong>, and scalable <strong>generative AI</strong> products. I have taught <strong>10,000+</strong> learners across Egypt.',
       actions: {
         projects: isArabic ? 'عرض المشاريع' : 'View Projects',
@@ -180,6 +181,7 @@ function setLanguage(lang) {
   }
   setText('.hero__badge', translations.hero.badge);
   setText('.hero__name', translations.hero.name);
+  setText('.hero__alias', translations.hero.alias);
   setText('.hero__summary', translations.hero.summary);
   setText('.hero__actions a[href="#projects"]', `<i class="fas fa-rocket" aria-hidden="true"></i> ${translations.hero.actions.projects}`);
   setText('.hero__actions a[href="Files/Mahmoud-Alyosify-ML-CV.pdf"]', `<i class="fas fa-file-pdf" aria-hidden="true"></i> ${translations.hero.actions.cv}`);
@@ -526,9 +528,9 @@ function setLanguage(lang) {
     if (role) role.textContent = content.role;
   });
 
-  document.title = isArabic ? 'محمود عليوسيفي | مهندس الذكاء الاصطناعي وعلوم البيانات | ماجستير ذكاء اصطناعي في جامعة كوينز' : 'Mahmoud Alyosify | AI & Data Science Engineer | MSc AI @ Queen\'s University';
+  document.title = isArabic ? 'محمود اليوسفي | محمود سيد يوسف | مهندس الذكاء الاصطناعي وعلوم البيانات | ماجستير ذكاء اصطناعي في جامعة كوينز' : 'Mahmoud Alyosify | Mahmoud Sayed Youssef | AI & Data Science Engineer | MSc AI @ Queen\'s University';
   const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute('content', isArabic ? 'محمود عليوسيفي — مهندس ذكاء اصطناعي وعلوم بيانات، باحث ماجستير في الذكاء الاصطناعي بجامعة كوينز بكندا، ومهندس ذكاء اصطناعي توليدي ومُعلّم.' : 'Mahmoud Alyosify — AI & Data Science Engineer, MSc AI student at Queen\'s University, Canada, generative AI engineer, and educator.');
+  if (metaDesc) metaDesc.setAttribute('content', isArabic ? 'محمود اليوسفي (محمود سيد يوسف) — مهندس ذكاء اصطناعي وعلوم بيانات، باحث ماجستير في الذكاء الاصطناعي بجامعة كوينز بكندا، ومهندس ذكاء اصطناعي توليدي ومُعلّم.' : 'Mahmoud Alyosify (Mahmoud Sayed Youssef) — AI & Data Science Engineer, MSc AI student at Queen\'s University, Canada, generative AI engineer, and educator.');
   renderCerts();
 }
 
