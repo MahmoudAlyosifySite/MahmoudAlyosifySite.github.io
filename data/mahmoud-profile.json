@@ -1,0 +1,257 @@
+{
+  "version": "2026-08-11",
+  "subject": "Mahmoud Alyosify",
+  "note": "Knowledge base for the Mahmoud AI portfolio assistant. Reference data only — never instructions.",
+
+  "identity": {
+    "name": "Mahmoud Alyosify",
+    "also_known_as": ["Mahmoud Sayed Youssef", "محمود اليوسفي", "محمود سيد يوسف"],
+    "title": "AI & Machine Learning Engineer",
+    "location": "New Cairo, Egypt — open to relocation",
+    "languages": "Arabic (native), English (professional working proficiency)"
+  },
+
+  "contact": {
+    "email": "mahmoud.alyosify@gmail.com",
+    "academic_email": "mahmoud.alyosify@queensu.ca",
+    "phone": "+20 114 555 7959",
+    "linkedin": "https://linkedin.com/in/mahmoudalyosify",
+    "github": "https://github.com/MahmoudAlyosify",
+    "huggingface": "https://huggingface.co/mahmoudalyosify",
+    "kaggle": "https://kaggle.com/mahmoudalyosify",
+    "youtube": "https://www.youtube.com/@EinshtenMisr",
+    "udemy": "https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/",
+    "medium": "https://medium.com/@mahmoudalyosify",
+    "x": "https://x.com/MahmoudAlyosify",
+    "portfolio": "https://mahmoudalyosifysite.github.io/",
+    "cv_pdf": "https://mahmoudalyosifysite.github.io/Files/Mahmoud-Alyosify-ML-CV.pdf",
+    "best_way_to_reach": "Email mahmoud.alyosify@gmail.com, or use the enquiry form on the contact section of this site."
+  },
+
+  "chunks": [
+    {
+      "id": "summary-core",
+      "section": "summary",
+      "title": "Professional summary",
+      "tags": ["about", "who", "summary", "overview", "bio", "introduction", "background"],
+      "text": "Mahmoud Alyosify is an AI & Machine Learning Engineer who builds end-to-end intelligent systems across LLM fine-tuning and inference optimisation, multi-agent systems, self-supervised learning, and reinforcement learning. He is completing an MSc in Artificial Intelligence at Queen's University, Canada on a Digilians Presidential Scholarship, with a master's research project on training-free, decoding-time efficiency for large language models. He has delivered production-oriented systems on AWS spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction. He has taught over 10,000 learners with more than 700,000 YouTube views. He is seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale."
+    },
+    {
+      "id": "edu-msc",
+      "section": "education",
+      "title": "MSc in Artificial Intelligence — Queen's University, Canada",
+      "tags": ["education", "masters", "msc", "queens", "canada", "scholarship", "degree", "study", "university"],
+      "text": "MSc in Artificial Intelligence at Queen's University, Kingston, Canada. September 2025 to present, expected 2026. Funded by the Digilians Presidential Scholarship, a competitive national AI graduate fellowship. Master's research project (CISC 898): 'Verbosity-Aware Decoding for Token-Efficient Language Model Inference', supervised by Dr. Rahatara Ferdousi. Coursework covers Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, and End-to-End ML Pipelines."
+    },
+    {
+      "id": "edu-bsc",
+      "section": "education",
+      "title": "BSc Computer & Information Science (Bioinformatics) — Assiut University",
+      "tags": ["education", "bachelor", "bsc", "assiut", "bioinformatics", "gpa", "graduation project", "undergraduate"],
+      "text": "BSc in Computer & Information Science, Bioinformatics track, Assiut University, Egypt. September 2019 to July 2023. GPA 3.53 out of 4.00. Graduation project: Vitalism Solution — contactless vital-sign estimation via rPPG, graded A+ and a semi-finalist at Microsoft Imagine Cup 2023. Project site: https://vitalismsolution.github.io/"
+    },
+    {
+      "id": "exp-nti",
+      "section": "experience",
+      "title": "Machine Learning Instructor — National Telecommunication Institute (NTI)",
+      "tags": ["experience", "work", "job", "teaching", "instructor", "nti", "cairo", "training"],
+      "text": "Machine Learning Instructor at the National Telecommunication Institute (NTI), Cairo, Egypt. July 2025 to September 2025. Delivered a 90-hour hands-on ML programme for engineering and computer science students covering supervised learning, PCA, and neural networks, with practical lab sessions throughout. Designed projects and assessments grounded in real-world ML deployment."
+    },
+    {
+      "id": "exp-etisalat",
+      "section": "experience",
+      "title": "AI in Cybersecurity Intern — e& Egypt (Etisalat)",
+      "tags": ["experience", "work", "internship", "cybersecurity", "security", "etisalat", "e&", "soc", "forensics"],
+      "text": "AI in Cybersecurity Intern at e& Egypt (Etisalat) via NTI On-the-Job Training, Cairo, Egypt. June 2025 to July 2025. Applied AI-driven security tooling across threat intelligence, digital forensics, and enterprise security analysis. Worked hands-on with SOC tooling, memory forensics using Volatility, DLP, and penetration-testing suites."
+    },
+    {
+      "id": "exp-roads",
+      "section": "experience",
+      "title": "Systems Engineer (Military Service) — National Company for Roads Building & Development",
+      "tags": ["experience", "work", "military service", "backend", "c#", "dotnet", "sql server", "systems engineer", "toll"],
+      "text": "Systems Engineer during military service at the National Company for Roads Building & Development, Cairo, Egypt. February 2024 to March 2025. Supported backend systems for national toll infrastructure serving over 50% of Egyptian vehicles across more than 70% of national roads. Co-developed an internal data-management and reporting desktop application in C#, .NET, Entity Framework, SQL Server, and Crystal Reports."
+    },
+    {
+      "id": "exp-instructor",
+      "section": "experience",
+      "title": "Online Instructor — Udemy & YouTube",
+      "tags": ["experience", "teaching", "instructor", "udemy", "youtube", "einstein misr", "arabic", "courses", "content"],
+      "text": "Online Instructor in AI, Algorithms & Data Science on Udemy and YouTube, 2020 to present, remote. Built and taught Arabic-language technical curricula reaching more than 10,000 learners and over 700,000 YouTube views. The YouTube channel is called Einstein Misr (أينشتاين مصر)."
+    },
+    {
+      "id": "exp-itida",
+      "section": "experience",
+      "title": "Machine Learning Intern — ITIDA / Egypt Makes Electronics",
+      "tags": ["experience", "internship", "itida", "egypt makes electronics", "ml internship"],
+      "text": "Machine Learning Intern at ITIDA / Egypt Makes Electronics, July 2023 to September 2023, 200 hours. Completed an intensive programme covering supervised and unsupervised learning, neural networks, and model evaluation."
+    },
+    {
+      "id": "skills-llm",
+      "section": "skills",
+      "title": "AI & LLM systems skills",
+      "tags": ["skills", "llm", "language model", "fine-tuning", "lora", "qlora", "peft", "rag", "retrieval", "transformers", "hugging face", "langchain", "agents", "multi-agent", "prompt engineering", "knowledge graph", "decoding"],
+      "text": "AI & LLM Systems: Large Language Models, Fine-Tuning (LoRA, QLoRA, PEFT), Retrieval-Augmented Generation (RAG), Transformers, Hugging Face, LangChain, Multi-Agent Systems, Agentic Workflows, Prompt Engineering, Custom Decoding, Knowledge Graphs."
+    },
+    {
+      "id": "skills-ml",
+      "section": "skills",
+      "title": "ML & deep learning skills",
+      "tags": ["skills", "machine learning", "deep learning", "pytorch", "tensorflow", "sklearn", "xgboost", "cnn", "computer vision", "nlp", "self-supervised", "contrastive", "reinforcement learning", "ppo", "dqn", "optuna", "shap"],
+      "text": "ML & Deep Learning: PyTorch, TensorFlow, Scikit-learn, XGBoost, LightGBM, CNNs, Computer Vision, NLP, Self-Supervised and Contrastive Learning, Reinforcement Learning (PPO, DQN), Optuna, SHAP."
+    },
+    {
+      "id": "skills-mlops",
+      "section": "skills",
+      "title": "Data & MLOps skills",
+      "tags": ["skills", "mlops", "data", "pandas", "numpy", "pyspark", "etl", "aws", "docker", "ci/cd", "onnx", "fastapi", "streamlit", "faiss", "chromadb", "mysql", "mongodb", "git", "linux", "cloud", "deployment"],
+      "text": "Data & MLOps: Pandas, NumPy, PySpark, ETL Pipelines, Feature Engineering, AWS, Docker, CI/CD, ONNX, FastAPI, Streamlit, FAISS, ChromaDB, MySQL, MongoDB, Git/GitHub, Linux."
+    },
+    {
+      "id": "skills-eval",
+      "section": "skills",
+      "title": "Evaluation & research skills",
+      "tags": ["skills", "evaluation", "benchmark", "mt-bench", "xsum", "squad", "bertscore", "rouge", "llm-as-judge", "statistics", "ablation", "reproducibility", "research methods"],
+      "text": "Evaluation & Research: Benchmarking (MT-Bench, XSum, SQuAD-v2), BERTScore, ROUGE, LLM-as-Judge, Statistical Testing, Ablation Studies, Reproducible Experiment Design."
+    },
+    {
+      "id": "skills-prog",
+      "section": "skills",
+      "title": "Programming languages",
+      "tags": ["skills", "programming", "languages", "python", "c++", "c#", "go", "javascript", "sql", "matlab", "bash", "code"],
+      "text": "Programming: Python, C++, C, C#, Go, JavaScript, SQL, MATLAB, Bash."
+    },
+    {
+      "id": "ai-expertise",
+      "section": "ai_expertise",
+      "title": "Depth of AI expertise",
+      "tags": ["ai expertise", "generative ai", "llm", "rag", "agents", "deep learning", "cloud ai", "specialisation", "strengths", "what is he good at"],
+      "text": "Mahmoud's deepest AI expertise is in four areas. First, LLM systems: fine-tuning open-weight models (LoRA/QLoRA/PEFT), custom decoding strategies implemented as LogitsProcessors, and rigorous inference benchmarking. Second, multi-agent and agentic systems: swarms of specialised agents that collect and correlate information into knowledge graphs, and agentic workflows that chain extraction, generation and synthesis. Third, self-supervised and contrastive representation learning for vision, including SimCLR and SupCon with ONNX/FAISS retrieval deployment. Fourth, deep reinforcement learning applied to systems problems, notably PPO and DQN for cloud resource provisioning. He also does applied RAG, generative AI, and cloud AI deployment on AWS."
+    },
+    {
+      "id": "proj-vad",
+      "section": "research",
+      "title": "Verbosity-Aware Decoding for Token-Efficient Language Model Inference",
+      "tags": ["research", "msc", "thesis", "minimal-lm", "verbosity", "decoding", "logitsprocessor", "inference", "efficiency", "tokens", "mt-bench", "yapbench", "xsum", "squad", "mistral", "llama", "qwen", "nvml", "energy", "latency", "publication", "cisc 898"],
+      "text": "Verbosity-Aware Decoding for Token-Efficient Language Model Inference — Mahmoud's MSc research project (CISC 898) at Queen's University, supervised by Dr. Rahatara Ferdousi, July 2026 to present. He designed a training-free LogitsProcessor that cuts generated tokens at decoding time by combining stop-token, n-gram-repetition and semantic-redundancy signals under an entropy-driven gate — with no retraining, no architecture change, and no KV-cache or attention overhead. Validated across three open-weight model families (Mistral-7B-Instruct, Llama-3.1-8B-Instruct, Qwen2.5-3B-Instruct) on MT-Bench, YapBench, XSum and SQuAD-v2. He built a pre-registered evaluation protocol proving semantic preservation through paired non-inferiority testing (BERTScore, ROUGE, exact-match/F1, length-controlled LLM judge) alongside token reduction, latency (time-to-first-token and inter-token), and GPU energy measured via NVML — fully deterministic and reproducible on pinned AWS GPU instances. Repository: https://github.com/MahmoudAlyosify/minimal-lm"
+    },
+    {
+      "id": "proj-horus-sentinel",
+      "section": "projects",
+      "title": "HORUS Sentinel — Autonomous Multi-Agent OSINT & Threat-Intelligence Platform",
+      "tags": ["project", "horus", "sentinel", "osint", "threat intelligence", "multi-agent", "agents", "knowledge graph", "fine-tuned llm", "self-hosted", "security", "cyber"],
+      "text": "HORUS Sentinel is an autonomous multi-agent OSINT and threat-intelligence platform, built May 2026 to July 2026 in Python. Mahmoud architected an autonomous intelligence analyst in which a swarm of specialised passive agents continuously collects open-source intelligence and correlates every finding into a living Intelligence Knowledge Graph. A self-hosted, fine-tuned language model reasons over the graph to deliver prioritised, evidence-backed intelligence reports, compressing hours of manual analyst work into minutes. Repository: https://github.com/MahmoudAlyosify/horus-sentinel"
+    },
+    {
+      "id": "proj-rl-autoscaler",
+      "section": "projects",
+      "title": "RL-Cloud-Autoscaler — Deep RL for Cloud Resource Provisioning",
+      "tags": ["project", "reinforcement learning", "rl", "ppo", "dqn", "gymnasium", "autoscaling", "cloud", "cost optimisation", "latency"],
+      "text": "RL-Cloud-Autoscaler is an autonomous cloud resource provisioning system using deep reinforcement learning, built May 2026 to June 2026. Mahmoud built a custom Gymnasium environment simulating cloud workload dynamics and trained PPO and DQN agents to make autonomous provisioning decisions in real time. He optimised the cost–latency trade-off under fluctuating demand, benchmarking both algorithms against static and reactive threshold-based autoscaling baselines. Repository: https://github.com/MahmoudAlyosify/RL-Cloud-Autoscaler"
+    },
+    {
+      "id": "proj-simclr",
+      "section": "projects",
+      "title": "SimCLR-Vision-SSL — Self-Supervised Contrastive Representation Learning",
+      "tags": ["project", "simclr", "supcon", "self-supervised", "ssl", "contrastive", "vision", "pytorch", "onnx", "faiss", "retrieval", "augmentation", "accuracy"],
+      "text": "SimCLR-Vision-SSL is a self-supervised contrastive representation learning project built April 2026 to June 2026 in PyTorch. Mahmoud built a self-supervised vision pipeline with a 42-experiment augmentation sweep, a semi-supervised SupCon extension, and deployment-ready ONNX/FAISS retrieval, reaching 84.30% top-1 accuracy on classification and image-retrieval evaluation. Repository: https://github.com/MahmoudAlyosify/SimCLR-Vision-SSL"
+    },
+    {
+      "id": "proj-horus-osint",
+      "section": "projects",
+      "title": "Horus-OSINT — Cloud-Based Threat-Intelligence Assistant",
+      "tags": ["project", "horus-osint", "llama", "meta-llama-3-8b", "fine-tuning", "aws", "gtd", "gdelt", "osint", "terrorism", "assistant"],
+      "text": "Horus-OSINT is a cloud-based threat-intelligence assistant built March 2026 to April 2026. Mahmoud fine-tuned Meta-Llama-3-8B on 159,826 GTD/GDELT records and deployed it on AWS as an interactive assistant for querying global event and terrorism intelligence. Repository: https://github.com/MahmoudAlyosify/Horus-OSINT"
+    },
+    {
+      "id": "proj-multimodal-agent",
+      "section": "projects",
+      "title": "Automated Multimodal Agent — PDF to Narrated PowerPoint",
+      "tags": ["project", "agent", "agentic", "multimodal", "pdf", "powerpoint", "narration", "generative ai", "workflow", "automation"],
+      "text": "Automated Multimodal Agent is an autonomous agentic workflow that converts PDFs into narrated PowerPoint decks by coordinating content extraction, slide generation and audio narration end to end. Repository: https://github.com/MahmoudAlyosify/Automated-Multimodal-Agent-PDF-to-Narrated-PowerPoint"
+    },
+    {
+      "id": "proj-scrap",
+      "section": "projects",
+      "title": "SCRAP — Satellite Collision Risk Assessment and Prediction",
+      "tags": ["project", "scrap", "satellite", "collision", "space", "conjunction", "supervised learning", "prediction", "risk"],
+      "text": "SCRAP is a supervised ML pipeline predicting satellite collision risk from conjunction data available more than 48 hours before closest approach. Repository: https://github.com/MahmoudAlyosify/SCRAP-Satellite-Collision-Risk-Assessment-and-Prediction"
+    },
+    {
+      "id": "proj-agentic-prs",
+      "section": "projects",
+      "title": "Human vs. Agentic Pull Requests — Analysing Review Effort",
+      "tags": ["project", "pull requests", "github mining", "agentic", "code review", "empirical software engineering", "data mining", "analysis"],
+      "text": "Analyzing Review Effort in Human vs. Agentic Pull Requests is a reproducible GitHub-mining pipeline comparing code-review effort on agent-generated versus human-authored pull requests. Repository: https://github.com/MahmoudAlyosify/Analyzing-Review-Effort-in-Human-vs.-Agentic-Pull-Requests"
+    },
+    {
+      "id": "proj-audioshield",
+      "section": "projects",
+      "title": "AudioShield — Deepfake Audio Detection",
+      "tags": ["project", "audioshield", "deepfake", "audio", "cnn", "streamlit", "detection", "voice"],
+      "text": "AudioShield is a CNN-based deepfake audio detector served through a Streamlit application. Repository: https://github.com/MahmoudAlyosify/AudioShield"
+    },
+    {
+      "id": "proj-vitalism",
+      "section": "projects",
+      "title": "Vitalism Solution — Contactless Vital-Sign Estimation via rPPG",
+      "tags": ["project", "vitalism", "rppg", "vital signs", "computer vision", "healthcare", "graduation project", "imagine cup", "opencv"],
+      "text": "Vitalism Solution was Mahmoud's graduation project at Assiut University: contactless vital-sign estimation from video using remote photoplethysmography (rPPG). It was graded A+ and reached the semi-finals of Microsoft Imagine Cup 2023. Project site: https://vitalismsolution.github.io/"
+    },
+    {
+      "id": "proj-others",
+      "section": "projects",
+      "title": "Additional projects",
+      "tags": ["project", "other projects", "diabetes", "atm", "e-commerce", "file system", "mini-fat"],
+      "text": "Additional projects include Diabetes Onset Prediction, ATM Transaction Analysis, an E-Commerce Web App, and a Mini-FAT File System."
+    },
+    {
+      "id": "teaching",
+      "section": "teaching",
+      "title": "Teaching and content creation",
+      "tags": ["teaching", "courses", "udemy", "youtube", "einstein misr", "arabic", "students", "learners", "views", "algorithms", "discrete mathematics", "probability", "statistics"],
+      "text": "Mahmoud has taught AI, algorithms and data science in Arabic since 2020, reaching over 10,000 learners and more than 700,000 YouTube views. His YouTube channel is Einstein Misr (أينشتاين مصر) at https://www.youtube.com/@EinshtenMisr and he publishes on Udemy at https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/. Published courses include: 'Grokking Algorithms & Data Structures in Arabic', 'Discrete Mathematics for Computer Science in Arabic', and 'Probability and Statistics in Arabic'. He also taught a 90-hour machine learning programme at the National Telecommunication Institute in 2025."
+    },
+    {
+      "id": "certs",
+      "section": "certifications",
+      "title": "Certifications",
+      "tags": ["certifications", "certificates", "aws", "deeplearning.ai", "huawei", "microsoft", "ibm", "nti", "itida", "route academy", "fortinet", "iti", "credentials", "qualified"],
+      "text": "Mahmoud holds over 20 certifications, including: AWS Academy — Data Engineering (2026), Machine Learning for NLP (2025), and ML Foundations (2025); Machine Learning Specialization from Coursera / DeepLearning.AI; HCIP — AI (Huawei Certified ICT Professional); Microsoft Certified: Data Analyst Associate; Generative AI & Prompt Engineering from IBM / Coursera; Generative AI: Boost Your Cybersecurity Career from IBM; AI in Cybersecurity, 420 hours, from NTI (2025); Machine Learning Internship, 200 hours, from ITIDA / Egypt Makes Electronics (2023); Full Stack Development (.NET & Angular) from Route Academy; Fortinet Certified Associate in Cybersecurity (2025); Data analysis using R from Children's Cancer Hospital 57357; and five ITI programmes covering UI/UX, SQL Server and C#, MEARN stack, .NET web development, and Android development."
+    },
+    {
+      "id": "awards",
+      "section": "achievements",
+      "title": "Awards and achievements",
+      "tags": ["awards", "achievements", "hackathon", "smart cities", "imagine cup", "ideal student", "first place", "prize", "competition", "recognition"],
+      "text": "Mahmoud's awards include: 1st Place at the Smart Cities Hackathon 2022, won nationally among 77 teams from Egyptian public, private and national universities, organised with AWS, Elsewedy Digital, Orange Egypt and NBE; Semi-Finalist at Microsoft Imagine Cup 2023 with Vitalism Solution; the Ideal Student Award at Assiut University for 2022–2023; and 1st Place in the university Science & Technology Content Competition 2021–2022 with the White Hackers team."
+    },
+    {
+      "id": "leadership",
+      "section": "achievements",
+      "title": "Leadership roles",
+      "tags": ["leadership", "student union", "secretary", "ambassador", "volunteer", "iti", "usaid", "committee"],
+      "text": "Leadership roles: Secretary of the Higher Scientific & Technological Committee in the Assiut University Student Union (2021–2022); Ambassador for the Information Technology Institute (ITI), Assiut; and Volunteer Team Leader at the USAID University Center for Career Development."
+    },
+    {
+      "id": "recommendations",
+      "section": "research",
+      "title": "What colleagues and professors say",
+      "tags": ["recommendation", "reference", "testimonial", "review", "professor", "supervisor", "colleague", "feedback"],
+      "text": "Dr. Rahatara Ferdousi, who taught Mahmoud Generative AI and supervises his master's research, describes him as an active, highly engaged student with constant curiosity and initiative, whose ability to connect theoretical ideas to practical implementation stood out. Dr. Ibrahim Elsemman, Associate Professor of Information Systems at Assiut University, describes him as among the best students in the Faculty of Computers and Information, innovative in his projects, and quick to absorb new technologies. Dr. Islam Taj-Eddin notes his remarkable technical knowledge and systematic approach to problem solving. Colleagues describe strong leadership, effective communication, and problem-solving that was decisive in project success."
+    },
+    {
+      "id": "availability",
+      "section": "contact",
+      "title": "Availability and what he is looking for",
+      "tags": ["hiring", "available", "job", "role", "opportunity", "recruit", "relocation", "looking for", "work with", "contact", "reach"],
+      "text": "Mahmoud is available for AI R&D and engineering opportunities. He is seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale. He is based in New Cairo, Egypt and is open to relocation. The best way to reach him is email at mahmoud.alyosify@gmail.com (or mahmoud.alyosify@queensu.ca for academic matters), or the enquiry form in the contact section of this portfolio. He is also on LinkedIn at https://linkedin.com/in/mahmoudalyosify."
+    },
+    {
+      "id": "links",
+      "section": "links",
+      "title": "Where to find Mahmoud online",
+      "tags": ["links", "profiles", "github", "linkedin", "huggingface", "kaggle", "youtube", "udemy", "medium", "twitter", "x", "portfolio", "cv", "resume"],
+      "text": "Portfolio: https://mahmoudalyosifysite.github.io/ · GitHub: https://github.com/MahmoudAlyosify · LinkedIn: https://linkedin.com/in/mahmoudalyosify · Hugging Face: https://huggingface.co/mahmoudalyosify · Kaggle: https://kaggle.com/mahmoudalyosify · YouTube: https://www.youtube.com/@EinshtenMisr · Udemy: https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/ · Medium: https://medium.com/@mahmoudalyosify · X: https://x.com/MahmoudAlyosify · CV PDF: https://mahmoudalyosifysite.github.io/Files/Mahmoud-Alyosify-ML-CV.pdf"
+    }
+  ]
+}
