@@ -1249,8 +1249,23 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
   transition: color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
 }
 .foot__link:hover { color: var(--magenta); border-color: var(--line-glow); transform: translateY(-3px); }
-.foot__meta { display: grid; gap: 4px; text-align: end; color: var(--ink-mute); }
-.foot__built { font-size: 0.7rem; opacity: 0.7; }
+.foot__meta {
+  display: grid;
+  gap: 4px;
+  text-align: start;
+  justify-items: start;
+  color: var(--ink-mute);
+}
+.foot__built {
+  display: grid;
+  gap: 2px;
+  font-size: 0.7rem;
+  opacity: 0.82;
+  line-height: 1.55;
+  max-width: 44ch;
+}
+.foot__built .footer-quote { display: block; }
+.foot__built strong { font-weight: 700; color: var(--ink); }
 
 .to-top {
   position: fixed;

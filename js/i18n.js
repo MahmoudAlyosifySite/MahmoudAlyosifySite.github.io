@@ -126,7 +126,7 @@ const I18N = {
     /* Footer */
     'footer.tagline': 'AI & Machine Learning Engineer · Cairo, Egypt',
     'footer.rights':  'All rights reserved.',
-    'footer.built':   'Built from scratch — no template.',
+    'footer.built':   '<span class="footer-quote">“Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.”</span><strong>— Albert Einstein</strong>',
     'footer.top':     'Back to top',
 
     /* Chatbot */
@@ -273,7 +273,7 @@ const I18N = {
 
     'footer.tagline': 'مهندس ذكاء اصطناعي وتعلّم آلي · القاهرة، مصر',
     'footer.rights':  'جميع الحقوق محفوظة.',
-    'footer.built':   'مبني من الصفر — بدون قوالب جاهزة.',
+    'footer.built':   '<span class="footer-quote">"Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world."</span><strong>— Albert Einstein</strong>',
     'footer.top':     'للأعلى',
 
     'bot.open':        'اسأل Mahmoud AI',
