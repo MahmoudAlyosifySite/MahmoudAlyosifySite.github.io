@@ -516,7 +516,16 @@ html[dir='rtl'] .hero__veil { --veil-dir: left; }
 }
 .about__lead { font-weight: 600; line-height: 1.5; margin-bottom: var(--s-5); }
 .about__lead .w { display: inline-block; transition: color .3s var(--ease-soft), opacity .3s var(--ease-soft); }
-.about__body { margin-bottom: var(--s-6); }
+.about__body { margin-bottom: var(--s-4); }
+.about__note { margin-bottom: var(--s-6); }
+.about__note a,
+.facts__v a {
+  color: var(--amber);
+  border-bottom: 1px solid rgba(240, 161, 58, 0.35);
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.about__note a:hover,
+.facts__v a:hover { color: var(--beam); border-bottom-color: var(--beam); }
 .about__links { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 
 .about__side { position: sticky; top: 110px; }

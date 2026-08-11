@@ -15,6 +15,7 @@
     "email": "mahmoud.alyosify@gmail.com",
     "academic_email": "mahmoud.alyosify@queensu.ca",
     "phone": "+20 114 555 7959",
+    "orcid": "https://orcid.org/0009-0005-1336-2726",
     "linkedin": "https://linkedin.com/in/mahmoudalyosify",
     "github": "https://github.com/MahmoudAlyosify",
     "huggingface": "https://huggingface.co/mahmoudalyosify",
@@ -250,8 +251,8 @@
       "id": "links",
       "section": "links",
       "title": "Where to find Mahmoud online",
-      "tags": ["links", "profiles", "github", "linkedin", "huggingface", "kaggle", "youtube", "udemy", "medium", "twitter", "x", "portfolio", "cv", "resume"],
-      "text": "Portfolio: https://mahmoudalyosifysite.github.io/ · GitHub: https://github.com/MahmoudAlyosify · LinkedIn: https://linkedin.com/in/mahmoudalyosify · Hugging Face: https://huggingface.co/mahmoudalyosify · Kaggle: https://kaggle.com/mahmoudalyosify · YouTube: https://www.youtube.com/@EinshtenMisr · Udemy: https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/ · Medium: https://medium.com/@mahmoudalyosify · X: https://x.com/MahmoudAlyosify · CV PDF: https://mahmoudalyosifysite.github.io/Files/Mahmoud-Alyosify-ML-CV.pdf"
+      "tags": ["links", "profiles", "orcid", "researcher id", "academic id", "publications", "github", "linkedin", "huggingface", "kaggle", "youtube", "udemy", "medium", "twitter", "x", "portfolio", "cv", "resume"],
+      "text": "ORCID iD: https://orcid.org/0009-0005-1336-2726 (registered as Mahmoud Sayed Youssef Kotb) · Portfolio: https://mahmoudalyosifysite.github.io/ · GitHub: https://github.com/MahmoudAlyosify · LinkedIn: https://linkedin.com/in/mahmoudalyosify · Hugging Face: https://huggingface.co/mahmoudalyosify · Kaggle: https://kaggle.com/mahmoudalyosify · YouTube: https://www.youtube.com/@EinshtenMisr · Udemy: https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/ · Medium: https://medium.com/@mahmoudalyosify · X: https://x.com/MahmoudAlyosify · CV PDF: https://mahmoudalyosifysite.github.io/Files/Mahmoud-Alyosify-ML-CV.pdf"
     }
   ]
 }

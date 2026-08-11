@@ -177,7 +177,7 @@
 
     const a = document.createElement('a');
     a.className = 'btn btn--primary';
-    a.href = it.src;
+    a.href = it.original || it.src;
     a.target = '_blank';
     a.rel = 'noopener';
     a.textContent = t('gal.openPdf', 'Open certificate');
@@ -205,7 +205,9 @@
 
     const open = document.createElement('a');
     open.className = 'btn btn--ghost btn--sm';
-    open.href = it.src;
+    // Always the untouched original — the gallery only ever showed a
+    // downscaled copy.
+    open.href = it.original || it.src;
     open.target = '_blank';
     open.rel = 'noopener';
     open.textContent = it.type === 'pdf'
@@ -230,7 +232,8 @@
       c.href = course;
       c.target = '_blank';
       c.rel = 'noopener';
-      c.textContent = t('gal.course', 'View course');
+      // Non-course items (a forum, a programme page) can label their own link.
+      c.textContent = it.courseLabel || t('gal.course', 'View course');
       els.actions.appendChild(c);
     }
 
@@ -254,7 +257,7 @@
 
       if (it.type === 'image') {
         const im = document.createElement('img');
-        im.src = it.src;
+        im.src = it.thumb || it.src;   // small derivative, not the full image
         im.alt = '';
         im.loading = 'lazy';
         im.decoding = 'async';

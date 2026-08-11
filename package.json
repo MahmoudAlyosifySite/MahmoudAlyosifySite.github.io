@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "sharp": "^0.35.3"
+  },
+  "name": "mahmoudalyosify-site",
+  "private": true,
+  "scripts": {
+    "build:images": "node tools/optimize-images.mjs",
+    "build:certs": "node tools/build-certificates.mjs",
+    "build:photos": "node tools/build-photo-gallery.mjs",
+    "build": "npm run build:images && npm run build:certs && npm run build:photos && npm run build:sw",
+    "build:sw": "node tools/stamp-sw.mjs"
+  }
+}

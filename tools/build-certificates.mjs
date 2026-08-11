@@ -126,16 +126,35 @@ async function build() {
 
       if (!o.title && looksGeneric(fallback)) generic++;
 
+      const original = `Certificates/${encodeURIComponent(cat.folder)}/${encodeURIComponent(file)}`;
+
+      // Optimised WebP derivatives, when tools/optimize-images.mjs has run.
+      let preview = original;
+      let thumb = original;
+      if (isImage) {
+        const stem = basename(file, extname(file));
+        const webDir = join(CERT_DIR, '_web', cat.folder);
+        if (existsSync(join(webDir, `${stem}.webp`))) {
+          preview = `Certificates/_web/${encodeURIComponent(cat.folder)}/${encodeURIComponent(stem)}.webp`;
+        }
+        if (existsSync(join(webDir, `${stem}@thumb.webp`))) {
+          thumb = `Certificates/_web/${encodeURIComponent(cat.folder)}/${encodeURIComponent(stem)}%40thumb.webp`;
+        }
+      }
+
       items.push({
         // Encoded once here so the runtime never has to think about spaces.
-        src: `Certificates/${encodeURIComponent(cat.folder)}/${encodeURIComponent(file)}`,
+        src: preview,          // what the gallery displays
+        thumb,                 // what the filmstrip displays
+        original,              // what "open full size" downloads
         file,
         type: isPdf ? 'pdf' : 'image',
         title,
         ...(o.issuer ? { issuer: o.issuer } : {}),
         ...(o.year ? { year: o.year } : {}),
         ...(o.verify ? { verify: o.verify } : {}),
-        ...(o.course ? { course: o.course } : {})
+        ...(o.course ? { course: o.course } : {}),
+        ...(o.courseLabel ? { courseLabel: o.courseLabel } : {})
       });
       total++;
     }

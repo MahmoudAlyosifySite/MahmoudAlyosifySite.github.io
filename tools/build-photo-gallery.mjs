@@ -73,13 +73,24 @@ function build() {
   // Encode each path segment. The folder name has spaces and an apostrophe,
   // and filenames contain "&" and a smart quote — all of which break a raw URL.
   const FOLDER = ['img', "Mahmoud's Photo Gallery"].map(encodeURIComponent).join('/');
+  const WEB = 'img/_web/gallery';
 
-  const items = ordered.map((file, i) => ({
-    src: `${FOLDER}/${encodeURIComponent(file)}`,
-    file,
-    alt: `Mahmoud Alyosify — photo ${i + 1} of ${ordered.length}`,
-    pinned: isStart(file) ? 'start' : isLast(file) ? 'end' : undefined
-  }));
+  const items = ordered.map((file, i) => {
+    const stem = baseName(file);
+    const web = path.join(root, 'img', '_web', 'gallery', `${stem}.webp`);
+    // Serve the optimised copy when it exists; fall back to the original so
+    // the gallery still works if the optimiser hasn't been run.
+    const hasWeb = fs.existsSync(web);
+
+    return {
+      src: hasWeb ? `${WEB}/${encodeURIComponent(stem)}.webp`
+                  : `${FOLDER}/${encodeURIComponent(file)}`,
+      full: `${FOLDER}/${encodeURIComponent(file)}`,
+      file,
+      alt: `Mahmoud Alyosify — photo ${i + 1} of ${ordered.length}`,
+      pinned: isStart(file) ? 'start' : isLast(file) ? 'end' : undefined
+    };
+  });
 
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, JSON.stringify({

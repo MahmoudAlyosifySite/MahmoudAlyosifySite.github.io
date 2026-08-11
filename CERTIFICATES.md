@@ -3,6 +3,16 @@
 The certificate section is **file-driven**. You never edit HTML or JavaScript to
 add, remove or rename a certificate.
 
+## Adding a certificate or a photo — the one command
+
+```bash
+npm run build
+```
+
+That runs three steps in order: optimise images → rebuild the certificate
+manifest → rebuild the photo-gallery manifest. Run it after adding **any**
+image or PDF, then commit and push.
+
 ## Adding a certificate
 
 1. Drop the file into the right folder:

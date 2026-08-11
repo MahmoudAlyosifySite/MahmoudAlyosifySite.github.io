@@ -27,6 +27,7 @@ const SITE = {
   },
 
   links: {
+    orcid:       'https://orcid.org/0009-0005-1336-2726',
     linkedin:    'https://linkedin.com/in/mahmoudalyosify',
     github:      'https://github.com/MahmoudAlyosify',
     huggingface: 'https://huggingface.co/mahmoudalyosify',
@@ -58,8 +59,13 @@ const SITE = {
       en: 'I am completing an MSc in Artificial Intelligence at Queen\'s University, Canada on a Digilians Presidential Scholarship, with a master\'s research project on training-free, decoding-time efficiency for large language models. Along the way I have delivered production-oriented systems on AWS spanning autonomous threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction — and taught more than 10,000 learners in Arabic across 700K+ views.',
       ar: 'أُكمل حاليًا ماجستير الذكاء الاصطناعي في جامعة كوينز بكندا بمنحة Digilians الرئاسية، ومشروعي البحثي عن كفاءة النماذج اللغوية وقت فك التشفير دون إعادة تدريب. وعلى الطريق سلّمت أنظمة جاهزة للإنتاج على AWS تشمل استخبارات التهديدات الذاتية، وسلاسل رؤية حاسوبية جاهزة للاسترجاع، وتوسّعًا سحابيًا بالتعلّم المعزز، والتنبؤ بمخاطر تصادم الأقمار الصناعية — ودرّست أكثر من 10,000 متعلّم بالعربية بأكثر من 700 ألف مشاهدة.'
     },
+    /* Rendered after the body copy; may contain a link. */
+    note: {
+      en: 'I recently presented at the <a href="https://www.queensu.ca/ctl/programs-and-events/ai-teaching-and-learning-forum-2026" target="_blank" rel="noopener">AI Teaching and Learning Forum 2026</a> at Queen\'s University — <a href="Files/2026%20AI%20In%20Teaching%20and%20Learning%20Forum%20%20Thank%20You.pdf" target="_blank" rel="noopener">see the thank-you letter</a>.',
+      ar: 'وقدّمت مؤخرًا عرضًا في <a href="https://www.queensu.ca/ctl/programs-and-events/ai-teaching-and-learning-forum-2026" target="_blank" rel="noopener">منتدى AI Teaching and Learning Forum 2026</a> بجامعة كوينز — <a href="Files/2026%20AI%20In%20Teaching%20and%20Learning%20Forum%20%20Thank%20You.pdf" target="_blank" rel="noopener">شاهد خطاب الشكر</a>.'
+    },
     facts: [
-      { icon: '🎓', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — Presidential Scholarship', ar: 'جامعة كوينز، كندا — منحة رئاسية' } },
+      { icon: '🎓', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — Presidential Scholarship', ar: 'جامعة كوينز، كندا — منحة رئاسية' }, url: 'https://www.queensu.ca' },
       { icon: '🧬', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' } },
       { icon: '🔬', k: { en: 'Research focus', ar: 'محور البحث' },                              v: { en: 'Token-efficient LLM inference · Verbosity-aware decoding', ar: 'استدلال موفّر للتوكنات · فك تشفير واعٍ بالإسهاب' } },
       { icon: '🌍', k: { en: 'Languages', ar: 'اللغات' },                                        v: { en: 'Arabic (native) · English (professional working)', ar: 'العربية (اللغة الأم) · الإنجليزية (احترافية)' } }

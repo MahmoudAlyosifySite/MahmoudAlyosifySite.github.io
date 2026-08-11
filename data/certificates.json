@@ -1,6 +1,6 @@
 {
   "generated": "2026-08-11",
-  "total": 55,
+  "total": 56,
   "categories": [
     {
       "id": "coursera",
@@ -18,6 +18,8 @@
       "items": [
         {
           "src": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
+          "thumb": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
+          "original": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
           "file": "Advanced Learning Algorithms.pdf",
           "type": "pdf",
           "title": "Advanced Learning Algorithms",
@@ -25,12 +27,16 @@
         },
         {
           "src": "Certificates/Coursera/Advanced%20Tokenization%20and%20Sentiment%20Analysis.pdf",
+          "thumb": "Certificates/Coursera/Advanced%20Tokenization%20and%20Sentiment%20Analysis.pdf",
+          "original": "Certificates/Coursera/Advanced%20Tokenization%20and%20Sentiment%20Analysis.pdf",
           "file": "Advanced Tokenization and Sentiment Analysis.pdf",
           "type": "pdf",
           "title": "Advanced Tokenization and Sentiment Analysis"
         },
         {
           "src": "Certificates/Coursera/Convolutional%20Neural%20Networks.pdf",
+          "thumb": "Certificates/Coursera/Convolutional%20Neural%20Networks.pdf",
+          "original": "Certificates/Coursera/Convolutional%20Neural%20Networks.pdf",
           "file": "Convolutional Neural Networks.pdf",
           "type": "pdf",
           "title": "Convolutional Neural Networks",
@@ -38,6 +44,8 @@
         },
         {
           "src": "Certificates/Coursera/Coursera%201AS93KDFU0WQ.pdf",
+          "thumb": "Certificates/Coursera/Coursera%201AS93KDFU0WQ.pdf",
+          "original": "Certificates/Coursera/Coursera%201AS93KDFU0WQ.pdf",
           "file": "Coursera 1AS93KDFU0WQ.pdf",
           "type": "pdf",
           "title": "Coursera 1AS93KDFU0WQ",
@@ -45,6 +53,8 @@
         },
         {
           "src": "Certificates/Coursera/Coursera%206SKL63895Y72.pdf",
+          "thumb": "Certificates/Coursera/Coursera%206SKL63895Y72.pdf",
+          "original": "Certificates/Coursera/Coursera%206SKL63895Y72.pdf",
           "file": "Coursera 6SKL63895Y72.pdf",
           "type": "pdf",
           "title": "Coursera 6SKL63895Y72",
@@ -52,6 +62,8 @@
         },
         {
           "src": "Certificates/Coursera/Coursera%20DIEH4EC7ULCR.pdf",
+          "thumb": "Certificates/Coursera/Coursera%20DIEH4EC7ULCR.pdf",
+          "original": "Certificates/Coursera/Coursera%20DIEH4EC7ULCR.pdf",
           "file": "Coursera DIEH4EC7ULCR.pdf",
           "type": "pdf",
           "title": "Coursera DIEH4EC7ULCR",
@@ -59,6 +71,8 @@
         },
         {
           "src": "Certificates/Coursera/Coursera%20PMAFKFD7VKQD.pdf",
+          "thumb": "Certificates/Coursera/Coursera%20PMAFKFD7VKQD.pdf",
+          "original": "Certificates/Coursera/Coursera%20PMAFKFD7VKQD.pdf",
           "file": "Coursera PMAFKFD7VKQD.pdf",
           "type": "pdf",
           "title": "Coursera PMAFKFD7VKQD",
@@ -66,6 +80,8 @@
         },
         {
           "src": "Certificates/Coursera/Coursera%20TDYMD3QQNI1D.pdf",
+          "thumb": "Certificates/Coursera/Coursera%20TDYMD3QQNI1D.pdf",
+          "original": "Certificates/Coursera/Coursera%20TDYMD3QQNI1D.pdf",
           "file": "Coursera TDYMD3QQNI1D.pdf",
           "type": "pdf",
           "title": "Coursera TDYMD3QQNI1D",
@@ -73,6 +89,8 @@
         },
         {
           "src": "Certificates/Coursera/Coursera%20XW4Z74U0FQNJ.pdf",
+          "thumb": "Certificates/Coursera/Coursera%20XW4Z74U0FQNJ.pdf",
+          "original": "Certificates/Coursera/Coursera%20XW4Z74U0FQNJ.pdf",
           "file": "Coursera XW4Z74U0FQNJ.pdf",
           "type": "pdf",
           "title": "Coursera XW4Z74U0FQNJ",
@@ -80,36 +98,48 @@
         },
         {
           "src": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
+          "thumb": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
+          "original": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
           "file": "Data Analysis with Python.pdf",
           "type": "pdf",
           "title": "Data Analysis with Python"
         },
         {
           "src": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
+          "thumb": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
+          "original": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
           "file": "Generative Ai -  Boost Your Cybersecurity Career.pdf",
           "type": "pdf",
           "title": "Generative AI: Boost Your Cybersecurity Career"
         },
         {
           "src": "Certificates/Coursera/Generative%20AI%20and%20LLMs%20-%20Architecture%20and%20Data%20Preparation.pdf",
+          "thumb": "Certificates/Coursera/Generative%20AI%20and%20LLMs%20-%20Architecture%20and%20Data%20Preparation.pdf",
+          "original": "Certificates/Coursera/Generative%20AI%20and%20LLMs%20-%20Architecture%20and%20Data%20Preparation.pdf",
           "file": "Generative AI and LLMs - Architecture and Data Preparation.pdf",
           "type": "pdf",
           "title": "Generative AI and LLMs: Architecture and Data Preparation"
         },
         {
           "src": "Certificates/Coursera/Generative%20AI%20Prompt%20Engineering%20Basics.pdf",
+          "thumb": "Certificates/Coursera/Generative%20AI%20Prompt%20Engineering%20Basics.pdf",
+          "original": "Certificates/Coursera/Generative%20AI%20Prompt%20Engineering%20Basics.pdf",
           "file": "Generative AI Prompt Engineering Basics.pdf",
           "type": "pdf",
           "title": "Generative AI Prompt Engineering Basics"
         },
         {
           "src": "Certificates/Coursera/generative-ai-essentials-for-cybersecurity.pdf",
+          "thumb": "Certificates/Coursera/generative-ai-essentials-for-cybersecurity.pdf",
+          "original": "Certificates/Coursera/generative-ai-essentials-for-cybersecurity.pdf",
           "file": "generative-ai-essentials-for-cybersecurity.pdf",
           "type": "pdf",
           "title": "Generative AI Essentials for Cybersecurity"
         },
         {
           "src": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
+          "thumb": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
+          "original": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
           "file": "Improving Deep Neural Networks Hyperparameter.pdf",
           "type": "pdf",
           "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
@@ -117,18 +147,24 @@
         },
         {
           "src": "Certificates/Coursera/Introduction%20to%20Data%20Analytics.pdf",
+          "thumb": "Certificates/Coursera/Introduction%20to%20Data%20Analytics.pdf",
+          "original": "Certificates/Coursera/Introduction%20to%20Data%20Analytics.pdf",
           "file": "Introduction to Data Analytics.pdf",
           "type": "pdf",
           "title": "Introduction to Data Analytics"
         },
         {
           "src": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
+          "thumb": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
+          "original": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
           "file": "Introduction to Deep Learning & Neural Networks with Keras.pdf",
           "type": "pdf",
           "title": "Introduction to Deep Learning & Neural Networks with Keras"
         },
         {
           "src": "Certificates/Coursera/Machine%20Learning%20Specialization.pdf",
+          "thumb": "Certificates/Coursera/Machine%20Learning%20Specialization.pdf",
+          "original": "Certificates/Coursera/Machine%20Learning%20Specialization.pdf",
           "file": "Machine Learning Specialization.pdf",
           "type": "pdf",
           "title": "Machine Learning Specialization",
@@ -136,12 +172,16 @@
         },
         {
           "src": "Certificates/Coursera/Mastering%20NLP.pdf",
+          "thumb": "Certificates/Coursera/Mastering%20NLP.pdf",
+          "original": "Certificates/Coursera/Mastering%20NLP.pdf",
           "file": "Mastering NLP.pdf",
           "type": "pdf",
           "title": "Mastering NLP"
         },
         {
           "src": "Certificates/Coursera/Mathematics%20for%20Machine%20Learning-Linear%20Algebra.pdf",
+          "thumb": "Certificates/Coursera/Mathematics%20for%20Machine%20Learning-Linear%20Algebra.pdf",
+          "original": "Certificates/Coursera/Mathematics%20for%20Machine%20Learning-Linear%20Algebra.pdf",
           "file": "Mathematics for Machine Learning-Linear Algebra.pdf",
           "type": "pdf",
           "title": "Mathematics for Machine Learning: Linear Algebra",
@@ -149,12 +189,16 @@
         },
         {
           "src": "Certificates/Coursera/Rl%20fundemetals.pdf",
+          "thumb": "Certificates/Coursera/Rl%20fundemetals.pdf",
+          "original": "Certificates/Coursera/Rl%20fundemetals.pdf",
           "file": "Rl fundemetals.pdf",
           "type": "pdf",
           "title": "Reinforcement Learning Fundamentals"
         },
         {
-          "src": "Certificates/Coursera/Screenshot%202025-06-10%20160235.png",
+          "src": "Certificates/_web/Coursera/Screenshot%202025-06-10%20160235.webp",
+          "thumb": "Certificates/_web/Coursera/Screenshot%202025-06-10%20160235%40thumb.webp",
+          "original": "Certificates/Coursera/Screenshot%202025-06-10%20160235.png",
           "file": "Screenshot 2025-06-10 160235.png",
           "type": "image",
           "title": "What is Data Science?",
@@ -165,6 +209,8 @@
         },
         {
           "src": "Certificates/Coursera/Sequence%20Models!.pdf",
+          "thumb": "Certificates/Coursera/Sequence%20Models!.pdf",
+          "original": "Certificates/Coursera/Sequence%20Models!.pdf",
           "file": "Sequence Models!.pdf",
           "type": "pdf",
           "title": "Sequence Models",
@@ -172,6 +218,8 @@
         },
         {
           "src": "Certificates/Coursera/Structuring%20Machine%20Learning%20Projects.pdf",
+          "thumb": "Certificates/Coursera/Structuring%20Machine%20Learning%20Projects.pdf",
+          "original": "Certificates/Coursera/Structuring%20Machine%20Learning%20Projects.pdf",
           "file": "Structuring Machine Learning Projects.pdf",
           "type": "pdf",
           "title": "Structuring Machine Learning Projects",
@@ -179,6 +227,8 @@
         },
         {
           "src": "Certificates/Coursera/Tools%20of%20the%20Trade%20Linux%20and%20SQL.pdf",
+          "thumb": "Certificates/Coursera/Tools%20of%20the%20Trade%20Linux%20and%20SQL.pdf",
+          "original": "Certificates/Coursera/Tools%20of%20the%20Trade%20Linux%20and%20SQL.pdf",
           "file": "Tools of the Trade Linux and SQL.pdf",
           "type": "pdf",
           "title": "Tools of the Trade: Linux and SQL"
@@ -200,7 +250,9 @@
       "count": 4,
       "items": [
         {
-          "src": "Certificates/Competitions/IMG_0598.JPG",
+          "src": "Certificates/_web/Competitions/IMG_0598.webp",
+          "thumb": "Certificates/_web/Competitions/IMG_0598%40thumb.webp",
+          "original": "Certificates/Competitions/IMG_0598.JPG",
           "file": "IMG_0598.JPG",
           "type": "image",
           "title": "Smart Cities Hackathon — First Winner (Smart Hospital)",
@@ -208,7 +260,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Competitions/IMG_0600.JPG",
+          "src": "Certificates/_web/Competitions/IMG_0600.webp",
+          "thumb": "Certificates/_web/Competitions/IMG_0600%40thumb.webp",
+          "original": "Certificates/Competitions/IMG_0600.JPG",
           "file": "IMG_0600.JPG",
           "type": "image",
           "title": "Smart Cities Hackathon — Certificate of Participation",
@@ -216,7 +270,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Competitions/IMG_2648.jpg",
+          "src": "Certificates/_web/Competitions/IMG_2648.webp",
+          "thumb": "Certificates/_web/Competitions/IMG_2648%40thumb.webp",
+          "original": "Certificates/Competitions/IMG_2648.jpg",
           "file": "IMG_2648.jpg",
           "type": "image",
           "title": "National Youth Hackathon 2023 — Team Vitalism",
@@ -224,7 +280,9 @@
           "year": "2023"
         },
         {
-          "src": "Certificates/Competitions/IMG_7887.JPG",
+          "src": "Certificates/_web/Competitions/IMG_7887.webp",
+          "thumb": "Certificates/_web/Competitions/IMG_7887%40thumb.webp",
+          "original": "Certificates/Competitions/IMG_7887.JPG",
           "file": "IMG_7887.JPG",
           "type": "image",
           "title": "Certificate of Excellence — Vitalism (ISEIC 2023)",
@@ -245,10 +303,24 @@
         "ar": "عمل مجتمعي وقيادة وأنشطة طلابية."
       },
       "icon": "people",
-      "count": 7,
+      "count": 8,
       "items": [
         {
-          "src": "Certificates/Activities-Volunteering/IMG_1602.JPG",
+          "src": "Certificates/Activities-Volunteering/AI%20in%20Teaching%20and%20Learning%20Forum%202026%20-%20Thank%20You.pdf",
+          "thumb": "Certificates/Activities-Volunteering/AI%20in%20Teaching%20and%20Learning%20Forum%202026%20-%20Thank%20You.pdf",
+          "original": "Certificates/Activities-Volunteering/AI%20in%20Teaching%20and%20Learning%20Forum%202026%20-%20Thank%20You.pdf",
+          "file": "AI in Teaching and Learning Forum 2026 - Thank You.pdf",
+          "type": "pdf",
+          "title": "AI in Teaching and Learning Forum 2026 — Thank You for Participating",
+          "issuer": "Centre for Teaching and Learning, Queen's University",
+          "year": "2026",
+          "course": "https://www.queensu.ca/ctl/programs-and-events/ai-teaching-and-learning-forum-2026",
+          "courseLabel": "About the forum"
+        },
+        {
+          "src": "Certificates/_web/Activities-Volunteering/IMG_1602.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/IMG_1602%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/IMG_1602.JPG",
           "file": "IMG_1602.JPG",
           "type": "image",
           "title": "Certificate of Excellence — Smart Hospital Solution Competition",
@@ -256,7 +328,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Activities-Volunteering/IMG_3993.JPG",
+          "src": "Certificates/_web/Activities-Volunteering/IMG_3993.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/IMG_3993%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/IMG_3993.JPG",
           "file": "IMG_3993.JPG",
           "type": "image",
           "title": "Certificate of Excellence — 1st in Science Content Creator Competition",
@@ -264,7 +338,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Activities-Volunteering/IMG_3994.JPG",
+          "src": "Certificates/_web/Activities-Volunteering/IMG_3994.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/IMG_3994%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/IMG_3994.JPG",
           "file": "IMG_3994.JPG",
           "type": "image",
           "title": "Certificate of Appreciation — Secretary, Higher Scientific & Technological Committee",
@@ -272,7 +348,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Activities-Volunteering/IMG_3995.JPG",
+          "src": "Certificates/_web/Activities-Volunteering/IMG_3995.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/IMG_3995%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/IMG_3995.JPG",
           "file": "IMG_3995.JPG",
           "type": "image",
           "title": "Certificate of Appreciation — Student Union Elections",
@@ -280,7 +358,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Activities-Volunteering/IMG_5413.JPG",
+          "src": "Certificates/_web/Activities-Volunteering/IMG_5413.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/IMG_5413%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/IMG_5413.JPG",
           "file": "IMG_5413.JPG",
           "type": "image",
           "title": "Volunteering Certificate — Summer Educational Club (36 hours)",
@@ -288,7 +368,9 @@
           "year": "2021"
         },
         {
-          "src": "Certificates/Activities-Volunteering/IMG_9390.JPG",
+          "src": "Certificates/_web/Activities-Volunteering/IMG_9390.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/IMG_9390%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/IMG_9390.JPG",
           "file": "IMG_9390.JPG",
           "type": "image",
           "title": "Certificate of Appreciation — First Place, Ideal Student Competition",
@@ -296,7 +378,9 @@
           "year": "2023"
         },
         {
-          "src": "Certificates/Activities-Volunteering/Screenshot%202025-02-13%20023245.png",
+          "src": "Certificates/_web/Activities-Volunteering/Screenshot%202025-02-13%20023245.webp",
+          "thumb": "Certificates/_web/Activities-Volunteering/Screenshot%202025-02-13%20023245%40thumb.webp",
+          "original": "Certificates/Activities-Volunteering/Screenshot%202025-02-13%20023245.png",
           "file": "Screenshot 2025-02-13 023245.png",
           "type": "image",
           "title": "Leaders Preparation Camp — Leaders for Egypt (Excellent)",
@@ -320,13 +404,17 @@
       "count": 14,
       "items": [
         {
-          "src": "Certificates/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI.png",
+          "src": "Certificates/_web/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI.webp",
+          "thumb": "Certificates/_web/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI%40thumb.webp",
+          "original": "Certificates/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI.png",
           "file": "AI in Cybersecurity From NTI.png",
           "type": "image",
           "title": "AI in Cybersecurity From NTI"
         },
         {
-          "src": "Certificates/Technical-Courses/Annotation%202020-07-04%20231855.jpg",
+          "src": "Certificates/_web/Technical-Courses/Annotation%202020-07-04%20231855.webp",
+          "thumb": "Certificates/_web/Technical-Courses/Annotation%202020-07-04%20231855%40thumb.webp",
+          "original": "Certificates/Technical-Courses/Annotation%202020-07-04%20231855.jpg",
           "file": "Annotation 2020-07-04 231855.jpg",
           "type": "image",
           "title": "DEV210x: Introduction to C++",
@@ -334,7 +422,9 @@
           "year": "2020"
         },
         {
-          "src": "Certificates/Technical-Courses/Annotation%202020-07-25%20131550.jpg",
+          "src": "Certificates/_web/Technical-Courses/Annotation%202020-07-25%20131550.webp",
+          "thumb": "Certificates/_web/Technical-Courses/Annotation%202020-07-25%20131550%40thumb.webp",
+          "original": "Certificates/Technical-Courses/Annotation%202020-07-25%20131550.jpg",
           "file": "Annotation 2020-07-25 131550.jpg",
           "type": "image",
           "title": "DEV276x: Learn to Program in Java",
@@ -342,7 +432,9 @@
           "year": "2020"
         },
         {
-          "src": "Certificates/Technical-Courses/IMG_0340.JPG",
+          "src": "Certificates/_web/Technical-Courses/IMG_0340.webp",
+          "thumb": "Certificates/_web/Technical-Courses/IMG_0340%40thumb.webp",
+          "original": "Certificates/Technical-Courses/IMG_0340.JPG",
           "file": "IMG_0340.JPG",
           "type": "image",
           "title": "Full Stack Web Development Diploma",
@@ -350,7 +442,9 @@
           "year": "2023"
         },
         {
-          "src": "Certificates/Technical-Courses/IMG_0342.JPG",
+          "src": "Certificates/_web/Technical-Courses/IMG_0342.webp",
+          "thumb": "Certificates/_web/Technical-Courses/IMG_0342%40thumb.webp",
+          "original": "Certificates/Technical-Courses/IMG_0342.JPG",
           "file": "IMG_0342.JPG",
           "type": "image",
           "title": "Front-End Development (120 hours)",
@@ -358,7 +452,9 @@
           "year": "2023"
         },
         {
-          "src": "Certificates/Technical-Courses/IMG_3992.JPG",
+          "src": "Certificates/_web/Technical-Courses/IMG_3992.webp",
+          "thumb": "Certificates/_web/Technical-Courses/IMG_3992%40thumb.webp",
+          "original": "Certificates/Technical-Courses/IMG_3992.JPG",
           "file": "IMG_3992.JPG",
           "type": "image",
           "title": "Machine Learning Track — EME Internship Programme",
@@ -366,7 +462,9 @@
           "year": "2023"
         },
         {
-          "src": "Certificates/Technical-Courses/IMG_6131.JPG",
+          "src": "Certificates/_web/Technical-Courses/IMG_6131.webp",
+          "thumb": "Certificates/_web/Technical-Courses/IMG_6131%40thumb.webp",
+          "original": "Certificates/Technical-Courses/IMG_6131.JPG",
           "file": "IMG_6131.JPG",
           "type": "image",
           "title": "Data Analysis using R (36 hours)",
@@ -374,37 +472,49 @@
           "year": "2021"
         },
         {
-          "src": "Certificates/Technical-Courses/iti%201.JPG",
+          "src": "Certificates/_web/Technical-Courses/iti%201.webp",
+          "thumb": "Certificates/_web/Technical-Courses/iti%201%40thumb.webp",
+          "original": "Certificates/Technical-Courses/iti%201.JPG",
           "file": "iti 1.JPG",
           "type": "image",
           "title": "iti 1"
         },
         {
-          "src": "Certificates/Technical-Courses/iti%202.JPG",
+          "src": "Certificates/_web/Technical-Courses/iti%202.webp",
+          "thumb": "Certificates/_web/Technical-Courses/iti%202%40thumb.webp",
+          "original": "Certificates/Technical-Courses/iti%202.JPG",
           "file": "iti 2.JPG",
           "type": "image",
           "title": "iti 2"
         },
         {
-          "src": "Certificates/Technical-Courses/iti%203.JPG",
+          "src": "Certificates/_web/Technical-Courses/iti%203.webp",
+          "thumb": "Certificates/_web/Technical-Courses/iti%203%40thumb.webp",
+          "original": "Certificates/Technical-Courses/iti%203.JPG",
           "file": "iti 3.JPG",
           "type": "image",
           "title": "iti 3"
         },
         {
-          "src": "Certificates/Technical-Courses/iti%204.JPG",
+          "src": "Certificates/_web/Technical-Courses/iti%204.webp",
+          "thumb": "Certificates/_web/Technical-Courses/iti%204%40thumb.webp",
+          "original": "Certificates/Technical-Courses/iti%204.JPG",
           "file": "iti 4.JPG",
           "type": "image",
           "title": "iti 4"
         },
         {
-          "src": "Certificates/Technical-Courses/iti%205.JPG",
+          "src": "Certificates/_web/Technical-Courses/iti%205.webp",
+          "thumb": "Certificates/_web/Technical-Courses/iti%205%40thumb.webp",
+          "original": "Certificates/Technical-Courses/iti%205.JPG",
           "file": "iti 5.JPG",
           "type": "image",
           "title": "iti 5"
         },
         {
-          "src": "Certificates/Technical-Courses/Screenshot%202025-06-10%20155852.png",
+          "src": "Certificates/_web/Technical-Courses/Screenshot%202025-06-10%20155852.webp",
+          "thumb": "Certificates/_web/Technical-Courses/Screenshot%202025-06-10%20155852%40thumb.webp",
+          "original": "Certificates/Technical-Courses/Screenshot%202025-06-10%20155852.png",
           "file": "Screenshot 2025-06-10 155852.png",
           "type": "image",
           "title": "DEV210x: Introduction to C++",
@@ -412,7 +522,9 @@
           "year": "2020"
         },
         {
-          "src": "Certificates/Technical-Courses/Screenshot%202025-06-24%20102044.png",
+          "src": "Certificates/_web/Technical-Courses/Screenshot%202025-06-24%20102044.webp",
+          "thumb": "Certificates/_web/Technical-Courses/Screenshot%202025-06-24%20102044%40thumb.webp",
+          "original": "Certificates/Technical-Courses/Screenshot%202025-06-24%20102044.png",
           "file": "Screenshot 2025-06-24 102044.png",
           "type": "image",
           "title": "Fortinet Certified Associate in Cybersecurity",
@@ -436,7 +548,9 @@
       "count": 5,
       "items": [
         {
-          "src": "Certificates/Other/IMG_4014.JPG",
+          "src": "Certificates/_web/Other/IMG_4014.webp",
+          "thumb": "Certificates/_web/Other/IMG_4014%40thumb.webp",
+          "original": "Certificates/Other/IMG_4014.JPG",
           "file": "IMG_4014.JPG",
           "type": "image",
           "title": "Certificate of Excellence — First Place, Smart Cities Hackathon",
@@ -444,7 +558,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Other/IMG_4015.JPG",
+          "src": "Certificates/_web/Other/IMG_4015.webp",
+          "thumb": "Certificates/_web/Other/IMG_4015%40thumb.webp",
+          "original": "Certificates/Other/IMG_4015.JPG",
           "file": "IMG_4015.JPG",
           "type": "image",
           "title": "Certificate of Excellence — 1st in Science Content Creator Competition",
@@ -452,7 +568,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Other/IMG_4832.JPG",
+          "src": "Certificates/_web/Other/IMG_4832.webp",
+          "thumb": "Certificates/_web/Other/IMG_4832%40thumb.webp",
+          "original": "Certificates/Other/IMG_4832.JPG",
           "file": "IMG_4832.JPG",
           "type": "image",
           "title": "Green & Smart Technologies — Assiut Boot Camp",
@@ -460,7 +578,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Other/IMG_4833.JPG",
+          "src": "Certificates/_web/Other/IMG_4833.webp",
+          "thumb": "Certificates/_web/Other/IMG_4833%40thumb.webp",
+          "original": "Certificates/Other/IMG_4833.JPG",
           "file": "IMG_4833.JPG",
           "type": "image",
           "title": "Virtual Employability Skills Track",
@@ -468,7 +588,9 @@
           "year": "2022"
         },
         {
-          "src": "Certificates/Other/Project%20Management%20from%20AmCham.jpeg",
+          "src": "Certificates/_web/Other/Project%20Management%20from%20AmCham.webp",
+          "thumb": "Certificates/_web/Other/Project%20Management%20from%20AmCham%40thumb.webp",
+          "original": "Certificates/Other/Project%20Management%20from%20AmCham.jpeg",
           "file": "Project Management from AmCham.jpeg",
           "type": "image",
           "title": "Project Management from AmCham"

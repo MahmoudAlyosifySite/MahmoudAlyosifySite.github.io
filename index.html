@@ -56,7 +56,13 @@
     ],
     "knowsAbout": ["Large Language Models", "Multi-Agent Systems", "Reinforcement Learning",
       "Self-Supervised Learning", "MLOps", "Retrieval-Augmented Generation"],
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "https://orcid.org/0009-0005-1336-2726"
+    },
     "sameAs": [
+      "https://orcid.org/0009-0005-1336-2726",
       "https://linkedin.com/in/mahmoudalyosify",
       "https://github.com/MahmoudAlyosify",
       "https://huggingface.co/mahmoudalyosify",
@@ -203,8 +209,16 @@
           <div class="about__text">
             <p class="about__lead h3" id="about-lead" data-words></p>
             <p class="lead about__body" id="about-body"></p>
+            <p class="lead about__note" id="about-note" hidden></p>
 
             <div class="about__links">
+              <a class="btn btn--ghost btn--sm" href="https://orcid.org/0009-0005-1336-2726" target="_blank"
+                rel="noopener me" title="ORCID iD 0009-0005-1336-2726">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 18.13H5.62V7.53h1.75v10.6zM6.5 6.42a1.02 1.02 0 1 1 0-2.04 1.02 1.02 0 0 1 0 2.04zm5.03 11.71H9.78V7.53h3.6c3.43 0 4.94 2.45 4.94 5.3 0 3.1-2.42 5.3-4.94 5.3h-1.85zm.34-1.6h1.4c2.5 0 3.7-1.5 3.7-3.7 0-2.02-1.28-3.7-3.7-3.7h-1.4v7.4z" />
+                </svg>
+                ORCID
+              </a>
               <a class="btn btn--ghost btn--sm" href="https://github.com/MahmoudAlyosify" target="_blank" rel="noopener">GitHub</a>
               <a class="btn btn--ghost btn--sm" href="https://linkedin.com/in/mahmoudalyosify" target="_blank" rel="noopener">LinkedIn</a>
               <a class="btn btn--ghost btn--sm" href="https://huggingface.co/mahmoudalyosify" target="_blank" rel="noopener">Hugging Face</a>
@@ -578,6 +592,30 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 
   <!-- App -->
+  <!-- Repeat visits load from the local cache. Only registered on a secure
+       origin; a failure here must never affect the page. -->
+  <script>
+    if ('serviceWorker' in navigator &&
+        (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+      window.addEventListener('load', () => {
+        // updateViaCache:'none' — the worker script itself must never come
+        // from the HTTP cache, or a deploy can be invisible for as long as
+        // the host's max-age (GitHub Pages sends 10 minutes).
+        navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+          .then((reg) => reg.update())
+          .catch(() => { /* offline caching unavailable */ });
+      });
+      // A new deploy takes over → refresh once so nobody is left looking at
+      // last week's CSS. The flag stops this becoming a reload loop.
+      let reloading = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (reloading) return;
+        reloading = true;
+        location.reload();
+      });
+    }
+  </script>
+
   <script src="js/data.js" defer></script>
   <script src="js/i18n.js" defer></script>
   <script src="js/ui.js" defer></script>
