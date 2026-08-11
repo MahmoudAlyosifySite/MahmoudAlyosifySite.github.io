@@ -80,10 +80,18 @@ html[dir='rtl'] .rail__hint::after { animation-direction: reverse; }
 /* ── Chatbot FAB attention pulse (first visit only) ───────── */
 .bot-fab__pulse {
   position: absolute;
-  inset: -4px;
-  border-radius: inherit;
-  border: 1px solid var(--magenta);
+  inset: -8px;
+  background: radial-gradient(circle at 50% 36%, rgba(234, 244, 255, 0.26) 0%, rgba(177, 75, 216, 0.32) 52%, rgba(240, 161, 58, 0.14) 70%, rgba(240, 161, 58, 0) 100%);
+  -webkit-mask-image: url("../img/Mahmoud%20Bot.png");
+  mask-image: url("../img/Mahmoud%20Bot.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
   opacity: 0;
+  pointer-events: none;
 }
 .motion-ready .bot-fab.is-idle .bot-fab__pulse {
   animation: fab-pulse 2.8s var(--ease-out) infinite;

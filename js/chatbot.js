@@ -83,11 +83,7 @@ ${context}
     <div class="bot" id="bot-panel" role="dialog" aria-modal="false" aria-labelledby="bot-h" hidden>
       <header class="bot__bar">
         <span class="bot__avatar" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"
-               stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3.5" y="7" width="17" height="12" rx="4"/>
-            <path d="M12 7V4M9.5 12.5v1.5M14.5 12.5v1.5M9 17h6M3.5 12H1.8M22.2 12h-1.7"/>
-          </svg>
+          <img src="img/Mahmoud%20Bot.png" alt="" />
         </span>
         <span class="bot__id">
           <b id="bot-h">${t('bot.title')}</b>
