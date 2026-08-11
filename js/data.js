@@ -173,7 +173,11 @@ const SITE = {
       },
       tags: ['Multi-Agent', 'Knowledge Graphs', 'Fine-Tuned LLM', 'Self-Hosted Inference', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/horus-sentinel',
-      image: 'img/portfolio 2.png'
+      image: 'img/portfolio 2.png',
+      links: [
+        { label: { en: 'Video walkthrough', ar: 'فيديو شرح' }, url: 'https://youtu.be/e6hyo1l7Dmc?si=d_bldKi4R6PeGWG3' },
+        { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_deterrence-activity-7492312452143947776-0uRD?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
+      ]
     },
     {
       period: { en: 'May 2026 — Jun 2026', ar: 'مايو 2026 — يونيو 2026' },
@@ -186,7 +190,10 @@ const SITE = {
       },
       tags: ['PPO', 'DQN', 'Gymnasium', 'Cost Optimisation', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/RL-Cloud-Autoscaler',
-      image: 'img/portfolio 3.png'
+      image: 'img/portfolio 3.png',
+      links: [
+        { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_reinforcementlearning-cloudcomputing-mlops-activity-7486192517051404289-UF--?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
+      ]
     },
     {
       period: { en: 'Apr 2026 — Jun 2026', ar: 'أبريل 2026 — يونيو 2026' },
@@ -199,7 +206,11 @@ const SITE = {
       },
       tags: ['PyTorch', 'SimCLR', 'SupCon', 'ONNX', 'FAISS', '84.30% top-1'],
       repo: 'https://github.com/MahmoudAlyosify/SimCLR-Vision-SSL',
-      image: 'img/portfolio 4.png'
+      image: 'img/portfolio 4.png',
+      links: [
+        { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_geoffreyhinton-deeplearning-selfsupervisedlearning-ugcPost-7470463338506960896-7l9j?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' },
+        { label: { en: 'Project report', ar: 'تقرير المشروع' }, url: 'https://www.linkedin.com/posts/queenscomputing_contrastive-representation-learning-on-cifar-ugcPost-7472342825091612672-bgJs?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
+      ]
     },
     {
       period: { en: 'Mar 2026 — Apr 2026', ar: 'مارس 2026 — أبريل 2026' },
@@ -212,7 +223,10 @@ const SITE = {
       },
       tags: ['Meta-Llama-3-8B', 'LoRA', 'AWS', 'OSINT', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/Horus-OSINT',
-      image: 'img/portfolio 5.png'
+      image: 'img/portfolio 5.png',
+      links: [
+        { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_llama3-aws-qlora-ugcPost-7455881379201908736-qi2V?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
+      ]
     },
     {
       period: { en: '2026', ar: '2026' },
@@ -225,7 +239,12 @@ const SITE = {
       },
       tags: ['Generative AI', 'Agentic AI', 'Multimodal', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/Automated-Multimodal-Agent-PDF-to-Narrated-PowerPoint',
-      image: 'img/portfolio 6.png'
+      image: 'img/portfolio 6.png',
+      links: [
+        { label: { en: 'Article', ar: 'مقال' }, url: 'https://medium.com/@mahmoudalyosify/from-static-pdf-to-talking-slides-automated-multimodal-agent-9b62c9a992c3' },
+        { label: { en: 'Project page', ar: 'صفحة المشروع' }, url: 'https://mahmoudalyosifysite.github.io/Projects/Automated%20MultimodalAgent%20PDF%20to%20Narrated%20PowerPoint.html' },
+        { label: { en: 'Video', ar: 'فيديو' }, url: 'https://youtu.be/srhrPcwGKZo?si=TBj8aDlzoIbRp3Mr' }
+      ]
     },
     {
       period: { en: '2025', ar: '2025' },
@@ -239,7 +258,11 @@ const SITE = {
       tags: ['Scikit-learn', 'XGBoost', 'Applied ML', 'Space Safety'],
       repo: 'https://github.com/MahmoudAlyosify/SCRAP-Satellite-Collision-Risk-Assessment-and-Prediction',
       demo: 'Projects/SCRAP_3D_Earth.html',
-      image: 'img/Analysis 1.png'
+      image: 'img/Analysis 1.png',
+      links: [
+        { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_machinelearning-spacetech-ai-activity-7437550355904724992-A9OW?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' },
+        { label: { en: 'YouTube video', ar: 'فيديو YouTube' }, url: 'https://www.youtube.com/watch?v=BjmMNAzm8Uk' }
+      ]
     },
     {
       period: { en: '2025', ar: '2025' },
@@ -252,7 +275,10 @@ const SITE = {
       },
       tags: ['GitHub Analytics', 'Data Mining', 'Empirical SE'],
       repo: 'https://github.com/MahmoudAlyosify/Analyzing-Review-Effort-in-Human-vs.-Agentic-Pull-Requests',
-      image: 'img/Analysis 2.jpg'
+      image: 'img/Analysis 2.jpg',
+      links: [
+        { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_artificialintelligence-softwareengineering-activity-7473777297242877952-pAdO?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
+      ]
     },
     {
       period: { en: '2024', ar: '2024' },

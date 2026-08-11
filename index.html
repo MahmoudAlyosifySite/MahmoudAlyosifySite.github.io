@@ -155,6 +155,16 @@
         <p class="hero__blurb lead" data-i18n="hero.blurb"></p>
         <p class="hero__aliases small" data-i18n="hero.aliases"></p>
 
+        <!-- Indexed by search engines, never shown on screen. Keeps the
+             Arabic spellings and the assistant name findable without
+             cluttering the page. Not hidden via display:none, which
+             crawlers discount — sr-only text is read normally. -->
+        <p class="sr-only">
+          Mahmoud Alyosify · Mahmoud Sayed Youssef · Mahmoud Sayed Youssef Kotb ·
+          محمود اليوسفي · محمود سيد يوسف · محمود سيد يوسف قطب · محمود ·
+          Mahmoud AI · Mahmoud Ai · MahmoudAlyosify
+        </p>
+
         <div class="hero__actions">
           <a class="btn btn--primary" href="#projects" data-magnetic data-i18n="hero.ctaWork">See the work</a>
           <a class="btn btn--ghost" href="Files/Mahmoud-Alyosify-ML-CV.pdf" target="_blank" rel="noopener"
@@ -371,7 +381,24 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         11 · CONTACT — enquiry textbox
+         11 · PHOTO GALLERY
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--alt" id="gallery" data-section="gallery">
+      <div class="wrap">
+        <header class="s-head">
+          <span class="eyebrow" data-i18n="gallery.eyebrow">Moments</span>
+          <h2 class="h1 s-head__title">
+            <span data-i18n="gallery.title1">Quiet moments,</span>
+            <span class="beam-text" data-i18n="gallery.title2">framed with care</span>
+          </h2>
+          <p class="lead s-head__sub" data-i18n="gallery.sub"></p>
+        </header>
+        <div class="photo-gallery" id="photo-gallery" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         12 · CONTACT — enquiry textbox
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="contact" data-section="contact">
       <div class="wrap">
@@ -379,7 +406,6 @@
           <span class="eyebrow" data-i18n="contact.eyebrow">Get in touch</span>
           <h2 class="h1 s-head__title">
             <span data-i18n="contact.title1">Let's build</span>
-            <span class="beam-text" data-i18n="contact.title2">something</span>
           </h2>
           <p class="lead s-head__sub" data-i18n="contact.sub"></p>
         </header>
@@ -455,8 +481,7 @@
       </div>
       <div class="fatfooter__inner">
         <h2 class="display fatfooter__title">
-          <span class="sunset-text" data-i18n="contact.title1">Let's build</span><br />
-          <span data-i18n="contact.title2">something</span>
+          <span class="sunset-text" data-i18n="contact.title1">Let's build</span>
         </h2>
         <a class="btn btn--primary" href="#contact" data-magnetic data-i18n="nav.cta">Get in touch</a>
       </div>
@@ -533,6 +558,8 @@
     </div>
   </div>
 
+
+
   <!-- ══════════════════════════════════════════════════════════
        MAHMOUD AI — chatbot mount (lazy-loaded on first click)
        ══════════════════════════════════════════════════════════ -->
@@ -554,6 +581,7 @@
   <script src="js/data.js" defer></script>
   <script src="js/i18n.js" defer></script>
   <script src="js/ui.js" defer></script>
+  <script src="js/photo-gallery.js" defer></script>
   <script src="js/certificates.js" defer></script>
   <script src="js/motion.js" defer></script>
 </body>

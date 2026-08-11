@@ -35,10 +35,10 @@
   --ink-mute:      #6b769e;
 
   /* ── Gradients ──────────────────────────────────────────── */
-  --beam-gradient:   linear-gradient(100deg, var(--violet) 0%, var(--magenta) 42%, var(--amber) 100%);
-  --beam-gradient-v: linear-gradient(180deg, var(--violet) 0%, var(--magenta) 50%, var(--amber) 100%);
+  --beam-gradient:   linear-gradient(100deg, var(--violet) 0%, var(--magenta) 42%, var(--amber) 70%, #ffffff 100%);
+  --beam-gradient-v: linear-gradient(180deg, var(--violet) 0%, var(--magenta) 50%, var(--amber) 82%, #ffffff 100%);
   --sky-gradient:    linear-gradient(180deg, var(--void) 0%, var(--navy) 45%, var(--indigo) 100%);
-  --sunset-gradient: linear-gradient(90deg, var(--coral) 0%, var(--amber) 50%, var(--gold) 100%);
+  --sunset-gradient: linear-gradient(90deg, var(--coral) 0%, var(--amber) 45%, var(--gold) 72%, #ffffff 100%);
   --panel-gradient:  linear-gradient(150deg, rgba(42, 31, 107, 0.30) 0%, rgba(11, 16, 48, 0.55) 100%);
 
   /* ── Glows ──────────────────────────────────────────────── */

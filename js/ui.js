@@ -11,11 +11,24 @@
 (() => {
   'use strict';
 
-  /* ── Enquiry form ──────────────────────────────────────────
-     Get a free access key at https://web3forms.com (takes a minute).
-     Leave it empty and the form falls back to a pre-filled mailto:
-     so it works from day one.                                    */
-  const WEB3FORMS_KEY = '';
+  /* ── Enquiry form delivery ─────────────────────────────────
+     Pressing Send posts the message straight to FormSubmit, which
+     emails it to NOTIFY_EMAIL. The visitor's mail client is never
+     opened — they stay on the page.
+
+     FormSubmit needs no account. The FIRST submission after this
+     goes live triggers a one-time confirmation email to
+     NOTIFY_EMAIL; click the link in it once and every later
+     submission is delivered automatically.
+
+     Optional hardening: once activated, FormSubmit gives you a
+     hashed endpoint id. Put it in FORMSUBMIT_ID to stop the address
+     appearing in the page source.                                */
+  const NOTIFY_EMAIL  = 'mahmoudalyosify@gmail.com';
+  const FORMSUBMIT_ID = '';   // e.g. 'a1b2c3d4e5f6...' — optional
+
+  const FORM_ENDPOINT =
+    'https://formsubmit.co/ajax/' + encodeURIComponent(FORMSUBMIT_ID || NOTIFY_EMAIL);
 
   const $  = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -92,6 +105,12 @@
       const links = [];
       if (p.repo) links.push(`<a class="btn btn--ghost btn--sm" href="${esc(p.repo)}" target="_blank" rel="noopener">${ICON.github}<span>${esc(t('proj.code'))}</span></a>`);
       if (p.demo) links.push(`<a class="btn btn--ghost btn--sm" href="${esc(p.demo)}" target="_blank" rel="noopener">${esc(t('proj.live'))}</a>`);
+      if (Array.isArray(p.links)) {
+        p.links.forEach((link) => {
+          if (!link?.url) return;
+          links.push(`<a class="btn btn--ghost btn--sm" href="${esc(link.url)}" target="_blank" rel="noopener">${esc(L(link.label))}</a>`);
+        });
+      }
       const note = p.supervisor ? `<span class="pcard__note mono">${esc(p.supervisor)}</span>` : '';
       return `
       <article class="pcard${p.featured ? ' pcard--featured' : ''}" data-reveal data-tilt>
@@ -206,7 +225,7 @@
       const id = s.id;
       const key = { hero: 'nav.about', about: 'nav.about', work: 'nav.work', projects: 'nav.projects',
         skills: 'nav.skills', impact: 'impact.eyebrow', teaching: 'nav.teaching', awards: 'nav.awards',
-        recs: 'recs.eyebrow', certs: 'nav.certs', contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
+        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
       const label = id === 'hero' ? 'Top' : t(key) || id;
       return `<a class="dots__item" href="#${id}" aria-label="${esc(label)}"><span class="dots__label">${esc(label)}</span></a>`;
     }).join('');
@@ -414,38 +433,62 @@
       const topicLabel = $('#f-topic').selectedOptions[0].textContent.trim();
       const subject = `Portfolio enquiry — ${topicLabel} — ${name}`;
 
-      // No access key configured → pre-filled mailto so the form still works.
-      if (!WEB3FORMS_KEY) {
-        const body = `${message}\n\n—\nFrom: ${name} <${email}>\nTopic: ${topicLabel}`;
-        window.location.href =
-          `mailto:${SITE.person.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        say(t('contact.ok'), 'ok');
-        return;
-      }
-
       submit.disabled = true;
       submitLabel.textContent = t('contact.sending');
+
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            access_key: WEB3FORMS_KEY,
-            subject, name, email, topic: topicLabel, message,
-            from_name: 'mahmoudalyosify.github.io'
+            name,
+            email,
+            topic: topicLabel,
+            message,
+            _subject: subject,
+            _replyto: email,          // replying to the notification reaches the sender
+            _template: 'table',
+            _captcha: 'false'
           })
         });
-        const json = await res.json();
-        if (!res.ok || !json.success) throw new Error('send failed');
+
+        let json = {};
+        try { json = await res.json(); } catch (_) { /* non-JSON error page */ }
+
+        // FormSubmit answers { success: "true" | true, message }
+        const ok = res.ok && String(json.success) === 'true';
+        if (!ok) throw new Error(json.message || 'send failed');
+
         say(t('contact.ok'), 'ok');
         form.reset();
-      } catch (_) {
-        say(t('contact.err'), 'err');
+      } catch (err) {
+        // Delivery failed — don't lose the visitor's message. Offer the
+        // pre-filled mail draft as a manual fallback.
+        showMailFallback({ name, email, topicLabel, message, subject });
       } finally {
         submit.disabled = false;
         submitLabel.textContent = t('contact.send');
       }
     });
+
+    /** Last resort: a ready-to-send draft, so a failed POST never
+        means the visitor has to retype anything. */
+    function showMailFallback({ name, email, topicLabel, message, subject }) {
+      say(t('contact.err'), 'err');
+      const body = `${message}\n\n—\nFrom: ${name} <${email}>\nTopic: ${topicLabel}`;
+      const href = `mailto:${SITE.person.email}?subject=${encodeURIComponent(subject)}` +
+                   `&body=${encodeURIComponent(body)}`;
+
+      let link = $('#form-mail-fallback');
+      if (!link) {
+        link = document.createElement('a');
+        link.id = 'form-mail-fallback';
+        link.className = 'btn btn--ghost btn--sm form-fallback';
+        status.after(link);
+      }
+      link.href = href;
+      link.textContent = t('contact.errMail');
+    }
   }
 
   /* ══════════════════════════════════════════════════════════
