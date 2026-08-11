@@ -182,23 +182,8 @@
       </blockquote>`).join('');
   }
 
-  function renderCerts() {
-    $('#certs-grid').innerHTML = SITE.certificates.map((c) => {
-      const name = L(c.name);
-      const meta = c.issuer + (c.year ? ' · ' + c.year : '');
-      return `
-      <button class="cert" type="button" data-reveal
-              data-src="Certificates/${esc(c.file)}" data-name="${esc(name)}">
-        <span class="cert__thumb-box">
-          <img class="cert__thumb" src="Certificates/${esc(c.file)}" alt="${esc(name)}" loading="lazy" />
-        </span>
-        <span class="cert__body">
-          <span class="cert__name">${esc(name)}</span>
-          <span class="cert__meta">${esc(meta)}</span>
-        </span>
-      </button>`;
-    }).join('');
-  }
+  /* Certificates are rendered by js/certificates.js from
+     data/certificates.json — see tools/build-certificates.mjs. */
 
   function renderSocial() {
     const l = SITE.links;
@@ -230,7 +215,7 @@
   function renderAll() {
     renderHeroStats(); renderAbout(); renderTimeline(); renderProjects();
     renderRail(); renderImpact(); renderTeaching(); renderAwards();
-    renderRecs(); renderCerts(); renderSocial(); renderDots();
+    renderRecs(); renderSocial(); renderDots();
     document.dispatchEvent(new CustomEvent('site:rendered'));
   }
 
@@ -378,41 +363,6 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     LIGHTBOX
-     ══════════════════════════════════════════════════════════ */
-  function initLightbox() {
-    const box = $('#lightbox');
-    const img = $('#lightbox-img');
-    const cap = $('#lightbox-cap');
-    let lastFocus = null;
-
-    const open = (src, name) => {
-      lastFocus = document.activeElement;
-      img.src = src; img.alt = name; cap.textContent = name;
-      box.hidden = false;
-      requestAnimationFrame(() => box.classList.add('is-open'));
-      document.body.style.overflow = 'hidden';
-      $('#lightbox-close').focus();
-    };
-    const close = () => {
-      box.classList.remove('is-open');
-      document.body.style.overflow = '';
-      setTimeout(() => { box.hidden = true; img.src = ''; }, 300);
-      if (lastFocus) lastFocus.focus();
-    };
-
-    document.addEventListener('click', (e) => {
-      const cert = e.target.closest('.cert');
-      if (cert) open(cert.dataset.src, cert.dataset.name);
-    });
-    $('#lightbox-close').addEventListener('click', close);
-    box.addEventListener('click', (e) => { if (e.target === box) close(); });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !box.hidden) close();
-    });
-  }
-
-  /* ══════════════════════════════════════════════════════════
      ENQUIRY FORM
      ══════════════════════════════════════════════════════════ */
   function initForm() {
@@ -552,7 +502,6 @@
     // Listeners first — initLang() renders and fires site:rendered.
     initNav();
     initCounters();
-    initLightbox();
     initForm();
     initBotLoader();
     initLang();

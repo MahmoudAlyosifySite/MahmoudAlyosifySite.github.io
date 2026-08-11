@@ -23,6 +23,9 @@
 
 /* ── Hero split lines ─────────────────────────────────────── */
 .motion-ready .hero__line { overflow: hidden; }
+/* Word wrapper: characters animate individually, but the word is one
+   unbreakable unit so nothing splits mid-word on a narrow screen. */
+.hero__line .wd { display: inline-block; white-space: nowrap; }
 .motion-ready .hero__line .ch {
   display: inline-block;
   transform: translateY(105%) rotate(4deg);
@@ -33,7 +36,6 @@
   opacity: 1;
   transition: transform 0.9s var(--ease-out), opacity 0.6s var(--ease-out);
 }
-.hero__line .ch--space { width: 0.32em; }
 
 /* ── About: scrubbed word reveal ──────────────────────────── */
 .motion-ready .about__lead .w { color: var(--ink-mute); opacity: 0.35; }
@@ -119,6 +121,13 @@ html[dir='rtl'] .rail__hint::after { animation-direction: reverse; }
   .hero__scroll-line::after { animation: none; }
   .cursor { display: none !important; }
   body { cursor: auto !important; }
+
+  .gal, .gal__panel { transition: none; }
+  .gal__panel { transform: none; }
+  .gal__img-wrap { opacity: 1; transition: none; }
+  .cert-cat:hover:not(:disabled) { transform: none; }
+  .cert-cat:hover:not(:disabled) .cert-cat__icon,
+  .cert-cat:hover:not(:disabled) .cert-cat__go { transform: none; }
 }
 
 /* ══════════════════════════════════════════════════════════

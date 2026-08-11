@@ -133,9 +133,8 @@
       <div class="hero__stage" aria-hidden="true">
         <canvas class="hero__particles" id="hero-particles"></canvas>
         <div class="hero__layer hero__layer--sky"      data-depth="0.10"></div>
-        <div class="hero__layer hero__layer--skyline"  data-depth="0.35"></div>
-        <div class="hero__layer hero__layer--beams"    data-depth="0.60"></div>
-        <div class="hero__layer hero__layer--figure"   data-depth="1.00"></div>
+        <div class="hero__layer hero__layer--skyline"  data-depth="0.30"></div>
+        <div class="hero__layer hero__layer--beams"    data-depth="0.46"></div>
         <div class="hero__veil"></div>
         <div class="hero__grid"></div>
       </div>
@@ -362,7 +361,7 @@
           <h2 class="h1 s-head__title beam-text" data-i18n="certs.title1">Certifications</h2>
           <p class="lead s-head__sub" data-i18n="certs.sub"></p>
         </header>
-        <div class="certs" id="certs-grid"></div>
+        <div class="cert-cats" id="cert-cats"></div>
       </div>
     </section>
 
@@ -482,13 +481,51 @@
     </button>
   </footer>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer" hidden>
-    <button class="lightbox__close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
-    <figure class="lightbox__figure">
-      <img id="lightbox-img" src="" alt="" />
-      <figcaption id="lightbox-cap" class="mono"></figcaption>
-    </figure>
+  <!-- ══════════════════════════════════════════════════════════
+       CERTIFICATE GALLERY — opens in-page, never navigates away
+       ══════════════════════════════════════════════════════════ -->
+  <div class="gal" id="gal" role="dialog" aria-modal="true" aria-labelledby="gal-cat" hidden>
+    <div class="gal__scrim" data-gal-close></div>
+
+    <div class="gal__panel" role="document">
+      <header class="gal__bar">
+        <div class="gal__id">
+          <h2 class="gal__cat" id="gal-cat"></h2>
+          <p class="gal__count mono" id="gal-count"></p>
+        </div>
+        <button class="gal__x" id="gal-close" type="button" data-gal-close>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          <span class="sr-only" data-i18n="gal.close">Close</span>
+        </button>
+      </header>
+
+      <div class="gal__stage">
+        <button class="gal__nav gal__nav--prev" id="gal-prev" type="button">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          <span class="sr-only" data-i18n="gal.prev">Previous</span>
+        </button>
+
+        <div class="gal__viewer" id="gal-viewer"></div>
+
+        <button class="gal__nav gal__nav--next" id="gal-next" type="button">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          <span class="sr-only" data-i18n="gal.next">Next</span>
+        </button>
+      </div>
+
+      <footer class="gal__meta">
+        <div class="gal__info">
+          <h3 class="gal__title" id="gal-title"></h3>
+          <p class="gal__issuer" id="gal-issuer"></p>
+        </div>
+        <div class="gal__actions" id="gal-actions"></div>
+      </footer>
+
+      <div class="gal__strip" id="gal-strip" role="tablist" aria-label="Certificates"></div>
+    </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -506,15 +543,16 @@
   </button>
   <div id="bot-root"></div>
 
-  <!-- Libraries (CDN, no build step) -->
+  <!-- GSAP drives scrubbed reveals only. It reads scroll position; it never
+       intercepts wheel events. Native browser scrolling is untouched. -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
 
   <!-- App -->
   <script src="js/data.js" defer></script>
   <script src="js/i18n.js" defer></script>
   <script src="js/ui.js" defer></script>
+  <script src="js/certificates.js" defer></script>
   <script src="js/motion.js" defer></script>
 </body>
 

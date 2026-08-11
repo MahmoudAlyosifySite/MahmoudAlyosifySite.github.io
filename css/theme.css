@@ -90,10 +90,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  /* Native scrolling everywhere. scroll-behavior only affects anchor jumps,
+     never the wheel, and the browser disables it under reduced-motion. */
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
   -webkit-text-size-adjust: 100%;
+  /* Must sit on the root as well as body: overflow set only on body
+     propagates to the viewport, which let RTL pages scroll sideways. */
+  overflow-x: clip;
 }
-html.lenis-active { scroll-behavior: auto; }
 
 body {
   background: var(--bg);

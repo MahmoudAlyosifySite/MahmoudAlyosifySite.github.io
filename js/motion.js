@@ -19,6 +19,14 @@
      Reveals — always available, GSAP or not
      ══════════════════════════════════════════════════════════ */
   let revealIO = null;
+
+  /** Last resort: make everything visible. Hidden content is worse than
+      unanimated content, so any failure path ends up here. */
+  function revealEverything() {
+    $$('[data-reveal]').forEach((el) => el.classList.add('is-in'));
+    if (revealIO) revealIO.disconnect();
+  }
+
   function initReveals() {
     if (revealIO) revealIO.disconnect();
     revealIO = new IntersectionObserver((entries) => {
@@ -31,6 +39,23 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
     $$('[data-reveal]').forEach((el) => revealIO.observe(el));
+  }
+
+  /* Watchdog. If the observer has produced nothing a few seconds after the
+     page became visible, something is wrong (no IO support, a thrown error,
+     a suspended renderer). Show the content rather than leave a blank page. */
+  function guardReveals() {
+    let armed = true;
+    const check = () => {
+      if (!armed || document.hidden) return;
+      armed = false;
+      setTimeout(() => {
+        const total = $$('[data-reveal]').length;
+        if (total && !document.querySelector('[data-reveal].is-in')) revealEverything();
+      }, 3000);
+    };
+    document.addEventListener('visibilitychange', check);
+    check();
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -57,14 +82,29 @@
       // applyI18n() rewrites textContent on language change, so re-split
       // whenever the character spans are gone rather than trusting a flag.
       if (line.querySelector('.ch')) return;
+
       const text = line.textContent;
       line.textContent = '';
-      [...text].forEach((ch, i) => {
-        const span = document.createElement('span');
-        span.className = 'ch' + (ch === ' ' ? ' ch--space' : '');
-        span.textContent = ch === ' ' ? ' ' : ch;
-        span.style.transitionDelay = (i * 28) + 'ms';
-        line.appendChild(span);
+
+      // Split per word first. Characters inside a word must not become wrap
+      // opportunities, or narrow screens break words mid-way.
+      let i = 0;
+      text.split(/(\s+)/).forEach((chunk) => {
+        if (!chunk) return;
+        if (/^\s+$/.test(chunk)) {
+          line.appendChild(document.createTextNode(' '));
+          return;
+        }
+        const word = document.createElement('span');
+        word.className = 'wd';
+        [...chunk].forEach((ch) => {
+          const span = document.createElement('span');
+          span.className = 'ch';
+          span.textContent = ch;
+          span.style.transitionDelay = (i++ * 28) + 'ms';
+          word.appendChild(span);
+        });
+        line.appendChild(word);
       });
     });
 
@@ -288,20 +328,9 @@
       rail.addEventListener('pointercancel', up);
     }
 
-    if (reduced || mobile || !gsap || !window.ScrollTrigger) return;
-
-    // Map the section's vertical scroll range onto the rail's horizontal range.
-    const maxScroll = () => Math.max(track.scrollWidth - rail.clientWidth, 0);
-    if (maxScroll() <= 0) return;
-
-    register(window.ScrollTrigger.create({
-      trigger: '#skills',
-      start: 'top 25%',
-      end: () => '+=' + Math.min(maxScroll(), window.innerHeight * 1.4),
-      scrub: 0.8,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => { rail.scrollLeft = maxScroll() * self.progress; }
-    }));
+    // The rail scrolls horizontally on its own (drag, shift+wheel, trackpad,
+    // touch). Vertical page scroll is deliberately NOT mapped onto it — that
+    // would hijack the wheel and is exactly what we want to avoid.
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -410,38 +439,6 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     Smooth scroll (Lenis)
-     ══════════════════════════════════════════════════════════ */
-  function initLenis(gsap) {
-    if (reduced || !window.Lenis) return null;
-    const lenis = new window.Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.6 });
-    document.documentElement.classList.add('lenis-active');
-
-    if (gsap && window.ScrollTrigger) {
-      lenis.on('scroll', window.ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-    } else {
-      const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
-      requestAnimationFrame(raf);
-    }
-
-    // Anchor links go through Lenis so easing stays consistent.
-    document.addEventListener('click', (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const id = a.getAttribute('href');
-      if (id === '#' || id.length < 2) return;
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      lenis.scrollTo(target, { offset: -80 });
-    });
-
-    return lenis;
-  }
-
-  /* ══════════════════════════════════════════════════════════
      BOOT
      ══════════════════════════════════════════════════════════ */
   // ScrollTriggers are rebuilt whenever ui.js re-renders (e.g. a language
@@ -471,15 +468,16 @@
   }
 
   function boot() {
-    if (!reduced) document.documentElement.classList.add('motion-ready');
+    // Only hide content for animation if we can actually observe it again.
+    if (!reduced && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('motion-ready');
+      guardReveals();
+    }
 
     initScrollRail();
     initHeroParallax();
     initParticles();
     initCursor();
-
-    const gsap = window.gsap;
-    initLenis(gsap);
 
     // Content is injected by ui.js — build after each render pass.
     document.addEventListener('site:rendered', () => {

@@ -1,0 +1,186 @@
+{
+  "_readme": [
+    "Optional title/metadata overrides, keyed by 'Category/filename'.",
+    "Anything not listed here gets its title from the filename itself.",
+    "Rename a certificate file and the title updates automatically — you only",
+    "need an entry here when the filename cannot be the display title.",
+    "",
+    "Fields: title, issuer, year, verify (credential URL), course (exact course URL).",
+    "Coursera items with no 'course' fall back to an official Coursera search",
+    "for the exact title, so the link can never point at the wrong course.",
+    "",
+    "Re-run: node tools/build-certificates.mjs"
+  ],
+
+  "Coursera/Screenshot 2025-06-10 160235.png": {
+    "title": "What is Data Science?",
+    "issuer": "IBM · Coursera",
+    "year": "2020",
+    "verify": "https://coursera.org/verify/6SKL63895Y72",
+    "course": "https://www.coursera.org/learn/what-is-datascience"
+  },
+  "Coursera/Machine Learning Specialization.pdf": {
+    "course": "https://www.coursera.org/specializations/machine-learning-introduction"
+  },
+  "Coursera/Advanced Learning Algorithms.pdf": {
+    "course": "https://www.coursera.org/learn/advanced-learning-algorithms"
+  },
+  "Coursera/Convolutional Neural Networks.pdf": {
+    "course": "https://www.coursera.org/learn/convolutional-neural-networks"
+  },
+  "Coursera/Improving Deep Neural Networks Hyperparameter.pdf": {
+    "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
+    "course": "https://www.coursera.org/learn/deep-neural-network"
+  },
+  "Coursera/Structuring Machine Learning Projects.pdf": {
+    "course": "https://www.coursera.org/learn/machine-learning-projects"
+  },
+  "Coursera/Sequence Models!.pdf": {
+    "title": "Sequence Models",
+    "course": "https://www.coursera.org/learn/nlp-sequence-models"
+  },
+  "Coursera/Mathematics for Machine Learning-Linear Algebra.pdf": {
+    "title": "Mathematics for Machine Learning: Linear Algebra",
+    "course": "https://www.coursera.org/learn/linear-algebra-machine-learning"
+  },
+  "Coursera/Rl fundemetals.pdf": {
+    "title": "Reinforcement Learning Fundamentals"
+  },
+  "Coursera/Generative Ai -  Boost Your Cybersecurity Career.pdf": {
+    "title": "Generative AI: Boost Your Cybersecurity Career"
+  },
+  "Coursera/generative-ai-essentials-for-cybersecurity.pdf": {
+    "title": "Generative AI Essentials for Cybersecurity"
+  },
+  "Coursera/Generative AI and LLMs - Architecture and Data Preparation.pdf": {
+    "title": "Generative AI and LLMs: Architecture and Data Preparation"
+  },
+  "Coursera/Tools of the Trade Linux and SQL.pdf": {
+    "title": "Tools of the Trade: Linux and SQL"
+  },
+  "Coursera/Coursera 1AS93KDFU0WQ.pdf": { "verify": "https://coursera.org/verify/1AS93KDFU0WQ" },
+  "Coursera/Coursera 6SKL63895Y72.pdf": { "verify": "https://coursera.org/verify/6SKL63895Y72" },
+  "Coursera/Coursera DIEH4EC7ULCR.pdf": { "verify": "https://coursera.org/verify/DIEH4EC7ULCR" },
+  "Coursera/Coursera PMAFKFD7VKQD.pdf": { "verify": "https://coursera.org/verify/PMAFKFD7VKQD" },
+  "Coursera/Coursera TDYMD3QQNI1D.pdf": { "verify": "https://coursera.org/verify/TDYMD3QQNI1D" },
+  "Coursera/Coursera XW4Z74U0FQNJ.pdf": { "verify": "https://coursera.org/verify/XW4Z74U0FQNJ" },
+
+  "Competitions/IMG_0598.JPG": {
+    "title": "Smart Cities Hackathon — First Winner (Smart Hospital)",
+    "issuer": "Benha University · powered by AWS",
+    "year": "2022"
+  },
+  "Competitions/IMG_0600.JPG": {
+    "title": "Smart Cities Hackathon — Certificate of Participation",
+    "issuer": "Benha University · Ministry of Higher Education",
+    "year": "2022"
+  },
+  "Competitions/IMG_2648.jpg": {
+    "title": "National Youth Hackathon 2023 — Team Vitalism",
+    "issuer": "UNESCO Cairo · Ministry of Youth and Sports",
+    "year": "2023"
+  },
+  "Competitions/IMG_7887.JPG": {
+    "title": "Certificate of Excellence — Vitalism (ISEIC 2023)",
+    "issuer": "Air Defense College · IEEE Young Professionals",
+    "year": "2023"
+  },
+
+  "Activities-Volunteering/IMG_1602.JPG": {
+    "title": "Certificate of Excellence — Smart Hospital Solution Competition",
+    "issuer": "Faculty of Computers & Information, Assiut University",
+    "year": "2022"
+  },
+  "Activities-Volunteering/IMG_3993.JPG": {
+    "title": "Certificate of Excellence — 1st in Science Content Creator Competition",
+    "issuer": "Faculty of Computers & Information, Assiut University",
+    "year": "2022"
+  },
+  "Activities-Volunteering/IMG_3994.JPG": {
+    "title": "Certificate of Appreciation — Secretary, Higher Scientific & Technological Committee",
+    "issuer": "Assiut University Student Union",
+    "year": "2022"
+  },
+  "Activities-Volunteering/IMG_3995.JPG": {
+    "title": "Certificate of Appreciation — Student Union Elections",
+    "issuer": "Mostaqbal Watan Party, Assiut",
+    "year": "2022"
+  },
+  "Activities-Volunteering/IMG_5413.JPG": {
+    "title": "Volunteering Certificate — Summer Educational Club (36 hours)",
+    "issuer": "Sona' Al-Basma Association, Assiut",
+    "year": "2021"
+  },
+  "Activities-Volunteering/IMG_9390.JPG": {
+    "title": "Certificate of Appreciation — First Place, Ideal Student Competition",
+    "issuer": "Faculty of Computers & Information, Assiut University",
+    "year": "2023"
+  },
+  "Activities-Volunteering/Screenshot 2025-02-13 023245.png": {
+    "title": "Leaders Preparation Camp — Leaders for Egypt (Excellent)",
+    "issuer": "Assiut University Student Union",
+    "year": "2022"
+  },
+
+  "Technical-Courses/Annotation 2020-07-04 231855.jpg": {
+    "title": "DEV210x: Introduction to C++",
+    "issuer": "Microsoft · edX",
+    "year": "2020"
+  },
+  "Technical-Courses/Annotation 2020-07-25 131550.jpg": {
+    "title": "DEV276x: Learn to Program in Java",
+    "issuer": "Microsoft · edX",
+    "year": "2020"
+  },
+  "Technical-Courses/Screenshot 2025-06-10 155852.png": {
+    "title": "DEV210x: Introduction to C++",
+    "issuer": "Microsoft · edX",
+    "year": "2020"
+  },
+  "Technical-Courses/Screenshot 2025-06-24 102044.png": {
+    "title": "Fortinet Certified Associate in Cybersecurity",
+    "issuer": "Fortinet Training Institute",
+    "year": "2025"
+  },
+  "Technical-Courses/IMG_0340.JPG": {
+    "title": "Full Stack Web Development Diploma",
+    "issuer": "Route IT Training Center",
+    "year": "2023"
+  },
+  "Technical-Courses/IMG_0342.JPG": {
+    "title": "Front-End Development (120 hours)",
+    "issuer": "Route IT Training Center",
+    "year": "2023"
+  },
+  "Technical-Courses/IMG_3992.JPG": {
+    "title": "Machine Learning Track — EME Internship Programme",
+    "issuer": "ITIDA · Egypt Makes Electronics · Ideaspace",
+    "year": "2023"
+  },
+  "Technical-Courses/IMG_6131.JPG": {
+    "title": "Data Analysis using R (36 hours)",
+    "issuer": "Children's Cancer Hospital Egypt 57357",
+    "year": "2021"
+  },
+
+  "Other/IMG_4014.JPG": {
+    "title": "Certificate of Excellence — First Place, Smart Cities Hackathon",
+    "issuer": "Faculty of Computers & Information, Assiut University",
+    "year": "2022"
+  },
+  "Other/IMG_4015.JPG": {
+    "title": "Certificate of Excellence — 1st in Science Content Creator Competition",
+    "issuer": "Faculty of Computers & Information, Assiut University",
+    "year": "2022"
+  },
+  "Other/IMG_4832.JPG": {
+    "title": "Green & Smart Technologies — Assiut Boot Camp",
+    "issuer": "The British University in Egypt",
+    "year": "2022"
+  },
+  "Other/IMG_4833.JPG": {
+    "title": "Virtual Employability Skills Track",
+    "issuer": "Aspire Training Solutions · USAID · AUC",
+    "year": "2022"
+  }
+}

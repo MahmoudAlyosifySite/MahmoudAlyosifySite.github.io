@@ -1,0 +1,479 @@
+{
+  "generated": "2026-08-11",
+  "total": 55,
+  "categories": [
+    {
+      "id": "coursera",
+      "folder": "Coursera",
+      "name": {
+        "en": "Coursera",
+        "ar": "كورسيرا"
+      },
+      "blurb": {
+        "en": "Courses and specialisations completed on Coursera.",
+        "ar": "دورات وتخصصات مكتملة على كورسيرا."
+      },
+      "icon": "coursera",
+      "count": 25,
+      "items": [
+        {
+          "src": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
+          "file": "Advanced Learning Algorithms.pdf",
+          "type": "pdf",
+          "title": "Advanced Learning Algorithms",
+          "course": "https://www.coursera.org/learn/advanced-learning-algorithms"
+        },
+        {
+          "src": "Certificates/Coursera/Advanced%20Tokenization%20and%20Sentiment%20Analysis.pdf",
+          "file": "Advanced Tokenization and Sentiment Analysis.pdf",
+          "type": "pdf",
+          "title": "Advanced Tokenization and Sentiment Analysis"
+        },
+        {
+          "src": "Certificates/Coursera/Convolutional%20Neural%20Networks.pdf",
+          "file": "Convolutional Neural Networks.pdf",
+          "type": "pdf",
+          "title": "Convolutional Neural Networks",
+          "course": "https://www.coursera.org/learn/convolutional-neural-networks"
+        },
+        {
+          "src": "Certificates/Coursera/Coursera%201AS93KDFU0WQ.pdf",
+          "file": "Coursera 1AS93KDFU0WQ.pdf",
+          "type": "pdf",
+          "title": "Coursera 1AS93KDFU0WQ",
+          "verify": "https://coursera.org/verify/1AS93KDFU0WQ"
+        },
+        {
+          "src": "Certificates/Coursera/Coursera%206SKL63895Y72.pdf",
+          "file": "Coursera 6SKL63895Y72.pdf",
+          "type": "pdf",
+          "title": "Coursera 6SKL63895Y72",
+          "verify": "https://coursera.org/verify/6SKL63895Y72"
+        },
+        {
+          "src": "Certificates/Coursera/Coursera%20DIEH4EC7ULCR.pdf",
+          "file": "Coursera DIEH4EC7ULCR.pdf",
+          "type": "pdf",
+          "title": "Coursera DIEH4EC7ULCR",
+          "verify": "https://coursera.org/verify/DIEH4EC7ULCR"
+        },
+        {
+          "src": "Certificates/Coursera/Coursera%20PMAFKFD7VKQD.pdf",
+          "file": "Coursera PMAFKFD7VKQD.pdf",
+          "type": "pdf",
+          "title": "Coursera PMAFKFD7VKQD",
+          "verify": "https://coursera.org/verify/PMAFKFD7VKQD"
+        },
+        {
+          "src": "Certificates/Coursera/Coursera%20TDYMD3QQNI1D.pdf",
+          "file": "Coursera TDYMD3QQNI1D.pdf",
+          "type": "pdf",
+          "title": "Coursera TDYMD3QQNI1D",
+          "verify": "https://coursera.org/verify/TDYMD3QQNI1D"
+        },
+        {
+          "src": "Certificates/Coursera/Coursera%20XW4Z74U0FQNJ.pdf",
+          "file": "Coursera XW4Z74U0FQNJ.pdf",
+          "type": "pdf",
+          "title": "Coursera XW4Z74U0FQNJ",
+          "verify": "https://coursera.org/verify/XW4Z74U0FQNJ"
+        },
+        {
+          "src": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
+          "file": "Data Analysis with Python.pdf",
+          "type": "pdf",
+          "title": "Data Analysis with Python"
+        },
+        {
+          "src": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
+          "file": "Generative Ai -  Boost Your Cybersecurity Career.pdf",
+          "type": "pdf",
+          "title": "Generative AI: Boost Your Cybersecurity Career"
+        },
+        {
+          "src": "Certificates/Coursera/Generative%20AI%20and%20LLMs%20-%20Architecture%20and%20Data%20Preparation.pdf",
+          "file": "Generative AI and LLMs - Architecture and Data Preparation.pdf",
+          "type": "pdf",
+          "title": "Generative AI and LLMs: Architecture and Data Preparation"
+        },
+        {
+          "src": "Certificates/Coursera/Generative%20AI%20Prompt%20Engineering%20Basics.pdf",
+          "file": "Generative AI Prompt Engineering Basics.pdf",
+          "type": "pdf",
+          "title": "Generative AI Prompt Engineering Basics"
+        },
+        {
+          "src": "Certificates/Coursera/generative-ai-essentials-for-cybersecurity.pdf",
+          "file": "generative-ai-essentials-for-cybersecurity.pdf",
+          "type": "pdf",
+          "title": "Generative AI Essentials for Cybersecurity"
+        },
+        {
+          "src": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
+          "file": "Improving Deep Neural Networks Hyperparameter.pdf",
+          "type": "pdf",
+          "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
+          "course": "https://www.coursera.org/learn/deep-neural-network"
+        },
+        {
+          "src": "Certificates/Coursera/Introduction%20to%20Data%20Analytics.pdf",
+          "file": "Introduction to Data Analytics.pdf",
+          "type": "pdf",
+          "title": "Introduction to Data Analytics"
+        },
+        {
+          "src": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
+          "file": "Introduction to Deep Learning & Neural Networks with Keras.pdf",
+          "type": "pdf",
+          "title": "Introduction to Deep Learning & Neural Networks with Keras"
+        },
+        {
+          "src": "Certificates/Coursera/Machine%20Learning%20Specialization.pdf",
+          "file": "Machine Learning Specialization.pdf",
+          "type": "pdf",
+          "title": "Machine Learning Specialization",
+          "course": "https://www.coursera.org/specializations/machine-learning-introduction"
+        },
+        {
+          "src": "Certificates/Coursera/Mastering%20NLP.pdf",
+          "file": "Mastering NLP.pdf",
+          "type": "pdf",
+          "title": "Mastering NLP"
+        },
+        {
+          "src": "Certificates/Coursera/Mathematics%20for%20Machine%20Learning-Linear%20Algebra.pdf",
+          "file": "Mathematics for Machine Learning-Linear Algebra.pdf",
+          "type": "pdf",
+          "title": "Mathematics for Machine Learning: Linear Algebra",
+          "course": "https://www.coursera.org/learn/linear-algebra-machine-learning"
+        },
+        {
+          "src": "Certificates/Coursera/Rl%20fundemetals.pdf",
+          "file": "Rl fundemetals.pdf",
+          "type": "pdf",
+          "title": "Reinforcement Learning Fundamentals"
+        },
+        {
+          "src": "Certificates/Coursera/Screenshot%202025-06-10%20160235.png",
+          "file": "Screenshot 2025-06-10 160235.png",
+          "type": "image",
+          "title": "What is Data Science?",
+          "issuer": "IBM · Coursera",
+          "year": "2020",
+          "verify": "https://coursera.org/verify/6SKL63895Y72",
+          "course": "https://www.coursera.org/learn/what-is-datascience"
+        },
+        {
+          "src": "Certificates/Coursera/Sequence%20Models!.pdf",
+          "file": "Sequence Models!.pdf",
+          "type": "pdf",
+          "title": "Sequence Models",
+          "course": "https://www.coursera.org/learn/nlp-sequence-models"
+        },
+        {
+          "src": "Certificates/Coursera/Structuring%20Machine%20Learning%20Projects.pdf",
+          "file": "Structuring Machine Learning Projects.pdf",
+          "type": "pdf",
+          "title": "Structuring Machine Learning Projects",
+          "course": "https://www.coursera.org/learn/machine-learning-projects"
+        },
+        {
+          "src": "Certificates/Coursera/Tools%20of%20the%20Trade%20Linux%20and%20SQL.pdf",
+          "file": "Tools of the Trade Linux and SQL.pdf",
+          "type": "pdf",
+          "title": "Tools of the Trade: Linux and SQL"
+        }
+      ]
+    },
+    {
+      "id": "competitions",
+      "folder": "Competitions",
+      "name": {
+        "en": "Competitions",
+        "ar": "المسابقات"
+      },
+      "blurb": {
+        "en": "Hackathons, awards and competition achievements.",
+        "ar": "هاكاثونات وجوائز وإنجازات في المسابقات."
+      },
+      "icon": "trophy",
+      "count": 4,
+      "items": [
+        {
+          "src": "Certificates/Competitions/IMG_0598.JPG",
+          "file": "IMG_0598.JPG",
+          "type": "image",
+          "title": "Smart Cities Hackathon — First Winner (Smart Hospital)",
+          "issuer": "Benha University · powered by AWS",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Competitions/IMG_0600.JPG",
+          "file": "IMG_0600.JPG",
+          "type": "image",
+          "title": "Smart Cities Hackathon — Certificate of Participation",
+          "issuer": "Benha University · Ministry of Higher Education",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Competitions/IMG_2648.jpg",
+          "file": "IMG_2648.jpg",
+          "type": "image",
+          "title": "National Youth Hackathon 2023 — Team Vitalism",
+          "issuer": "UNESCO Cairo · Ministry of Youth and Sports",
+          "year": "2023"
+        },
+        {
+          "src": "Certificates/Competitions/IMG_7887.JPG",
+          "file": "IMG_7887.JPG",
+          "type": "image",
+          "title": "Certificate of Excellence — Vitalism (ISEIC 2023)",
+          "issuer": "Air Defense College · IEEE Young Professionals",
+          "year": "2023"
+        }
+      ]
+    },
+    {
+      "id": "activities",
+      "folder": "Activities-Volunteering",
+      "name": {
+        "en": "Activities & Volunteering",
+        "ar": "الأنشطة والتطوّع"
+      },
+      "blurb": {
+        "en": "Community work, leadership and student activities.",
+        "ar": "عمل مجتمعي وقيادة وأنشطة طلابية."
+      },
+      "icon": "people",
+      "count": 7,
+      "items": [
+        {
+          "src": "Certificates/Activities-Volunteering/IMG_1602.JPG",
+          "file": "IMG_1602.JPG",
+          "type": "image",
+          "title": "Certificate of Excellence — Smart Hospital Solution Competition",
+          "issuer": "Faculty of Computers & Information, Assiut University",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Activities-Volunteering/IMG_3993.JPG",
+          "file": "IMG_3993.JPG",
+          "type": "image",
+          "title": "Certificate of Excellence — 1st in Science Content Creator Competition",
+          "issuer": "Faculty of Computers & Information, Assiut University",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Activities-Volunteering/IMG_3994.JPG",
+          "file": "IMG_3994.JPG",
+          "type": "image",
+          "title": "Certificate of Appreciation — Secretary, Higher Scientific & Technological Committee",
+          "issuer": "Assiut University Student Union",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Activities-Volunteering/IMG_3995.JPG",
+          "file": "IMG_3995.JPG",
+          "type": "image",
+          "title": "Certificate of Appreciation — Student Union Elections",
+          "issuer": "Mostaqbal Watan Party, Assiut",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Activities-Volunteering/IMG_5413.JPG",
+          "file": "IMG_5413.JPG",
+          "type": "image",
+          "title": "Volunteering Certificate — Summer Educational Club (36 hours)",
+          "issuer": "Sona' Al-Basma Association, Assiut",
+          "year": "2021"
+        },
+        {
+          "src": "Certificates/Activities-Volunteering/IMG_9390.JPG",
+          "file": "IMG_9390.JPG",
+          "type": "image",
+          "title": "Certificate of Appreciation — First Place, Ideal Student Competition",
+          "issuer": "Faculty of Computers & Information, Assiut University",
+          "year": "2023"
+        },
+        {
+          "src": "Certificates/Activities-Volunteering/Screenshot%202025-02-13%20023245.png",
+          "file": "Screenshot 2025-02-13 023245.png",
+          "type": "image",
+          "title": "Leaders Preparation Camp — Leaders for Egypt (Excellent)",
+          "issuer": "Assiut University Student Union",
+          "year": "2022"
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "folder": "Technical-Courses",
+      "name": {
+        "en": "Technical Courses",
+        "ar": "الدورات التقنية"
+      },
+      "blurb": {
+        "en": "Training from universities, institutes and platforms.",
+        "ar": "تدريب من جامعات ومعاهد ومنصات مختلفة."
+      },
+      "icon": "code",
+      "count": 14,
+      "items": [
+        {
+          "src": "Certificates/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI.png",
+          "file": "AI in Cybersecurity From NTI.png",
+          "type": "image",
+          "title": "AI in Cybersecurity From NTI"
+        },
+        {
+          "src": "Certificates/Technical-Courses/Annotation%202020-07-04%20231855.jpg",
+          "file": "Annotation 2020-07-04 231855.jpg",
+          "type": "image",
+          "title": "DEV210x: Introduction to C++",
+          "issuer": "Microsoft · edX",
+          "year": "2020"
+        },
+        {
+          "src": "Certificates/Technical-Courses/Annotation%202020-07-25%20131550.jpg",
+          "file": "Annotation 2020-07-25 131550.jpg",
+          "type": "image",
+          "title": "DEV276x: Learn to Program in Java",
+          "issuer": "Microsoft · edX",
+          "year": "2020"
+        },
+        {
+          "src": "Certificates/Technical-Courses/IMG_0340.JPG",
+          "file": "IMG_0340.JPG",
+          "type": "image",
+          "title": "Full Stack Web Development Diploma",
+          "issuer": "Route IT Training Center",
+          "year": "2023"
+        },
+        {
+          "src": "Certificates/Technical-Courses/IMG_0342.JPG",
+          "file": "IMG_0342.JPG",
+          "type": "image",
+          "title": "Front-End Development (120 hours)",
+          "issuer": "Route IT Training Center",
+          "year": "2023"
+        },
+        {
+          "src": "Certificates/Technical-Courses/IMG_3992.JPG",
+          "file": "IMG_3992.JPG",
+          "type": "image",
+          "title": "Machine Learning Track — EME Internship Programme",
+          "issuer": "ITIDA · Egypt Makes Electronics · Ideaspace",
+          "year": "2023"
+        },
+        {
+          "src": "Certificates/Technical-Courses/IMG_6131.JPG",
+          "file": "IMG_6131.JPG",
+          "type": "image",
+          "title": "Data Analysis using R (36 hours)",
+          "issuer": "Children's Cancer Hospital Egypt 57357",
+          "year": "2021"
+        },
+        {
+          "src": "Certificates/Technical-Courses/iti%201.JPG",
+          "file": "iti 1.JPG",
+          "type": "image",
+          "title": "iti 1"
+        },
+        {
+          "src": "Certificates/Technical-Courses/iti%202.JPG",
+          "file": "iti 2.JPG",
+          "type": "image",
+          "title": "iti 2"
+        },
+        {
+          "src": "Certificates/Technical-Courses/iti%203.JPG",
+          "file": "iti 3.JPG",
+          "type": "image",
+          "title": "iti 3"
+        },
+        {
+          "src": "Certificates/Technical-Courses/iti%204.JPG",
+          "file": "iti 4.JPG",
+          "type": "image",
+          "title": "iti 4"
+        },
+        {
+          "src": "Certificates/Technical-Courses/iti%205.JPG",
+          "file": "iti 5.JPG",
+          "type": "image",
+          "title": "iti 5"
+        },
+        {
+          "src": "Certificates/Technical-Courses/Screenshot%202025-06-10%20155852.png",
+          "file": "Screenshot 2025-06-10 155852.png",
+          "type": "image",
+          "title": "DEV210x: Introduction to C++",
+          "issuer": "Microsoft · edX",
+          "year": "2020"
+        },
+        {
+          "src": "Certificates/Technical-Courses/Screenshot%202025-06-24%20102044.png",
+          "file": "Screenshot 2025-06-24 102044.png",
+          "type": "image",
+          "title": "Fortinet Certified Associate in Cybersecurity",
+          "issuer": "Fortinet Training Institute",
+          "year": "2025"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "folder": "Other",
+      "name": {
+        "en": "Other Certificates",
+        "ar": "شهادات أخرى"
+      },
+      "blurb": {
+        "en": "Everything else worth showing.",
+        "ar": "كل ما يستحق العرض من الشهادات الأخرى."
+      },
+      "icon": "doc",
+      "count": 5,
+      "items": [
+        {
+          "src": "Certificates/Other/IMG_4014.JPG",
+          "file": "IMG_4014.JPG",
+          "type": "image",
+          "title": "Certificate of Excellence — First Place, Smart Cities Hackathon",
+          "issuer": "Faculty of Computers & Information, Assiut University",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Other/IMG_4015.JPG",
+          "file": "IMG_4015.JPG",
+          "type": "image",
+          "title": "Certificate of Excellence — 1st in Science Content Creator Competition",
+          "issuer": "Faculty of Computers & Information, Assiut University",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Other/IMG_4832.JPG",
+          "file": "IMG_4832.JPG",
+          "type": "image",
+          "title": "Green & Smart Technologies — Assiut Boot Camp",
+          "issuer": "The British University in Egypt",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Other/IMG_4833.JPG",
+          "file": "IMG_4833.JPG",
+          "type": "image",
+          "title": "Virtual Employability Skills Track",
+          "issuer": "Aspire Training Solutions · USAID · AUC",
+          "year": "2022"
+        },
+        {
+          "src": "Certificates/Other/Project%20Management%20from%20AmCham.jpeg",
+          "file": "Project Management from AmCham.jpeg",
+          "type": "image",
+          "title": "Project Management from AmCham"
+        }
+      ]
+    }
+  ]
+}
