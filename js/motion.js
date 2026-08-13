@@ -97,13 +97,21 @@
         }
         const word = document.createElement('span');
         word.className = 'wd';
-        [...chunk].forEach((ch) => {
+        if (document.documentElement.dir === 'rtl') {
           const span = document.createElement('span');
           span.className = 'ch';
-          span.textContent = ch;
+          span.textContent = chunk;
           span.style.transitionDelay = (i++ * 28) + 'ms';
           word.appendChild(span);
-        });
+        } else {
+          [...chunk].forEach((ch) => {
+            const span = document.createElement('span');
+            span.className = 'ch';
+            span.textContent = ch;
+            span.style.transitionDelay = (i++ * 28) + 'ms';
+            word.appendChild(span);
+          });
+        }
         line.appendChild(word);
       });
     });

@@ -324,3 +324,18 @@ h1, h2, h3, h4 {
   transition: top var(--t-fast);
 }
 .skip-link:focus { top: var(--s-4); }
+
+/* ── RTL Overrides ────────────────────────────────────────── */
+html[dir='rtl'] * {
+  letter-spacing: normal !important;
+}
+html[dir='rtl'] h1, 
+html[dir='rtl'] h2, 
+html[dir='rtl'] h3, 
+html[dir='rtl'] h4,
+html[dir='rtl'] .display {
+  line-height: 1.4;
+}
+html[dir='rtl'] .hero__title {
+  line-height: 1.4;
+}
