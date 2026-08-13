@@ -65,8 +65,8 @@ const SITE = {
       ar: 'وقدّمت مؤخرًا عرضًا في <a href="https://www.queensu.ca/ctl/programs-and-events/ai-teaching-and-learning-forum-2026" target="_blank" rel="noopener">منتدى AI Teaching and Learning Forum 2026</a> بجامعة كوينز — <a href="Files/2026%20AI%20In%20Teaching%20and%20Learning%20Forum%20%20Thank%20You.pdf" target="_blank" rel="noopener">شاهد خطاب الشكر</a>.'
     },
     facts: [
-      { icon: '🎓', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — Presidential Scholarship', ar: 'جامعة كوينز، كندا — منحة رئاسية' }, url: 'https://www.queensu.ca' },
-      { icon: '🧬', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' } },
+      { iconImg: 'img/logo_q.png', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — Presidential Scholarship', ar: 'جامعة كوينز، كندا — منحة رئاسية' }, url: 'https://www.queensu.ca' },
+      { iconImg: 'img/Assiut university .png', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' }, url: 'https://www.aun.edu.eg/main/' },
       { icon: '🔬', k: { en: 'Research focus', ar: 'محور البحث' },                              v: { en: 'Token-efficient LLM inference · Verbosity-aware decoding', ar: 'استدلال موفّر للتوكنات · فك تشفير واعٍ بالإسهاب' } },
       { icon: '🌍', k: { en: 'Languages', ar: 'اللغات' },                                        v: { en: 'Arabic (native) · English (professional working)', ar: 'العربية (اللغة الأم) · الإنجليزية (احترافية)' } }
     ]

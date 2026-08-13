@@ -88,9 +88,12 @@
       const shown = f.url
         ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${val}</a>`
         : val;
+      const iconHtml = f.iconImg 
+        ? `<img src="${esc(f.iconImg)}" alt="" class="facts__icon-img" loading="lazy" />`
+        : f.icon;
       return `
       <li>
-        <span class="facts__icon">${f.icon}</span>
+        <span class="facts__icon">${iconHtml}</span>
         <span>
           <span class="facts__k">${esc(L(f.k))}</span><br />
           <span class="facts__v">${shown}</span>
@@ -494,7 +497,7 @@
     function showMailFallback({ name, email, topicLabel, message, subject }) {
       say(t('contact.err'), 'err');
       const body = `${message}\n\n—\nFrom: ${name} <${email}>\nTopic: ${topicLabel}`;
-      const href = `mailto:${SITE.person.email}?subject=${encodeURIComponent(subject)}` +
+      const href = `mailto:${NOTIFY_EMAIL}?subject=${encodeURIComponent(subject)}` +
                    `&body=${encodeURIComponent(body)}`;
 
       let link = $('#form-mail-fallback');

@@ -555,14 +555,15 @@ html[dir='rtl'] .hero__veil { --veil-dir: left; }
 .facts { display: grid; gap: var(--s-3); }
 .facts li {
   display: grid;
-  grid-template-columns: 32px 1fr;
+  grid-template-columns: auto 1fr;
   gap: var(--s-3);
   padding: var(--s-3);
   border-radius: var(--r-md);
   border: 1px solid var(--line);
   background: rgba(20, 26, 66, 0.32);
 }
-.facts__icon { font-size: 1.15rem; line-height: 1.4; }
+.facts__icon { font-size: 1.25rem; line-height: 1.4; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+.facts__icon-img { height: 42px; width: auto; max-width: 60px; object-fit: contain; background: #fff; padding: 4px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 .facts__k { font-size: var(--fs-sm); font-weight: 600; color: var(--ink); }
 .facts__v { font-size: var(--fs-xs); color: var(--ink-soft); line-height: 1.6; }
 
