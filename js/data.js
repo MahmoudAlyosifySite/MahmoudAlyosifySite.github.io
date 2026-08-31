@@ -32,6 +32,7 @@ const SITE = {
     github:      'https://github.com/MahmoudAlyosify',
     huggingface: 'https://huggingface.co/mahmoudalyosify',
     kaggle:      'https://kaggle.com/mahmoudalyosify',
+    credly:      'https://www.credly.com/users/mahmoud-alyosify',
     youtube:     'https://www.youtube.com/@EinshtenMisr',
     udemy:       'https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/',
     medium:      'https://medium.com/@mahmoudalyosify',

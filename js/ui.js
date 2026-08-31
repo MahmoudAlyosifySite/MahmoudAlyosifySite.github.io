@@ -52,6 +52,7 @@
     udemy:    '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2 1 8l11 6 11-6-11-6zM5 12.5v4c0 2.5 3.1 4.5 7 4.5s7-2 7-4.5v-4l-7 3.8-7-3.8z"/></svg>',
     whatsapp: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2zm5.5 14.2c-.24.66-1.4 1.27-1.93 1.31-.5.05-1.13.07-1.82-.11a15.3 15.3 0 0 1-6.55-5.8c-.5-.84-.82-1.8-.82-2.72 0-.92.48-1.7.87-2.06.19-.18.42-.26.62-.26h.44c.16 0 .35 0 .52.4.2.47.68 1.66.74 1.78.06.12.1.26.02.42-.34.68-.7.65-.52.96.7 1.2 1.4 1.62 2.46 2.15.18.09.29.08.4-.05.11-.13.46-.54.58-.72.12-.19.24-.15.4-.09.17.06 1.06.5 1.24.6.18.09.3.13.35.2.04.09.04.5-.2 1.16z"/></svg>',
     orcid:    '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 18.13H5.62V7.53h1.75v10.6zM6.5 6.42a1.02 1.02 0 1 1 0-2.04 1.02 1.02 0 0 1 0 2.04zm5.03 11.71H9.78V7.53h3.6c3.43 0 4.94 2.45 4.94 5.3 0 3.1-2.42 5.3-4.94 5.3h-1.85zm.34-1.6h1.4c2.5 0 3.7-1.5 3.7-3.7 0-2.02-1.28-3.7-3.7-3.7h-1.4v7.4z"/></svg>',
+    credly:   '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 2 4 6v6c0 4.7 3.4 8.8 8 10 4.6-1.2 8-5.3 8-10V6l-8-4z"/><path d="M9 12.2l2 2 4-4.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     external: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
   };
 
@@ -228,7 +229,7 @@
     const l = SITE.links;
     const items = [
       ['GitHub', l.github, 'github'], ['LinkedIn', l.linkedin, 'linkedin'],
-      ['ORCID', l.orcid, 'orcid'],
+      ['ORCID', l.orcid, 'orcid'], ['Credly', l.credly, 'credly'],
       ['YouTube', l.youtube, 'youtube'], ['Hugging Face', l.huggingface, 'hf'],
       ['Kaggle', l.kaggle, 'kaggle'], ['Udemy', l.udemy, 'udemy'],
       ['Medium', l.medium, 'medium'], ['X', l.x, 'x'], ['WhatsApp', l.whatsapp, 'whatsapp']
