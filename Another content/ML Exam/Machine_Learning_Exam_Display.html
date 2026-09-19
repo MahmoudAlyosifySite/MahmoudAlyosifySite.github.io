@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f0f1a" />
+  <title>Machine Learning Exam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      DESIGN REMINDER — Focused Examination Console
+      Maintain a calm, projection-ready academic interface: question-first hierarchy,
+      restrained indigo signals, measured urgency, and clear instructor control.
+    */
+    :root {
+      --bg: #0f0f1a;
+      --surface: #1a1a2e;
+      --surface-raised: #21213b;
+      --surface-deep: #141424;
+      --border: rgba(148, 163, 184, 0.15);
+      --border-strong: rgba(129, 140, 248, 0.33);
+      --accent: #6366f1;
+      --accent-soft: #818cf8;
+      --question: #e2e8f0;
+      --choice: #cbd5e1;
+      --muted: #94a3b8;
+      --muted-dim: #64748b;
+      --safe: #34d399;
+      --warn: #fbbf24;
+      --danger: #fb7185;
+      --timer-color: var(--safe);
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --control-height: 94px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg); }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 14% 12%, rgba(99, 102, 241, 0.11), transparent 28rem),
+        radial-gradient(circle at 88% 4%, rgba(129, 140, 248, 0.07), transparent 25rem),
+        var(--bg);
+      color: var(--question);
+      font-family: "Inter", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid rgba(129, 140, 248, 0.8);
+      outline-offset: 3px;
+    }
+
+    .screen-reader-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .exam-progress-track {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: rgba(148, 163, 184, 0.20);
+    }
+
+    .exam-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 7px rgba(99, 102, 241, 0.42);
+      transition: width 380ms var(--ease-out);
+    }
+
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 28px 28px calc(var(--control-height) + 32px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      gap: 24px;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 185px;
+      color: #dbeafe;
+      user-select: none;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(165, 180, 252, 0.86);
+      border-radius: 8px;
+      background: #6366f1;
+      box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.10);
+    }
+
+    .brand-mark::before {
+      position: absolute;
+      top: 15px;
+      right: 0;
+      left: 0;
+      height: 2px;
+      content: "";
+      background: #dbeafe;
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      width: 8px;
+      height: 8px;
+      content: "";
+      border: 1px solid #dbeafe;
+      background: #818cf8;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+      line-height: 1;
+    }
+
+    .brand-copy strong {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .brand-copy span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+    }
+
+    .question-meta {
+      display: flex;
+      align-items: center;
+      min-height: 34px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.015em;
+    }
+
+    .question-count { color: #e2e8f0; }
+    .meta-divider {
+      width: 4px;
+      height: 4px;
+      margin: 0 12px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      opacity: 0.7;
+    }
+
+    .timer-panel {
+      display: grid;
+      width: 176px;
+      gap: 5px;
+      text-align: right;
+    }
+
+    .timer-label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .timer-digits {
+      color: var(--timer-color);
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      font-variant-numeric: tabular-nums;
+      transition: color 350ms var(--ease-out), text-shadow 350ms var(--ease-out);
+    }
+
+    .timer-digits.is-paused { opacity: 0.58; }
+    .timer-digits.is-urgent {
+      animation: timerPulse 1.15s ease-in-out infinite;
+      text-shadow: 0 0 22px color-mix(in srgb, var(--timer-color) 38%, transparent);
+    }
+
+    .timer-track {
+      width: 100%;
+      height: 4px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.16);
+    }
+
+    .timer-fill {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--timer-color);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--timer-color) 55%, transparent);
+      transition: width 700ms linear, background 350ms var(--ease-out), box-shadow 350ms var(--ease-out);
+    }
+
+    .content-frame {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      width: min(860px, 100%);
+      margin: 6px auto 0;
+    }
+
+    .question-card {
+      width: 100%;
+      padding: clamp(26px, 4vw, 48px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(31, 31, 56, 0.98), rgba(24, 24, 43, 0.98));
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--accent-soft);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .section-label::before {
+      width: 18px;
+      height: 2px;
+      content: "";
+      background: var(--accent);
+    }
+
+    .question-text {
+      max-width: 760px;
+      margin: 0;
+      color: var(--question);
+      font-size: clamp(20px, 1.7vw, 22px);
+      font-weight: 500;
+      line-height: 1.56;
+      white-space: pre-line;
+    }
+
+    .code-block {
+      max-width: 100%;
+      margin: 26px 0 0;
+      padding: 19px 21px;
+      overflow: auto;
+      border: 1px solid rgba(129, 140, 248, 0.22);
+      border-radius: 11px;
+      background: #10101d;
+      color: #c7d2fe;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: clamp(13px, 1.25vw, 15px);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      tab-size: 2;
+    }
+
+    .formula-panel {
+      display: grid;
+      gap: 10px;
+      max-width: 100%;
+      margin: 26px 0 0;
+      padding: 20px 23px;
+      overflow-x: auto;
+      border: 1px solid rgba(129, 140, 248, 0.28);
+      border-left: 3px solid var(--accent-soft);
+      border-radius: 11px;
+      background: #10101d;
+      color: #eef2ff;
+      font-size: clamp(17px, 1.6vw, 20px);
+      line-height: 1.65;
+    }
+
+    .formula-panel math, .math-inline math {
+      color: inherit;
+      font-family: Cambria Math, STIX Two Math, Times New Roman, serif;
+    }
+
+    .formula-line { min-width: max-content; }
+    .formula-line + .formula-line { padding-top: 8px; border-top: 1px solid rgba(148, 163, 184, 0.13); }
+
+    .math-inline {
+      display: inline-flex;
+      align-items: baseline;
+      vertical-align: -0.12em;
+      color: #e0e7ff;
+      font-family: Cambria Math, STIX Two Math, Times New Roman, serif;
+    }
+
+    .choice-text .math-inline {
+      min-height: 32px;
+      font-size: 1.58em;
+      line-height: 1;
+    }
+
+    .choice-card:has(.math-inline) {
+      min-height: 72px;
+    }
+
+    .formula-footnote {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 9px;
+      align-items: baseline;
+      margin-top: 15px;
+      padding: 12px 15px;
+      border-left: 2px solid rgba(129, 140, 248, 0.58);
+      background: rgba(15, 15, 26, 0.32);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .footnote-label {
+      color: var(--accent-soft);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .choices-list {
+      display: grid;
+      gap: 12px;
+      margin: 30px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .choice-card {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: center;
+      min-height: 62px;
+      padding: 13px 18px 13px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.13);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      background: rgba(15, 15, 26, 0.44);
+      transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out), background 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+    }
+
+    .choice-card:hover {
+      border-color: rgba(129, 140, 248, 0.46);
+      border-left-color: var(--accent-soft);
+      background: rgba(41, 41, 73, 0.76);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.14);
+      transform: translateX(4px);
+    }
+
+    .choice-label {
+      color: var(--accent-soft);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .choice-text {
+      color: var(--choice);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.52;
+    }
+
+    .start-screen, .end-screen {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      width: min(860px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .start-content, .end-content {
+      position: relative;
+      width: min(700px, 100%);
+      padding: clamp(36px, 6vw, 72px) 28px;
+    }
+
+    .start-content {
+      padding-top: clamp(10px, 2vh, 22px);
+      padding-bottom: clamp(10px, 2vh, 22px);
+    }
+
+    .start-console {
+      position: relative;
+      display: grid;
+      width: 100%;
+      padding: 22px 30px 20px 38px;
+      border-top: 1px solid rgba(129, 140, 248, 0.5);
+      border-bottom: 1px solid rgba(129, 140, 248, 0.28);
+      background: linear-gradient(90deg, transparent, rgba(30, 30, 53, 0.32), transparent);
+    }
+
+    .start-console::before {
+      position: absolute;
+      top: 22px;
+      bottom: 22px;
+      left: 16px;
+      width: 2px;
+      content: "";
+      background: linear-gradient(to bottom, var(--accent-soft) 0 34%, rgba(129, 140, 248, 0.16) 34% 39%, var(--accent) 39% 47%, rgba(129, 140, 248, 0.16) 47% 52%, var(--accent-soft) 52% 100%);
+    }
+
+    .console-rail, .console-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted-dim);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .console-rail {
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .console-rail span:last-child { color: var(--safe); }
+
+    .console-footer {
+      padding-top: 15px;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+      opacity: 0.78;
+    }
+
+    .start-content::before, .end-content::before {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      width: min(60vw, 500px);
+      height: min(60vw, 500px);
+      content: "";
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.09), transparent 67%);
+      transform: translate(-50%, -50%);
+      filter: blur(8px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent-soft);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before, .eyebrow::after {
+      width: 24px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+      opacity: 0.55;
+    }
+
+    .start-title, .end-title {
+      margin: 20px 0 12px;
+      color: #f8fafc;
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+    }
+
+    .start-title { margin-top: 14px; }
+
+    .start-title span { color: var(--accent-soft); }
+
+    .start-subtitle, .end-subtitle {
+      max-width: 510px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .exam-date-code {
+      margin: 13px auto 0;
+      color: var(--accent-soft);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.075em;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+
+    .instructor-link {
+      color: #c7d2fe;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.45;
+      text-align: left;
+      text-decoration: none;
+      text-transform: none;
+      transition: color 160ms var(--ease-out);
+    }
+
+    .instructor-link:hover { color: #ffffff; }
+    .instructor-link strong { color: #f8fafc; font-weight: 800; }
+
+    .website-qr {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .website-qr-image {
+      display: block;
+      width: 46px;
+      height: 46px;
+      padding: 3px;
+      border-radius: 5px;
+      background: #ffffff;
+      image-rendering: pixelated;
+    }
+
+    .website-qr-copy {
+      display: grid;
+      gap: 3px;
+      max-width: 125px;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.045em;
+      line-height: 1.3;
+      text-transform: none;
+    }
+
+    .website-qr-copy strong { color: #e0e7ff; font-size: 9px; }
+
+    .end-credit {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 20px;
+      max-width: 520px;
+      margin: 24px auto 26px;
+      padding: 14px 16px;
+      border: 1px solid rgba(129, 140, 248, 0.25);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      background: rgba(15, 15, 26, 0.42);
+      text-align: left;
+    }
+
+    .end-credit .instructor-link { display: block; margin-top: 6px; }
+
+    .start-instruction {
+      max-width: 470px;
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .start-facts {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 17px 0 18px;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .start-facts span + span {
+      margin-left: 16px;
+      padding-left: 16px;
+      border-left: 1px solid rgba(148, 163, 184, 0.27);
+    }
+
+    .primary-button, .control-button, .go-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms var(--ease-out), background 180ms var(--ease-out), border-color 180ms var(--ease-out), opacity 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+    }
+
+    .primary-button {
+      width: fit-content;
+      min-width: 244px;
+      min-height: 48px;
+      padding: 0 26px;
+      margin: 0 auto;
+      border: 1px solid rgba(129, 140, 248, 0.86);
+      border-radius: 6px;
+      color: #e0e7ff;
+      background: #242447;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      font-size: 12px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .primary-button:hover {
+      color: #ffffff;
+      background: #343565;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.17), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .primary-button:active, .control-button:active, .go-button:active { transform: scale(0.97); }
+    .button-icon { width: 18px; height: 18px; }
+
+    .control-dock {
+      position: fixed;
+      z-index: 15;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      min-height: var(--control-height);
+      border-top: 1px solid var(--border);
+      background: rgba(20, 20, 36, 0.93);
+      box-shadow: 0 -14px 38px rgba(0, 0, 0, 0.17);
+      backdrop-filter: blur(18px);
+    }
+
+    .controls-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      padding: 15px 28px;
+      gap: 16px;
+    }
+
+    .control-cluster { display: flex; align-items: center; gap: 10px; }
+    .right-controls { justify-content: flex-end; }
+
+    .control-button, .go-button {
+      min-height: 42px;
+      padding: 0 15px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      color: #e2e8f0;
+      background: rgba(30, 30, 53, 0.82);
+      font-size: 13px;
+    }
+
+    .control-button:hover:not(:disabled), .go-button:hover:not(:disabled) {
+      border-color: var(--border-strong);
+      background: #2a2a4b;
+      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    .control-button:disabled, .go-button:disabled, .jump-input:disabled {
+      opacity: 0.36;
+      cursor: not-allowed;
+    }
+
+    .pause-button { min-width: 108px; }
+    .pause-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--safe);
+      box-shadow: 0 0 9px rgba(52, 211, 153, 0.62);
+    }
+
+    .pause-button.is-paused .pause-indicator {
+      background: var(--warn);
+      box-shadow: 0 0 9px rgba(251, 191, 36, 0.62);
+    }
+
+    .jump-group { display: flex; align-items: center; gap: 8px; }
+    .jump-label { color: var(--muted); font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .jump-input {
+      width: 50px;
+      min-height: 42px;
+      padding: 0 7px;
+      border: 1px solid rgba(148, 163, 184, 0.23);
+      border-radius: 8px;
+      color: #f8fafc;
+      background: #121221;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .jump-input::-webkit-outer-spin-button, .jump-input::-webkit-inner-spin-button { margin: 0; }
+    .jump-input[type=number] { appearance: textfield; -moz-appearance: textfield; }
+    .jump-input.is-invalid { animation: shakeInput 320ms ease-in-out; border-color: var(--danger); }
+
+    .dock-status {
+      color: var(--muted-dim);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .dock-status.is-active { color: var(--accent-soft); }
+    .dock-status.is-complete { color: var(--safe); }
+
+    .fade-out { animation: fadeOut 200ms var(--ease-out) forwards; }
+    .fade-in { animation: fadeIn 200ms var(--ease-out) both; }
+
+    @keyframes fadeOut { to { opacity: 0; transform: translateY(5px); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shakeInput {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    @keyframes timerPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.035); opacity: 0.82; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --control-height: 148px; }
+      .app-shell { padding: 22px 16px calc(var(--control-height) + 22px); }
+      .topbar { flex-wrap: wrap; gap: 17px; }
+      .question-meta { order: 3; width: 100%; font-size: 12px; }
+      .timer-panel { margin-left: auto; width: 142px; }
+      .timer-digits { font-size: 40px; }
+      .content-frame { align-items: flex-start; margin-top: 28px; }
+      .question-card { border-radius: 14px; }
+      .formula-panel { padding: 16px; font-size: 16px; }
+      .formula-footnote { grid-template-columns: 1fr; gap: 4px; }
+      .start-console { padding: 17px 14px 17px 29px; }
+      .start-console::before { top: 17px; bottom: 17px; left: 11px; }
+      .console-rail, .console-footer { font-size: 8px; letter-spacing: 0.08em; }
+      .console-footer { align-items: flex-end; }
+      .instructor-link { max-width: 185px; font-size: 9px; }
+      .website-qr-image { width: 42px; height: 42px; }
+      .website-qr-copy { display: none; }
+      .end-credit { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      .end-credit .instructor-link { text-align: center; }
+      .choice-card { grid-template-columns: 35px minmax(0, 1fr); padding-right: 13px; }
+      .choice-text { font-size: 15px; }
+      .controls-inner { grid-template-columns: 1fr; padding: 11px 16px; gap: 8px; }
+      .control-cluster { justify-content: center; }
+      .right-controls { justify-content: center; }
+      .dock-status { display: none; }
+      .control-button { flex: 1; padding: 0 11px; }
+      .jump-label { display: none; }
+    }
+
+    @media (max-width: 420px) {
+      :root { --control-height: 160px; }
+      .brand-copy strong { font-size: 12px; }
+      .brand-copy span { font-size: 9px; }
+      .question-meta { line-height: 1.35; }
+      .meta-divider { margin: 0 8px; }
+      .control-button { font-size: 12px; }
+      .button-icon { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="exam-progress-track" aria-hidden="true"><div id="examProgress" class="exam-progress-fill"></div></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup" aria-label="Machine Learning Exam">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy"><strong>ML / EXAM</strong><span>DISPLAY CONSOLE</span></span>
+      </div>
+
+      <div id="questionMeta" class="question-meta" aria-live="polite">
+        <span class="question-count">Exam standby</span><span class="meta-divider" aria-hidden="true"></span><span>Sequence loaded</span>
+      </div>
+
+      <div class="timer-panel" aria-live="polite">
+        <span class="timer-label">Time remaining</span>
+        <time id="timerDigits" class="timer-digits" datetime="PT0M0S">--:--</time>
+        <div class="timer-track" aria-hidden="true"><div id="timerFill" class="timer-fill"></div></div>
+      </div>
+    </header>
+
+    <section id="displayArea" class="start-screen" aria-live="polite">
+      <div class="start-content">
+        <div class="start-console">
+          <div class="console-rail"><span>Exam state / 01</span><span>Ready</span></div>
+          <span class="eyebrow">Proctored Question Display</span>
+          <h1 class="start-title">Machine Learning<br /><span>Exam</span></h1>
+          <p class="exam-date-code">ML Exam by Mahmoud Alyosify</p>
+          <p class="start-subtitle">25 Questions</p>
+          <p class="start-instruction">Display sequence is loaded. Students submit answers through the designated form.</p>
+          <div class="start-facts"><span>Approx. 94 minutes</span><span>Question timer enabled</span></div>
+          <button id="startButton" class="primary-button" type="button">
+            Start Exam
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+          <div class="console-footer">
+            <a class="instructor-link" href="https://www.linkedin.com/in/mahmoudalyosify/" target="_blank" rel="noopener noreferrer">Prepared by <strong>Eng. Mahmoud Alyosify</strong><br />View LinkedIn profile</a>
+            <a class="website-qr" href="https://mahmoudalyosifysite.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Open Mahmoud Alyosify's website">
+              <img class="website-qr-image" src="Instructor_Website_QR.png" alt="QR code for Mahmoud Alyosify's website" />
+              <span class="website-qr-copy"><strong>Instructor website</strong><span>Scan to explore the portfolio</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="control-dock" aria-label="Instructor controls">
+    <div class="controls-inner">
+      <div class="control-cluster">
+        <button id="previousButton" class="control-button" type="button" disabled>
+          <svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          Previous
+        </button>
+        <button id="pauseButton" class="control-button pause-button" type="button" disabled>
+          <span class="pause-indicator" aria-hidden="true"></span><span id="pauseLabel">Pause</span>
+        </button>
+      </div>
+
+      <div id="dockStatus" class="dock-status">Exam not started</div>
+
+      <div class="control-cluster right-controls">
+        <div class="jump-group">
+          <label class="jump-label" for="jumpInput">Jump to Question</label>
+          <input id="jumpInput" class="jump-input" type="number" min="1" max="25" inputmode="numeric" aria-label="Jump to question number" disabled />
+          <button id="goButton" class="go-button" type="button" disabled>Go</button>
+        </div>
+        <button id="nextButton" class="control-button" type="button" disabled>
+          Next
+          <svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <p id="announcement" class="screen-reader-only" aria-live="assertive"></p>
+
+  <script>
+    /*
+      DESIGN REMINDER — Focused Examination Console
+      Preserve question-first hierarchy and calm instructor control. This application is
+      intentionally display-only: no selection state, answer checking, or answer reveal.
+    */
+    const questions = [
+      {
+        id: 1,
+        topic: "Machine Learning — General",
+        question: "Which of the following best describes supervised learning?",
+        code: null,
+        choices: [
+          { label: "A", text: "The model learns patterns from unlabeled data without any guidance" },
+          { label: "B", text: "The model learns a mapping from inputs to outputs using labeled training data" },
+          { label: "C", text: "The model learns by interacting with an environment and receiving rewards or penalties" },
+          { label: "D", text: "The model clusters data points into groups based on similarity" }
+        ],
+        timeSeconds: 120
+      },
+      {
+        id: 2,
+        topic: "Classification",
+        question: "Which of the following best describes a classification problem in machine learning?",
+        code: null,
+        choices: [
+          { label: "A", text: "Predicting a continuous numerical output for a given input" },
+          { label: "B", text: "Grouping similar data points together without using any labels" },
+          { label: "C", text: "Predicting which discrete category or class a new input belongs to" },
+          { label: "D", text: "Reducing the number of features in the dataset" }
+        ],
+        timeSeconds: 120
+      },
+      {
+        id: 3,
+        topic: "Classification Metrics",
+        question: "In binary classification, which of the following correctly defines Precision?",
+        code: null,
+        choices: [
+          { label: "A", text: "TP / (TP + FN)" },
+          { label: "B", text: "TP / (TP + FP)" },
+          { label: "C", text: "(TP + TN) / (TP + TN + FP + FN)" },
+          { label: "D", text: "TN / (TN + FP)" }
+        ],
+        timeSeconds: 120
+      },
+      {
+        id: 4,
+        topic: "K-Nearest Neighbors (KNN)",
+        question: "Which of the following statements correctly describe KNN?",
+        code: null,
+        choices: [
+          { label: "A", text: "KNN performs most of its computational work during training to learn an explicit decision function." },
+          { label: "B", text: "KNN is considered a Lazy Learning algorithm because it postpones most of the computation until a prediction is requested." },
+          { label: "C", text: "In KNN, the training phase mainly involves storing the training instances rather than learning a fixed parametric model." },
+          { label: "D", text: "Increasing the training dataset always makes KNN prediction faster because more neighbors are available." }
+        ],
+        timeSeconds: 300
+      },
+      {
+        id: 5,
+        topic: "K-Nearest Neighbors (KNN)",
+        question: "Suppose you are using KNN for a binary classification problem. You observe that with K = 1, the model perfectly classifies the training data but performs poorly on unseen data.\nWhich changes are likely to help?",
+        code: null,
+        choices: [
+          { label: "A", text: "Increase K to make the prediction less sensitive to individual noisy training points." },
+          { label: "B", text: "Decrease K further because a smaller K always improves generalization." },
+          { label: "C", text: "Use an appropriate feature-scaling method before calculating distances." },
+          { label: "D", text: "Increase K indefinitely until the model achieves 100% training accuracy." }
+        ],
+        timeSeconds: 240
+      },
+      {
+        id: 6,
+        topic: "Support Vector Machines (SVM)",
+        question: "In a Soft-Margin SVM, the optimization problem is shown below.\n\nSuppose we increase C significantly while keeping the dataset and kernel fixed. Which of the following is the most accurate consequence?",
+        code: "minimize:\n  (1/2)||w||^2 + C * sum(xi_i)\n\nsubject to:\n  y_i(w^T x_i + b) >= 1 - xi_i\n  xi_i >= 0",
+        choices: [
+          { label: "A", text: "The SVM will prioritize maximizing the margin and tolerate more margin violations." },
+          { label: "B", text: "The SVM will penalize margin violations more heavily and tend to fit the training data more strictly." },
+          { label: "C", text: "The SVM will automatically change the kernel from linear to nonlinear." },
+          { label: "D", text: "The SVM will make the value of xi_i larger for every training point." }
+        ],
+        timeSeconds: 240
+      },
+      {
+        id: 7,
+        topic: "Support Vector Machines (SVM)",
+        question: "Consider a training example for which:\n\nUsing the Soft-Margin SVM constraint, assuming the smallest possible value of xi_i is used, which statement is correct?",
+        code: "y_i(w^T x_i + b) = 0.6\n\ny_i(w^T x_i + b) >= 1 - xi_i",
+        choices: [
+          { label: "A", text: "xi_i = 0, and the point is outside the margin." },
+          { label: "B", text: "xi_i = 0.4, and the point is correctly classified but lies inside the margin." },
+          { label: "C", text: "xi_i = 1.6, and the point is misclassified." },
+          { label: "D", text: "xi_i = 0.6, and the point lies exactly on the margin." }
+        ],
+        timeSeconds: 240
+      },
+      {
+        id: 8,
+        topic: "Support Vector Machines (SVM)",
+        question: "Which of the following statements correctly describe the relationship between C and the Soft-Margin SVM?",
+        code: null,
+        choices: [
+          { label: "A", text: "A larger C makes violations of the margin more expensive." },
+          { label: "B", text: "A smaller C generally corresponds to stronger regularization and allows the model to tolerate more violations." },
+          { label: "C", text: "As C becomes very large, the Soft-Margin SVM can approach Hard-Margin behavior when the data is linearly separable." },
+          { label: "D", text: "Increasing C always makes a Linear SVM decision boundary nonlinear." },
+          { label: "E", text: "C controls the distance between the two margin hyperplanes directly." }
+        ],
+        timeSeconds: 300
+      },
+      {
+        id: 9,
+        topic: "Support Vector Machines (SVM)",
+        question: "In the dual formulation of the Soft-Margin SVM, the Lagrange multipliers satisfy the following relationship.\n\nWhich statements correctly follow from this relationship?",
+        code: "0 <= alpha_i <= C",
+        choices: [
+          { label: "A", text: "C acts as an upper bound on each alpha_i." },
+          { label: "B", text: "A training point with alpha_i = 0 does not contribute directly to the SVM decision function." },
+          { label: "C", text: "A point with 0 < alpha_i < C is typically located exactly on the margin." },
+          { label: "D", text: "A point with alpha_i = C must always be correctly classified and lie outside the margin." },
+          { label: "E", text: "The constraint alpha_i <= C comes from the Slack Variable term C * sum(xi_i) in the primal optimization problem." }
+        ],
+        timeSeconds: 360
+      },
+      {
+        id: 10,
+        topic: "Principal Component Analysis (PCA)",
+        question: "What is the main purpose of Principal Component Analysis (PCA)?",
+        code: null,
+        choices: [
+          { label: "A", text: "To increase the number of features in a dataset" },
+          { label: "B", text: "To reduce the dimensionality of data while preserving as much variance as possible" },
+          { label: "C", text: "To convert a classification problem into a regression problem" },
+          { label: "D", text: "To eliminate the need for training data" }
+        ],
+        timeSeconds: 120
+      },
+      {
+        id: 11,
+        topic: "Principal Component Analysis (PCA)",
+        question: "Which statement correctly describes the relationship between PCA, eigenvectors, and eigenvalues?",
+        code: null,
+        choices: [
+          { label: "A", text: "Eigenvalues determine the direction of the new axes, while eigenvectors determine the variance" },
+          { label: "B", text: "Eigenvectors determine the directions of the new axes, while eigenvalues indicate the amount of variance captured in those directions" },
+          { label: "C", text: "Both eigenvectors and eigenvalues represent the original features of the dataset" },
+          { label: "D", text: "Eigenvectors are used to calculate the target variable, while eigenvalues are used for normalization" }
+        ],
+        timeSeconds: 180
+      },
+      {
+        id: 12,
+        topic: "Principal Component Analysis (PCA)",
+        question: "Suppose a dataset has four principal components with the following eigenvalues:\n\nIf we want to retain at least 85% of the total variance, how many principal components should we keep?",
+        code: "lambda_1 = 8,  lambda_2 = 4,  lambda_3 = 2,  lambda_4 = 1",
+        choices: [
+          { label: "A", text: "1" },
+          { label: "B", text: "2" },
+          { label: "C", text: "3" },
+          { label: "D", text: "4" }
+        ],
+        timeSeconds: 240
+      },
+      {
+        id: 13,
+        topic: "Logistic Regression",
+        question: "In Logistic Regression, the model computes the following expressions.\n\nIf the model predicts p = 0.9 for a sample whose true label is y = 0, which statement is MOST accurate?",
+        code: "z = w^T x + b\np = 1 / (1 + e^(-z))",
+        choices: [
+          { label: "A", text: "The prediction is correct because p > 0.5." },
+          { label: "B", text: "The model will have a small Binary Cross-Entropy loss because p is close to 1." },
+          { label: "C", text: "The model will have a large Binary Cross-Entropy loss because it is highly confident in an incorrect class." },
+          { label: "D", text: "The model cannot produce p = 0.9 when y = 0." }
+        ],
+        timeSeconds: 180
+      },
+      {
+        id: 14,
+        topic: "Logistic Regression",
+        question: "For a single training example, suppose the following values are given.\n\nWhat is the gradient with respect to w?",
+        code: "y = 1,   p = 0.8\nx = [2, -3]^T\n\ndL/dw = (p - y) * x",
+        choices: [
+          { label: "A", text: "[0.4, -0.6]^T" },
+          { label: "B", text: "[-0.4, 0.6]^T" },
+          { label: "C", text: "[-0.2, 0.3]^T" },
+          { label: "D", text: "[0.2, -0.3]^T" }
+        ],
+        timeSeconds: 300
+      },
+      {
+        id: 15,
+        topic: "Gradient Descent",
+        question: "What is the main goal of Gradient Descent?",
+        code: null,
+        choices: [
+          { label: "A", text: "Increase the number of features" },
+          { label: "B", text: "Minimize the loss/cost function" },
+          { label: "C", text: "Maximize the learning rate" },
+          { label: "D", text: "Increase the training dataset" }
+        ],
+        timeSeconds: 120
+      },
+      {
+        id: 16,
+        topic: "Gradient Descent",
+        question: "In Gradient Descent, what does the learning rate alpha control?",
+        code: null,
+        choices: [
+          { label: "A", text: "The number of training examples" },
+          { label: "B", text: "The direction of the gradient" },
+          { label: "C", text: "The size of the parameter update step" },
+          { label: "D", text: "The value of the loss function" }
+        ],
+        timeSeconds: 120
+      },
+      {
+        id: 17,
+        topic: "Gradient Descent",
+        question: "Which of the following are true about Gradient Descent?",
+        code: null,
+        choices: [
+          { label: "A", text: "It is an optimization algorithm." },
+          { label: "B", text: "It can be used to minimize a cost function." },
+          { label: "C", text: "It always finds the global minimum." },
+          { label: "D", text: "It updates model parameters iteratively." }
+        ],
+        timeSeconds: 180
+      },
+      {
+        id: 18,
+        topic: "Gradient Descent",
+        question: "Consider the update rule below.\n\nIf the gradient is positive, what happens to theta?",
+        code: "theta := theta - alpha * (dJ(theta) / d_theta)",
+        choices: [
+          { label: "A", text: "theta increases" },
+          { label: "B", text: "theta decreases" },
+          { label: "C", text: "theta remains unchanged" },
+          { label: "D", text: "theta becomes zero" }
+        ],
+        timeSeconds: 180
+      },
+      {
+        id: 19,
+        topic: "Gradient Descent",
+        question: "Which situations can occur if the learning rate is too large?",
+        code: null,
+        choices: [
+          { label: "A", text: "The algorithm may overshoot the minimum." },
+          { label: "B", text: "The cost function may oscillate." },
+          { label: "C", text: "The algorithm may diverge." },
+          { label: "D", text: "The algorithm will always converge faster." }
+        ],
+        timeSeconds: 240
+      },
+      {
+        id: 20,
+        topic: "Gradient Descent",
+        question: "Suppose Gradient Descent reaches a point where the following condition holds.\n\nWhat does this indicate?",
+        code: "dJ / d_theta = 0",
+        choices: [
+          { label: "A", text: "The parameter must be at the global minimum." },
+          { label: "B", text: "There is no gradient-based change at that point." },
+          { label: "C", text: "The learning rate is zero." },
+          { label: "D", text: "The cost function is necessarily constant everywhere." }
+        ],
+        timeSeconds: 180
+      },
+      {
+        id: 21,
+        topic: "Gradient Descent",
+        question: "Which statements correctly describe Batch Gradient Descent?",
+        code: null,
+        choices: [
+          { label: "A", text: "It computes the gradient using the entire training dataset for each update." },
+          { label: "B", text: "Each update can be computationally expensive for very large datasets." },
+          { label: "C", text: "The gradient estimate is generally less noisy than in SGD." },
+          { label: "D", text: "It updates the parameters after processing exactly one training example." }
+        ],
+        timeSeconds: 240
+      },
+      {
+        id: 22,
+        topic: "Gradient Descent",
+        question: "Consider a one-dimensional cost function with the following values.\n\nWhich statements are correct?",
+        code: "theta          = 4\ndJ / d_theta   = 6\nalpha          = 0.1",
+        choices: [
+          { label: "A", text: "The new parameter is 3.4." },
+          { label: "B", text: "The parameter moves in the negative direction." },
+          { label: "C", text: "The update is -0.6." },
+          { label: "D", text: "The new parameter is 4.6." }
+        ],
+        timeSeconds: 300
+      },
+      {
+        id: 23,
+        topic: "Gradient Descent",
+        question: "A model is being trained using Gradient Descent. During training you observe the following behavior.\n\nWhich explanations are plausible?",
+        code: "J(theta):  10.2  ->  8.7  ->  7.1  ->  9.4  ->  6.8  ->  11.3",
+        choices: [
+          { label: "A", text: "The learning rate may be too large." },
+          { label: "B", text: "The optimization process may be overshooting the minimum." },
+          { label: "C", text: "The cost function is necessarily non-convex." },
+          { label: "D", text: "Reducing the learning rate may help stabilize training." },
+          { label: "E", text: "The model must be suffering from underfitting." }
+        ],
+        timeSeconds: 360
+      },
+      {
+        id: 24,
+        topic: "Ensemble Learning",
+        question: "Which of the following best describes Ensemble Learning?",
+        code: null,
+        choices: [
+          { label: "A", text: "Training a single complex model on the entire dataset to maximize accuracy" },
+          { label: "B", text: "Combining multiple models to produce a stronger overall prediction than any individual model" },
+          { label: "C", text: "Reducing the number of features before training a single model" },
+          { label: "D", text: "Using one model to label unlabeled data for use by a second model" }
+        ],
+        timeSeconds: 180
+      },
+      {
+        id: 25,
+        topic: "Ensemble Learning",
+        question: "Which of the following statements correctly describe Random Forest?",
+        code: null,
+        choices: [
+          { label: "A", text: "It is an ensemble method that builds multiple decision trees." },
+          { label: "B", text: "Each tree is trained on a random subset of the training data using bootstrapping (sampling with replacement)." },
+          { label: "C", text: "It uses boosting to sequentially correct the errors of previous trees." },
+          { label: "D", text: "The final classification prediction is determined by majority voting among all trees." },
+          { label: "E", text: "At each split, a random subset of features is considered to increase diversity among trees." }
+        ],
+        timeSeconds: 240
+      }
+    ];
+
+    const formulaContent = {
+      3: {
+        footnote: "TP = true positives, FP = false positives, TN = true negatives, and FN = false negatives."
+      },
+      6: {
+        formula: '<div class="formula-line"><math display="block" aria-label="Minimize one half norm w squared plus C times the sum of xi sub i"><mrow><mtext>minimize</mtext><mspace width="0.6em"/><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mrow><mo>∥</mo><mi>w</mi><mo>∥</mo></mrow><mn>2</mn></msup><mo>+</mo><mi>C</mi><mo>∑</mo><msub><mi>ξ</mi><mi>i</mi></msub></mrow></math></div><div class="formula-line"><math display="block" aria-label="Subject to y sub i times w transpose x sub i plus b is greater than or equal to one minus xi sub i, and xi sub i is greater than or equal to zero"><mrow><mtext>subject to</mtext><mspace width="0.6em"/><msub><mi>y</mi><mi>i</mi></msub><mo>(</mo><msup><mi>w</mi><mi>T</mi></msup><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>b</mi><mo>)</mo><mo>≥</mo><mn>1</mn><mo>−</mo><msub><mi>ξ</mi><mi>i</mi></msub><mo>,</mo><mspace width="0.5em"/><msub><mi>ξ</mi><mi>i</mi></msub><mo>≥</mo><mn>0</mn></mrow></math></div>',
+        footnote: "w is the weight vector, b is the bias, yᵢ is a training label, ξᵢ measures a margin violation, and C sets the penalty applied to violations."
+      },
+      7: {
+        formula: '<div class="formula-line"><math display="block" aria-label="y sub i times w transpose x sub i plus b equals zero point six"><mrow><msub><mi>y</mi><mi>i</mi></msub><mo>(</mo><msup><mi>w</mi><mi>T</mi></msup><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>b</mi><mo>)</mo><mo>=</mo><mn>0.6</mn></mrow></math></div><div class="formula-line"><math display="block" aria-label="y sub i times w transpose x sub i plus b is greater than or equal to one minus xi sub i"><mrow><msub><mi>y</mi><mi>i</mi></msub><mo>(</mo><msup><mi>w</mi><mi>T</mi></msup><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>b</mi><mo>)</mo><mo>≥</mo><mn>1</mn><mo>−</mo><msub><mi>ξ</mi><mi>i</mi></msub></mrow></math></div>',
+        footnote: "The superscript T denotes transpose. A value of ξᵢ represents the amount by which the margin condition is relaxed for a training example."
+      },
+      9: {
+        formula: '<div class="formula-line"><math display="block" aria-label="zero is less than or equal to alpha sub i, which is less than or equal to C"><mrow><mn>0</mn><mo>≤</mo><msub><mi>α</mi><mi>i</mi></msub><mo>≤</mo><mi>C</mi></mrow></math></div>',
+        footnote: "αᵢ is the Lagrange multiplier associated with training example i. C is the soft-margin penalty parameter."
+      },
+      12: {
+        formula: '<div class="formula-line"><math display="block" aria-label="lambda sub one equals eight, lambda sub two equals four, lambda sub three equals two, lambda sub four equals one"><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>=</mo><mn>8</mn><mo>,</mo><mspace width="0.6em"/><msub><mi>λ</mi><mn>2</mn></msub><mo>=</mo><mn>4</mn><mo>,</mo><mspace width="0.6em"/><msub><mi>λ</mi><mn>3</mn></msub><mo>=</mo><mn>2</mn><mo>,</mo><mspace width="0.6em"/><msub><mi>λ</mi><mn>4</mn></msub><mo>=</mo><mn>1</mn></mrow></math></div>',
+        footnote: "Each eigenvalue λₖ gives the variance represented by principal component k. Total variance is the sum of all listed eigenvalues."
+      },
+      13: {
+        formula: '<div class="formula-line"><math display="block" aria-label="z equals w transpose x plus b"><mrow><mi>z</mi><mo>=</mo><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi></mrow></math></div><div class="formula-line"><math display="block" aria-label="p equals one over one plus e to the negative z"><mrow><mi>p</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>z</mi></mrow></msup></mrow></mfrac></mrow></math></div>',
+        footnote: "z is the model’s linear score, p is the predicted probability of class 1, w is the weight vector, and b is the bias."
+      },
+      14: {
+        formula: '<div class="formula-line"><math display="block" aria-label="y equals one, p equals zero point eight, x equals the vector two negative three transpose"><mrow><mi>y</mi><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="0.7em"/><mi>p</mi><mo>=</mo><mn>0.8</mn><mo>,</mo><mspace width="0.7em"/><mi>x</mi><mo>=</mo><msup><mrow><mo>[</mo><mn>2</mn><mo>,</mo><mo>−</mo><mn>3</mn><mo>]</mo></mrow><mi>T</mi></msup></mrow></math></div><div class="formula-line"><math display="block" aria-label="gradient of L with respect to w equals p minus y times x"><mrow><mfrac><mrow><mi>d</mi><mi>L</mi></mrow><mrow><mi>d</mi><mi>w</mi></mrow></mfrac><mo>=</mo><mo>(</mo><mi>p</mi><mo>−</mo><mi>y</mi><mo>)</mo><mi>x</mi></mrow></math></div>',
+        footnote: "y is the true label, p is the predicted probability, x is the feature vector, and the superscript T denotes transpose."
+      },
+      18: {
+        formula: '<div class="formula-line"><math display="block" aria-label="theta is updated to theta minus alpha times the partial derivative of J of theta with respect to theta"><mrow><mi>θ</mi><mo>←</mo><mi>θ</mi><mo>−</mo><mi>α</mi><mfrac><mrow><mi>∂</mi><mi>J</mi><mo>(</mo><mi>θ</mi><mo>)</mo></mrow><mrow><mi>∂</mi><mi>θ</mi></mrow></mfrac></mrow></math></div>',
+        footnote: "θ is a model parameter, α is the learning rate, and ∂J/∂θ is the gradient of the cost function with respect to θ."
+      },
+      20: {
+        formula: '<div class="formula-line"><math display="block" aria-label="the partial derivative of J with respect to theta equals zero"><mrow><mfrac><mrow><mi>∂</mi><mi>J</mi></mrow><mrow><mi>∂</mi><mi>θ</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mrow></math></div>',
+        footnote: "∂J/∂θ is the gradient: it measures how the cost J changes for a small change in parameter θ."
+      },
+      22: {
+        formula: '<div class="formula-line"><math display="block" aria-label="theta equals four, partial derivative of J with respect to theta equals six, alpha equals zero point one"><mrow><mi>θ</mi><mo>=</mo><mn>4</mn><mo>,</mo><mspace width="0.8em"/><mfrac><mrow><mi>∂</mi><mi>J</mi></mrow><mrow><mi>∂</mi><mi>θ</mi></mrow></mfrac><mo>=</mo><mn>6</mn><mo>,</mo><mspace width="0.8em"/><mi>α</mi><mo>=</mo><mn>0.1</mn></mrow></math></div>',
+        footnote: "θ is the current parameter value, α is the learning rate, and ∂J/∂θ is the gradient of the cost function."
+      },
+      23: {
+        formula: '<div class="formula-line"><math display="block" aria-label="J of theta has values ten point two, eight point seven, seven point one, nine point four, six point eight, eleven point three"><mrow><mi>J</mi><mo>(</mo><mi>θ</mi><mo>)</mo><mo>:</mo><mspace width="0.5em"/><mn>10.2</mn><mo>→</mo><mn>8.7</mn><mo>→</mo><mn>7.1</mn><mo>→</mo><mn>9.4</mn><mo>→</mo><mn>6.8</mn><mo>→</mo><mn>11.3</mn></mrow></math></div>',
+        footnote: "J(θ) denotes the cost function evaluated at the current parameter values θ. Each arrow represents the next recorded training step."
+      }
+    };
+
+    const choiceFormulaHtml = {
+      3: {
+        A: '<span class="math-inline"><math><mfrac><mi>TP</mi><mrow><mi>TP</mi><mo>+</mo><mi>FN</mi></mrow></mfrac></math></span>',
+        B: '<span class="math-inline"><math><mfrac><mi>TP</mi><mrow><mi>TP</mi><mo>+</mo><mi>FP</mi></mrow></mfrac></math></span>',
+        C: '<span class="math-inline"><math><mfrac><mrow><mi>TP</mi><mo>+</mo><mi>TN</mi></mrow><mrow><mi>TP</mi><mo>+</mo><mi>TN</mi><mo>+</mo><mi>FP</mi><mo>+</mo><mi>FN</mi></mrow></mfrac></math></span>',
+        D: '<span class="math-inline"><math><mfrac><mi>TN</mi><mrow><mi>TN</mi><mo>+</mo><mi>FP</mi></mrow></mfrac></math></span>'
+      }
+    };
+
+    const elements = {
+      displayArea: document.getElementById("displayArea"),
+      questionMeta: document.getElementById("questionMeta"),
+      examProgress: document.getElementById("examProgress"),
+      timerDigits: document.getElementById("timerDigits"),
+      timerFill: document.getElementById("timerFill"),
+      previousButton: document.getElementById("previousButton"),
+      nextButton: document.getElementById("nextButton"),
+      pauseButton: document.getElementById("pauseButton"),
+      pauseLabel: document.getElementById("pauseLabel"),
+      jumpInput: document.getElementById("jumpInput"),
+      goButton: document.getElementById("goButton"),
+      dockStatus: document.getElementById("dockStatus"),
+      announcement: document.getElementById("announcement")
+    };
+
+    let currentIndex = 0;
+    let secondsRemaining = 0;
+    let isExamStarted = false;
+    let isComplete = false;
+    let isTimerRunning = false;
+    let timerDeadline = 0;
+    let animationFrameId = null;
+    let transitionTimeoutId = null;
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function getTimerColor(ratio) {
+      if (ratio > 0.5) return "#34d399";
+      if (ratio > 0.25) return "#fbbf24";
+      return "#fb7185";
+    }
+
+    function updateTimerDisplay() {
+      if (!isExamStarted || isComplete) {
+        elements.timerDigits.textContent = "--:--";
+        elements.timerDigits.dateTime = "PT0M0S";
+        elements.timerDigits.classList.remove("is-urgent", "is-paused");
+        elements.timerFill.style.width = "0%";
+        return;
+      }
+
+      const question = questions[currentIndex];
+      const ratio = Math.max(0, Math.min(1, secondsRemaining / question.timeSeconds));
+      const timerColor = getTimerColor(ratio);
+      document.documentElement.style.setProperty("--timer-color", timerColor);
+      elements.timerDigits.textContent = formatTime(secondsRemaining);
+      elements.timerDigits.dateTime = `PT${secondsRemaining}S`;
+      elements.timerFill.style.width = `${ratio * 100}%`;
+      elements.timerDigits.classList.toggle("is-urgent", secondsRemaining > 0 && secondsRemaining <= 10 && isTimerRunning);
+      elements.timerDigits.classList.toggle("is-paused", !isTimerRunning && secondsRemaining > 0);
+    }
+
+    function updateHeader() {
+      if (!isExamStarted) {
+        elements.questionMeta.innerHTML = '<span class="question-count">Exam standby</span><span class="meta-divider" aria-hidden="true"></span><span>Sequence loaded</span>';
+        elements.examProgress.style.width = "0%";
+        return;
+      }
+
+      if (isComplete) {
+        elements.questionMeta.innerHTML = '<span class="question-count">Exam complete</span><span class="meta-divider" aria-hidden="true"></span><span>25 questions displayed</span>';
+        elements.examProgress.style.width = "100%";
+        return;
+      }
+
+      const question = questions[currentIndex];
+      elements.questionMeta.innerHTML = `<span class="question-count">Question ${question.id} of ${questions.length}</span><span class="meta-divider" aria-hidden="true"></span><span>${question.topic}</span>`;
+      elements.examProgress.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+    }
+
+    function updateControls() {
+      const enabled = isExamStarted && !isComplete;
+      elements.previousButton.disabled = !enabled || currentIndex === 0;
+      elements.nextButton.disabled = !enabled;
+      elements.pauseButton.disabled = !enabled;
+      elements.jumpInput.disabled = !enabled;
+      elements.goButton.disabled = !enabled;
+      elements.pauseLabel.textContent = isTimerRunning ? "Pause" : "Resume";
+      elements.pauseButton.classList.toggle("is-paused", enabled && !isTimerRunning);
+
+      elements.dockStatus.classList.remove("is-active", "is-complete");
+      if (isComplete) {
+        elements.dockStatus.textContent = "Exam complete";
+        elements.dockStatus.classList.add("is-complete");
+      } else if (isExamStarted) {
+        elements.dockStatus.textContent = isTimerRunning ? "Timer running" : "Timer paused";
+        elements.dockStatus.classList.add("is-active");
+      } else {
+        elements.dockStatus.textContent = "Exam not started";
+      }
+    }
+
+    function stopTimer() {
+      isTimerRunning = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    }
+
+    function timerTick() {
+      if (!isTimerRunning || isComplete) return;
+
+      const remainingMilliseconds = Math.max(0, timerDeadline - performance.now());
+      const nextSeconds = Math.ceil(remainingMilliseconds / 1000);
+      if (nextSeconds !== secondsRemaining) {
+        secondsRemaining = nextSeconds;
+        updateTimerDisplay();
+      }
+
+      if (remainingMilliseconds <= 0) {
+        secondsRemaining = 0;
+        updateTimerDisplay();
+        stopTimer();
+        window.setTimeout(() => navigateTo(currentIndex + 1, true), 250);
+        return;
+      }
+
+      animationFrameId = requestAnimationFrame(timerTick);
+    }
+
+    function startTimer(resetForQuestion = false) {
+      if (!isExamStarted || isComplete) return;
+      if (resetForQuestion) secondsRemaining = questions[currentIndex].timeSeconds;
+      stopTimer();
+      isTimerRunning = true;
+      timerDeadline = performance.now() + (secondsRemaining * 1000);
+      updateTimerDisplay();
+      updateControls();
+      animationFrameId = requestAnimationFrame(timerTick);
+    }
+
+    function pauseTimer() {
+      if (!isTimerRunning) return;
+      secondsRemaining = Math.max(0, Math.ceil((timerDeadline - performance.now()) / 1000));
+      stopTimer();
+      updateTimerDisplay();
+      updateControls();
+      elements.announcement.textContent = "Timer paused.";
+    }
+
+    function resumeTimer() {
+      if (secondsRemaining <= 0) return;
+      startTimer(false);
+      elements.announcement.textContent = "Timer resumed.";
+    }
+
+    function renderQuestion() {
+      const question = questions[currentIndex];
+      const formulaInfo = formulaContent[question.id];
+      const card = document.createElement("article");
+      card.className = "question-card fade-in";
+      card.setAttribute("aria-labelledby", "questionText");
+
+      const label = document.createElement("div");
+      label.className = "section-label";
+      label.textContent = question.topic;
+      card.appendChild(label);
+
+      const questionText = document.createElement("h1");
+      questionText.id = "questionText";
+      questionText.className = "question-text";
+      questionText.textContent = question.question;
+      card.appendChild(questionText);
+
+      if (formulaInfo && formulaInfo.formula) {
+        const formulaPanel = document.createElement("div");
+        formulaPanel.className = "formula-panel";
+        formulaPanel.setAttribute("aria-label", "Mathematical notation");
+        formulaPanel.innerHTML = formulaInfo.formula;
+        card.appendChild(formulaPanel);
+      } else if (question.code !== null) {
+        const codeBlock = document.createElement("pre");
+        codeBlock.className = "code-block";
+        const code = document.createElement("code");
+        code.textContent = question.code;
+        codeBlock.appendChild(code);
+        card.appendChild(codeBlock);
+      }
+
+      const choices = document.createElement("ol");
+      choices.className = "choices-list";
+      choices.setAttribute("aria-label", "Answer choices");
+      question.choices.forEach((choice) => {
+        const item = document.createElement("li");
+        item.className = "choice-card";
+        const choiceLabel = document.createElement("span");
+        choiceLabel.className = "choice-label";
+        choiceLabel.textContent = choice.label;
+        const choiceText = document.createElement("span");
+        choiceText.className = "choice-text";
+        const formattedChoice = choiceFormulaHtml[question.id] && choiceFormulaHtml[question.id][choice.label];
+        if (formattedChoice) {
+          choiceText.innerHTML = formattedChoice;
+        } else {
+          choiceText.textContent = choice.text;
+        }
+        item.append(choiceLabel, choiceText);
+        choices.appendChild(item);
+      });
+      card.appendChild(choices);
+
+      if (formulaInfo && formulaInfo.footnote) {
+        const footnote = document.createElement("aside");
+        footnote.className = "formula-footnote";
+        const footnoteLabel = document.createElement("span");
+        footnoteLabel.className = "footnote-label";
+        footnoteLabel.textContent = "Notation";
+        const footnoteText = document.createElement("span");
+        footnoteText.textContent = formulaInfo.footnote;
+        footnote.append(footnoteLabel, footnoteText);
+        card.appendChild(footnote);
+      }
+
+      elements.displayArea.className = "content-frame";
+      elements.displayArea.replaceChildren(card);
+    }
+
+    function renderStartScreen() {
+      elements.displayArea.className = "start-screen";
+      elements.displayArea.innerHTML = `
+        <div class="start-content fade-in">
+          <div class="start-console">
+            <div class="console-rail"><span>Exam state / 01</span><span>Ready</span></div>
+            <span class="eyebrow">Proctored Question Display</span>
+            <h1 class="start-title">Machine Learning<br /><span>Exam</span></h1>
+            <p class="exam-date-code">ML Exam by Mahmoud Alyosify</p>
+            <p class="start-subtitle">25 Questions</p>
+            <p class="start-instruction">Display sequence is loaded. Students submit answers through the designated form.</p>
+            <div class="start-facts"><span>Approx. 94 minutes</span><span>Question timer enabled</span></div>
+            <button id="startButton" class="primary-button" type="button">Start Exam <svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <div class="console-footer">
+              <a class="instructor-link" href="https://www.linkedin.com/in/mahmoudalyosify/" target="_blank" rel="noopener noreferrer">Prepared by <strong>Eng. Mahmoud Alyosify</strong><br />View LinkedIn profile</a>
+              <a class="website-qr" href="https://mahmoudalyosifysite.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Open Mahmoud Alyosify's website"><img class="website-qr-image" src="Instructor_Website_QR.png" alt="QR code for Mahmoud Alyosify's website" /><span class="website-qr-copy"><strong>Instructor website</strong><span>Scan to explore the portfolio</span></span></a>
+            </div>
+          </div>
+        </div>`;
+      document.getElementById("startButton").addEventListener("click", startExam);
+    }
+
+    function renderEndScreen() {
+      elements.displayArea.className = "end-screen";
+      elements.displayArea.innerHTML = `
+        <div class="end-content fade-in">
+          <span class="eyebrow">Display sequence finished</span>
+          <h1 class="end-title">Exam Complete</h1>
+          <p class="end-subtitle">All 25 questions have been displayed.</p>
+          <p class="exam-date-code">ML Exam by Mahmoud Alyosify</p>
+          <div class="end-credit">
+            <div><span class="footnote-label">Prepared by</span><a class="instructor-link" href="https://www.linkedin.com/in/mahmoudalyosify/" target="_blank" rel="noopener noreferrer"><strong>Eng. Mahmoud Alyosify</strong><br />linkedin.com/in/mahmoudalyosify</a></div>
+            <a class="website-qr" href="https://mahmoudalyosifysite.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Open Mahmoud Alyosify's website"><img class="website-qr-image" src="Instructor_Website_QR.png" alt="QR code for Mahmoud Alyosify's website" /><span class="website-qr-copy"><strong>Instructor website</strong><span>Scan for the full portfolio</span></span></a>
+          </div>
+          <button id="restartButton" class="primary-button" type="button">Restart Exam <svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7V3L3 8l5 5V9c4.14 0 7.5 3.36 7.5 7.5 0 1.12-.25 2.18-.69 3.13l1.48 1.48A9.45 9.45 0 0 0 17.5 16.5C17.5 11.25 13.25 7 8 7Z" fill="currentColor" /></svg></button>
+        </div>`;
+      document.getElementById("restartButton").addEventListener("click", resetToStart);
+    }
+
+    function transitionTo(renderFunction) {
+      if (transitionTimeoutId) clearTimeout(transitionTimeoutId);
+      const currentContent = elements.displayArea.firstElementChild;
+      if (currentContent) currentContent.classList.add("fade-out");
+      transitionTimeoutId = window.setTimeout(renderFunction, 200);
+    }
+
+    function navigateTo(index, wasAutomatic = false) {
+      if (!isExamStarted) return;
+      if (index >= questions.length) {
+        finishExam();
+        return;
+      }
+      if (index < 0) return;
+
+      stopTimer();
+      currentIndex = index;
+      secondsRemaining = questions[currentIndex].timeSeconds;
+      updateHeader();
+      updateControls();
+      transitionTo(() => {
+        renderQuestion();
+        startTimer(false);
+        elements.announcement.textContent = wasAutomatic ? `Time ended. Question ${questions[currentIndex].id} is now displayed.` : `Question ${questions[currentIndex].id} is now displayed. Timer restarted.`;
+      });
+    }
+
+    function startExam() {
+      if (transitionTimeoutId) clearTimeout(transitionTimeoutId);
+      isExamStarted = true;
+      isComplete = false;
+      currentIndex = 0;
+      secondsRemaining = questions[0].timeSeconds;
+      updateHeader();
+      updateControls();
+      transitionTo(() => {
+        renderQuestion();
+        startTimer(false);
+        elements.announcement.textContent = "Exam started. Question 1 is now displayed.";
+      });
+    }
+
+    function finishExam() {
+      stopTimer();
+      isComplete = true;
+      updateHeader();
+      updateTimerDisplay();
+      updateControls();
+      transitionTo(() => {
+        renderEndScreen();
+        elements.announcement.textContent = "Exam complete. All 25 questions have been displayed.";
+      });
+    }
+
+    function resetToStart() {
+      if (transitionTimeoutId) clearTimeout(transitionTimeoutId);
+      stopTimer();
+      isExamStarted = false;
+      isComplete = false;
+      currentIndex = 0;
+      secondsRemaining = 0;
+      elements.jumpInput.value = "";
+      updateHeader();
+      updateTimerDisplay();
+      updateControls();
+      transitionTo(() => {
+        renderStartScreen();
+        elements.announcement.textContent = "Exam reset. Ready to start again.";
+      });
+    }
+
+    function handleJump() {
+      const target = Number(elements.jumpInput.value);
+      if (!Number.isInteger(target) || target < 1 || target > questions.length) {
+        elements.jumpInput.classList.remove("is-invalid");
+        void elements.jumpInput.offsetWidth;
+        elements.jumpInput.classList.add("is-invalid");
+        elements.jumpInput.focus();
+        elements.announcement.textContent = `Enter a question number from 1 to ${questions.length}.`;
+        return;
+      }
+      elements.jumpInput.classList.remove("is-invalid");
+      elements.jumpInput.value = "";
+      navigateTo(target - 1);
+    }
+
+    document.getElementById("startButton").addEventListener("click", startExam);
+    elements.previousButton.addEventListener("click", () => navigateTo(currentIndex - 1));
+    elements.nextButton.addEventListener("click", () => navigateTo(currentIndex + 1));
+    elements.pauseButton.addEventListener("click", () => isTimerRunning ? pauseTimer() : resumeTimer());
+    elements.goButton.addEventListener("click", handleJump);
+    elements.jumpInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") handleJump();
+    });
+    elements.jumpInput.addEventListener("input", () => elements.jumpInput.classList.remove("is-invalid"));
+    document.addEventListener("keydown", (event) => {
+      const isTyping = event.target instanceof HTMLInputElement;
+      if (!isExamStarted || isComplete || isTyping) return;
+      if (event.key === "ArrowLeft") navigateTo(currentIndex - 1);
+      if (event.key === "ArrowRight") navigateTo(currentIndex + 1);
+      if (event.key.toLowerCase() === "p") isTimerRunning ? pauseTimer() : resumeTimer();
+    });
+
+    updateHeader();
+    updateTimerDisplay();
+    updateControls();
+  </script>
+</body>
+</html>
