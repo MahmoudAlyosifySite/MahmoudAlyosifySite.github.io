@@ -533,15 +533,15 @@ html[dir='rtl'] .hero__veil { --veil-dir: left; }
   position: relative;
   border-radius: var(--r-lg);
   overflow: hidden;
-  border: 1px solid var(--line-strong);
+  border: 0;
   margin-bottom: var(--s-6);
-  background: var(--bg-panel);
+  background: transparent;
 }
 .about__portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top center; }
 .about__portrait-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(107, 63, 212, 0.28) 100%);
+  background: transparent;
   pointer-events: none;
 }
 .about__facts-title {

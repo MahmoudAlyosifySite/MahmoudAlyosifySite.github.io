@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../css/chatbot.css">
 </head>
 <body>
 
@@ -113,11 +114,32 @@
 
 </main>
 
+<button class="bot-fab" id="bot-fab" type="button" aria-label="Ask Mahmoud AI">
+  <span class="bot-fab__mark" aria-hidden="true">
+    <img class="bot-fab__icon" src="../img/Mahmoud%20Bot.png" alt="" loading="eager" decoding="async">
+  </span>
+  <span class="bot-fab__label">Ask Mahmoud AI</span>
+</button>
+<div id="bot-root"></div>
+
 <footer class="site-footer">
   <p>© <span id="year"></span> Mahmoud Alyosify · New Cairo, Egypt · Open to relocation</p>
   <p><a href="mailto:mahmoud.alyosify@gmail.com">mahmoud.alyosify@gmail.com</a> · +20 114 555 7959</p>
 </footer>
 
 <script src="script.js"></script>
+<script>
+  window.MAHMOUD_AI_ASSET_BASE = '../';
+  window.MAHMOUD_AI_DATA_URL = '../data/mahmoud-profile.json';
+</script>
+<script src="../js/i18n.js"></script>
+<script src="../js/security.js"></script>
+<script src="../js/providers.js"></script>
+<script src="../js/retriever.js"></script>
+<script src="../js/chatbot.js"></script>
+<script>
+  window.MahmoudAI.mount({ lang: 'en', t: (key) => window.I18N.en[key] || key });
+  document.getElementById('bot-fab').addEventListener('click', () => window.MahmoudAI.toggle());
+</script>
 </body>
 </html>

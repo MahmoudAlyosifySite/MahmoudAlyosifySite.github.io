@@ -3,8 +3,8 @@
 
    THE KEY RULE
    ------------
-   The visitor's API key lives in exactly one place: the module
-   variable `userApiKey` below. It is never written to
+  The visitor's API key lives only in the module variable
+  `userApiKey` below. It is never written to
    localStorage, sessionStorage, cookies, IndexedDB, the URL, the
    console, analytics, or any server of ours — there is no server
    of ours. Closing or refreshing the page destroys it.
@@ -19,8 +19,7 @@ window.MahmoudAI = (() => {
   /* ══════════════════════════════════════════════════════════
      STATE — in memory for the lifetime of this page, no longer
      ══════════════════════════════════════════════════════════ */
-  // Obfuscated to pass GitHub secret scanning
-  let userApiKey = ['gsk_', 'emeWyhrQsY', 'NJFm79TONx', 'WGdyb3FYpq', 'WbfcESvc0n', 'W4sRQxm2fiI0'].join('');
+  let userApiKey = null;
 
   let providerId = 'groq';
   let modelId = 'llama-3.3-70b-versatile';
@@ -36,6 +35,7 @@ window.MahmoudAI = (() => {
 
   const P = () => window.MAProviders;
   const S = () => window.MASecurity;
+  const assetBase = () => window.MAHMOUD_AI_ASSET_BASE || '';
 
   /* Wipe the key the moment this page stops being this page. */
   const forget = () => { userApiKey = null; };
@@ -84,7 +84,7 @@ ${context}
     <div class="bot" id="bot-panel" role="dialog" aria-modal="false" aria-labelledby="bot-h" hidden>
       <header class="bot__bar">
         <span class="bot__avatar" aria-hidden="true">
-          <img src="img/Mahmoud%20Bot.png" alt="" />
+          <img src="${assetBase()}img/Mahmoud%20Bot.png" alt="" />
         </span>
         <span class="bot__id">
           <b id="bot-h">${t('bot.title')}</b>

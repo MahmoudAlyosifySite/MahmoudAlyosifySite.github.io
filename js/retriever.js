@@ -60,6 +60,7 @@ window.MARetriever = (() => {
 
   let index = null;   // { docs, df, avgLen, raw }
   let loading = null;
+  const dataUrl = () => window.MAHMOUD_AI_DATA_URL || 'data/mahmoud-profile.json';
 
   function build(json) {
     const docs = json.chunks.map((c) => {
@@ -80,7 +81,7 @@ window.MARetriever = (() => {
   async function load() {
     if (index) return index;
     if (loading) return loading;
-    loading = fetch('data/mahmoud-profile.json', { cache: 'force-cache' })
+    loading = fetch(dataUrl(), { cache: 'force-cache' })
       .then((r) => {
         if (!r.ok) throw new Error('profile unavailable');
         return r.json();
