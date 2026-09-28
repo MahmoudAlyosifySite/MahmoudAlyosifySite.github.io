@@ -89,6 +89,15 @@ async function run() {
     }
   }
 
+  /* ── Portrait — the hero image, so it has to be light ──── */
+  const portrait = path.join(ROOT, 'img', 'img-mahmoud- april 2026.PNG');
+  if (existsSync(portrait)) {
+    console.log('Portrait      — 1 image');
+    const outDir = path.join(ROOT, 'img', '_web');
+    await derive(portrait, path.join(outDir, 'portrait.webp'), 900, 82);
+    await derive(portrait, path.join(outDir, 'portrait@440.webp'), 440, 80);
+  }
+
   /* ── Certificates (images only; PDFs pass through) ─────── */
   const certDir = path.join(ROOT, 'Certificates');
   if (existsSync(certDir)) {

@@ -29,12 +29,13 @@
     content="Mahmoud Alyosify / محمود اليوسفي / محمود سيد يوسف / Mahmoud AI — MSc AI at Queen's University · LLM systems · Multi-agent AI · MLOps · 10,000+ learners taught." />
   <meta name="twitter:image" content="https://mahmoudalyosifysite.github.io/img/FatFooter-En.png" />
 
-  <meta name="theme-color" content="#05070f" />
+  <meta name="theme-color" content="#F4F2ED" />
   <link rel="icon" type="image/x-icon" href="img/MahmoudIcon.ico" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="img/FatFooter-En.png" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500..700&display=swap" />
 
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -84,12 +85,30 @@
 <body>
   <a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
 
-  <!-- Scroll progress + custom cursor -->
-  <div class="scroll-rail" aria-hidden="true"><span class="scroll-rail__fill"></span></div>
-  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+  <!-- Duotones that bring the full-colour artwork into the palette:
+       the emblem in ink and gold, Mahmoud AI in cream on the night band.
+       Luminance is mapped from the darker colour to the lighter one. -->
+  <svg class="sr-only" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="duo-ink-gold" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0" />
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.086 0.769" />
+        <feFuncG type="table" tableValues="0.125 0.612" />
+        <feFuncB type="table" tableValues="0.184 0.337" />
+      </feComponentTransfer>
+    </filter>
+    <filter id="duo-night-cream" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0" />
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.067 0.35 0.945" />
+        <feFuncG type="table" tableValues="0.102 0.36 0.925" />
+        <feFuncB type="table" tableValues="0.157 0.40 0.886" />
+      </feComponentTransfer>
+    </filter>
+  </svg>
 
-  <!-- Section index dots -->
-  <nav class="dots" aria-label="Section navigation"></nav>
+  <!-- Reading progress -->
+  <div class="scroll-rail" aria-hidden="true"><span class="scroll-rail__fill"></span></div>
 
   <!-- ══════════════════════════════════════════════════════════
        NAV
@@ -98,9 +117,12 @@
     <div class="nav__inner">
       <a class="nav__logo" href="#hero" aria-label="Mahmoud Alyosify — home">
         <span class="nav__logo-mark" aria-hidden="true">
-          <img src="img/Icon%20Mahmoud%20header.png" alt="" />
+          <img src="img/Icon%20Mahmoud%20header.png" alt="" width="40" height="36" />
         </span>
-        <span class="nav__logo-text"><b>Mahmoud</b> Alyosify</span>
+        <span class="nav__logo-text">
+          <b>Mahmoud Alyosify</b>
+          <span class="nav__logo-ar" lang="ar" dir="rtl">محمود اليوسفي</span>
+        </span>
       </a>
 
       <nav class="nav__links" id="nav-links" aria-label="Main">
@@ -134,106 +156,113 @@
     </div>
   </header>
 
+  <!-- Section index — a ruler down the right edge. After the header in
+       source order so keyboard users reach the main nav first. -->
+  <nav class="dots" aria-label="Section navigation"></nav>
+
   <main id="main">
 
     <!-- ══════════════════════════════════════════════════════════
-         1 · HERO — layered parallax of FatFooter-En.png
+         1 · HERO — a title page: the statement, and in its margin
+         the roles it rests on
          ══════════════════════════════════════════════════════════ -->
     <section class="hero" id="hero" data-section="hero">
-      <div class="hero__stage" aria-hidden="true">
-        <canvas class="hero__particles" id="hero-particles"></canvas>
-        <div class="hero__layer hero__layer--sky"      data-depth="0.10"></div>
-        <div class="hero__layer hero__layer--skyline"  data-depth="0.30"></div>
-        <div class="hero__layer hero__layer--beams"    data-depth="0.46"></div>
-        <div class="hero__veil"></div>
-        <div class="hero__grid"></div>
-      </div>
+      <div class="wrap hero__grid">
+        <div class="hero__main">
+          <h1 class="hero__title display">
+            <span class="hero__line" data-i18n="hero.line1">I build</span>
+            <span class="hero__line hero__line--mark" data-i18n="hero.line2">intelligent</span>
+            <span class="hero__line" data-i18n="hero.line3">systems</span>
+          </h1>
 
-      <div class="hero__content">
-        <span class="chip chip--live hero__badge" data-i18n="hero.badge">Available for AI R&amp;D and engineering roles</span>
+          <p class="hero__blurb lead" data-i18n="hero.blurb"></p>
+          <p class="hero__aliases small" data-i18n="hero.aliases"></p>
 
-        <h1 class="hero__title display">
-          <span class="hero__line" data-split data-i18n="hero.line1">I build</span>
-          <span class="hero__line beam-text" data-split data-i18n="hero.line2">intelligent</span>
-          <span class="hero__line" data-split data-i18n="hero.line3">systems</span>
-        </h1>
+          <!-- Indexed by search engines, never shown on screen. Keeps the
+               Arabic spellings and the assistant name findable without
+               cluttering the page. Not hidden via display:none, which
+               crawlers discount — sr-only text is read normally. -->
+          <p class="sr-only">
+            Mahmoud Alyosify · Mahmoud Sayed Youssef · Mahmoud Sayed Youssef Kotb ·
+            محمود اليوسفي · محمود سيد يوسف · محمود سيد يوسف قطب · محمود ·
+            Mahmoud AI · Mahmoud Ai · MahmoudAlyosify
+          </p>
 
-        <p class="hero__roles mono" aria-live="polite"><span id="role-rotator"></span><span class="caret"></span></p>
-
-        <p class="hero__blurb lead" data-i18n="hero.blurb"></p>
-        <p class="hero__aliases small" data-i18n="hero.aliases"></p>
-
-        <!-- Indexed by search engines, never shown on screen. Keeps the
-             Arabic spellings and the assistant name findable without
-             cluttering the page. Not hidden via display:none, which
-             crawlers discount — sr-only text is read normally. -->
-        <p class="sr-only">
-          Mahmoud Alyosify · Mahmoud Sayed Youssef · Mahmoud Sayed Youssef Kotb ·
-          محمود اليوسفي · محمود سيد يوسف · محمود سيد يوسف قطب · محمود ·
-          Mahmoud AI · Mahmoud Ai · MahmoudAlyosify
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#projects" data-magnetic data-i18n="hero.ctaWork">See the work</a>
-          <a class="btn btn--ghost" href="Files/Mahmoud-Alyosify-ML-CV.pdf" target="_blank" rel="noopener"
-            data-magnetic>
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
-              aria-hidden="true">
-              <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
-            </svg>
-            <span data-i18n="hero.ctaCv">Download CV</span>
-          </a>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects" data-arrow data-i18n="hero.ctaWork">See the work</a>
+            <a class="btn btn--ghost" href="Files/Mahmoud-Alyosify-ML-CV.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+              </svg>
+              <span data-i18n="hero.ctaCv">Download CV</span>
+            </a>
+          </div>
         </div>
 
-        <ul class="hero__stats" id="hero-stats"></ul>
+        <!-- The palette's source: navy suit, gold tie. -->
+        <aside class="hero__side">
+          <p class="status hero__badge" data-i18n="hero.badge">Available for AI R&amp;D and engineering roles</p>
+          <figure class="hero__portrait">
+            <picture>
+              <source type="image/webp" srcset="img/_web/portrait@440.webp 440w, img/_web/portrait.webp 900w"
+                sizes="(max-width: 900px) 42vw, 380px" />
+              <img src="img/img-mahmoud- april 2026.PNG" alt="Mahmoud Alyosify" width="520" height="520"
+                fetchpriority="high" decoding="async" />
+            </picture>
+          </figure>
+          <ol class="hero__roles" id="role-rotator"></ol>
+        </aside>
       </div>
 
-      <a class="hero__scroll" href="#about" aria-label="Scroll to content">
-        <span class="mono" data-i18n="hero.scroll">Scroll</span>
-        <span class="hero__scroll-line" aria-hidden="true"></span>
-      </a>
+      <div class="wrap hero__foot">
+        <ul class="ledger hero__stats" id="hero-stats"></ul>
+        <a class="hero__scroll" href="#about" aria-label="Scroll to content">
+          <span class="mono" data-i18n="hero.scroll">Scroll</span>
+          <span class="hero__scroll-line" aria-hidden="true"></span>
+        </a>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         2 · ABOUT — scrubbed word reveal
+         2 · ABOUT
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="about" data-section="about">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="about.eyebrow">Who I am</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="about.title1">Research depth,</span>
-            <span class="beam-text" data-i18n="about.title2">production discipline</span>
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="about.eyebrow">Who I am</span>
+            <span class="s-head__alt" data-i18n-alt="about.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="about.title1">Research depth,</span>
+            <span class="s-head__line"><span class="mark" data-i18n="about.title2">production discipline</span></span>
           </h2>
         </header>
 
         <div class="about__grid">
           <div class="about__text">
-            <p class="about__lead h3" id="about-lead" data-words></p>
+            <p class="about__lead" id="about-lead"></p>
             <p class="lead about__body" id="about-body"></p>
-            <p class="lead about__note" id="about-note" hidden></p>
+            <p class="lead about__note prose" id="about-note" hidden></p>
 
             <div class="about__links">
-              <a class="btn btn--ghost btn--sm" href="https://orcid.org/0009-0005-1336-2726" target="_blank"
+              <a class="out" href="https://orcid.org/0009-0005-1336-2726" target="_blank"
                 rel="noopener me" title="ORCID iD 0009-0005-1336-2726">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
                   <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 18.13H5.62V7.53h1.75v10.6zM6.5 6.42a1.02 1.02 0 1 1 0-2.04 1.02 1.02 0 0 1 0 2.04zm5.03 11.71H9.78V7.53h3.6c3.43 0 4.94 2.45 4.94 5.3 0 3.1-2.42 5.3-4.94 5.3h-1.85zm.34-1.6h1.4c2.5 0 3.7-1.5 3.7-3.7 0-2.02-1.28-3.7-3.7-3.7h-1.4v7.4z" />
                 </svg>
                 ORCID
               </a>
-              <a class="btn btn--ghost btn--sm" href="https://github.com/MahmoudAlyosify" target="_blank" rel="noopener">GitHub</a>
-              <a class="btn btn--ghost btn--sm" href="https://linkedin.com/in/mahmoudalyosify" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="btn btn--ghost btn--sm" href="https://huggingface.co/mahmoudalyosify" target="_blank" rel="noopener">Hugging Face</a>
-              <a class="btn btn--ghost btn--sm" href="https://kaggle.com/mahmoudalyosify" target="_blank" rel="noopener">Kaggle</a>
+              <a class="out" href="https://github.com/MahmoudAlyosify" target="_blank" rel="noopener">GitHub</a>
+              <a class="out" href="https://linkedin.com/in/mahmoudalyosify" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="out" href="https://huggingface.co/mahmoudalyosify" target="_blank" rel="noopener">Hugging Face</a>
+              <a class="out" href="https://kaggle.com/mahmoudalyosify" target="_blank" rel="noopener">Kaggle</a>
             </div>
           </div>
 
-          <aside class="about__side">
-            <figure class="about__portrait" data-reveal>
-              <img src="img/img-mahmoud- april 2026.PNG" alt="Mahmoud Alyosify" loading="lazy" width="520" height="640" />
-              <figcaption class="about__portrait-glow" aria-hidden="true"></figcaption>
-            </figure>
-            <h3 class="about__facts-title mono" data-i18n="about.factsTitle">At a glance</h3>
+          <aside class="about__facts">
+            <h3 class="about__facts-title eyebrow" data-i18n="about.factsTitle">At a glance</h3>
             <ul class="facts" id="about-facts"></ul>
           </aside>
         </div>
@@ -241,15 +270,18 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         3 · EXPERIENCE — pinned scrubbed timeline
+         3 · EXPERIENCE — dates in the margin, a spine that fills
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--alt" id="work" data-section="work">
+    <section class="section" id="work" data-section="work">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="exp.eyebrow">Career</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="exp.title1">Where I have</span>
-            <span class="beam-text" data-i18n="exp.title2">been building</span>
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="exp.eyebrow">Career</span>
+            <span class="s-head__alt" data-i18n-alt="exp.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="exp.title1">Where I have</span>
+            <span class="s-head__line" data-i18n="exp.title2">been building</span>
           </h2>
         </header>
         <ol class="timeline" id="timeline"></ol>
@@ -257,36 +289,42 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         4 · PROJECTS
+         4 · PROJECTS — a catalogue, featured research first
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="projects" data-section="projects">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="proj.eyebrow">Selected work</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="proj.title1">Research &amp;</span>
-            <span class="beam-text" data-i18n="proj.title2">engineering projects</span>
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="proj.eyebrow">Selected work</span>
+            <span class="s-head__alt" data-i18n-alt="proj.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="proj.title1">Research &amp;</span>
+            <span class="s-head__line" data-i18n="proj.title2">engineering projects</span>
           </h2>
           <p class="lead s-head__sub" data-i18n="proj.sub"></p>
         </header>
         <div class="projects" id="projects-grid"></div>
         <div class="projects__more">
           <a class="btn btn--ghost" href="https://github.com/MahmoudAlyosify?tab=repositories" target="_blank"
-            rel="noopener" data-i18n="proj.viewAll">All repositories on GitHub</a>
+            rel="noopener" data-arrow data-i18n="proj.viewAll">All repositories on GitHub</a>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         5 · SKILLS — horizontal pipeline rail
+         5 · SKILLS — the pipeline, stage by stage
          ══════════════════════════════════════════════════════════ -->
     <section class="section section--flush" id="skills" data-section="skills">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="skills.eyebrow">Capabilities</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="skills.title1">The full</span>
-            <span class="beam-text" data-i18n="skills.title2">AI pipeline</span>
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="skills.eyebrow">Capabilities</span>
+            <span class="s-head__alt" data-i18n-alt="skills.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="skills.title1">The full</span>
+            <span class="s-head__line"><span class="mark" data-i18n="skills.title2">AI pipeline</span></span>
           </h2>
           <p class="lead s-head__sub" data-i18n="skills.sub"></p>
         </header>
@@ -301,35 +339,33 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         6 · IMPACT — counters + scrubbed ring
+         6 · IMPACT — set in reverse: the one night band mid-page
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--alt" id="impact" data-section="impact">
-      <div class="wrap impact">
-        <div class="impact__copy">
-          <span class="eyebrow" data-i18n="impact.eyebrow">Reach</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="impact.title1">Measured</span>
-            <span class="beam-text" data-i18n="impact.title2">impact</span>
+    <section class="section section--night" id="impact" data-section="impact">
+      <div class="wrap">
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="impact.eyebrow">Reach</span>
+            <span class="s-head__alt" data-i18n-alt="impact.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="impact.title1">Measured</span>
+            <span class="s-head__line" data-i18n="impact.title2">impact</span>
           </h2>
+        </header>
+
+        <div class="impact">
           <ul class="impact__stats" id="impact-stats"></ul>
-        </div>
-        <div class="impact__ring" aria-hidden="true">
-          <svg viewBox="0 0 240 240" width="240" height="240">
-            <defs>
-              <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%"  stop-color="#6b3fd4" />
-                <stop offset="50%" stop-color="#b14bd8" />
-                <stop offset="100%" stop-color="#f0a13a" />
-              </linearGradient>
-            </defs>
-            <circle cx="120" cy="120" r="104" fill="none" stroke="rgba(234,244,255,.07)" stroke-width="10" />
-            <circle class="impact__ring-arc" cx="120" cy="120" r="104" fill="none" stroke="url(#ringGrad)"
-              stroke-width="10" stroke-linecap="round" transform="rotate(-90 120 120)" />
-            <circle cx="120" cy="120" r="68" fill="none" stroke="rgba(234,244,255,.05)" stroke-width="1" />
-          </svg>
-          <span class="impact__ring-core">
-            <img src="img/Mahmoud%20Bot.png" alt="" />
-          </span>
+          <!-- Mahmoud AI, set as an engraving on the night band. -->
+          <div class="impact__ring" aria-hidden="true">
+            <svg viewBox="0 0 240 240" width="240" height="240">
+              <circle cx="120" cy="120" r="118" fill="none" stroke="rgba(241,236,226,.18)" stroke-width="1"
+                vector-effect="non-scaling-stroke" />
+            </svg>
+            <span class="impact__ring-core">
+              <img src="img/Mahmoud%20Bot.png" alt="" loading="lazy" />
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -339,30 +375,38 @@
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="teaching" data-section="teaching">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="teach.eyebrow">Education &amp; content</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="teach.title1">Teaching</span>
-            <span class="beam-text" data-i18n="teach.title2">10,000+ learners</span>
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="teach.eyebrow">Education &amp; content</span>
+            <span class="s-head__alt" data-i18n-alt="teach.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="teach.title1">Teaching</span>
+            <span class="s-head__line"><span class="mark" data-i18n="teach.title2">10,000+ learners</span></span>
           </h2>
           <p class="lead s-head__sub" data-i18n="teach.sub"></p>
         </header>
         <div class="platforms" id="platforms"></div>
-        <h3 class="mono sub-head" data-i18n="teach.courses">Published courses</h3>
-        <div class="courses" id="courses"></div>
+        <div class="courses-block">
+          <h3 class="sub-head eyebrow" data-i18n="teach.courses">Published courses</h3>
+          <div class="courses" id="courses"></div>
+        </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
          8 · AWARDS
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--alt" id="awards" data-section="awards">
+    <section class="section" id="awards" data-section="awards">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="awards.eyebrow">Recognition</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="awards.title1">Awards &amp;</span>
-            <span class="beam-text" data-i18n="awards.title2">achievements</span>
+        <header class="s-head s-head--minor" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="awards.eyebrow">Recognition</span>
+            <span class="s-head__alt" data-i18n-alt="awards.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="awards.title1">Awards &amp;</span>
+            <span class="s-head__line" data-i18n="awards.title2">achievements</span>
           </h2>
         </header>
         <div class="awards" id="awards-grid"></div>
@@ -372,24 +416,34 @@
     <!-- ══════════════════════════════════════════════════════════
          9 · RECOMMENDATIONS
          ══════════════════════════════════════════════════════════ -->
-    <section class="section" id="recs" data-section="recs">
+    <section class="section section--recessed" id="recs" data-section="recs">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="recs.eyebrow">What people say</span>
-          <h2 class="h1 s-head__title beam-text" data-i18n="recs.title1">Recommendations</h2>
+        <header class="s-head s-head--minor" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="recs.eyebrow">What people say</span>
+            <span class="s-head__alt" data-i18n-alt="recs.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="recs.title1">Recommendations</span>
+          </h2>
         </header>
         <div class="recs" id="recs-grid"></div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         10 · CERTIFICATES
+         10 · CERTIFICATES — an index; each line opens its gallery
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--alt" id="certs" data-section="certs">
+    <section class="section" id="certs" data-section="certs">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="certs.eyebrow">Credentials</span>
-          <h2 class="h1 s-head__title beam-text" data-i18n="certs.title1">Certifications</h2>
+        <header class="s-head s-head--minor" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="certs.eyebrow">Credentials</span>
+            <span class="s-head__alt" data-i18n-alt="certs.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="certs.title1">Certifications</span>
+          </h2>
           <p class="lead s-head__sub" data-i18n="certs.sub"></p>
         </header>
         <div class="cert-cats" id="cert-cats"></div>
@@ -399,13 +453,16 @@
     <!-- ══════════════════════════════════════════════════════════
          11 · PHOTO GALLERY
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--alt" id="gallery" data-section="gallery">
+    <section class="section" id="gallery" data-section="gallery">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="gallery.eyebrow">Moments</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="gallery.title1">Quiet moments,</span>
-            <span class="beam-text" data-i18n="gallery.title2">framed with care</span>
+        <header class="s-head s-head--minor" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="gallery.eyebrow">Moments</span>
+            <span class="s-head__alt" data-i18n-alt="gallery.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="gallery.title1">Quiet moments,</span>
+            <span class="s-head__line" data-i18n="gallery.title2">framed with care</span>
           </h2>
           <p class="lead s-head__sub" data-i18n="gallery.sub"></p>
         </header>
@@ -418,16 +475,19 @@
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="contact" data-section="contact">
       <div class="wrap">
-        <header class="s-head">
-          <span class="eyebrow" data-i18n="contact.eyebrow">Get in touch</span>
-          <h2 class="h1 s-head__title">
-            <span data-i18n="contact.title1">Let's build</span>
+        <header class="s-head" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="contact.eyebrow">Get in touch</span>
+            <span class="s-head__alt" data-i18n-alt="contact.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="contact.title1">Let's build</span>
           </h2>
           <p class="lead s-head__sub" data-i18n="contact.sub"></p>
         </header>
 
         <div class="contact">
-          <form class="contact__form panel panel--beam" id="enquiry-form" novalidate>
+          <form class="contact__form panel" id="enquiry-form" novalidate>
             <h3 class="h3 contact__form-title" data-i18n="contact.formTitle">Send an enquiry</h3>
 
             <!-- honeypot: hidden from humans, tempting to bots -->
@@ -464,7 +524,7 @@
                 data-i18n-attr="placeholder:contact.messagePh"></textarea>
             </div>
 
-            <button class="btn btn--primary contact__submit" type="submit" id="enquiry-submit">
+            <button class="btn btn--primary contact__submit" type="submit" id="enquiry-submit" data-arrow>
               <span data-i18n="contact.send">Send enquiry</span>
             </button>
 
@@ -472,14 +532,14 @@
           </form>
 
           <aside class="contact__side">
-            <div class="panel contact__direct">
-              <p class="small" data-i18n="contact.direct">Prefer email? Reach me directly:</p>
+            <div class="contact__direct">
+              <p class="contact__label" data-i18n="contact.direct">Prefer email? Reach me directly:</p>
               <a class="contact__mail" href="mailto:mahmoud.alyosify@gmail.com">mahmoud.alyosify@gmail.com</a>
               <a class="contact__mail contact__mail--alt" href="mailto:mahmoud.alyosify@queensu.ca">mahmoud.alyosify@queensu.ca</a>
             </div>
 
-            <div class="panel contact__social">
-              <p class="small mono" data-i18n="contact.elsewhere">Elsewhere</p>
+            <div class="contact__social">
+              <p class="contact__label eyebrow" data-i18n="contact.elsewhere">Elsewhere</p>
               <div class="contact__social-grid" id="social-grid"></div>
             </div>
           </aside>
@@ -488,19 +548,20 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         12 · FAT FOOTER — the artwork, as intended
+         13 · CLOSING — the artwork as a matted plate, with its caption
          ══════════════════════════════════════════════════════════ -->
     <section class="fatfooter" id="fatfooter" data-section="fatfooter" aria-label="Closing">
-      <div class="fatfooter__art" aria-hidden="true">
-        <div class="fatfooter__img"></div>
-        <div class="fatfooter__bloom"></div>
-      </div>
-      <div class="fatfooter__inner">
-        <h2 class="display fatfooter__title">
-          <span class="sunset-text" data-i18n="contact.title1">Let's give intelligence a purpose</span><br>
-          <span class="sunset-text" data-i18n="contact.title2"></span>
-        </h2>
-        <a class="btn btn--primary" href="#contact" data-magnetic data-i18n="nav.cta">Get in touch</a>
+      <div class="wrap">
+        <div class="fatfooter__art" aria-hidden="true" data-reveal>
+          <div class="fatfooter__img"></div>
+        </div>
+        <div class="fatfooter__inner" data-reveal>
+          <h2 class="fatfooter__title">
+            <span data-i18n="contact.title1">Let's give intelligence a purpose</span><br>
+            <span class="fatfooter__title-2" data-i18n="contact.title2"></span>
+          </h2>
+          <a class="btn btn--primary" href="#contact" data-arrow data-i18n="nav.cta">Get in touch</a>
+        </div>
       </div>
     </section>
   </main>
@@ -510,19 +571,22 @@
        ══════════════════════════════════════════════════════════ -->
   <footer class="foot">
     <div class="wrap foot__inner">
-      <div>
-        <div class="foot__logo"><b>Mahmoud</b> Alyosify</div>
+      <div class="foot__id">
+        <div class="foot__logo">
+          <b>Mahmoud Alyosify</b>
+          <span class="foot__logo-ar" lang="ar" dir="rtl">محمود اليوسفي</span>
+        </div>
         <p class="small foot__tag" data-i18n="footer.tagline">AI &amp; Machine Learning Engineer · Cairo, Egypt</p>
       </div>
       <div class="foot__links" id="foot-links"></div>
       <div class="foot__meta small">
         <span>&copy; <span id="year">2026</span> Mahmoud Alyosify. <span data-i18n="footer.rights">All rights reserved.</span></span>
-        <span class="foot__built mono" data-i18n="footer.built">Built from scratch — no template.</span>
+        <span class="foot__built" data-i18n="footer.built">Built from scratch — no template.</span>
       </div>
     </div>
     <button class="to-top" id="to-top" type="button" data-i18n-attr="aria-label:footer.top">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
-        aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 20V4m0 0l-6 6m6-6l6 6" />
       </svg>
     </button>
@@ -582,7 +646,6 @@
        ══════════════════════════════════════════════════════════ -->
   <button class="bot-fab" id="bot-fab" type="button" data-i18n-attr="aria-label:bot.open">
     <span class="bot-fab__mark" aria-hidden="true">
-      <span class="bot-fab__pulse"></span>
       <img class="bot-fab__icon" src="img/Mahmoud%20Bot.png" alt="" loading="eager" decoding="async" />
     </span>
     <span class="bot-fab__label" data-i18n="bot.open">Ask Mahmoud AI</span>

@@ -164,53 +164,6 @@
     tick();
   }
 
-  /* ── Background particle canvas ───────────────────────────── */
-  function initParticles() {
-    const canvas = $('#bg-canvas');
-    if (!canvas || reducedMotion()) return;
-    const ctx = canvas.getContext('2d');
-    let w, h, particles;
-
-    const COLORS = ['#6b3fd4', '#b14bd8', '#f0a13a', '#3ad0c8'];
-
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    }
-
-    function makeParticles() {
-      const count = Math.min(60, Math.floor((w * h) / 26000));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 1.6 + 0.4,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        c: COLORS[Math.floor(Math.random() * COLORS.length)]
-      }));
-    }
-
-    function frame() {
-      ctx.clearRect(0, 0, w, h);
-      particles.forEach((p) => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.c;
-        ctx.globalAlpha = 0.5;
-        ctx.fill();
-      });
-      requestAnimationFrame(frame);
-    }
-
-    resize();
-    makeParticles();
-    frame();
-    window.addEventListener('resize', () => { resize(); makeParticles(); });
-  }
-
   /* ── Boot ─────────────────────────────────────────────────── */
   function boot() {
     $('#year').textContent = new Date().getFullYear();
@@ -218,7 +171,6 @@
     initFilter();
     initNavigation();
     initTypewriter();
-    initParticles();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

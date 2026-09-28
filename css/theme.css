@@ -1,87 +1,90 @@
 /* ============================================================
    Mahmoud Alyosify — Design System
-   Palette sampled from img/FatFooter-En.png
+   "Paper, ink & gold."
+
+   Palette sampled from Mahmoud's own portrait
+   (img/img-mahmoud- april 2026.PNG): the navy of the suit
+   becomes the ink, the gold of the tie and pocket square
+   becomes the single accent. Everything sits on warm paper.
+
+   One accent, used as a mark — never as decoration. Gold means
+   "this is the key idea", the way a teacher marks the one line
+   that matters on a page.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+/* Fonts are requested from index.html with <link>, not @import —
+   an @import here would wait for this file before even starting. */
 
 :root {
-  /* ── Sampled from the hero artwork ──────────────────────── */
-  --void:      #05070f;   /* deepest sky                     */
-  --navy:      #0b1030;   /* sky body                        */
-  --indigo:    #2a1f6b;   /* sky → beam transition           */
-  --violet:    #6b3fd4;   /* light beams                     */
-  --magenta:   #b14bd8;   /* beam bloom                      */
-  --amber:     #f0a13a;   /* sunset band                     */
-  --coral:     #e86a4d;   /* horizon line                    */
-  --beam:      #eaf4ff;   /* beam core / white light         */
-  --gold:      #d4b483;   /* graduation sash                 */
-  --teal:      #3ad0c8;   /* water reflection highlight      */
+  /* ── Colour — sampled, then tuned for contrast ──────────── */
+  --paper:      #F4F2ED;   /* page                                  */
+  --paper-2:    #ECE8DF;   /* recessed: mats, bands                 */
+  --paper-3:    #FBFAF7;   /* raised: fields, panels                */
 
-  /* ── Surfaces ───────────────────────────────────────────── */
-  --bg:            var(--void);
-  --bg-raised:     #0a0e20;
-  --bg-panel:      #0e1330;
-  --bg-panel-hi:   #141a42;
-  --bg-glass:      rgba(20, 26, 66, 0.55);
+  --ink:        #16202F;   /* suit navy, deepened for text  14.6:1  */
+  --ink-2:      #3A4558;   /* the suit itself                8.6:1  */
+  --ink-3:      #5E6679;   /* captions, metadata             5.1:1  */
 
-  --line:          rgba(234, 244, 255, 0.08);
-  --line-strong:   rgba(234, 244, 255, 0.16);
-  --line-glow:     rgba(107, 63, 212, 0.45);
+  --gold:       #C49C56;   /* tie + pocket square — marks, never text */
+  --gold-ink:   #7E5F28;   /* gold that can carry text       5.3:1  */
+  --gold-soft:  rgba(196, 156, 86, 0.42);   /* the highlighter stroke */
 
-  /* ── Text ───────────────────────────────────────────────── */
-  --ink:           #f2f5ff;
-  --ink-soft:      #a8b2d8;
-  --ink-mute:      #6b769e;
+  --rule:       rgba(22, 32, 47, 0.13);     /* hairlines               */
+  --rule-2:     rgba(22, 32, 47, 0.26);     /* section rules           */
+  --control:    #7D8494;                    /* field borders    3.4:1  */
 
-  /* ── Gradients ──────────────────────────────────────────── */
-  --beam-gradient:   linear-gradient(100deg, var(--violet) 0%, var(--magenta) 42%, var(--amber) 70%, #ffffff 100%);
-  --beam-gradient-v: linear-gradient(180deg, var(--violet) 0%, var(--magenta) 50%, var(--amber) 82%, #ffffff 100%);
-  --sky-gradient:    linear-gradient(180deg, var(--void) 0%, var(--navy) 45%, var(--indigo) 100%);
-  --sunset-gradient: linear-gradient(90deg, var(--coral) 0%, var(--amber) 45%, var(--gold) 72%, #ffffff 100%);
-  --panel-gradient:  linear-gradient(150deg, rgba(42, 31, 107, 0.30) 0%, rgba(11, 16, 48, 0.55) 100%);
-
-  /* ── Glows ──────────────────────────────────────────────── */
-  --glow-violet: 0 0 48px rgba(107, 63, 212, 0.35);
-  --glow-amber:  0 0 48px rgba(240, 161, 58, 0.28);
-  --glow-beam:   0 0 80px rgba(234, 244, 255, 0.18);
-
-  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.6);
+  /* Night — for the few bands set in reverse */
+  --night:      #111A28;
+  --night-2:    #18233A;
+  --on-night:   #F1ECE2;
+  --on-night-2: #BFC5D0;
+  --on-night-3: #8C95A6;
+  --gold-night: #D9B878;
+  --rule-night: rgba(241, 236, 226, 0.14);
 
   /* ── Type ───────────────────────────────────────────────── */
-  --font-display: 'Sora', 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --font-body:    'Inter', 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Newsreader', 'Noto Naskh Arabic', Georgia, 'Times New Roman', serif;
+  --font-body:    'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', 'IBM Plex Sans Arabic', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  /* Latin face first in both stacks: neither Latin family carries Arabic
+     glyphs, so Arabic falls through to its partner while Latin words
+     inside Arabic text (project names, models) keep the Latin face. */
+  --font-ar-display: 'Newsreader', 'Noto Naskh Arabic', serif;
+  --font-ar-body:    'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
 
-  --fs-hero:  clamp(2.75rem, 8vw, 6.5rem);
-  --fs-h1:    clamp(2.25rem, 5.2vw, 4rem);
-  --fs-h2:    clamp(1.75rem, 3.6vw, 2.75rem);
-  --fs-h3:    clamp(1.15rem, 2vw, 1.5rem);
-  --fs-lead:  clamp(1.02rem, 1.5vw, 1.22rem);
-  --fs-body:  1rem;
-  --fs-sm:    0.875rem;
-  --fs-xs:    0.78rem;
+  --fs-display: clamp(3.4rem, 8.2vw, 7.75rem);
+  --fs-h1:      clamp(2.35rem, 5.1vw, 4.4rem);
+  --fs-h2:      clamp(1.8rem, 3.2vw, 2.65rem);
+  --fs-h3:      clamp(1.32rem, 2vw, 1.68rem);
+  --fs-lead:    clamp(1.12rem, 1.45vw, 1.3rem);
+  --fs-body:    1.0625rem;
+  --fs-sm:      0.9375rem;
+  --fs-xs:      0.8125rem;
+  --fs-micro:   0.75rem;
 
-  /* ── Space (4px scale) ──────────────────────────────────── */
+  /* ── Space — 4px scale ──────────────────────────────────── */
   --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
   --s-5: 24px;  --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
   --s-9: 96px;  --s-10: 128px;
 
-  --section-py: clamp(80px, 11vw, 160px);
-  --page-max:   1240px;
-  --page-px:    clamp(20px, 5vw, 56px);
+  --section-py: clamp(80px, 10vw, 148px);
+  --page-max:   1280px;
+  --page-px:    clamp(20px, 4.6vw, 64px);
+  --gutter:     clamp(16px, 1.9vw, 24px);
 
-  /* ── Radii ──────────────────────────────────────────────── */
-  --r-sm: 8px;  --r-md: 14px;  --r-lg: 22px;  --r-xl: 32px;  --r-full: 999px;
+  /* ── Shape ──────────────────────────────────────────────── */
+  --r:      3px;           /* the only radius: crisp, not sharp */
+  --r-full: 999px;         /* status dots only                  */
 
-  /* ── Motion ─────────────────────────────────────────────── */
-  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-lift: 0 1px 2px rgba(22, 32, 47, 0.06), 0 8px 24px rgba(22, 32, 47, 0.08);
+  --shadow-over: 0 2px 6px rgba(22, 32, 47, 0.08), 0 28px 64px rgba(10, 16, 28, 0.28);
+
+  /* ── Motion — calm, decelerating, short ─────────────────── */
+  --ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
   --t-fast: 0.18s var(--ease-soft);
-  --t-mid:  0.35s var(--ease-out);
-  --t-slow: 0.7s  var(--ease-out);
+  --t-mid:  0.32s var(--ease);
+  --t-slow: 0.7s  var(--ease);
 
   --z-bg: 0; --z-content: 10; --z-nav: 100; --z-chat: 900; --z-overlay: 1000;
 }
@@ -89,30 +92,39 @@
 /* ── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* The scripts show and hide views with the `hidden` attribute; a
+   component's own `display` must never be able to override it. */
+[hidden] { display: none !important; }
+
 html {
   /* Native scrolling everywhere. scroll-behavior only affects anchor jumps,
      never the wheel, and the browser disables it under reduced-motion. */
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 84px;
   -webkit-text-size-adjust: 100%;
   /* Must sit on the root as well as body: overflow set only on body
      propagates to the viewport, which let RTL pages scroll sideways. */
   overflow-x: clip;
+  background: var(--paper);
 }
 
 body {
-  background: var(--bg);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  line-height: 1.7;
+  line-height: 1.65;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
 }
 
-html[dir='rtl'] body { font-family: 'IBM Plex Sans Arabic', var(--font-body); }
-html[dir='rtl'] { --font-display: 'IBM Plex Sans Arabic', 'Sora', sans-serif; }
+html[dir='rtl'] {
+  --font-display: var(--font-ar-display);
+  --font-body:    var(--font-ar-body);
+}
 
 img, svg, video { display: block; max-width: 100%; height: auto; }
 
@@ -123,183 +135,222 @@ button { background: none; border: none; cursor: pointer; }
 
 ul, ol { list-style: none; }
 
-::selection { background: var(--violet); color: var(--beam); }
+::selection { background: var(--gold-soft); color: var(--ink); }
 
 :focus-visible {
-  outline: 2px solid var(--magenta);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r);
 }
 
-/* ── Scrollbar ────────────────────────────────────────────── */
+/* ── Scrollbar — thin, ink on paper ───────────────────────── */
+html { scrollbar-color: rgba(22, 32, 47, 0.35) var(--paper); scrollbar-width: thin; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--violet), var(--magenta));
+  background: rgba(22, 32, 47, 0.28);
   border-radius: var(--r-full);
-  border: 2px solid var(--void);
+  border: 3px solid var(--paper);
 }
-::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--magenta), var(--amber)); }
+::-webkit-scrollbar-thumb:hover { background: rgba(22, 32, 47, 0.45); }
 
 /* ── Typography primitives ────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.08;
+  font-weight: 500;
+  line-height: 1.06;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
+p { text-wrap: pretty; }
 
-.display    { font-size: var(--fs-hero); font-weight: 800; letter-spacing: -0.04em; }
-.h1         { font-size: var(--fs-h1); }
-.h2         { font-size: var(--fs-h2); }
-.h3         { font-size: var(--fs-h3); font-weight: 600; }
-.lead       { font-size: var(--fs-lead); color: var(--ink-soft); line-height: 1.75; }
-.small      { font-size: var(--fs-sm); }
-.mono       { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.display { font-size: var(--fs-display); font-weight: 500; line-height: 0.92; letter-spacing: -0.035em; }
+.h1      { font-size: var(--fs-h1); }
+.h2      { font-size: var(--fs-h2); }
+.h3      { font-size: var(--fs-h3); }
+.lead    { font-size: var(--fs-lead); color: var(--ink-2); line-height: 1.6; }
+.small   { font-size: var(--fs-sm); }
+.mono    { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
-.beam-text {
-  background: var(--beam-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* The one accent. A chisel-tip marker stroke — slanted ends, rising
+   slightly as a hand does — laid under the one phrase that matters,
+   the way a teacher marks a textbook. Used sparingly: the hero and
+   three section titles. Drawn in when it arrives (motion.css).
+   The Arabic stroke is mirrored so it is drawn right to left. */
+:root {
+  --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
+  --marker-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M391 11C330 9.6 260 9 190 7.6S70 5 3 3.2L9 29.6C80 30.4 150 31.6 220 32.8S340 35.4 397.4 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
 }
-
-.sunset-text {
-  background: var(--sunset-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.mark {
+  --mark-h: 0.4em;
+  background-image: var(--marker);
+  background-repeat: no-repeat;
+  background-size: 100% var(--mark-h);
+  background-position: 0 88%;
+  padding-inline: 0.06em;
+  margin-inline: -0.06em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
+html[dir='rtl'] .mark { background-image: var(--marker-rtl); background-position: 100% 80%; }
 
-/* ── Eyebrow label ────────────────────────────────────────── */
+/* ── Eyebrow — a catalogue label, not a tagline ───────────── */
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.18em;
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--magenta);
+  color: var(--ink-3);
 }
-.eyebrow::before {
+
+/* ── Status line — a plain note, led by a short rule ──────── */
+.status {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.status::before {
   content: '';
-  width: 28px;
-  height: 2px;
-  border-radius: var(--r-full);
-  background: var(--beam-gradient);
+  flex-shrink: 0;
+  align-self: center;
+  width: 16px;
+  height: 1px;
+  background: var(--ink-2);
 }
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn {
   --btn-py: 13px;
-  --btn-px: 26px;
+  --btn-px: 20px;
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--s-2);
+  gap: 10px;
   padding: var(--btn-py) var(--btn-px);
-  border-radius: var(--r-full);
-  font-family: var(--font-display);
+  border: 1px solid transparent;
+  border-radius: var(--r);
+  font-family: var(--font-body);
   font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
   white-space: nowrap;
   cursor: pointer;
-  overflow: hidden;
-  transition: transform var(--t-fast), box-shadow var(--t-mid), border-color var(--t-mid), color var(--t-mid);
+  transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast);
 }
-.btn:active { transform: scale(0.97); }
+.btn svg { flex-shrink: 0; }
 
-.btn--primary {
-  color: var(--void);
-  background: var(--beam-gradient);
-  background-size: 200% 100%;
-  box-shadow: var(--glow-violet);
-}
-.btn--primary:hover {
-  background-position: 100% 0;
-  box-shadow: var(--glow-amber), 0 10px 30px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-}
+.btn--primary { background: var(--ink); color: var(--paper); }
+.btn--primary:hover { background: #26344D; }
 
 .btn--ghost {
   color: var(--ink);
-  border: 1px solid var(--line-strong);
-  background: rgba(234, 244, 255, 0.02);
-  backdrop-filter: blur(8px);
+  border-color: var(--control);
+  background: transparent;
 }
-.btn--ghost:hover {
-  border-color: var(--magenta);
-  color: var(--beam);
-  box-shadow: var(--glow-violet);
-  transform: translateY(-2px);
+.btn--ghost:hover { border-color: var(--ink); background: rgba(22, 32, 47, 0.04); }
+
+.btn--sm { --btn-py: 8px; --btn-px: 13px; font-size: var(--fs-xs); gap: 8px; }
+
+/* Direction arrow that nudges on hover — the only button motion. */
+.btn[data-arrow]::after {
+  content: '→';
+  font-family: var(--font-body);
+  transition: transform var(--t-fast);
 }
+.btn[data-arrow]:hover::after { transform: translateX(3px); }
+html[dir='rtl'] .btn[data-arrow]::after { content: '←'; }
+html[dir='rtl'] .btn[data-arrow]:hover::after { transform: translateX(-3px); }
 
-.btn--sm { --btn-py: 8px; --btn-px: 16px; font-size: var(--fs-xs); }
+/* ── Links ────────────────────────────────────────────────── */
+/* In-text links: a quiet underline that turns gold on hover. */
+.link,
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rule-2);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color var(--t-fast), color var(--t-fast);
+}
+.link:hover,
+.prose a:hover { text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
 
-/* ── Panels / cards ───────────────────────────────────────── */
+/* Outbound links in lists — label plus a small ↗. */
+.out {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-2);
+  padding-bottom: 1px;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.out::after {
+  content: '↗';
+  font-size: 0.85em;
+  color: var(--ink-3);
+  transition: color var(--t-fast), transform var(--t-fast);
+}
+.out:hover { border-bottom-color: var(--gold); }
+.out:hover::after { color: var(--gold-ink); transform: translate(1px, -1px); }
+html[dir='rtl'] .out::after { content: '↖'; }
+html[dir='rtl'] .out:hover::after { transform: translate(-1px, -1px); }
+.out svg { align-self: center; color: var(--ink-3); }
+
+/* ── Panels — a surface, not a glass card ─────────────────── */
 .panel {
   position: relative;
-  background: var(--panel-gradient);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  backdrop-filter: blur(10px);
-  transition: border-color var(--t-mid), transform var(--t-mid), box-shadow var(--t-mid);
-}
-.panel:hover {
-  border-color: var(--line-glow);
-  box-shadow: var(--shadow-md), var(--glow-violet);
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
 }
 
-/* Beam accent that sweeps the top edge of a panel */
-.panel--beam::before {
-  content: '';
+/* ── Tags — a slash-separated list, set in mono ───────────────
+   Every item carries its separator in front of it, inside a strip
+   of padding. The list is pulled back by exactly that strip and
+   clipped, so the separator of whichever item starts a line —
+   first item or wrapped — falls outside the clip. No line ever
+   opens or closes on a stray "/".                                */
+.tags {
+  --sep: 1.3em;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 3px;
+  margin-inline-start: calc(var(--sep) * -1);
+  clip-path: inset(0 0 0 var(--sep));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+html[dir='rtl'] .tags { clip-path: inset(0 var(--sep) 0 0); }
+.tags li { position: relative; padding-inline-start: var(--sep); }
+.tags li::before {
+  content: '/';
   position: absolute;
-  inset-inline: 12%;
-  top: -1px;
-  height: 1px;
-  background: var(--beam-gradient);
-  opacity: 0;
-  transition: opacity var(--t-mid);
+  inset-inline-start: 0.42em;
+  color: var(--control);
+  opacity: 0.75;
 }
-.panel--beam:hover::before { opacity: 1; }
 
-/* ── Chips / tags ─────────────────────────────────────────── */
+/* Kept for any first-party markup that still asks for a chip. */
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: var(--r-full);
-  border: 1px solid var(--line);
-  background: rgba(107, 63, 212, 0.10);
+  padding: 3px 9px;
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--ink-soft);
-  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
-}
-.chip:hover { color: var(--beam); border-color: var(--line-glow); background: rgba(107, 63, 212, 0.22); }
-
-.chip--live {
-  color: var(--teal);
-  border-color: rgba(58, 208, 200, 0.35);
-  background: rgba(58, 208, 200, 0.08);
-}
-.chip--live::before {
-  content: '';
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 0 0 rgba(58, 208, 200, 0.6);
-  animation: pulse-dot 2.2s var(--ease-out) infinite;
-}
-
-@keyframes pulse-dot {
-  0%   { box-shadow: 0 0 0 0 rgba(58, 208, 200, 0.6); }
-  70%  { box-shadow: 0 0 0 10px rgba(58, 208, 200, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(58, 208, 200, 0); }
+  font-size: var(--fs-micro);
+  color: var(--ink-2);
 }
 
 /* ── Utilities ────────────────────────────────────────────── */
@@ -317,25 +368,35 @@ h1, h2, h3, h4 {
   top: -100px;
   inset-inline-start: var(--s-4);
   z-index: var(--z-overlay);
-  padding: 10px 18px;
-  border-radius: var(--r-full);
-  background: var(--violet);
-  color: var(--beam);
+  padding: 10px 16px;
+  border-radius: var(--r);
+  background: var(--ink);
+  color: var(--paper);
   transition: top var(--t-fast);
 }
 .skip-link:focus { top: var(--s-4); }
 
-/* ── RTL Overrides ────────────────────────────────────────── */
-html[dir='rtl'] * {
-  letter-spacing: normal !important;
+/* ── RTL ──────────────────────────────────────────────────── */
+/* Arabic is never letter-spaced — it breaks the joins. */
+html[dir='rtl'] * { letter-spacing: normal !important; }
+
+/* Naskh at 500 sits at the same colour on the page as Newsreader at 500;
+   at 600 it reads a size heavier. */
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3,
+html[dir='rtl'] h4 {
+  font-weight: 500;
+  line-height: 1.4;
 }
-html[dir='rtl'] h1, 
-html[dir='rtl'] h2, 
-html[dir='rtl'] h3, 
-html[dir='rtl'] h4,
+/* Naskh runs large and tall: set the display a size down, with just
+   enough leading for its ascenders and dots — no more. */
 html[dir='rtl'] .display {
-  line-height: 1.4;
+  font-size: calc(var(--fs-display) * 0.8);
+  font-weight: 500;
+  line-height: 1.08;
 }
-html[dir='rtl'] .hero__title {
-  line-height: 1.4;
-}
+html[dir='rtl'] .eyebrow { text-transform: none; font-size: var(--fs-xs); }
+
+/* Arabic has no italic; a browser-slanted Naskh is a fake. Stay upright. */
+html[dir='rtl'] :is(i, em, .pcard__sub, .fatfooter__title) { font-style: normal; }

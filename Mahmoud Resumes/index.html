@@ -8,18 +8,24 @@
 <link rel="icon" type="image/x-icon" href="../img/MahmoudIcon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F4F2ED">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../css/chatbot.css">
 </head>
 <body>
 
-<canvas id="bg-canvas" aria-hidden="true"></canvas>
-<div class="aurora" aria-hidden="true">
-  <span class="blob blob-a"></span>
-  <span class="blob blob-b"></span>
-  <span class="blob blob-c"></span>
-</div>
+<!-- The emblem in the site palette: gold medallion, navy line. -->
+<svg style="position:absolute;width:0;height:0" width="0" height="0" aria-hidden="true" focusable="false">
+  <filter id="duo-ink-gold" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0" />
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.086 0.769" />
+      <feFuncG type="table" tableValues="0.125 0.612" />
+      <feFuncB type="table" tableValues="0.184 0.337" />
+    </feComponentTransfer>
+  </filter>
+</svg>
 
 <header class="site-header">
   <div class="brand">
@@ -104,7 +110,6 @@
 
     <div class="pdf-frame-wrap">
       <div class="pdf-chrome">
-        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
         <span class="pdf-chrome-name" id="pdf-chrome-name">CV.pdf</span>
       </div>
       <iframe id="pdf-frame" title="CV preview" loading="lazy"></iframe>

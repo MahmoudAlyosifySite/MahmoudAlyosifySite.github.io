@@ -29,15 +29,6 @@
   const t = (k, fallback) => (window.MASite ? window.MASite.t(k) : '') || fallback;
   const loc = (v) => (v && typeof v === 'object' ? (v[L()] ?? v.en) : v);
 
-  /* Category icons, matching the site's line-art style. */
-  const ICON = {
-    coursera: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M5 10.5V16c0 1.7 3.1 3 7 3s7-1.3 7-3v-5.5"/></svg>',
-    trophy:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/><path d="M10 14v3H8v3h8v-3h-2v-3"/></svg>',
-    people:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6.5a2.8 2.8 0 0 1 0 5.4M18 20a6 6 0 0 0-3-5.2"/></svg>',
-    code:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 8L4 12l4.5 4M15.5 8L20 12l-4.5 4M13.5 5l-3 14"/></svg>',
-    doc:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>'
-  };
-
   const PDF_GLYPH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/><text x="12" y="17.5" font-size="6.5" font-family="monospace" text-anchor="middle" fill="currentColor" stroke="none">PDF</text></svg>';
 
   /* Mobile browsers routinely refuse to render a PDF inside an iframe, so we
@@ -55,7 +46,9 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     CATEGORY CARDS
+     CATEGORY INDEX
+     A contents page: the entry number in the margin, the name on
+     the spine, leader dots running across to the count.
      ══════════════════════════════════════════════════════════ */
   function renderCategories() {
     const host = $('#cert-cats');
@@ -70,16 +63,18 @@
       return `
       <button class="cert-cat" type="button" data-cat="${c.id}" data-reveal
               ${n === 0 ? 'disabled aria-disabled="true"' : ''}>
-        <span class="cert-cat__icon" aria-hidden="true">${ICON[c.icon] || ICON.doc}</span>
-        <span class="cert-cat__body">
-          <span class="cert-cat__name">${label}</span>
-          <span class="cert-cat__blurb">${blurb}</span>
-        </span>
-        <span class="cert-cat__foot">
-          <span class="cert-cat__count mono">${n} ${esc(unit)}</span>
-          <span class="cert-cat__go" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        <span class="cert-cat__row">
+          <span class="cert-cat__body">
+            <span class="cert-cat__name">${label}</span>
+            <span class="cert-cat__blurb">${blurb}</span>
+          </span>
+          <span class="cert-cat__leader" aria-hidden="true"></span>
+          <span class="cert-cat__foot">
+            <span class="cert-cat__count mono">${n} ${esc(unit)}</span>
+            <span class="cert-cat__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </span>
           </span>
         </span>
       </button>`;

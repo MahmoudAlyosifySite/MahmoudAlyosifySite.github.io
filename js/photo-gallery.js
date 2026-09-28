@@ -43,18 +43,21 @@
 
     const prev = navBtn('prev', 'M15 5l-7 7 7 7', t('gallery.prev', 'Previous photo'));
     const next = navBtn('next', 'M9 5l7 7-7 7', t('gallery.next', 'Next photo'));
-    frame.append(prev, next);
 
     // Filenames are not titles — no caption text, just the position.
+    // The controls sit under the plate, never over the photo.
     const cap = el('div', 'pg__cap');
     const count = el('p', 'pg__count mono');
-    cap.append(count);
 
     const dots = el('div', 'pg__dots');
     dots.setAttribute('role', 'tablist');
     dots.setAttribute('aria-label', 'Photos');
 
-    stage.append(frame, cap, dots);
+    const ctrls = el('div', 'pg__ctrls');
+    ctrls.append(prev, next);
+    cap.append(dots, count, ctrls);
+
+    stage.append(frame, cap);
     host.appendChild(stage);
 
     host._refs = { count, dots, prev, next, frame };

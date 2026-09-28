@@ -60,20 +60,31 @@
      RENDER
      ══════════════════════════════════════════════════════════ */
 
+  /** "700K+" → the "+" is set a shade lighter than the magnitude. */
+  const plus = (text) => {
+    const s = esc(text);
+    return s.endsWith('+') ? `${s.slice(0, -1)}<span class="ledger__plus">+</span>` : s;
+  };
+
+  /** Keep a " · " separator on the line it closes, so a wrapped line never
+      opens with one. The characters are unchanged; only the space before
+      the dot stops being a break opportunity. */
+  const keepSep = (html) => html.replace(/ · /g, '&nbsp;· ');
+
+  /** A figure and its suffix, set apart so only the number is counted. */
+  const figure = (s) =>
+    `<span data-count="${s.value}" data-suffix="">0</span><span class="ledger__s">${plus(s.suffix)}</span>`;
+
   function renderHeroStats() {
     $('#hero-stats').innerHTML = SITE.stats.map((s) => `
       <li>
-        <span class="hero__stat-v" data-count="${s.value}" data-suffix="${esc(s.suffix)}">0</span>
-        <span class="hero__stat-l">${esc(L(s.label))}</span>
+        <span class="ledger__v">${figure(s)}</span>
+        <span class="ledger__l">${esc(L(s.label))}</span>
       </li>`).join('');
   }
 
   function renderAbout() {
-    const lead = $('#about-lead');
-    lead.innerHTML = L(SITE.about.lead)
-      .split(' ')
-      .map((w) => `<span class="w">${esc(w)}</span>`)
-      .join(' ');
+    $('#about-lead').textContent = L(SITE.about.lead);
     $('#about-body').textContent = L(SITE.about.body);
 
     // First-party copy that carries one editorial link.
@@ -89,14 +100,14 @@
       const shown = f.url
         ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${val}</a>`
         : val;
-      const iconHtml = f.iconImg 
+      const iconHtml = f.iconImg
         ? `<img src="${esc(f.iconImg)}" alt="" class="facts__icon-img" loading="lazy" />`
         : f.icon;
       return `
       <li>
-        <span class="facts__icon">${iconHtml}</span>
+        <span class="facts__icon" aria-hidden="true">${iconHtml}</span>
         <span>
-          <span class="facts__k">${esc(L(f.k))}</span><br />
+          <span class="facts__k">${esc(L(f.k))}</span>
           <span class="facts__v">${shown}</span>
         </span>
       </li>`;
@@ -114,9 +125,11 @@
         <li class="tl-item" data-reveal>
           <span class="tl-item__dot" aria-hidden="true"></span>
           <p class="tl-item__date">${esc(L(e.date))}</p>
-          <h3 class="tl-item__role">${esc(L(e.role))}</h3>
-          <p class="tl-item__org">${org}</p>
-          <ul class="tl-item__points">${L(e.points).map((p) => `<li>${p}</li>`).join('')}</ul>
+          <div class="tl-item__body">
+            <h3 class="tl-item__role">${esc(L(e.role))}</h3>
+            <p class="tl-item__org">${org}</p>
+            <ul class="tl-item__points">${L(e.points).map((p) => `<li>${p}</li>`).join('')}</ul>
+          </div>
         </li>`;
       }).join('');
   }
@@ -124,27 +137,30 @@
   function renderProjects() {
     $('#projects-grid').innerHTML = SITE.projects.map((p) => {
       const links = [];
-      if (p.repo) links.push(`<a class="btn btn--ghost btn--sm" href="${esc(p.repo)}" target="_blank" rel="noopener">${ICON.github}<span>${esc(t('proj.code'))}</span></a>`);
-      if (p.demo) links.push(`<a class="btn btn--ghost btn--sm" href="${esc(p.demo)}" target="_blank" rel="noopener">${esc(t('proj.live'))}</a>`);
+      if (p.repo) links.push(`<a class="out" href="${esc(p.repo)}" target="_blank" rel="noopener">${ICON.github}<span>${esc(t('proj.code'))}</span></a>`);
+      if (p.demo) links.push(`<a class="out" href="${esc(p.demo)}" target="_blank" rel="noopener">${esc(t('proj.live'))}</a>`);
       if (Array.isArray(p.links)) {
         p.links.forEach((link) => {
           if (!link?.url) return;
-          links.push(`<a class="btn btn--ghost btn--sm" href="${esc(link.url)}" target="_blank" rel="noopener">${esc(L(link.label))}</a>`);
+          links.push(`<a class="out" href="${esc(link.url)}" target="_blank" rel="noopener">${esc(L(link.label))}</a>`);
         });
       }
-      const note = p.supervisor ? `<span class="pcard__note mono">${esc(p.supervisor)}</span>` : '';
+      const note = p.supervisor ? `<span class="pcard__note">${esc(p.supervisor)}</span>` : '';
       return `
-      <article class="pcard${p.featured ? ' pcard--featured' : ''}" data-reveal data-tilt>
-        <span class="pcard__glow" aria-hidden="true"></span>
-        <div class="pcard__top">
-          <span class="pcard__kind">${esc(L(p.kind))}</span>
+      <article class="pcard${p.featured ? ' pcard--featured' : ''}" data-reveal>
+        <div class="pcard__meta">
+          <span class="pcard__no" aria-hidden="true"></span>
+          <span class="pcard__kind">${keepSep(esc(L(p.kind)))}</span>
           <span class="pcard__period">${esc(L(p.period))}</span>
+          ${note}
         </div>
-        <h3 class="pcard__title">${esc(p.title)}</h3>
-        <p class="pcard__sub">${esc(L(p.subtitle))}</p>
-        <p class="pcard__desc">${esc(L(p.desc))}</p>
-        <div class="pcard__tags">${p.tags.map((tg) => `<span class="chip">${esc(tg)}</span>`).join('')}</div>
-        <div class="pcard__foot">${links.join('')}${note}</div>
+        <div class="pcard__body">
+          <h3 class="pcard__title">${esc(p.title)}</h3>
+          <p class="pcard__sub">${esc(L(p.subtitle))}</p>
+          <p class="pcard__desc">${esc(L(p.desc))}</p>
+          <ul class="tags pcard__tags">${p.tags.map((tg) => `<li>${esc(tg)}</li>`).join('')}</ul>
+          <div class="pcard__foot">${links.join('')}</div>
+        </div>
       </article>`;
     }).join('');
   }
@@ -152,70 +168,70 @@
   function renderRail() {
     $('#rail-track').innerHTML = SITE.skills.map((s) => `
       <article class="stage-card" data-reveal>
-        <p class="stage-card__n mono">${esc(s.stage)}</p>
+        <p class="stage-card__n">${esc(s.stage)}</p>
         <h3 class="stage-card__name">${esc(L(s.name))}</h3>
         <p class="stage-card__note">${esc(L(s.note))}</p>
-        <div class="stage-card__items">${s.items.map((i) => `<span class="chip">${esc(i)}</span>`).join('')}</div>
+        <ul class="tags stage-card__items">${s.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
       </article>`).join('');
   }
 
   function renderImpact() {
     $('#impact-stats').innerHTML = SITE.stats.map((s) => `
       <li data-reveal>
-        <span class="impact__v" data-count="${s.value}" data-suffix="${esc(s.suffix)}">0</span>
+        <span class="impact__v">${figure(s)}</span>
         <span class="impact__l">${esc(L(s.label))}</span>
       </li>`).join('');
   }
 
   function renderTeaching() {
+    // Flat children so the grid can seat the figure in the margin and the
+    // text on the spine without changing the reading order.
     $('#platforms').innerHTML = SITE.teaching.platforms.map((p) => `
-      <article class="plat panel panel--beam" data-reveal>
-        <span class="plat__icon plat__icon--${p.icon}">${ICON[p.icon] || ''}</span>
-        <div>
-          <h3 class="plat__name">${esc(L(p.name))}</h3>
-          <p class="plat__desc">${esc(L(p.desc))}</p>
-          <p class="plat__stat">${esc(p.stat)}</p>
-          <p class="plat__stat-l">${esc(L(p.statLabel))}</p>
-          <a class="btn btn--ghost btn--sm" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(L(p.cta))}</a>
-        </div>
+      <article class="plat" data-reveal>
+        <span class="plat__icon" aria-hidden="true">${ICON[p.icon] || ''}</span>
+        <h3 class="plat__name">${esc(L(p.name))}</h3>
+        <p class="plat__desc">${esc(L(p.desc))}</p>
+        <p class="plat__stat">${plus(p.stat)}</p>
+        <p class="plat__stat-l">${esc(L(p.statLabel))}</p>
+        <a class="out plat__cta" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(L(p.cta))}</a>
       </article>`).join('');
 
     $('#courses').innerHTML = SITE.teaching.courses.map((c) => `
-      <article class="course panel" data-reveal>
+      <article class="course" data-reveal>
         <img class="course__img" src="${esc(c.image)}" alt="${esc(L(c.title))}" loading="lazy" />
-        <div class="course__body">
-          <h4 class="course__title">${esc(L(c.title))}</h4>
-          <div class="course__links">
-            <a class="btn btn--ghost btn--sm" href="${esc(c.udemy)}" target="_blank" rel="noopener">Udemy</a>
-            <a class="btn btn--ghost btn--sm" href="${esc(c.youtube)}" target="_blank" rel="noopener">YouTube</a>
-          </div>
+        <h4 class="course__title">${esc(L(c.title))}</h4>
+        <div class="course__links">
+          <a class="out" href="${esc(c.udemy)}" target="_blank" rel="noopener">Udemy</a>
+          <a class="out" href="${esc(c.youtube)}" target="_blank" rel="noopener">YouTube</a>
         </div>
       </article>`).join('');
   }
 
   function renderAwards() {
     $('#awards-grid').innerHTML = SITE.achievements.map((a) => `
-      <article class="award panel panel--beam" data-reveal>
-        <span class="award__icon" aria-hidden="true">${a.icon}</span>
-        <div>
+      <article class="award" data-reveal>
+        <div class="award__side">
+          <span class="award__icon" aria-hidden="true">${a.icon}</span>
+          <p class="award__meta">${keepSep(esc(L(a.meta)))}</p>
+        </div>
+        <div class="award__body">
           <h3 class="award__title">${esc(L(a.title))}</h3>
-          <p class="award__meta">${esc(L(a.meta))}</p>
           <p class="award__desc">${esc(L(a.desc))}</p>
           ${a.links.length ? `<div class="award__links">${a.links.map((l) =>
-            `<a class="btn btn--ghost btn--sm" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))}</a>`).join('')}</div>` : ''}
+            `<a class="out" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))}</a>`).join('')}</div>` : ''}
         </div>
       </article>`).join('');
   }
 
   function renderRecs() {
     $('#recs-grid').innerHTML = SITE.recommendations.map((r) => `
-      <blockquote class="rec panel" data-reveal>
+      <blockquote class="rec" data-reveal>
         <p class="rec__mark" aria-hidden="true">&ldquo;</p>
         <p class="rec__text">${esc(L(r.text))}</p>
         <footer class="rec__who">
-          <img class="rec__avatar" src="${esc(r.avatar)}" alt="${esc(r.name)}" loading="lazy" width="44" height="44" />
+          <img class="rec__avatar" src="${esc(r.avatar)}" alt="${esc(r.name)}" loading="lazy" width="40" height="40" />
           <span>
-            <span class="rec__name">${esc(r.name)}</span><br />
+            <span class="rec__name">${esc(r.name)}</span>
             <span class="rec__role">${esc(L(r.role))}</span>
           </span>
         </footer>
@@ -278,6 +294,14 @@
         if (attr && v) el.setAttribute(attr, v);
       });
     });
+    // Section labels carry their counterpart in the other script — the
+    // site is written in both, and says so in every margin.
+    const other = lang === 'ar' ? 'en' : 'ar';
+    $$('[data-i18n-alt]').forEach((el) => {
+      el.textContent = (window.I18N[other] && window.I18N[other][el.dataset.i18nAlt]) || '';
+      el.lang = other;
+      el.dir = other === 'ar' ? 'rtl' : 'ltr';
+    });
   }
 
   function setLang(next, { persist = true } = {}) {
@@ -302,28 +326,29 @@
 
   /* ══════════════════════════════════════════════════════════
      ROLE ROTATOR
+     Every role is on screen at once, as an index. The rotation
+     is a gold hairline stepping down the list — one current
+     role at a time, nothing typed or deleted.
      ══════════════════════════════════════════════════════════ */
   let rotatorTimer = null;
   function startRoleRotator() {
-    clearTimeout(rotatorTimer);
-    const out = $('#role-rotator');
-    if (!out) return;
+    clearInterval(rotatorTimer);
+    const list = $('#role-rotator');
+    if (!list) return;
     const roles = L(SITE.person.roles);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      out.textContent = roles[0];
-      return;
-    }
-    let i = 0, c = 0, deleting = false;
-    const tick = () => {
-      const word = roles[i];
-      c += deleting ? -1 : 1;
-      out.textContent = word.slice(0, c);
-      let delay = deleting ? 34 : 62;
-      if (!deleting && c === word.length) { delay = 1900; deleting = true; }
-      else if (deleting && c === 0) { deleting = false; i = (i + 1) % roles.length; delay = 320; }
-      rotatorTimer = setTimeout(tick, delay);
-    };
-    tick();
+    list.innerHTML = roles.map((r) => `<li>${esc(r)}</li>`).join('');
+
+    const items = $$('li', list);
+    let i = 0;
+    const step = () => items.forEach((li, n) => li.classList.toggle('is-current', n === i));
+    step();
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    rotatorTimer = setInterval(() => {
+      if (document.hidden) return;
+      i = (i + 1) % items.length;
+      step();
+    }, 2600);
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -334,9 +359,13 @@
     const links = $('#nav-links');
     const burger = $('#nav-burger');
 
+    const fab = $('#bot-fab');
     const onScroll = () => {
       nav.classList.toggle('is-stuck', window.scrollY > 40);
       $('#to-top').classList.toggle('is-on', window.scrollY > 700);
+      // Past the hero the assistant folds to its avatar, so it sits in the
+      // margin instead of over the text; hover or focus unfolds it again.
+      if (fab) fab.classList.toggle('is-compact', window.scrollY > 700);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
