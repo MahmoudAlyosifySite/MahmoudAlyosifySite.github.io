@@ -41,11 +41,13 @@
       frame.appendChild(l);
     });
 
+    // The arrows stand at the two sides of the plate, so the photo is never
+    // scrolled out of view to move on. Keys work too (see onKey).
     const prev = navBtn('prev', 'M15 5l-7 7 7 7', t('gallery.prev', 'Previous photo'));
     const next = navBtn('next', 'M9 5l7 7-7 7', t('gallery.next', 'Next photo'));
+    frame.append(prev, next);
 
     // Filenames are not titles — no caption text, just the position.
-    // The controls sit under the plate, never over the photo.
     const cap = el('div', 'pg__cap');
     const count = el('p', 'pg__count mono');
 
@@ -53,10 +55,12 @@
     dots.setAttribute('role', 'tablist');
     dots.setAttribute('aria-label', 'Photos');
 
-    const ctrls = el('div', 'pg__ctrls');
-    ctrls.append(prev, next);
-    cap.append(dots, count, ctrls);
+    // The position leads the row: the assistant's launcher floats over the
+    // far corner of the page, and must never sit on the number.
+    cap.append(count, dots);
 
+    stage.setAttribute('role', 'group');
+    stage.setAttribute('aria-roledescription', 'carousel');
     stage.append(frame, cap);
     host.appendChild(stage);
 
@@ -80,6 +84,8 @@
     const b = el('button', `pg__nav pg__nav--${dir}`);
     b.type = 'button';
     b.setAttribute('aria-label', label);
+    b.title = `${label} (${keyFor(dir)})`;
+    b.setAttribute('aria-keyshortcuts', keyFor(dir) === '→' ? 'ArrowRight' : 'ArrowLeft');
     b.innerHTML =
       `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -191,6 +197,13 @@
     });
   }
 
+  /** The arrow key that means "next" or "previous" — it follows the layout,
+   *  so on the Arabic page (where the arrows are mirrored) it is mirrored too. */
+  function keyFor(dir) {
+    const rtl = document.documentElement.dir === 'rtl';
+    return (dir === 'next') !== rtl ? '→' : '←';
+  }
+
   function go(i) {
     if (busy || !items.length) return;
     idx = ((i % items.length) + items.length) % items.length;
@@ -211,13 +224,40 @@
       x0 = y0 = null;
     }, { passive: true });
 
-    // Arrow keys only while the gallery is on screen and focused within.
+    // Focusable, so a keyboard visitor can tab to it and see where they are.
     frame.tabIndex = 0;
-    frame.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1); }
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(idx - 1); }
-    });
   }
+
+  /** ← and → flip the photos whenever the gallery is on screen — no need to
+   *  click into it first. Left and right do nothing else on this page, so
+   *  nothing is lost; the keys are still left alone wherever they already
+   *  mean something (fields, the chat panel, the certificate viewer, the
+   *  phone menu) and when the gallery is not what the visitor is looking at. */
+  function onKey(e) {
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (!items.length || !host._refs) return;
+
+    const target = e.target instanceof Element ? e.target : null;
+    if (target && target.closest(
+      'input, textarea, select, [contenteditable=""], [contenteditable="true"], [role="slider"], .bot, #gal'
+    )) return;
+    const viewer = document.getElementById('gal');
+    if (viewer && !viewer.hidden) return;
+    const menu = document.getElementById('nav-links');
+    if (menu && menu.classList.contains('is-open')) return;
+
+    // Only while at least half of the plate is on screen.
+    const r = host._refs.frame.getBoundingClientRect();
+    const seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    if (seen < Math.min(r.height, window.innerHeight) * 0.5) return;
+
+    e.preventDefault();
+    const rtl = document.documentElement.dir === 'rtl';
+    const forward = (e.key === 'ArrowRight') !== rtl;
+    go(idx + (forward ? 1 : -1));
+  }
+  document.addEventListener('keydown', onKey);
 
   /* ── Load ───────────────────────────────────────────────── */
   async function load() {
@@ -237,7 +277,19 @@
     clearInterval(timer);
   }
 
-  document.addEventListener('site:lang', () => { if (items.length) syncMeta(idx); });
+  document.addEventListener('site:lang', () => {
+    if (!items.length || !host._refs) return;
+    syncMeta(idx);
+    const { prev, next } = host._refs;
+    const label = (btn, dir, key, fb) => {
+      const text = t(key, fb);
+      btn.setAttribute('aria-label', text);
+      btn.title = `${text} (${keyFor(dir)})`;
+      btn.setAttribute('aria-keyshortcuts', keyFor(dir) === '→' ? 'ArrowRight' : 'ArrowLeft');
+    };
+    label(prev, 'prev', 'gallery.prev', 'Previous photo');
+    label(next, 'next', 'gallery.next', 'Next photo');
+  });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load);
   else load();

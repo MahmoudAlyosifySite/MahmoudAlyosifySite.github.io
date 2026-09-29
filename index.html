@@ -30,7 +30,9 @@
   <meta name="twitter:image" content="https://mahmoudalyosifysite.github.io/img/FatFooter-En.png" />
 
   <meta name="theme-color" content="#0B0B0C" />
-  <link rel="icon" type="image/x-icon" href="img/MahmoudIcon.ico" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon-gold-32.png" />
+  <link rel="apple-touch-icon" href="img/icon-gold-180.png" />
 
   <!-- Dark is the default; a saved choice of the light theme is applied
        before anything paints, so the page never flashes the wrong one. -->
@@ -403,7 +405,7 @@
                 vector-effect="non-scaling-stroke" />
             </svg>
             <span class="impact__ring-core">
-              <img src="img/Mahmoud%20Bot.png" alt="" loading="lazy" />
+              <img src="img/_web/mahmoud-bot.webp" alt="" width="400" height="600" loading="lazy" />
             </span>
           </div>
         </div>
@@ -592,15 +594,18 @@
          ══════════════════════════════════════════════════════════ -->
     <section class="fatfooter" id="fatfooter" data-section="fatfooter" aria-label="Closing">
       <div class="wrap">
-        <div class="fatfooter__art" aria-hidden="true" data-reveal>
-          <div class="fatfooter__img"></div>
-        </div>
-        <div class="fatfooter__inner" data-reveal>
-          <h2 class="fatfooter__title">
-            <span data-i18n="contact.title1">Let's give intelligence a purpose</span><br>
-            <span class="fatfooter__title-2" data-i18n="contact.title2"></span>
-          </h2>
-          <a class="btn btn--primary" href="#contact" data-arrow data-i18n="nav.cta">Get in touch</a>
+        <!-- On wide screens the line and the button sit on the artwork itself. -->
+        <div class="fatfooter__plate">
+          <div class="fatfooter__art" aria-hidden="true" data-reveal>
+            <div class="fatfooter__img"></div>
+          </div>
+          <div class="fatfooter__inner" data-reveal>
+            <h2 class="fatfooter__title">
+              <span data-i18n="contact.title1">Let's give intelligence a purpose</span><br>
+              <span class="fatfooter__title-2" data-i18n="contact.title2"></span>
+            </h2>
+            <a class="btn btn--primary" href="#contact" data-arrow data-i18n="nav.cta">Get in touch</a>
+          </div>
         </div>
       </div>
     </section>
@@ -686,7 +691,7 @@
        ══════════════════════════════════════════════════════════ -->
   <button class="bot-fab" id="bot-fab" type="button" data-i18n-attr="aria-label:bot.open">
     <span class="bot-fab__mark" aria-hidden="true">
-      <img class="bot-fab__icon" src="img/Mahmoud%20Bot.png" alt="" loading="eager" decoding="async" />
+      <img class="bot-fab__icon" src="img/_web/mahmoud-bot.webp" alt="" width="400" height="600" loading="eager" decoding="async" />
     </span>
     <span class="bot-fab__label" data-i18n="bot.open">Ask Mahmoud AI</span>
   </button>

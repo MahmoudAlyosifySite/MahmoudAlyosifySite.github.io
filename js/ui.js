@@ -105,7 +105,7 @@
         : f.icon;
       return `
       <li>
-        <span class="facts__icon" aria-hidden="true">${iconHtml}</span>
+        <span class="facts__icon${f.iconImg ? ' facts__icon--logo' : ''}" aria-hidden="true">${iconHtml}</span>
         <span>
           <span class="facts__k">${esc(L(f.k))}</span>
           <span class="facts__v">${shown}</span>

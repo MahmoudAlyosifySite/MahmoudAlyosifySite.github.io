@@ -108,6 +108,8 @@ const I18N = {
     'gallery.title2':   'framed with care',
     'gallery.sub':      'A calm visual archive of the work, the people and the places that shaped the journey.',
     'gallery.close':    'Close photo',
+    'gallery.prev':     'Previous photo',
+    'gallery.next':     'Next photo',
     'gallery.empty':    'The gallery is empty right now.',
 
     /* Contact */
@@ -271,6 +273,8 @@ const I18N = {
     'gallery.title2':   'مُصوّرة بعناية',
     'gallery.sub':      'أرشيف بصري هادئ يضم العمل والأشخاص والأماكن التي شكّلت هذه الرحلة.',
     'gallery.close':    'إغلاق الصورة',
+    'gallery.prev':     'الصورة السابقة',
+    'gallery.next':     'الصورة التالية',
     'gallery.empty':    'المعرض فارغ حاليًا.',
 
     'contact.eyebrow': 'تواصل',

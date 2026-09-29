@@ -84,7 +84,7 @@ ${context}
     <div class="bot" id="bot-panel" role="dialog" aria-modal="false" aria-labelledby="bot-h" hidden>
       <header class="bot__bar">
         <span class="bot__avatar" aria-hidden="true">
-          <img src="${assetBase()}img/Mahmoud%20Bot.png" alt="" />
+          <img src="${assetBase()}img/_web/mahmoud-bot.webp" alt="" />
         </span>
         <span class="bot__id">
           <b id="bot-h">${t('bot.title')}</b>

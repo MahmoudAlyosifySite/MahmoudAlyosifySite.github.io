@@ -98,6 +98,13 @@ async function run() {
     await derive(portrait, path.join(outDir, 'portrait@440.webp'), 440, 80);
   }
 
+  /* ── Mahmoud AI — the launcher shows it on every page ──── */
+  const mascot = path.join(ROOT, 'img', 'Mahmoud Bot.png');
+  if (existsSync(mascot)) {
+    console.log('Mascot        — 1 image');
+    await derive(mascot, path.join(ROOT, 'img', '_web', 'mahmoud-bot.webp'), 600, 86);
+  }
+
   /* ── Certificates (images only; PDFs pass through) ─────── */
   const certDir = path.join(ROOT, 'Certificates');
   if (existsSync(certDir)) {

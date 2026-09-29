@@ -385,14 +385,14 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .facts { border-top: 1px solid var(--rule-2); padding-top: var(--s-2); }
 .facts li {
   display: grid;
-  grid-template-columns: 30px minmax(0, 1fr);
+  grid-template-columns: 36px minmax(0, 1fr);
   gap: 12px;
   align-items: start;
   padding-block: 10px;
 }
-/* Crests and pictograms set in ink, like everything else on the page. */
+/* Pictograms are set in ink, like everything else on the page. */
 .facts__icon {
-  width: 30px; height: 30px;
+  width: 36px; height: 36px;
   display: grid;
   place-items: center;
   font-size: 1.05rem;
@@ -400,10 +400,18 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
   filter: grayscale(1) contrast(1.05);
   opacity: 0.8;
 }
-.facts__icon-img { max-width: 30px; max-height: 30px; width: auto; height: auto; object-fit: contain; }
-/* Queen's crest is drawn in dark colours on transparency: on the black page
-   it is lifted to a light ink, as the Assiut crest already reads. */
-:root:not([data-theme='light']) .facts__icon-img[src*='logo_q'] { filter: grayscale(1) brightness(2.4); }
+.facts__icon-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+/* The universities' crests are their marks, not pictograms: they keep their
+   own colours. They sit on a small cream plate, so a navy field or a crimson
+   wordmark reads on the black page as well as it does on paper. */
+.facts__icon--logo {
+  padding: 3px;
+  background: #F3F0E8;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  filter: none;
+  opacity: 1;
+}
 .facts__k { display: block; font-size: var(--fs-sm); font-weight: 600; line-height: 1.4; color: var(--ink); }
 .facts__v { display: block; margin-top: 3px; font-size: var(--fs-xs); line-height: 1.55; color: var(--ink-3); }
 .facts__v a {
@@ -1057,7 +1065,12 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
 
 .pg__frame {
   position: relative;
+  width: 100%;            /* a definite width: the height cap below must not narrow the plate */
   aspect-ratio: 3 / 2;
+  /* On a short screen (a laptop with its toolbars) the whole plate and the
+     line under it must fit without scrolling — so the photo and both arrows
+     are always in view together. */
+  max-height: max(320px, calc(100svh - 168px));
   background: var(--paper-2);
   border-radius: var(--r);
   overflow: hidden;
@@ -1073,6 +1086,10 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
   will-change: opacity, transform;
 }
 .pg__layer.is-front { opacity: 1; transform: none; }
+/* Room in the mat for the arrows, so they never sit over a photo. */
+@media (min-width: 700px) {
+  .pg__layer { inset-inline: 78px; }
+}
 .pg__img {
   width: 100%;
   height: 100%;
@@ -1086,17 +1103,27 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
   gap: var(--s-5);
   margin-top: var(--s-4);
 }
-.pg__count { font-size: var(--fs-xs); color: var(--ink-2); letter-spacing: 0.04em; white-space: nowrap; }
-.pg__ctrls { display: flex; gap: 8px; }
+.pg__count { min-width: 7ch; font-size: var(--fs-xs); color: var(--ink-2); letter-spacing: 0.04em; white-space: nowrap; }
+/* The arrows stand at the two sides of the plate, centred on it. */
 .pg__nav {
-  width: 44px; height: 44px;
+  position: absolute;
+  inset-block-start: 50%;
+  margin-block-start: -24px;
+  z-index: 2;
+  width: 48px; height: 48px;
   display: grid;
   place-items: center;
   border-radius: var(--r);
   border: 1px solid var(--rule-2);
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   color: var(--ink);
   transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast);
 }
+.pg__nav--prev { inset-inline-start: 14px; }
+.pg__nav--next { inset-inline-end: 14px; }
+.pg__nav:focus-visible { outline-offset: 2px; }
 .pg__nav:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 html[dir='rtl'] .pg__nav svg { transform: scaleX(-1); }
 
@@ -1253,6 +1280,51 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
 .fatfooter__title-2:empty { display: none; }
 .fatfooter .btn { grid-column: 10 / -1; justify-self: end; }
 
+/* Wide screens: the line and the button are set on the artwork itself, in
+   the clear sky to the left of the skyline. The two share one grid cell.
+   The plate is always left-to-right — the man stands on its right in both
+   languages — while the words inside keep their own direction. On narrower
+   screens the plate is too small to carry text, so it stays underneath. */
+@media (min-width: 1000px) {
+  .fatfooter__plate { display: grid; direction: ltr; }
+  .fatfooter__plate > * { grid-area: 1 / 1; }
+  html[dir='rtl'] .fatfooter__inner { direction: rtl; }
+
+  .fatfooter__img { position: relative; }
+  /* A veil of night on the left keeps the words legible on the horizon glow. */
+  .fatfooter__img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(6, 8, 22, 0.66) 0%, rgba(6, 8, 22, 0.4) 30%, rgba(6, 8, 22, 0) 58%);
+  }
+
+  .fatfooter__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    justify-self: start;
+    gap: var(--s-5);
+    /* Shrinks to its words, so the Arabic line hugs the left edge as well. */
+    width: fit-content;
+    max-width: min(40%, 480px);
+    margin: 0 0 0 calc(clamp(10px, 1.8vw, 24px) + clamp(28px, 4.2vw, 64px));   /* the mat + room to breathe */
+    /* The artwork is dark in both themes, so the words on it are too. */
+    --btn-bg: #EEEAE2;
+    --btn-fg: #0B0B0C;
+    --btn-hover: #FFFFFF;
+  }
+  .fatfooter__title {
+    color: #F7F3EB;
+    font-size: clamp(1.5rem, 2.7vw, 2.6rem);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 2px 26px rgba(0, 0, 0, 0.5);
+  }
+}
+
 /* ══════════════════════════════════════════════════════════
    FOOTER — the colophon, on recessed paper
    ══════════════════════════════════════════════════════════ */
@@ -1264,6 +1336,12 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
   border-top: 1px solid var(--rule-2);
 }
 .foot__inner { row-gap: var(--s-6); align-items: start; }
+/* Up to about 1500px the two fixed buttons (the assistant on one side, back
+   to top on the other) can land on the footer's last lines when the page is
+   scrolled to its end. Room below the text keeps every line readable. */
+@media (max-width: 1500px) {
+  .foot { padding-bottom: calc(var(--s-6) + 124px); }
+}
 .foot__id { grid-column: 1 / span 4; }
 .foot__logo { display: grid; line-height: 1.2; }
 .foot__logo b {
@@ -1431,14 +1509,17 @@ html[dir='rtl'] .scroll-rail__fill { margin-inline-start: auto; }
 /* The open menu is a page of its own: the floating buttons step aside. */
 body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-events: none; }
 
-/* The mascot is transparent: it needs no frame, and is never cropped. */
+/* The mascot is transparent and tall (2:3): it needs no frame and is never
+   cropped. The box has the picture's own proportions and the picture fills
+   it exactly — a square box let the image spill out past the screen edge. */
 .bot-fab__mark {
-  width: 84px; height: 84px;
+  position: relative;
+  width: 84px; height: 126px;
   flex: 0 0 84px;
-  display: grid;
-  place-items: center;
 }
 .bot-fab__icon {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -1660,9 +1741,10 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   .cert-cat__foot { flex-basis: 100%; justify-content: space-between; }
 
   .pg__frame { aspect-ratio: 4 / 3; }
-  .pg__cap { flex-wrap: wrap; gap: var(--s-3) var(--s-4); }
-  .pg__dots { flex-basis: 100%; order: -1; }
-  .pg__ctrls { margin-inline-start: auto; }
+  /* No room in the mat on a phone: smaller arrows sit on the photo's edge. */
+  .pg__nav { width: 40px; height: 40px; margin-block-start: -20px; }
+  .pg__nav--prev { inset-inline-start: 8px; }
+  .pg__nav--next { inset-inline-end: 8px; }
 
   .pcard__period { margin-inline-start: 0; flex-basis: 100%; }
 
@@ -1671,11 +1753,11 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   .fatfooter__img { aspect-ratio: 16 / 10; background-position: 92% center; }
 
   /* Clear the fixed buttons so the last line is never under them. */
-  .foot { padding-bottom: 104px; }
+  .foot { padding-bottom: 116px; }
 
   .bot-fab { inset-block-end: 12px; inset-inline-end: 10px; }
   .bot-fab__label { display: none; }
-  .bot-fab__mark { width: 64px; height: 64px; flex-basis: 64px; }
+  .bot-fab__mark { width: 60px; height: 90px; flex-basis: 60px; }
   .to-top { inset-block-end: 16px; inset-inline-start: 16px; width: 38px; height: 38px; }
 }
 
