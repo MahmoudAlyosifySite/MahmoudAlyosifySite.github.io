@@ -359,13 +359,9 @@
     const links = $('#nav-links');
     const burger = $('#nav-burger');
 
-    const fab = $('#bot-fab');
     const onScroll = () => {
       nav.classList.toggle('is-stuck', window.scrollY > 40);
       $('#to-top').classList.toggle('is-on', window.scrollY > 700);
-      // Past the hero the assistant folds to its avatar, so it sits in the
-      // margin instead of over the text; hover or focus unfolds it again.
-      if (fab) fab.classList.toggle('is-compact', window.scrollY > 700);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

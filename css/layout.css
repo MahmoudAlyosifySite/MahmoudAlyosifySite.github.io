@@ -14,8 +14,6 @@
 
 :root {
   --hero-art: url('../img/FatFooter-En.png');
-  --danger: #9E3B2A;   /* 6.0:1 on paper */
-  --ok:     #2F6B4F;   /* 5.6:1 on paper */
   /* The spine, measured inside any full-measure container: three
      columns and three gutters in. Percentages resolve where used. */
   --spine: calc((100% - 11 * var(--gutter)) / 4 + 3 * var(--gutter));
@@ -53,9 +51,8 @@
    opened by its own rule, so the air belongs in front of it. */
 .section { position: relative; padding-block: var(--section-py) clamp(16px, 2.4vw, 36px); }
 .section--recessed,
-.section--night { padding-bottom: var(--section-py); }
+.section--impact { padding-bottom: var(--section-py); }
 .section--recessed { background: var(--paper-2); }
-.section--night { background: var(--night); color: var(--on-night); }
 
 main { counter-reset: sec; }
 
@@ -121,12 +118,6 @@ main { counter-reset: sec; }
 
 .sub-head { margin-bottom: var(--s-4); }
 
-/* Night band */
-.section--night .s-head { border-top-color: var(--rule-night); }
-.section--night .s-head__index::before { color: var(--on-night); }
-.section--night .eyebrow,
-.section--night .s-head__alt { color: var(--on-night-3); }
-.section--night :focus-visible { outline-color: var(--on-night); }
 
 /* ══════════════════════════════════════════════════════════
    NAV
@@ -140,7 +131,7 @@ main { counter-reset: sec; }
   transition: background-color var(--t-mid), border-color var(--t-mid);
 }
 .nav.is-stuck {
-  background: rgba(244, 242, 237, 0.97);
+  background: var(--nav-bg);
   border-bottom-color: var(--rule);
 }
 
@@ -156,34 +147,38 @@ main { counter-reset: sec; }
 /* The emblem, brought into the palette: gold medallion, navy line. */
 .nav__logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .nav__logo-mark { width: 40px; height: 36px; flex-shrink: 0; }
-.nav__logo-mark img { width: 100%; height: 100%; object-fit: contain; filter: url(#duo-ink-gold); }
+.nav__logo-mark img { width: 100%; height: 100%; object-fit: contain; filter: var(--emblem-filter); }
 
 /* The name, in both scripts — the page's own language leads. */
-.nav__logo-text { display: grid; line-height: 1.12; }
+.nav__logo-text { display: grid; row-gap: 2px; line-height: 1.12; }
 .nav__logo-text b {
-  font-family: 'Newsreader', var(--font-display);
-  font-size: 1.14rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
   color: var(--ink);
 }
+/* The Arabic name, written in Ruqaa — it reads like a signature. */
 .nav__logo-ar {
   justify-self: start;
-  font-family: 'Noto Naskh Arabic', var(--font-ar-display);
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-family: var(--font-ar-name);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.2;
   color: var(--ink-3);
 }
-html[dir='rtl'] .nav__logo-ar { order: 1; font-size: 1.1rem; font-weight: 600; line-height: 1.3; color: var(--ink); }
-html[dir='rtl'] .nav__logo-text b { order: 2; justify-self: start; font-size: 0.78rem; font-weight: 400; color: var(--ink-3); }
+html[dir='rtl'] .nav__logo-ar { order: 1; font-size: 1.22rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
+html[dir='rtl'] .nav__logo-text b { order: 2; justify-self: start; font-size: 0.8rem; color: var(--ink-3); }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 1.7vw, 26px);
+  gap: clamp(14px, 1.7vw, 24px);
   margin-inline-start: auto;
   font-size: 0.9rem;
 }
+/* The menu's own theme switch — shown only in the phone menu. */
+.nav__links .nav__theme { display: none; }
 .nav__links a {
   position: relative;
   padding-block: 6px;
@@ -211,7 +206,7 @@ html[dir='rtl'] .nav__links a::after { transform-origin: right; }
 .nav__actions { display: flex; align-items: center; gap: 10px; margin-inline-start: auto; }
 .nav__links + .nav__actions { margin-inline-start: var(--s-2); }
 .nav__lang span { font-family: var(--font-ar-body); }
-html[dir='rtl'] .nav__lang span { font-family: 'IBM Plex Sans', sans-serif; }
+html[dir='rtl'] .nav__lang span { font-family: 'Ysabeau Office', sans-serif; }
 
 .nav__burger {
   display: none;
@@ -332,7 +327,7 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .ledger li:first-child { border-inline-start: 0; padding-inline-start: 0; }
 .ledger__v {
   display: block;
-  font-family: 'Newsreader', var(--font-display);
+  font-family: var(--font-display);
   font-size: clamp(1.7rem, 2.5vw, 2.3rem);
   font-weight: 400;
   line-height: 1;
@@ -382,6 +377,7 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .about__body { margin-bottom: var(--s-4); }
 .about__note { margin-bottom: var(--s-6); }
 .about__links { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); }
+.about__bio { margin-top: var(--s-6); }
 
 .about__facts { grid-column: 10 / -1; padding-top: 0.5rem; }
 .about__facts-title { margin-bottom: var(--s-3); }
@@ -405,6 +401,9 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
   opacity: 0.8;
 }
 .facts__icon-img { max-width: 30px; max-height: 30px; width: auto; height: auto; object-fit: contain; }
+/* Queen's crest is drawn in dark colours on transparency: on the black page
+   it is lifted to a light ink, as the Assiut crest already reads. */
+:root:not([data-theme='light']) .facts__icon-img[src*='logo_q'] { filter: grayscale(1) brightness(2.4); }
 .facts__k { display: block; font-size: var(--fs-sm); font-weight: 600; line-height: 1.4; color: var(--ink); }
 .facts__v { display: block; margin-top: 3px; font-size: var(--fs-xs); line-height: 1.55; color: var(--ink-3); }
 .facts__v a {
@@ -534,9 +533,9 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .pcard--featured .pcard__title { font-size: var(--fs-h2); line-height: 1.06; }
 .pcard__sub {
   margin: 8px 0 var(--s-4);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-style: italic;
-  font-size: 1.12rem;
+  font-size: 1.14rem;
   line-height: 1.4;
   color: var(--ink-2);
 }
@@ -620,7 +619,8 @@ html[dir='rtl'] .stage-card:last-child .stage-card__n::after { background: linea
 html[dir='rtl'] .rail__hint::after { content: '←'; }
 
 /* ══════════════════════════════════════════════════════════
-   IMPACT — the night band
+   IMPACT — the same black as the page; the one distinction is
+   gold: the figures, and the hairline around Mahmoud AI
    ══════════════════════════════════════════════════════════ */
 .impact { align-items: center; row-gap: var(--s-7); }
 .impact__stats {
@@ -631,24 +631,24 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
 .impact__stats li {
   min-width: 0;
   padding: var(--s-6) var(--s-5) var(--s-6) 0;
-  border-top: 1px solid var(--rule-night);
+  border-top: 1px solid var(--rule);
 }
-.impact__stats li:nth-child(even) { padding-inline-start: var(--s-6); border-inline-start: 1px solid var(--rule-night); }
+.impact__stats li:nth-child(even) { padding-inline-start: var(--s-6); border-inline-start: 1px solid var(--rule); }
 .impact__v {
   display: block;
-  font-family: 'Newsreader', var(--font-display);
+  font-family: var(--font-display);
   font-size: clamp(2.8rem, 5.6vw, 5rem);
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.03em;
   white-space: nowrap;
-  color: var(--on-night);
+  color: var(--gold-ink);
   font-variant-numeric: lining-nums;
 }
-.impact__v .ledger__plus { color: var(--on-night-3); }
-.impact__l { display: block; margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--on-night-2); }
+.impact__v .ledger__plus { color: var(--gold-ink); opacity: 0.8; }
+.impact__l { display: block; margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--ink-2); }
 
-/* Mahmoud AI, engraved in cream inside a single hairline. */
+/* Mahmoud AI, in his own colours, inside a single gold hairline. */
 .impact__ring {
   grid-column: 9 / -1;
   justify-self: center;
@@ -657,10 +657,11 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
   aspect-ratio: 1;
   display: grid;
   place-items: center;
+  color: var(--gold);
 }
-.impact__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.impact__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; }
 .impact__ring-core { position: relative; width: 56%; height: 72%; display: grid; place-items: center; }
-.impact__ring-core img { width: 100%; height: 100%; object-fit: contain; filter: url(#duo-night-cream); }
+.impact__ring-core img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16)); }
 
 /* ══════════════════════════════════════════════════════════
    TEACHING — each platform an entry: its figure in the margin,
@@ -683,7 +684,7 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
 .plat__stat {
   grid-column: 1 / span 3; grid-row: 2;
   margin-top: var(--s-3);
-  font-family: 'Newsreader', var(--font-display);
+  font-family: var(--font-display);
   font-size: clamp(2rem, 3vw, 2.6rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -771,7 +772,7 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
   position: absolute;
   top: calc(var(--s-6) - 0.02em);
   inset-inline-start: calc(var(--spine) - 0.52em);
-  font-family: 'Newsreader', var(--font-display);
+  font-family: var(--font-display);
   font-size: 2.6rem;
   line-height: 1;
   color: var(--control);
@@ -830,7 +831,7 @@ html[dir='rtl'] .rec__text { font-size: 1.12rem; line-height: 1.9; }
   font-weight: 500;
   color: var(--ink);
 }
-.cert-cat:hover:not(:disabled) { background: rgba(22, 32, 47, 0.03); }
+.cert-cat:hover:not(:disabled) { background: var(--tint); }
 .cert-cat:disabled { opacity: 0.45; cursor: not-allowed; }
 .cert-cat:focus-visible { outline-offset: -2px; }
 
@@ -886,7 +887,7 @@ html[dir='rtl'] .cert-cat:hover:not(:disabled) .cert-cat__go { transform: transl
 }
 .gal[hidden] { display: none !important; }
 .gal.is-open { opacity: 1; }
-.gal__scrim { position: absolute; inset: 0; background: rgba(17, 26, 40, 0.78); }
+.gal__scrim { position: absolute; inset: 0; background: var(--scrim); }
 
 .gal__panel {
   position: relative;
@@ -1035,7 +1036,7 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
   inset-inline-end: 2px;
   padding: 1px 4px;
   border-radius: 2px;
-  background: rgba(244, 242, 237, 0.92);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
   font-family: var(--font-mono);
   font-size: 0.58rem;
   line-height: 1.3;
@@ -1155,13 +1156,13 @@ html[dir='rtl'] .pg__bar-fill { transform-origin: right center; }
   appearance: none;
   cursor: pointer;
   padding-inline-end: 42px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316202F' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: var(--select-arrow);
   background-repeat: no-repeat;
   background-position: right 16px center;
 }
 html[dir='rtl'] .field select { background-position: left 16px center; }
 .field input::placeholder,
-.field textarea::placeholder { color: #8A909D; }
+.field textarea::placeholder { color: var(--placeholder); }
 .field input:hover,
 .field select:hover,
 .field textarea:hover { border-color: var(--ink-2); }
@@ -1240,7 +1241,7 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
 .fatfooter__inner { align-items: baseline; row-gap: var(--s-4); margin-top: var(--s-5); }
 .fatfooter__title {
   grid-column: 4 / span 6;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(1.4rem, 2.3vw, 2rem);
@@ -1266,20 +1267,20 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
 .foot__id { grid-column: 1 / span 4; }
 .foot__logo { display: grid; line-height: 1.2; }
 .foot__logo b {
-  font-family: 'Newsreader', var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: 1.34rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
   color: var(--ink);
 }
 .foot__logo-ar {
   justify-self: start;
-  font-family: 'Noto Naskh Arabic', var(--font-ar-display);
-  font-size: 0.9rem;
+  font-family: var(--font-ar-name);
+  font-size: 1.02rem;
   color: var(--ink-3);
 }
-html[dir='rtl'] .foot__logo-ar { order: 1; font-size: 1.25rem; font-weight: 600; color: var(--ink); }
-html[dir='rtl'] .foot__logo b { order: 2; justify-self: start; font-size: 0.9rem; font-weight: 400; color: var(--ink-3); }
+html[dir='rtl'] .foot__logo-ar { order: 1; font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+html[dir='rtl'] .foot__logo b { order: 2; justify-self: start; font-size: 0.92rem; color: var(--ink-3); }
 .foot__tag { margin-top: var(--s-3); font-size: var(--fs-xs); color: var(--ink-3); }
 
 .foot__links { grid-column: 5 / span 3; display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 4px; }
@@ -1303,9 +1304,9 @@ html[dir='rtl'] .foot__logo b { order: 2; justify-self: start; font-size: 0.9rem
 .foot__built { display: grid; gap: 4px; max-width: 48ch; }
 .foot__built .footer-quote {
   display: block;
-  font-family: 'Newsreader', var(--font-display);
+  font-family: var(--font-body);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.02rem;
   line-height: 1.5;
   color: var(--ink-2);
 }
@@ -1320,12 +1321,11 @@ html[dir='rtl'] .foot__logo b { order: 2; justify-self: start; font-size: 0.9rem
    quote marks land on the wrong ends. Keep it in its own direction. */
 html[dir='rtl'] .foot__built { direction: ltr; text-align: right; }
 
-/* Back to top — above the assistant, on the same edge, so the start
-   of every line stays clear. */
+/* Back to top — bottom-left, clear of the assistant on the right. */
 .to-top {
   position: fixed;
-  inset-block-end: 84px;
-  inset-inline-end: 29px;
+  inset-block-end: 24px;
+  inset-inline-start: 24px;
   z-index: 80;
   width: 40px; height: 40px;
   display: grid;
@@ -1410,54 +1410,44 @@ html[dir='rtl'] .scroll-rail__fill { margin-inline-start: auto; }
    ══════════════════════════════════════════════════════════ */
 .bot-fab {
   position: fixed;
-  inset-block-end: 24px;
-  inset-inline-end: 24px;
+  inset-block-end: 22px;
+  inset-inline-end: 22px;
   z-index: var(--z-chat);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 5px 16px 5px 5px;
-  border: 1px solid var(--rule-2);
-  border-radius: var(--r);
-  background: var(--paper-3);
+  gap: 12px;
+  padding: 0;
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  box-shadow: var(--shadow-lift);
-  transition: border-color var(--t-fast), padding var(--t-mid), gap var(--t-mid), transform var(--t-mid), opacity var(--t-mid);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform var(--t-mid), opacity var(--t-mid);
 }
-html[dir='rtl'] .bot-fab { padding: 5px 5px 5px 16px; }
-.bot-fab:hover { border-color: var(--ink); }
+.bot-fab:hover { transform: translateY(-3px); }
 .bot-fab.is-loading { opacity: 0.7; pointer-events: none; }
 .bot-fab.is-hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
+.bot-fab:focus-visible { outline-offset: 6px; }
+/* The open menu is a page of its own: the floating buttons step aside. */
+body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-events: none; }
 
-.bot-fab__label {
-  max-width: 12em;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: max-width var(--t-mid), opacity var(--t-fast);
-}
-/* Past the hero it folds to the avatar; hover or focus unfolds it. */
-.bot-fab.is-compact:not(:hover):not(:focus-visible) { padding: 5px; gap: 0; }
-.bot-fab.is-compact:not(:hover):not(:focus-visible) .bot-fab__label { max-width: 0; opacity: 0; }
-
-/* The mascot's head, cropped into a round avatar. */
+/* The mascot is transparent: it needs no frame, and is never cropped. */
 .bot-fab__mark {
-  position: relative;
-  width: 38px; height: 38px;
-  flex: 0 0 38px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--paper-2);
+  width: 84px; height: 84px;
+  flex: 0 0 84px;
+  display: grid;
+  place-items: center;
 }
 .bot-fab__icon {
-  position: absolute;
-  left: -45%;
-  top: -16%;
-  width: 190%;
-  max-width: none;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+/* A soft halo of the page colour keeps the label legible wherever it lands. */
+.bot-fab__label {
+  white-space: nowrap;
+  text-shadow: 0 0 10px var(--paper), 0 0 18px var(--paper), 0 0 2px var(--paper);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1480,7 +1470,14 @@ html[dir='rtl'] .bot-fab { padding: 5px 5px 5px 16px; }
   .rec__text { grid-column: 4 / -1; }
 }
 
-@media (max-width: 1080px) {
+/* The full bar: a label never breaks. Arabic labels run longer, so the
+   Arabic bar is set a little tighter. */
+@media (min-width: 1261px) {
+  .nav__links a { white-space: nowrap; }
+  html[dir='rtl'] .nav__links { gap: 14px; }
+}
+
+@media (max-width: 1260px) {
   .nav__links {
     position: fixed;
     inset: 0;
@@ -1517,18 +1514,12 @@ html[dir='rtl'] .bot-fab { padding: 5px 5px 5px 16px; }
   /* Menu numbers are the section numbers, so 06 means the same thing
      in the menu and in the margin. */
   .nav__links a::before {
+    content: attr(data-sec);
     min-width: 2.2em;
     font-family: var(--font-mono);
     font-size: var(--fs-micro);
     color: var(--ink-3);
   }
-  .nav__links a[href='#about']::before    { content: '01'; }
-  .nav__links a[href='#work']::before     { content: '02'; }
-  .nav__links a[href='#projects']::before { content: '03'; }
-  .nav__links a[href='#skills']::before   { content: '04'; }
-  .nav__links a[href='#teaching']::before { content: '06'; }
-  .nav__links a[href='#awards']::before   { content: '07'; }
-  .nav__links a[href='#certs']::before    { content: '09'; }
   .nav__links a.is-active::before { color: var(--gold-ink); }
   .nav__links a::after { display: none; }
   .nav__links + .nav__actions { margin-inline-start: auto; }
@@ -1637,6 +1628,19 @@ html[dir='rtl'] .bot-fab { padding: 5px 5px 5px 16px; }
   .nav__actions .btn--sm { --btn-px: 10px; }
   .nav__lang svg { display: none; }
   .nav__burger { width: 36px; height: 36px; }
+  /* No room in the bar for a fourth button: the theme switch moves into the menu. */
+  .nav__actions .theme-toggle { display: none; }
+  .nav__links .nav__theme {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    width: auto; height: auto;
+    margin-top: var(--s-6);
+    padding: 10px 14px;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
 
   .hero { min-height: auto; padding-top: 104px; }
   .hero__actions .btn { flex: 1 1 auto; }
@@ -1669,11 +1673,10 @@ html[dir='rtl'] .bot-fab { padding: 5px 5px 5px 16px; }
   /* Clear the fixed buttons so the last line is never under them. */
   .foot { padding-bottom: 104px; }
 
-  .bot-fab { padding: 3px; inset-block-end: 16px; inset-inline-end: 16px; }
-  html[dir='rtl'] .bot-fab { padding: 3px; }
+  .bot-fab { inset-block-end: 12px; inset-inline-end: 10px; }
   .bot-fab__label { display: none; }
-  .bot-fab__mark { width: 44px; height: 44px; flex-basis: 44px; }
-  .to-top { inset-block-end: 76px; inset-inline-end: 22px; width: 38px; height: 38px; }
+  .bot-fab__mark { width: 64px; height: 64px; flex-basis: 64px; }
+  .to-top { inset-block-end: 16px; inset-inline-start: 16px; width: 38px; height: 38px; }
 }
 
 @media (max-width: 380px) {

@@ -1,0 +1,421 @@
+/* ============================================================
+   Mahmoud Alyosify — Biography
+   The article is set on the site's own grid: the contents sit in
+   the margin (columns 1–3), the text runs down the spine
+   (columns 4–9), and the fact box stands to its right, the way
+   an encyclopedia sets its infobox. Everything else — nav,
+   footer, buttons, links, the marker — comes from theme.css and
+   layout.css unchanged.
+   ============================================================ */
+
+/* ── Title ────────────────────────────────────────────────── */
+.bio-head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: start;
+  padding-top: clamp(118px, 15vh, 168px);
+  padding-bottom: clamp(36px, 4.5vw, 64px);
+}
+
+.bio-head__index {
+  grid-column: 1 / span 3;
+  display: grid;
+  gap: 4px;
+  padding-top: 1.1rem;
+  padding-inline-end: var(--s-4);
+}
+.bio-head__alt { font-family: var(--font-ar-name); font-size: 1.12rem; line-height: 1.3; color: var(--ink-3); justify-self: start; }
+.bio-head__date { margin-top: var(--s-3); font-family: var(--font-mono); font-size: var(--fs-micro); color: var(--ink-3); }
+
+.bio-head__title { grid-column: 4 / -1; }
+.bio-head__name {
+  font-size: clamp(3rem, 7.4vw, 6.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.bio-head__name .mark { --mark-h: 0.34em; }
+.bio-head__ar {
+  margin-top: var(--s-3);
+  font-family: var(--font-ar-name);
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink-3);
+}
+.bio-hatnote {
+  max-width: 62ch;
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ── The three columns ────────────────────────────────────── */
+.bio-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: start;
+  padding-bottom: var(--section-py);
+  padding-top: var(--s-6);
+  /* The section rule, held to the text measure like the home page's —
+     drawn on the content box, lifted into the top padding. */
+  background: linear-gradient(var(--rule-2), var(--rule-2)) no-repeat;
+  background-origin: content-box;
+  background-size: 100% 1px;
+  background-position: 0 calc(var(--s-6) * -1);
+}
+
+/* Contents, in the margin, following the reader down the page. */
+.bio-toc {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 2;
+  position: sticky;
+  top: 92px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-inline-end: var(--s-4);
+  scrollbar-width: thin;
+}
+.bio-toc > summary {
+  display: none;
+  list-style: none;
+  cursor: pointer;
+}
+.bio-toc > summary::-webkit-details-marker { display: none; }
+.bio-toc ol { counter-reset: none; }
+.bio-toc > nav > ol { border-top: 1px solid var(--rule); }
+.bio-toc li { list-style: none; }
+.bio-toc a {
+  display: grid;
+  grid-template-columns: 3em 1fr;
+  gap: 4px;
+  padding: 5px 0 5px 10px;
+  margin-inline-start: -10px;
+  border-inline-start: 2px solid transparent;
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--ink-3);
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.bio-toc a span { font-family: var(--font-mono); font-size: var(--fs-micro); color: var(--ink-3); }
+.bio-toc ol ol a { padding-inline-start: 10px; }
+.bio-toc ol ol a span { padding-inline-start: 0.4em; }
+.bio-toc a:hover { color: var(--ink); }
+/* The one active state in gold: where you are. */
+.bio-toc a.is-active { color: var(--ink); border-inline-start-color: var(--gold); }
+
+.bio-main { grid-column: 4 / span 6; grid-row: 1 / span 2; min-width: 0; }
+
+.bio-infobox {
+  grid-column: 10 / -1;
+  grid-row: 1;
+  align-self: start;
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  background: var(--paper-3);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
+  font-size: var(--fs-xs);
+}
+
+/* ── Infobox ──────────────────────────────────────────────── */
+.bio-infobox__title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--ink);
+}
+.bio-infobox__ar {
+  margin-top: 2px;
+  font-family: var(--font-ar-name);
+  font-size: 1.1rem;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--ink-3);
+}
+.bio-infobox__photo { margin: var(--s-4) 0 var(--s-4); }
+.bio-infobox__photo picture {
+  display: block;
+  position: relative;
+}
+.bio-infobox__photo picture::before {
+  content: '';
+  position: absolute;
+  inset: 24% 0 0;
+  background: var(--paper-2);
+  border-radius: var(--r);
+}
+.bio-infobox__photo img { position: relative; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.bio-infobox__photo figcaption {
+  margin-top: 6px;
+  font-size: var(--fs-micro);
+  text-align: center;
+  color: var(--ink-3);
+}
+
+.bio-facts { width: 100%; border-collapse: collapse; }
+.bio-facts th,
+.bio-facts td {
+  padding: 9px 0;
+  border-top: 1px solid var(--rule);
+  vertical-align: top;
+  text-align: start;
+  line-height: 1.5;
+}
+.bio-facts th {
+  width: 36%;
+  padding-inline-end: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.bio-facts td { color: var(--ink-2); overflow-wrap: anywhere; }
+.bio-facts [lang='ar'] { font-family: var(--font-ar-body); }
+
+/* ── Article text ─────────────────────────────────────────── */
+/* On the grid, not the article: below 1180px the article's children
+   join the grid themselves (display: contents). */
+.bio-grid { counter-reset: h2; }
+.bio-main p {
+  margin-bottom: 1.05em;
+  font-size: 1.1rem;
+  line-height: 1.78;
+  color: var(--ink-2);
+}
+.bio-main b { color: var(--ink); font-weight: 700; }
+.bio-main i { font-style: italic; }
+.bio-main [lang='ar'] { font-family: var(--font-ar-body); }
+
+.bio-lead p { color: var(--ink); }
+.bio-lead p:first-child { font-size: 1.24rem; line-height: 1.66; }
+
+.bio-main h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: clamp(48px, 5vw, 72px) 0 var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule-2);
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+}
+.bio-main h2::before {
+  counter-increment: h2;
+  content: counter(h2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  transform: translateY(-0.4em);
+}
+.bio-main h3 {
+  margin: var(--s-6) 0 var(--s-3);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+}
+
+/* Citations: small, quiet, in the metadata face. */
+.bio-ref {
+  font-family: var(--font-mono);
+  font-size: 0.66em;
+  line-height: 0;
+  vertical-align: super;
+  white-space: nowrap;
+}
+.bio-ref a {
+  padding: 0 1px;
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+.bio-ref a:hover { color: var(--gold-ink); }
+.prose .bio-ref a { text-decoration: none; }
+
+/* Lists with a year in the margin. */
+.bio-list { border-top: 1px solid var(--rule); margin-bottom: var(--s-4); }
+.bio-list li {
+  display: grid;
+  grid-template-columns: 5.6em 1fr;
+  gap: var(--s-3);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.bio-list li span { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--ink-3); padding-top: 1px; }
+
+.bio-chrono { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.bio-chrono th {
+  padding: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: start;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--rule-2);
+}
+.bio-chrono td {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.bio-chrono td:first-child {
+  width: 6.4em;
+  padding-inline-end: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* Notes and references: set small, numbers in the margin face. */
+.bio-sources ol { counter-reset: src; }
+.bio-refs li,
+.bio-notes li {
+  position: relative;
+  padding: 7px 0 7px 3.4em;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+}
+.bio-refs li::before,
+.bio-notes li::before {
+  counter-increment: src;
+  content: counter(src) '.';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 7px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+}
+.bio-notes li::before { content: counter(src, lower-alpha) '.'; }
+.bio-refs__up {
+  position: absolute;
+  inset-inline-start: 1.9em;
+  top: 6px;
+  color: var(--ink-3);
+  transition: color var(--t-fast);
+}
+.bio-refs__up:hover { color: var(--gold-ink); }
+.bio-refs .link,
+.bio-notes .link { text-decoration-color: var(--rule-2); }
+
+.bio-links { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); }
+
+/* A cited passage the reader jumped to is marked for a moment. */
+.bio-main :target {
+  scroll-margin-top: 96px;
+  animation: bio-target 1.8s var(--ease) 1;
+}
+@keyframes bio-target {
+  from { background-color: var(--gold-soft); }
+  to   { background-color: transparent; }
+}
+
+/* ── Footer on this page: a short text nav instead of icons ── */
+.foot__nav { grid-column: 5 / span 3; display: flex; flex-wrap: wrap; gap: 6px 18px; padding-top: 4px; font-size: var(--fs-xs); }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 1180px) {
+  /* The article's parts join the grid so the fact box can sit between
+     the lead and the first section, with the contents still in the
+     margin beside them. */
+  .bio-main { display: contents; }
+  .bio-main > * { grid-column: 4 / -1; min-width: 0; }
+  .bio-toc { grid-row: 1 / span 40; }
+  .bio-lead { order: 1; }
+  .bio-infobox {
+    order: 2;
+    grid-column: 4 / -1;
+    grid-row: auto;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: var(--s-5);
+    margin: var(--s-4) 0 var(--s-2);
+  }
+  .bio-main > section { order: 3; }
+  .bio-infobox__title,
+  .bio-infobox__ar { grid-column: 1 / -1; text-align: start; }
+  .bio-infobox__photo { grid-column: 1; grid-row: 3; margin-bottom: 0; }
+  .bio-facts { grid-column: 2; grid-row: 3; align-self: start; margin-top: var(--s-4); }
+}
+
+@media (max-width: 820px) {
+  .bio-head__index { grid-column: 1 / -1; grid-template-columns: auto auto 1fr; column-gap: 12px; align-items: baseline; padding-top: 0; margin-bottom: var(--s-4); }
+  .bio-head__alt { padding-left: 10px; border-left: 1px solid var(--rule-2); line-height: 1.2; }
+  .bio-head__date { margin-top: 0; justify-self: end; }
+  .bio-head__title { grid-column: 1 / -1; }
+
+  .bio-main > *,
+  .bio-infobox { grid-column: 1 / -1; }
+  .bio-infobox { order: 2; }
+
+  /* Contents fold into a single line the reader can open, after the
+     fact box and before the first section. */
+  .bio-toc {
+    order: 3;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin: var(--s-5) 0 0;
+    padding: 0;
+    border-top: 1px solid var(--rule-2);
+    border-bottom: 1px solid var(--rule-2);
+  }
+  .bio-main > section { order: 4; }
+  .bio-toc > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .bio-toc > summary::after { content: '+'; font-size: 1.1rem; letter-spacing: 0; }
+  .bio-toc[open] > summary::after { content: '−'; }
+  .bio-toc > nav { padding-bottom: var(--s-3); }
+  .bio-toc a { font-size: var(--fs-sm); padding-block: 7px; }
+
+  .foot__nav { grid-column: 1 / -1; }
+}
+
+@media (max-width: 620px) {
+  .bio-head { padding-top: 104px; }
+  .bio-head__index { grid-template-columns: auto auto; }
+  .bio-head__date { grid-column: 1 / -1; justify-self: start; margin-top: 6px; }
+
+  .bio-infobox { grid-template-columns: 1fr; padding: var(--s-4); }
+  .bio-infobox__photo { grid-column: 1; grid-row: auto; width: min(240px, 70%); margin-inline: auto; }
+  .bio-facts { grid-column: 1; grid-row: auto; }
+
+  .bio-main p { font-size: 1.05rem; line-height: 1.75; }
+  .bio-lead p:first-child { font-size: 1.14rem; }
+  .bio-list li { grid-template-columns: 4.8em 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-main :target { animation: none; }
+}

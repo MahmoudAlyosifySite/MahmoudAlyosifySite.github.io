@@ -7,11 +7,11 @@
 
 .bot {
   position: fixed;
-  inset-block-end: 84px;
+  inset-block-end: 24px;
   inset-inline-end: 24px;
   z-index: var(--z-chat);
   width: min(400px, calc(100vw - 32px));
-  height: min(600px, calc(100dvh - 120px));
+  height: min(620px, calc(100dvh - 104px));
   display: flex;
   flex-direction: column;
   border-radius: var(--r);
@@ -36,25 +36,16 @@
   background: var(--paper-3);
   flex-shrink: 0;
 }
-/* Same round crop of the mascot as the launcher. */
+/* The whole mascot, as on the launcher — transparent, never cropped. */
 .bot__avatar {
-  position: relative;
-  width: 36px; height: 36px;
+  width: 34px; height: 46px;
   flex-shrink: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--paper-2);
+  display: grid;
+  place-items: center;
 }
-.bot__avatar img {
-  position: absolute;
-  left: -45%;
-  top: -16%;
-  width: 190%;
-  max-width: none;
-  height: auto;
-}
+.bot__avatar img { width: 100%; height: 100%; object-fit: contain; }
 .bot__id { display: grid; line-height: 1.25; min-width: 0; }
-.bot__id b { font-family: var(--font-display); font-size: 1.08rem; font-weight: 500; }
+.bot__id b { font-family: var(--font-display); font-size: 1.12rem; font-weight: 400; }
 .bot__id small { font-size: 0.72rem; color: var(--ink-3); }
 .bot__x {
   margin-inline-start: auto;
@@ -70,7 +61,7 @@
 
 /* ── Setup screen ─────────────────────────────────────────── */
 .bot__setup { padding: 20px 18px 22px; overflow-y: auto; flex: 1; }
-.bot__setup-h { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; line-height: 1.2; margin-bottom: 6px; }
+.bot__setup-h { font-family: var(--font-display); font-size: 1.34rem; font-weight: 400; line-height: 1.2; margin-bottom: 6px; }
 .bot__setup-lead { font-size: 0.82rem; color: var(--ink-2); line-height: 1.65; margin-bottom: 14px; }
 
 .bot__label {
@@ -97,7 +88,7 @@ select.bot__input {
   appearance: none;
   cursor: pointer;
   padding-inline-end: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316202F' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: var(--select-arrow);
   background-repeat: no-repeat;
   background-position: right 13px center;
 }
@@ -131,20 +122,20 @@ html[dir='rtl'] select.bot__input { background-position: left 13px center; }
 }
 .bot__getkey:hover { text-decoration-color: var(--gold); }
 
-.bot__err { font-size: 0.76rem; color: var(--danger, #9E3B2A); min-height: 1.1em; margin-top: 10px; }
+.bot__err { font-size: 0.76rem; color: var(--danger); min-height: 1.1em; margin-top: 10px; }
 
 .bot__start {
   width: 100%;
   margin-top: 8px;
   padding: 12px;
   border-radius: var(--r);
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.88rem;
-  font-weight: 500;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: 0.9rem;
+  font-weight: 600;
   transition: background-color var(--t-fast);
 }
-.bot__start:hover { background: #26344D; }
+.bot__start:hover { background: var(--btn-hover); }
 
 .bot__privacy {
   margin-top: 16px;
@@ -194,9 +185,9 @@ html[dir='rtl'] select.bot__input { background-position: left 13px center; }
 .msg--user .msg__bubble { background: var(--ink); color: var(--paper); }
 .msg--error .msg__bubble {
   max-width: 100%;
-  background: rgba(158, 59, 42, 0.07);
-  border: 1px solid rgba(158, 59, 42, 0.35);
-  color: var(--danger, #9E3B2A);
+  background: color-mix(in srgb, var(--danger) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  color: var(--danger);
   font-size: 0.8rem;
 }
 
@@ -307,7 +298,7 @@ html[dir='rtl'] select.bot__input { background-position: left 13px center; }
   color: var(--paper);
   transition: background-color var(--t-fast), opacity var(--t-fast);
 }
-.bot__send:hover:not(:disabled) { background: #26344D; }
+.bot__send:hover:not(:disabled) { background: var(--btn-hover); }
 .bot__send:disabled { opacity: 0.4; cursor: not-allowed; }
 html[dir='rtl'] .bot__send svg { transform: scaleX(-1); }
 

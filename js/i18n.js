@@ -14,6 +14,9 @@ const I18N = {
     'nav.awards':   'Awards',
     'nav.certs':    'Certificates',
     'nav.contact':  'Contact',
+    'nav.bio':      'Biography',
+    'nav.themeLight': 'Switch to light theme',
+    'nav.themeDark':  'Switch to dark theme',
     'nav.cv':       'CV',
     'nav.cvAria':   'Choose a role-specific CV (opens in a new tab)',
     'nav.cta':      'Get in touch',
@@ -38,6 +41,7 @@ const I18N = {
     'about.title1':  'Research depth,',
     'about.title2':  'production discipline',
     'about.factsTitle': 'At a glance',
+    'about.bioLink':    'Read the full biography',
 
     /* Experience */
     'exp.eyebrow': 'Career',
@@ -184,6 +188,9 @@ const I18N = {
     'nav.awards':   'الإنجازات',
     'nav.certs':    'الشهادات',
     'nav.contact':  'التواصل',
+    'nav.bio':      'السيرة الكاملة',
+    'nav.themeLight': 'التبديل إلى الوضع الفاتح',
+    'nav.themeDark':  'التبديل إلى الوضع الداكن',
     'nav.cv':       'السيرة الذاتية',
     'nav.cvAria':   'اختر سيرة ذاتية حسب الدور الوظيفي (تفتح في تبويب جديد)',
     'nav.cta':      'تواصل معي',
@@ -206,6 +213,7 @@ const I18N = {
     'about.title1':  'عمق بحثي،',
     'about.title2':  'وانضباط إنتاجي',
     'about.factsTitle': 'لمحة سريعة',
+    'about.bioLink':    'اقرأ السيرة الكاملة (بالإنجليزية)',
 
     'exp.eyebrow': 'المسار المهني',
     'exp.title1':  'أين كنت',

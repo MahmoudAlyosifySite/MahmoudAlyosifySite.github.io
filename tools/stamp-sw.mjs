@@ -16,9 +16,11 @@ const WATCHED = [
   'index.html',
   'css/theme.css', 'css/layout.css', 'css/motion.css', 'css/chatbot.css',
   'js/data.js', 'js/i18n.js', 'js/ui.js', 'js/photo-gallery.js',
-  'js/certificates.js', 'js/motion.js',
+  'js/certificates.js', 'js/motion.js', 'js/theme.js',
   'js/chatbot.js', 'js/providers.js', 'js/retriever.js', 'js/security.js',
-  'data/certificates.json', 'data/photo-gallery.json', 'data/mahmoud-profile.json'
+  'data/certificates.json', 'data/photo-gallery.json', 'data/mahmoud-profile.json',
+  'biography/index.html', 'css/bio.css', 'js/bio.js',
+  'Mahmoud Resumes/index.html', 'Mahmoud Resumes/style.css', 'Mahmoud Resumes/script.js'
 ];
 
 const hash = createHash('sha1');

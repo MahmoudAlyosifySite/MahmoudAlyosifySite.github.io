@@ -1,65 +1,101 @@
 /* ============================================================
    Mahmoud Alyosify — Design System
-   "Paper, ink & gold."
+   "Ink, gold & paper."
 
    Palette sampled from Mahmoud's own portrait
-   (img/img-mahmoud- april 2026.PNG): the navy of the suit
-   becomes the ink, the gold of the tie and pocket square
-   becomes the single accent. Everything sits on warm paper.
+   (img/img-mahmoud- april 2026.PNG): the navy of the suit, the
+   gold of the tie and pocket square, and the warm paper they
+   were first set on.
+
+   Two themes share one set of tokens:
+     · dark (the default) — deep near-black, warm paper-white
+       text, gold for the few things that matter most;
+     · light — the same system on warm paper.
+   The theme is chosen before first paint (inline script in each
+   page head) and switched by js/theme.js.
 
    One accent, used as a mark — never as decoration. Gold means
    "this is the key idea", the way a teacher marks the one line
    that matters on a page.
    ============================================================ */
 
-/* Fonts are requested from index.html with <link>, not @import —
+/* Fonts are requested from each page with <link>, not @import —
    an @import here would wait for this file before even starting. */
 
+/* ── Dark — the default ───────────────────────────────────── */
 :root {
-  /* ── Colour — sampled, then tuned for contrast ──────────── */
-  --paper:      #F4F2ED;   /* page                                  */
-  --paper-2:    #ECE8DF;   /* recessed: mats, bands                 */
-  --paper-3:    #FBFAF7;   /* raised: fields, panels                */
+  color-scheme: dark;
 
-  --ink:        #16202F;   /* suit navy, deepened for text  14.6:1  */
-  --ink-2:      #3A4558;   /* the suit itself                8.6:1  */
-  --ink-3:      #5E6679;   /* captions, metadata             5.1:1  */
+  /* Surfaces. The "paper" tokens name surfaces, not a colour:
+     in the dark theme the paper is black.                        */
+  --paper:      #0B0B0C;   /* page                                  */
+  --paper-2:    #141416;   /* banded: mats, recessed sections       */
+  --paper-3:    #111113;   /* fields, panels                        */
 
-  --gold:       #C49C56;   /* tie + pocket square — marks, never text */
-  --gold-ink:   #7E5F28;   /* gold that can carry text       5.3:1  */
-  --gold-soft:  rgba(196, 156, 86, 0.42);   /* the highlighter stroke */
+  --ink:        #EEEAE2;   /* paper-white text               16.4:1 */
+  --ink-2:      #C2BEB6;   /* running text                   10.6:1 */
+  --ink-3:      #908C85;   /* captions, metadata              5.9:1 */
 
-  --rule:       rgba(22, 32, 47, 0.13);     /* hairlines               */
-  --rule-2:     rgba(22, 32, 47, 0.26);     /* section rules           */
-  --control:    #7D8494;                    /* field borders    3.4:1  */
+  --gold:       #C9A55E;   /* tie + pocket square — marks, never text */
+  --gold-ink:   #D6B676;   /* gold that can carry text       10.1:1 */
+  --gold-soft:  rgba(201, 165, 94, 0.34);   /* selection               */
 
-  /* Night — for the few bands set in reverse */
-  --night:      #111A28;
-  --night-2:    #18233A;
-  --on-night:   #F1ECE2;
-  --on-night-2: #BFC5D0;
-  --on-night-3: #8C95A6;
-  --gold-night: #D9B878;
-  --rule-night: rgba(241, 236, 226, 0.14);
+  --rule:       rgba(238, 234, 226, 0.12);  /* hairlines               */
+  --rule-2:     rgba(238, 234, 226, 0.24);  /* section rules           */
+  --control:    #75716B;                    /* field borders    4.1:1  */
+  --placeholder:#86827B;                    /*                  5.2:1  */
+  --tint:       rgba(238, 234, 226, 0.045); /* hover wash              */
+  --nav-bg:     #0B0B0C;                    /* opaque: big type must never ghost through */
 
-  /* ── Type ───────────────────────────────────────────────── */
-  --font-display: 'Newsreader', 'Noto Naskh Arabic', Georgia, 'Times New Roman', serif;
-  --font-body:    'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono:    'IBM Plex Mono', 'IBM Plex Sans Arabic', ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  /* Latin face first in both stacks: neither Latin family carries Arabic
-     glyphs, so Arabic falls through to its partner while Latin words
-     inside Arabic text (project names, models) keep the Latin face. */
-  --font-ar-display: 'Newsreader', 'Noto Naskh Arabic', serif;
-  --font-ar-body:    'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --btn-bg:     #EEEAE2;
+  --btn-fg:     #0B0B0C;
+  --btn-hover:  #FFFFFF;
+
+  --danger:     #E8836F;   /* 7.4:1 */
+  --ok:         #7CC49A;   /* 9.6:1 */
+  --scrim:      rgba(0, 0, 0, 0.82);
+
+  --shadow-lift: 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 28px rgba(0, 0, 0, 0.45);
+  --shadow-over: 0 2px 8px rgba(0, 0, 0, 0.5), 0 30px 70px rgba(0, 0, 0, 0.6);
+
+  --scroll-thumb: rgba(238, 234, 226, 0.22);
+  --scroll-thumb-hover: rgba(238, 234, 226, 0.38);
+
+  /* The emblem in the palette (filters defined inline in each page) */
+  --emblem-filter: url(#duo-black-gold);
+
+  /* The marker stroke — a chisel tip, slanted ends, rising slightly
+     as a hand does. The Arabic stroke is mirrored (drawn R→L).    */
+  --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C9A55E' fill-opacity='.42'/%3E%3C/svg%3E");
+  --marker-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M391 11C330 9.6 260 9 190 7.6S70 5 3 3.2L9 29.6C80 30.4 150 31.6 220 32.8S340 35.4 397.4 36.2Z' fill='%23C9A55E' fill-opacity='.42'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23EEEAE2' stroke-width='1.5'/%3E%3C/svg%3E");
+
+  /* ── Type ───────────────────────────────────────────────────
+     Gloock — a sharp, high-contrast serif for headings and figures.
+     Ysabeau Office — a humanist sans with Garamond in its bones,
+       for reading.
+     Chivo Mono — for metadata: dates, numbers, labels.
+     Aref Ruqaa — Ruqaa, the everyday handwriting of Egypt, for
+       Arabic headings and the name.
+     Readex Pro — Arabic text, drawn for legibility.
+     Latin face first in every stack: none of the Latin families
+     carries Arabic, so Arabic falls through to its partner while
+     Latin words inside Arabic text keep the Latin face.          */
+  --font-display: 'Gloock', 'Aref Ruqaa', Georgia, 'Times New Roman', serif;
+  --font-body:    'Ysabeau Office', 'Readex Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'Chivo Mono', 'Readex Pro', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --font-ar-display: 'Gloock', 'Aref Ruqaa', serif;
+  --font-ar-body:    'Ysabeau Office', 'Readex Pro', system-ui, sans-serif;
+  --font-ar-name:    'Aref Ruqaa', 'Readex Pro', serif;
 
   --fs-display: clamp(3.4rem, 8.2vw, 7.75rem);
   --fs-h1:      clamp(2.35rem, 5.1vw, 4.4rem);
   --fs-h2:      clamp(1.8rem, 3.2vw, 2.65rem);
   --fs-h3:      clamp(1.32rem, 2vw, 1.68rem);
-  --fs-lead:    clamp(1.12rem, 1.45vw, 1.3rem);
+  --fs-lead:    clamp(1.14rem, 1.45vw, 1.32rem);
   --fs-body:    1.0625rem;
-  --fs-sm:      0.9375rem;
-  --fs-xs:      0.8125rem;
+  --fs-sm:      0.96rem;
+  --fs-xs:      0.84rem;
   --fs-micro:   0.75rem;
 
   /* ── Space — 4px scale ──────────────────────────────────── */
@@ -74,10 +110,7 @@
 
   /* ── Shape ──────────────────────────────────────────────── */
   --r:      3px;           /* the only radius: crisp, not sharp */
-  --r-full: 999px;         /* status dots only                  */
-
-  --shadow-lift: 0 1px 2px rgba(22, 32, 47, 0.06), 0 8px 24px rgba(22, 32, 47, 0.08);
-  --shadow-over: 0 2px 6px rgba(22, 32, 47, 0.08), 0 28px 64px rgba(10, 16, 28, 0.28);
+  --r-full: 999px;
 
   /* ── Motion — calm, decelerating, short ─────────────────── */
   --ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -87,6 +120,50 @@
   --t-slow: 0.7s  var(--ease);
 
   --z-bg: 0; --z-content: 10; --z-nav: 100; --z-chat: 900; --z-overlay: 1000;
+}
+
+/* ── Light — the same system on warm paper ────────────────── */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --paper:      #F4F2ED;
+  --paper-2:    #ECE8DF;
+  --paper-3:    #FBFAF7;
+
+  --ink:        #16202F;   /* suit navy, deepened for text  14.6:1  */
+  --ink-2:      #3A4558;   /* the suit itself                8.6:1  */
+  --ink-3:      #5E6679;   /*                                5.1:1  */
+
+  --gold:       #C49C56;
+  --gold-ink:   #7E5F28;   /*                                5.3:1  */
+  --gold-soft:  rgba(196, 156, 86, 0.42);
+
+  --rule:       rgba(22, 32, 47, 0.13);
+  --rule-2:     rgba(22, 32, 47, 0.26);
+  --control:    #7D8494;
+  --placeholder:#8A909D;
+  --tint:       rgba(22, 32, 47, 0.035);
+  --nav-bg:     rgba(244, 242, 237, 0.97);
+
+  --btn-bg:     #16202F;
+  --btn-fg:     #F4F2ED;
+  --btn-hover:  #26344D;
+
+  --danger:     #9E3B2A;   /* 6.0:1 */
+  --ok:         #2F6B4F;   /* 5.6:1 */
+  --scrim:      rgba(17, 26, 40, 0.78);
+
+  --shadow-lift: 0 1px 2px rgba(22, 32, 47, 0.06), 0 8px 24px rgba(22, 32, 47, 0.08);
+  --shadow-over: 0 2px 6px rgba(22, 32, 47, 0.08), 0 28px 64px rgba(10, 16, 28, 0.28);
+
+  --scroll-thumb: rgba(22, 32, 47, 0.28);
+  --scroll-thumb-hover: rgba(22, 32, 47, 0.45);
+
+  --emblem-filter: url(#duo-ink-gold);
+
+  --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
+  --marker-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M391 11C330 9.6 260 9 190 7.6S70 5 3 3.2L9 29.6C80 30.4 150 31.6 220 32.8S340 35.4 397.4 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316202F' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
 /* ── Reset ────────────────────────────────────────────────── */
@@ -113,12 +190,15 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  line-height: 1.65;
+  line-height: 1.66;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
+  /* Gloock and Aref Ruqaa each have what they need; never let the
+     browser fake a bold or a slant on either. */
+  font-synthesis: none;
 }
 
 html[dir='rtl'] {
@@ -143,28 +223,29 @@ ul, ol { list-style: none; }
   border-radius: var(--r);
 }
 
-/* ── Scrollbar — thin, ink on paper ───────────────────────── */
-html { scrollbar-color: rgba(22, 32, 47, 0.35) var(--paper); scrollbar-width: thin; }
+/* ── Scrollbar — thin, quiet ──────────────────────────────── */
+html { scrollbar-color: var(--scroll-thumb) var(--paper); scrollbar-width: thin; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(22, 32, 47, 0.28);
+  background: var(--scroll-thumb);
   border-radius: var(--r-full);
   border: 3px solid var(--paper);
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(22, 32, 47, 0.45); }
+::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
 
 /* ── Typography primitives ────────────────────────────────── */
+/* Gloock has a single weight — it carries hierarchy by size alone. */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.06;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 p { text-wrap: pretty; }
 
-.display { font-size: var(--fs-display); font-weight: 500; line-height: 0.92; letter-spacing: -0.035em; }
+.display { font-size: var(--fs-display); font-weight: 400; line-height: 0.94; letter-spacing: -0.025em; }
 .h1      { font-size: var(--fs-h1); }
 .h2      { font-size: var(--fs-h2); }
 .h3      { font-size: var(--fs-h3); }
@@ -172,15 +253,9 @@ p { text-wrap: pretty; }
 .small   { font-size: var(--fs-sm); }
 .mono    { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
-/* The one accent. A chisel-tip marker stroke — slanted ends, rising
-   slightly as a hand does — laid under the one phrase that matters,
-   the way a teacher marks a textbook. Used sparingly: the hero and
-   three section titles. Drawn in when it arrives (motion.css).
-   The Arabic stroke is mirrored so it is drawn right to left. */
-:root {
-  --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
-  --marker-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M391 11C330 9.6 260 9 190 7.6S70 5 3 3.2L9 29.6C80 30.4 150 31.6 220 32.8S340 35.4 397.4 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
-}
+/* The one accent: the marker under the one phrase that matters,
+   the way a teacher marks a textbook. Used sparingly — the hero
+   and three section titles. Drawn in when it arrives (motion.css). */
 .mark {
   --mark-h: 0.4em;
   background-image: var(--marker);
@@ -236,24 +311,24 @@ html[dir='rtl'] .mark { background-image: var(--marker-rtl); background-position
   border-radius: var(--r);
   font-family: var(--font-body);
   font-size: var(--fs-sm);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   cursor: pointer;
   transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast);
 }
 .btn svg { flex-shrink: 0; }
 
-.btn--primary { background: var(--ink); color: var(--paper); }
-.btn--primary:hover { background: #26344D; }
+.btn--primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn--primary:hover { background: var(--btn-hover); }
 
 .btn--ghost {
   color: var(--ink);
   border-color: var(--control);
   background: transparent;
 }
-.btn--ghost:hover { border-color: var(--ink); background: rgba(22, 32, 47, 0.04); }
+.btn--ghost:hover { border-color: var(--ink); background: var(--tint); }
 
 .btn--sm { --btn-py: 8px; --btn-px: 13px; font-size: var(--fs-xs); gap: 8px; }
 
@@ -266,6 +341,23 @@ html[dir='rtl'] .mark { background-image: var(--marker-rtl); background-position
 .btn[data-arrow]:hover::after { transform: translateX(3px); }
 html[dir='rtl'] .btn[data-arrow]::after { content: '←'; }
 html[dir='rtl'] .btn[data-arrow]:hover::after { transform: translateX(-3px); }
+
+/* ── Theme switch — an icon button, the icon shows where it goes ── */
+.theme-toggle {
+  width: 36px; height: 36px;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid var(--control);
+  border-radius: var(--r);
+  color: var(--ink);
+  transition: border-color var(--t-fast), background-color var(--t-fast);
+}
+.theme-toggle:hover { border-color: var(--ink); background: var(--tint); }
+.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle .i-moon { display: none; }
+:root[data-theme='light'] .theme-toggle .i-sun { display: none; }
+:root[data-theme='light'] .theme-toggle .i-moon { display: block; }
 
 /* ── Links ────────────────────────────────────────────────── */
 /* In-text links: a quiet underline that turns gold on hover. */
@@ -287,7 +379,7 @@ html[dir='rtl'] .btn[data-arrow]:hover::after { transform: translateX(-3px); }
   align-items: baseline;
   gap: 0.35em;
   font-size: var(--fs-sm);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   border-bottom: 1px solid var(--rule-2);
   padding-bottom: 1px;
@@ -370,8 +462,8 @@ html[dir='rtl'] .tags { clip-path: inset(0 var(--sep) 0 0); }
   z-index: var(--z-overlay);
   padding: 10px 16px;
   border-radius: var(--r);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
   transition: top var(--t-fast);
 }
 .skip-link:focus { top: var(--s-4); }
@@ -380,23 +472,23 @@ html[dir='rtl'] .tags { clip-path: inset(0 var(--sep) 0 0); }
 /* Arabic is never letter-spaced — it breaks the joins. */
 html[dir='rtl'] * { letter-spacing: normal !important; }
 
-/* Naskh at 500 sits at the same colour on the page as Newsreader at 500;
-   at 600 it reads a size heavier. */
+/* Arabic headings are set in Ruqaa, bold; Latin runs inside them stay
+   in Gloock's single weight (font-synthesis is off). */
 html[dir='rtl'] h1,
 html[dir='rtl'] h2,
 html[dir='rtl'] h3,
 html[dir='rtl'] h4 {
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 700;
+  line-height: 1.42;
 }
-/* Naskh runs large and tall: set the display a size down, with just
-   enough leading for its ascenders and dots — no more. */
+/* Ruqaa is compact and sits low: a size down from the Latin display,
+   with enough leading for its ascenders and dots. */
 html[dir='rtl'] .display {
-  font-size: calc(var(--fs-display) * 0.8);
-  font-weight: 500;
-  line-height: 1.08;
+  font-size: calc(var(--fs-display) * 0.84);
+  font-weight: 700;
+  line-height: 1.16;
 }
 html[dir='rtl'] .eyebrow { text-transform: none; font-size: var(--fs-xs); }
 
-/* Arabic has no italic; a browser-slanted Naskh is a fake. Stay upright. */
+/* Arabic has no italic; a browser-slanted Arabic is a fake. Stay upright. */
 html[dir='rtl'] :is(i, em, .pcard__sub, .fatfooter__title) { font-style: normal; }
