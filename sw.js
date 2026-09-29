@@ -12,7 +12,7 @@
    edit it by hand. Old caches are deleted on activate.
    ============================================================ */
 
-const VERSION = 'ma-be950c56a5';
+const VERSION = 'ma-b9f5b99f14';
 const SHELL = `shell-${VERSION}`;
 const ASSETS = `assets-${VERSION}`;
 

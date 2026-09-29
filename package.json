@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "build:images": "node tools/optimize-images.mjs",
+    "build:logos": "node tools/build-logos.mjs",
     "build:certs": "node tools/build-certificates.mjs",
     "build:photos": "node tools/build-photo-gallery.mjs",
-    "build": "npm run build:images && npm run build:certs && npm run build:photos && npm run build:sw",
+    "build": "npm run build:images && npm run build:logos && npm run build:certs && npm run build:photos && npm run build:sw",
     "build:sw": "node tools/stamp-sw.mjs"
   }
 }

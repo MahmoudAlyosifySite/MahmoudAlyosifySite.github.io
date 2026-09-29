@@ -385,14 +385,14 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .facts { border-top: 1px solid var(--rule-2); padding-top: var(--s-2); }
 .facts li {
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr);
+  grid-template-columns: 40px minmax(0, 1fr);
   gap: 12px;
   align-items: start;
   padding-block: 10px;
 }
 /* Pictograms are set in ink, like everything else on the page. */
 .facts__icon {
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   display: grid;
   place-items: center;
   font-size: 1.05rem;
@@ -401,17 +401,17 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
   opacity: 0.8;
 }
 .facts__icon-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-/* The universities' crests are their marks, not pictograms: they keep their
-   own colours. They sit on a small cream plate, so a navy field or a crimson
-   wordmark reads on the black page as well as it does on paper. */
+/* The universities' marks are not pictograms: they keep their own colours,
+   and sit on the page itself — no plate, no white ground. Each comes in two
+   versions (tools/build-logos.mjs): the original inks for paper, and one with
+   its darkest colours lifted for the black page. */
 .facts__icon--logo {
-  padding: 3px;
-  background: #F3F0E8;
-  border: 1px solid var(--rule);
-  border-radius: var(--r);
   filter: none;
   opacity: 1;
 }
+.facts__icon-img--for-dark { display: none; }
+:root:not([data-theme='light']) .facts__icon-img--for-dark { display: block; }
+:root:not([data-theme='light']) .facts__icon-img--for-light:not(:only-child) { display: none; }
 .facts__k { display: block; font-size: var(--fs-sm); font-weight: 600; line-height: 1.4; color: var(--ink); }
 .facts__v { display: block; margin-top: 3px; font-size: var(--fs-xs); line-height: 1.55; color: var(--ink-3); }
 .facts__v a {

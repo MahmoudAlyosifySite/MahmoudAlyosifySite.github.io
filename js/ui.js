@@ -100,8 +100,11 @@
       const shown = f.url
         ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${val}</a>`
         : val;
+      // A university's mark comes in two versions, one for each theme (see
+      // tools/build-logos.mjs); CSS shows the one that suits the page.
       const iconHtml = f.iconImg
-        ? `<img src="${esc(f.iconImg)}" alt="" class="facts__icon-img" loading="lazy" />`
+        ? `<img src="${esc(f.iconImg)}" alt="" class="facts__icon-img facts__icon-img--for-light" loading="lazy" />`
+          + (f.iconImgDark ? `<img src="${esc(f.iconImgDark)}" alt="" class="facts__icon-img facts__icon-img--for-dark" loading="lazy" />` : '')
         : f.icon;
       return `
       <li>

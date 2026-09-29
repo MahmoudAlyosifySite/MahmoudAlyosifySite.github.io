@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-11",
-  "total": 56,
+  "generated": "2026-09-29",
+  "total": 55,
   "categories": [
     {
       "id": "coursera",
@@ -14,7 +14,7 @@
         "ar": "دورات وتخصصات مكتملة على كورسيرا."
       },
       "icon": "coursera",
-      "count": 25,
+      "count": 24,
       "items": [
         {
           "src": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
@@ -95,14 +95,6 @@
           "type": "pdf",
           "title": "Coursera XW4Z74U0FQNJ",
           "verify": "https://coursera.org/verify/XW4Z74U0FQNJ"
-        },
-        {
-          "src": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
-          "thumb": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
-          "original": "Certificates/Coursera/Data%20Analysis%20with%20Python.pdf",
-          "file": "Data Analysis with Python.pdf",
-          "type": "pdf",
-          "title": "Data Analysis with Python"
         },
         {
           "src": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
