@@ -21,7 +21,12 @@
   /** The label says what pressing the button will do. */
   function label(theme) {
     const key = theme === 'dark' ? 'nav.themeLight' : 'nav.themeDark';
-    const fallback = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+    // Pages without the home page's language machinery (the biography, the CV page,
+    // the Arabic profile) name the button in their own language.
+    const ar = root.lang === 'ar';
+    const fallback = ar
+      ? (theme === 'dark' ? 'التبديل إلى الوضع الفاتح' : 'التبديل إلى الوضع الداكن')
+      : (theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
     return (window.MASite && window.MASite.t(key)) || fallback;
   }
 

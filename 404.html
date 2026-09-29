@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Mahmoud Alyosify</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-gold-32.png">
+
+<!-- Dark is the default; a saved choice of the light theme is applied before the first paint. -->
+<script>
+  (function () {
+    var t = 'dark';
+    try { if (localStorage.getItem('ma-theme') === 'light') t = 'light'; } catch (e) { /* storage blocked */ }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<!-- Web addresses on GitHub Pages are case-sensitive, and people type them from memory.
+     The ones worth catching are sent to where they were meant to go. -->
+<script>
+  (function () {
+    var path;
+    try { path = decodeURIComponent(location.pathname); } catch (e) { path = location.pathname; }
+    path = path.toLowerCase().replace(/\/index\.html$/, '').replace(/\/+$/, '');
+    var to = {
+      '/cv': '/cv/', '/cvs': '/cv/', '/cv.html': '/cv/', '/resume': '/cv/', '/resumes': '/cv/', '/resume.html': '/cv/',
+      '/mahmoud-cv': '/cv/', '/mahmoud-alyosify-cv': '/cv/', '/mahmoudalyosify-cv': '/cv/', '/mahmoudalyosify.cv': '/cv/',
+      '/mahmoud resumes': '/cv/',
+      '/ar': '/ar/', '/arabic': '/ar/', '/عربي': '/ar/', '/العربية': '/ar/',
+      '/bio': '/biography/', '/biography': '/biography/', '/about': '/biography/'
+    }[path];
+    if (to && location.pathname !== to) location.replace(to + location.search + location.hash);
+  })();
+</script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Ysabeau+Office:wght@400;600&family=Chivo+Mono:wght@400&family=Readex+Pro:wght@300..600&display=swap">
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+  body { min-height: 100svh; display: grid; place-items: center; padding: 24px; text-align: center; }
+  .nf { max-width: 36rem; }
+  .nf__code { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.12em; color: var(--ink-3); }
+  .nf h1 { margin: 10px 0 14px; font-size: clamp(2.2rem, 6vw, 3.6rem); }
+  .nf p { color: var(--ink-2); }
+  .nf__ar { margin-top: 6px; }
+  .nf__links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
+</style>
+</head>
+<body>
+  <main class="nf">
+    <p class="nf__code">404</p>
+    <h1>This page doesn't exist</h1>
+    <p>The link may be old or mistyped.</p>
+    <p class="nf__ar" lang="ar" dir="rtl">الصفحة غير موجودة. ربما الرابط قديم أو به خطأ.</p>
+    <div class="nf__links">
+      <a class="btn btn--primary" href="/">Home</a>
+      <a class="btn btn--ghost" href="/cv/">CV</a>
+      <a class="btn btn--ghost" href="/biography/">Biography</a>
+      <a class="btn btn--ghost" href="/ar/" hreflang="ar" lang="ar">بالعربية</a>
+    </div>
+  </main>
+</body>
+</html>

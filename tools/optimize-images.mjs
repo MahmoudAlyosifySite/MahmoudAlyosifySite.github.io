@@ -117,6 +117,13 @@ async function run() {
     if (existsSync(src)) await derive(src, path.join(ROOT, 'img', '_web', 'avatars', `${slug(f)}.webp`), 96, 82, { square: true });
   }
 
+  /* ── Degree certificate — opens as a pop-up from the About list ── */
+  const degree = path.join(ROOT, 'img', 'degree', 'bsc-graduation-certificate-ar.jpg');
+  if (existsSync(degree)) {
+    console.log('Degree        — 1 image');
+    await derive(degree, path.join(ROOT, 'img', '_web', 'degree', 'bsc-graduation-certificate-ar.webp'), VIEW_MAX, 88);
+  }
+
   /* ── Certificates (images only; PDFs pass through) ─────── */
   const certDir = path.join(ROOT, 'Certificates');
   if (existsSync(certDir)) {

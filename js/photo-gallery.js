@@ -240,7 +240,7 @@
 
     const target = e.target instanceof Element ? e.target : null;
     if (target && target.closest(
-      'input, textarea, select, [contenteditable=""], [contenteditable="true"], [role="slider"], .bot, #gal'
+      'input, textarea, select, [contenteditable=""], [contenteditable="true"], [role="slider"], .bot, #gal, .lb'
     )) return;
     const viewer = document.getElementById('gal');
     if (viewer && !viewer.hidden) return;

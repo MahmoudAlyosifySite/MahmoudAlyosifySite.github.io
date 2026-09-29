@@ -309,7 +309,8 @@
     document.body.style.top = '';
     document.body.style.width = '';
     document.body.style.paddingRight = '';
-    window.scrollTo(0, scrollY);
+    // instant: the page's own smooth scrolling would animate it back from the top
+    window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
   }
 
   function open(catId, startIndex = 0) {

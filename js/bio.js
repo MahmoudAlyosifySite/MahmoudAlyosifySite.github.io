@@ -128,8 +128,10 @@
         await load1('../js/providers.js');
         await load1('../js/retriever.js');
         await load1('../js/chatbot.js');
-        const t = (k) => (window.I18N && window.I18N.en[k]) || k;
-        window.MahmoudAI.mount({ lang: 'en', t });
+        // The assistant speaks the language of the page it is opened from.
+        const lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+        const t = (k) => (window.I18N && window.I18N[lang] && window.I18N[lang][k]) || k;
+        window.MahmoudAI.mount({ lang, t });
         window.MahmoudAI.open();
         fab.removeEventListener('click', load);
         fab.addEventListener('click', () => window.MahmoudAI.toggle());

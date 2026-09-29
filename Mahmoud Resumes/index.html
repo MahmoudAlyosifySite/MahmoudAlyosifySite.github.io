@@ -3,172 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mahmoud Alyosify — Choose Your CV</title>
-<meta name="description" content="Select the role you're hiring for and view or download the matching CV for Mahmoud Alyosify, AI &amp; Machine Learning Engineer.">
-<link rel="icon" href="../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="../img/icon-gold-32.png">
-<link rel="apple-touch-icon" href="../img/icon-gold-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Mahmoud Alyosify CV (السيرة الذاتية) — Choose Your Role</title>
+<meta name="description" content="Pick the role you're hiring for and view or download the matching CV of Mahmoud Alyosify, AI &amp; Machine Learning Engineer.">
+<!-- The CV selector now lives at /cv/ — a short address. This file only forwards there,
+     so a link shared before still works. The styles, script and PDFs in this folder are
+     unchanged and still used by that page. -->
+<link rel="canonical" href="https://mahmoudalyosifysite.github.io/cv/">
+<meta http-equiv="refresh" content="0; url=/cv/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahmoudalyosifysite.github.io/cv/">
+<meta property="og:title" content="Mahmoud Alyosify CV (السيرة الذاتية) — Choose Your Role">
+<meta property="og:description" content="Pick the role you're hiring for and view or download the matching CV of Mahmoud Alyosify, AI &amp; Machine Learning Engineer.">
+<meta property="og:image" content="https://mahmoudalyosifysite.github.io/img/_web/og-biography.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0B0C">
-<!-- Dark is the default; a saved choice is applied before the first paint. -->
-<script>(function(){var t='dark';try{if(localStorage.getItem('ma-theme')==='light')t='light';}catch(e){}document.documentElement.setAttribute('data-theme',t);if(t==='light')document.querySelector('meta[name="theme-color"]').setAttribute('content','#F4F2ED');})();</script>
-<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Ysabeau+Office:ital,wght@0,300..700;1,400..600&family=Chivo+Mono:wght@400;500&family=Aref+Ruqaa:wght@400;700&family=Readex+Pro:wght@300..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../css/chatbot.css">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<style>
+  html { background: #0B0B0C; color: #EEEAE2; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; }
+  a { color: #D6B676; }
+</style>
+<script>location.replace('/cv/' + location.search + location.hash);</script>
 </head>
 <body>
-
-<!-- The emblem in the site palette: gold on black (dark theme), gold on navy (light). -->
-<svg style="position:absolute;width:0;height:0" width="0" height="0" aria-hidden="true" focusable="false">
-  <filter id="duo-black-gold" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0" />
-    <feComponentTransfer>
-      <feFuncR type="table" tableValues="0.043 0.839" />
-      <feFuncG type="table" tableValues="0.043 0.714" />
-      <feFuncB type="table" tableValues="0.047 0.463" />
-    </feComponentTransfer>
-  </filter>
-  <filter id="duo-ink-gold" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0" />
-    <feComponentTransfer>
-      <feFuncR type="table" tableValues="0.086 0.769" />
-      <feFuncG type="table" tableValues="0.125 0.612" />
-      <feFuncB type="table" tableValues="0.184 0.337" />
-    </feComponentTransfer>
-  </filter>
-</svg>
-
-<header class="site-header">
-  <div class="brand">
-    <span class="brand-mark"><img src="../img/Icon%20Mahmoud%20header.png" alt=""></span>
-    <div class="brand-text">
-      <strong>Mahmoud Alyosify</strong>
-      <span>AI &amp; Machine Learning Engineer</span>
-    </div>
-  </div>
-  <div class="header-tools">
-    <nav class="social-links" aria-label="Contact links">
-      <a href="https://mahmoudalyosifysite.github.io/" target="_blank" rel="noopener">Portfolio</a>
-      <a href="https://linkedin.com/in/mahmoudalyosify" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.credly.com/users/mahmoud-alyosify" target="_blank" rel="noopener">Credly</a>
-      <a href="https://github.com/MahmoudAlyosify" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:mahmoud.alyosify@gmail.com">Email</a>
-    </nav>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme">
-      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" />
-      </svg>
-      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M20 14.2A8 8 0 1 1 9.8 4a6.5 6.5 0 0 0 10.2 10.2z" />
-      </svg>
-    </button>
-  </div>
-</header>
-
-<main>
-
-  <section id="role-select" class="view">
-    <div class="hero">
-      <p class="eyebrow reveal" style="--d:0">Interactive CV Selector</p>
-      <h1 class="reveal" style="--d:1">Hi, I'm Mahmoud Alyosify</h1>
-      <p class="hero-sub reveal" style="--d:2"><span id="typewriter"></span><span class="caret" aria-hidden="true"></span></p>
-      <p class="hero-prompt reveal" style="--d:3">Every role below is a CV tailored to it. Pick the one you're hiring for.</p>
-    </div>
-
-    <div class="filter-bar reveal" style="--d:4">
-      <svg class="filter-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <input type="text" id="role-filter" placeholder="Filter roles — e.g. “LLM”, “data”, “security”…" autocomplete="off">
-    </div>
-
-    <div class="role-groups">
-
-      <div class="role-group" data-group="featured">
-        <button class="role-card featured-card reveal" style="--d:5" data-role="general">
-          <span class="role-icon">🧭</span>
-          <span class="role-body">
-            <span class="role-title">General CV</span>
-            <span class="role-audience">Not sure which role fits? Referrals, networking &amp; LinkedIn intros with no role attached.</span>
-          </span>
-          <span class="role-arrow" aria-hidden="true">→</span>
-        </button>
-      </div>
-
-      <div class="role-group" data-group="engineering">
-        <h2 class="group-title">Engineering &amp; AI Roles</h2>
-        <div class="role-grid" id="grid-engineering"></div>
-      </div>
-
-      <div class="role-group" data-group="special">
-        <h2 class="group-title">Academic &amp; Special Purpose</h2>
-        <div class="role-grid" id="grid-special"></div>
-      </div>
-
-      <p class="no-results" id="no-results" hidden>No roles match “<span id="no-results-term"></span>”.</p>
-
-    </div>
-  </section>
-
-  <section id="cv-view" class="view" hidden>
-    <button class="back-btn" id="back-btn">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M5 12l6-6M5 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      All roles
-    </button>
-
-    <div class="cv-header">
-      <span class="cv-icon" id="cv-icon">🧭</span>
-      <div class="cv-heading">
-        <h2 id="cv-title">Role</h2>
-        <p id="cv-audience">Audience</p>
-      </div>
-      <div class="cv-actions">
-        <a class="btn btn-primary" id="cv-download" download>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Download CV
-        </a>
-        <a class="btn btn-ghost" id="cv-newtab" target="_blank" rel="noopener">Open in new tab</a>
-      </div>
-    </div>
-
-    <div class="pdf-frame-wrap">
-      <div class="pdf-chrome">
-        <span class="pdf-chrome-name" id="pdf-chrome-name">CV.pdf</span>
-      </div>
-      <iframe id="pdf-frame" title="CV preview" loading="lazy"></iframe>
-      <p class="pdf-fallback">Preview not loading? <a id="pdf-fallback-link" href="#" target="_blank" rel="noopener">Open the PDF directly</a>.</p>
-    </div>
-  </section>
-
-</main>
-
-<button class="bot-fab" id="bot-fab" type="button" aria-label="Ask Mahmoud AI">
-  <span class="bot-fab__mark" aria-hidden="true">
-    <img class="bot-fab__icon" src="../img/_web/mahmoud-bot.webp" alt="" width="400" height="600" loading="eager" decoding="async">
-  </span>
-  <span class="bot-fab__label">Ask Mahmoud AI</span>
-</button>
-<div id="bot-root"></div>
-
-<footer class="site-footer">
-  <p>© <span id="year"></span> Mahmoud Alyosify · New Cairo, Egypt · Open to relocation</p>
-  <p><a href="mailto:mahmoud.alyosify@gmail.com">mahmoud.alyosify@gmail.com</a> · +20 114 555 7959</p>
-</footer>
-
-<script src="script.js"></script>
-<script src="../js/theme.js"></script>
-<script>
-  window.MAHMOUD_AI_ASSET_BASE = '../';
-  window.MAHMOUD_AI_DATA_URL = '../data/mahmoud-profile.json';
-</script>
-<script src="../js/i18n.js"></script>
-<script src="../js/security.js"></script>
-<script src="../js/providers.js"></script>
-<script src="../js/retriever.js"></script>
-<script src="../js/chatbot.js"></script>
-<script>
-  window.MahmoudAI.mount({ lang: 'en', t: (key) => window.I18N.en[key] || key });
-  document.getElementById('bot-fab').addEventListener('click', () => window.MahmoudAI.toggle());
-</script>
+  <p>The CV page has a shorter address now: <a href="/cv/">mahmoudalyosifysite.github.io/cv/</a></p>
 </body>
 </html>

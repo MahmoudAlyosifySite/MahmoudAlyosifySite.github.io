@@ -67,7 +67,14 @@ const SITE = {
     },
     facts: [
       { iconImg: 'img/_web/logos/queens.webp', iconImgDark: 'img/_web/logos/queens-dark.webp', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — Presidential Scholarship', ar: 'جامعة كوينز، كندا — منحة رئاسية' }, url: 'https://www.queensu.ca' },
-      { iconImg: 'img/_web/logos/assiut.webp', iconImgDark: 'img/_web/logos/assiut-dark.webp', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' }, url: 'https://www.aun.edu.eg/main/' },
+      { iconImg: 'img/_web/logos/assiut.webp', iconImgDark: 'img/_web/logos/assiut-dark.webp', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' }, url: 'https://www.aun.edu.eg/main/',
+        // The graduation certificate opens as a pop-up (js/lightbox.js) from the title.
+        cert: {
+          img: 'img/_web/degree/bsc-graduation-certificate-ar.webp',
+          hint:    { en: 'View the graduation certificate', ar: 'عرض شهادة التخرج' },
+          alt:     { en: 'Graduation certificate of Mahmoud Sayed Youssef Kotb, Faculty of Computers and Information, Assiut University (in Arabic)', ar: 'شهادة تخرج محمود سيد يوسف قطب من كلية الحاسبات والمعلومات، جامعة أسيوط' },
+          caption: { en: 'Graduation certificate — Faculty of Computers and Information, Assiut University (the original, in Arabic)', ar: 'شهادة التخرج — كلية الحاسبات والمعلومات، جامعة أسيوط (النسخة الأصلية)' }
+        } },
       { icon: '🔬', k: { en: 'Research focus', ar: 'محور البحث' },                              v: { en: 'Token-efficient LLM inference · Verbosity-aware decoding', ar: 'استدلال موفّر للتوكنات · فك تشفير واعٍ بالإسهاب' } },
       { icon: '🌍', k: { en: 'Languages', ar: 'اللغات' },                                        v: { en: 'Arabic (native) · English (professional working)', ar: 'العربية (اللغة الأم) · الإنجليزية (احترافية)' } }
     ]

@@ -106,11 +106,20 @@
         ? `<img src="${esc(f.iconImg)}" alt="" class="facts__icon-img facts__icon-img--for-light" loading="lazy" />`
           + (f.iconImgDark ? `<img src="${esc(f.iconImgDark)}" alt="" class="facts__icon-img facts__icon-img--for-dark" loading="lazy" />` : '')
         : f.icon;
+      // A fact that carries a document (f.cert) opens it as a pop-up picture when
+      // its title — or its crest — is pressed; js/lightbox.js does the rest.
+      const c = f.cert;
+      const open = c
+        ? ` data-lightbox="${esc(c.img)}" data-lightbox-title="${esc(L(f.k))}" data-lightbox-alt="${esc(L(c.alt))}" data-lightbox-caption="${esc(L(c.caption))}"`
+        : '';
+      const title = c
+        ? `<button type="button" class="facts__open"${open} aria-haspopup="dialog" title="${esc(L(c.hint))}">${esc(L(f.k))}<svg class="facts__open-ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>`
+        : esc(L(f.k));
       return `
       <li>
-        <span class="facts__icon${f.iconImg ? ' facts__icon--logo' : ''}" aria-hidden="true">${iconHtml}</span>
+        <span class="facts__icon${f.iconImg ? ' facts__icon--logo' : ''}"${open} aria-hidden="true">${iconHtml}</span>
         <span>
-          <span class="facts__k">${esc(L(f.k))}</span>
+          <span class="facts__k">${title}</span>
           <span class="facts__v">${shown}</span>
         </span>
       </li>`;

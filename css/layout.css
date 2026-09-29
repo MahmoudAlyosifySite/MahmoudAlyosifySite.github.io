@@ -413,6 +413,25 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 :root:not([data-theme='light']) .facts__icon-img--for-dark { display: block; }
 :root:not([data-theme='light']) .facts__icon-img--for-light:not(:only-child) { display: none; }
 .facts__k { display: block; font-size: var(--fs-sm); font-weight: 600; line-height: 1.4; color: var(--ink); }
+/* A title that opens a document as a pop-up: same type, plus a gold dotted
+   underline and a small "enlarge" mark, so it reads as pressable. */
+.facts__open {
+  display: inline;
+  padding: 0;
+  font: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: start;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline dotted var(--gold);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.24em;
+  transition: text-decoration-color var(--t-fast), color var(--t-fast);
+}
+.facts__open:hover { text-decoration-style: solid; }
+.facts__open-ico { display: inline-block; margin-inline-start: 0.42em; vertical-align: -0.1em; color: var(--gold-ink); }
+.facts__icon[data-lightbox] { cursor: pointer; }
 .facts__v { display: block; margin-top: 3px; font-size: var(--fs-xs); line-height: 1.55; color: var(--ink-3); }
 .facts__v a {
   color: var(--ink-2);
@@ -1058,6 +1077,105 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
 .gal__thumb.is-on { opacity: 1; border: 2px solid var(--ink); }
 
 /* ══════════════════════════════════════════════════════════
+   POP-UP PICTURE — a document opens over the page, not in a new tab
+   (js/lightbox.js; a native <dialog>)
+   ══════════════════════════════════════════════════════════ */
+.lb {
+  --lb-gap: clamp(12px, 3vw, 40px);
+  width: min(1180px, calc(100vw - 2 * var(--lb-gap)));
+  max-width: none;
+  max-height: calc(100dvh - 2 * var(--lb-gap));
+  margin: auto;                 /* the site's reset zeroes it; a modal dialog is centred by its auto margins */
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  overflow: visible;
+}
+.lb::backdrop { background: var(--scrim, rgba(0, 0, 0, 0.82)); }
+.lb[open] { animation: lb-in 0.26s var(--ease) both; }
+@keyframes lb-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.lb__panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 2 * var(--lb-gap));
+  border-radius: var(--r);
+  background: var(--paper);
+  box-shadow: var(--shadow-over);
+  overflow: hidden;
+}
+.lb__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.lb__title { flex: 1; min-width: 0; margin-inline-end: var(--s-3); font-size: 1.25rem; line-height: 1.25; overflow-wrap: anywhere; }
+.lb__btn {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r);
+  border: 1px solid var(--rule-2);
+  color: var(--ink-2);
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.lb__btn:hover { color: var(--ink); border-color: var(--ink); }
+.lb__zoom[aria-pressed='true'] .lb__v { display: none; }
+.lb__stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: auto;
+  padding: var(--s-5);
+  background: var(--paper-2);
+  overscroll-behavior: contain;
+}
+/* margin:auto (not place-items) keeps every edge reachable once the picture is larger than the stage */
+.lb__img {
+  display: block;
+  flex: none;                   /* a flex item shrinks by default, which would undo the zoom */
+  margin: auto;
+  max-width: 100%;
+  max-height: min(72dvh, 860px);
+  width: auto;
+  height: auto;
+  object-fit: contain;          /* a certificate must be readable end to end — never cropped */
+  background: #fff;
+  box-shadow: var(--shadow-lift);
+  cursor: zoom-in;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.lb__img.is-ready { opacity: 1; }
+.lb__img.is-zoomed { max-width: none; max-height: none; width: max(1500px, 170%); cursor: zoom-out; }
+.lb__cap {
+  flex-shrink: 0;
+  padding: var(--s-3) var(--s-5) var(--s-4);
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.lb__cap[hidden] { display: none; }
+@media (max-width: 620px) {
+  .lb__bar { padding: var(--s-3) var(--s-4); }
+  .lb__title { font-size: 1.05rem; }
+  .lb__stage { padding: var(--s-3); }
+  .lb__img { max-height: 60dvh; }
+  .lb__img.is-zoomed { width: 190%; }
+  .lb__cap { padding-inline: var(--s-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb[open] { animation: none; }
+  .lb__img { transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════
    PHOTO GALLERY — a plate on a mat
    Two stacked layers crossfade, so a photo never flashes empty.
    ══════════════════════════════════════════════════════════ */
@@ -1383,6 +1501,8 @@ html[dir='rtl'] .foot__logo b { order: 2; justify-self: start; font-size: 0.92re
   font-size: var(--fs-xs);
   color: var(--ink-3);
 }
+/* The Arabic-page link is its own right-to-left box; keep it at the start of the column, not stretched. */
+.foot__meta > a[dir='rtl'] { justify-self: start; }
 .foot__built { display: grid; gap: 4px; max-width: 48ch; }
 .foot__built .footer-quote {
   display: block;
