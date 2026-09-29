@@ -460,56 +460,101 @@ const SITE = {
   recommendations: [
     {
       name: 'Rahatara Ferdousi, PhD',
-      avatar: 'img/Rahatara.png',
+      avatar: 'img/_web/avatars/rahatara.webp',
       role: { en: 'Applied AI · Mahmoud\'s Generative AI professor', ar: 'دكتوراه ذكاء اصطناعي تطبيقي · أستاذ الذكاء الاصطناعي التوليدي لمحمود' },
       text: {
-        en: 'I had the pleasure of teaching Mahmoud in Generative AI, and I highly recommend him for any opportunity in AI and technology. He was an active and highly engaged student who showed constant curiosity and initiative. His ability to connect theoretical ideas to practical implementation stood out throughout the course. He has a clear passion for learning and innovation, and I am confident he will continue to excel in any academic or professional setting.',
-        ar: 'كان لي شرف تدريس محمود في مساق الذكاء الاصطناعي التوليدي، وأوصي به بشدة لأي فرصة في مجال الذكاء الاصطناعي والتقنية. كان طالبًا نشطًا ومشاركًا للغاية، وأظهر فضولًا ومبادرة مستمرين. وتميزت قدرته على ربط الأفكار النظرية بالتنفيذ العملي طوال المساق. لديه شغف واضح بالتعلّم والابتكار، وأنا واثقة أنه سيواصل التفوق في أي بيئة أكاديمية أو مهنية.'
+        en: 'I had the pleasure of teaching Mahmoud in my Generative AI course, and I highly recommend him for any opportunity in the AI and technology space. Mahmoud was an exceptionally active and engaged student who consistently demonstrated strong curiosity and initiative. He not only kept up with rapidly evolving concepts in generative AI but also applied them thoughtfully in discussions and hands-on activities. His ability to connect theoretical ideas with practical implementation stood out throughout the course. What impressed me most was his willingness to explore beyond the basics. He actively contributed to discussions, asked insightful questions, and showed a clear passion for learning and innovation. Mahmoud is a dedicated learner with a growth mindset, and I am confident he will continue to excel in any academic or professional setting. I wish him all the best in his future endeavors.',
+        ar: 'كان لي شرف تدريس محمود في مساق الذكاء الاصطناعي التوليدي الذي أدرّسه، وأوصي به بشدة لأي فرصة في مجال الذكاء الاصطناعي والتقنية. كان محمود طالبًا نشطًا ومشاركًا بدرجة استثنائية، وأظهر باستمرار فضولًا ومبادرة قويين. لم يكتفِ بمواكبة المفاهيم المتسارعة التطور في الذكاء الاصطناعي التوليدي، بل طبّقها بعناية في النقاشات والأنشطة العملية. وتميّزت قدرته على ربط الأفكار النظرية بالتنفيذ العملي طوال المساق. وكان أكثر ما أثار إعجابي رغبته في استكشاف ما هو أبعد من الأساسيات؛ فقد أسهم بفاعلية في النقاشات، وطرح أسئلة ثاقبة، وأظهر شغفًا واضحًا بالتعلّم والابتكار. محمود متعلّم مجتهد يتحلّى بعقلية النمو، وأنا واثقة بأنه سيواصل التفوق في أي بيئة أكاديمية أو مهنية. أتمنى له كل التوفيق في مساعيه المستقبلية.'
       }
     },
     {
       name: 'Dr. Ibrahim Elsemman',
-      avatar: 'img/Dr_Ibrahim.jpg',
-      role: { en: 'Associate Professor, Information Systems — Assiut University', ar: 'أستاذ مساعد، نظم المعلومات — جامعة أسيوط' },
+      avatar: 'img/_web/avatars/dr-ibrahim.webp',
+      role: { en: 'Assistant Professor, Information Systems — Assiut University', ar: 'أستاذ مساعد، نظم المعلومات — جامعة أسيوط' },
       text: {
-        en: 'I know Mahmoud from many angles; he was among the best students in the Faculty of Computers and Information. He was outstanding — punctual to lectures, asked many important questions, and was innovative in his projects. He showed a remarkable ability to absorb new technologies quickly, and excellent time management while working smoothly with his peers.',
-        ar: 'أعرف محمود من زوايا عديدة؛ كان من أفضل الطلاب في كلية الحاسبات والمعلومات. كان طالبًا متميزًا، ملتزمًا بحضور المحاضرات في وقتها، وطرح كثيرًا من الأسئلة المهمة، وتميّز بالابتكار في مشاريعه. أظهر قدرة رائعة على استيعاب التقنيات الجديدة بسرعة، وإدارة ممتازة للوقت أثناء العمل بسلاسة مع زملائه.'
+        en: 'I know Mahmoud from many points of view; he was one of ideal College of Computers and Information students. During his undergraduate studies, he was a distinguished student and committed to attending all lectures on time and asking many important questions and is characterized by innovation in his own projects and has excellent presentation skills.\n\nAdditionally, he exhibited a remarkable ability to quickly grasp new techniques and concepts, which she expertly applied to his research projects. Moreover, he demonstrated impeccable time management skills and worked seamlessly with his team members.',
+        ar: 'أعرف محمود من زوايا عديدة؛ فقد كان من الطلاب النموذجيين في كلية الحاسبات والمعلومات. وخلال دراسته الجامعية كان طالبًا متميزًا، حريصًا على حضور جميع المحاضرات في مواعيدها وعلى طرح أسئلة مهمة كثيرة، ويتميّز بالابتكار في مشاريعه الخاصة، ويمتلك مهارات عرض ممتازة.\n\nكما أظهر قدرة لافتة على استيعاب التقنيات والمفاهيم الجديدة بسرعة، وقد طبّقها ببراعة في مشاريعه البحثية. وإضافةً إلى ذلك، أبدى مهارات إدارة وقت لا تشوبها شائبة، وعمل بسلاسة مع أعضاء فريقه.'
       }
     },
     {
       name: 'Dr. Islam Taj-Eddin',
-      avatar: 'img/Dr_Islam.jpg',
-      role: { en: 'Associate Professor, Information Technology — Assiut University', ar: 'أستاذ مساعد، تقنية المعلومات — جامعة أسيوط' },
+      avatar: 'img/_web/avatars/dr-islam.webp',
+      role: { en: 'Assistant Professor, Information Technology — Assiut University', ar: 'أستاذ مساعد، تقنية المعلومات — جامعة أسيوط' },
       text: {
-        en: 'Mahmoud demonstrated remarkable technical knowledge and a systematic approach to problem solving.',
-        ar: 'أظهر محمود معرفة تقنية رائعة وطريقة منهجية في معالجة المشكلات.'
+        en: 'Mahmoud showed a tremendous technical knowledge and systematic way of approaching problems.',
+        ar: 'أظهر محمود معرفة تقنية هائلة وأسلوبًا منهجيًا في التعامل مع المشكلات.'
       }
     },
     {
       name: 'Nada Essam',
-      avatar: 'img/Nada.png',
+      avatar: 'img/_web/avatars/nada.webp',
       role: { en: 'Teaching Assistant at E-JUST', ar: 'معيدة تدريس في E-JUST' },
       text: {
-        en: 'I highly recommend Mahmoud for any leadership position or future career path. He consistently showed strong leadership qualities, effective communication and clear goal-setting, and he motivated the whole team. His distinguished problem-solving skills and critical thinking were decisive in overcoming obstacles and delivering project success.',
-        ar: 'أوصي بمحمود بشدة لأي منصب قيادي أو مسار مهني مستقبلي. أظهر باستمرار صفات قيادية قوية وتواصلًا فعالًا وتحديدًا واضحًا للأهداف، وشجّع الفريق كله. وكانت مهاراته المتميزة في حل المشكلات وتفكيره النقدي عاملين حاسمين في تجاوز العقبات وتحقيق نجاح المشاريع.'
+        en: 'I wholeheartedly recommend Mahmoud for any future leadership positions or professional endeavors. Having had the privilege of working under his guidance as our team leader at Graduation Project Vitalism, throughout our time together, he consistently exhibited strong leadership qualities that inspired our entire team. He possesses a remarkable ability to effectively communicate his vision, sets clear goals, and motivates team members to achieve outstanding results. he isn\'t only knowledgeable in his field but also adepts at fostering a collaborative and positive work environment, one of the aspects I admire most about him is his remarkable problem-solving skills. In the face of challenges, he always seeking innovative solutions. His ability to think critically and make sound decisions has been instrumental in overcoming obstacles and achieving project success. Overall, I am confident that he will continue to excel in any leadership position he undertakes. His exceptional skills, dedication, and positive attitude makes him a true asset to any team or organization. I highly recommend him without hesitation and believe he will undoubtedly achieve great success in his future endeavors.',
+        ar: 'أوصي بمحمود من كل قلبي لأي منصب قيادي مستقبلي أو مسار مهني. فقد حظيت بشرف العمل تحت إرشاده بصفته قائد فريقنا في مشروع التخرج Vitalism، وطوال فترة عملنا معًا أظهر باستمرار صفات قيادية قوية ألهمت فريقنا بأكمله. يمتلك قدرة لافتة على إيصال رؤيته بفاعلية، ويضع أهدافًا واضحة، ويحفّز أعضاء الفريق على تحقيق نتائج متميزة. وهو لا يكتفي بأن يكون واسع المعرفة في مجاله، بل يجيد كذلك تهيئة بيئة عمل تعاونية وإيجابية؛ ومن أكثر ما أُعجب به فيه مهاراته اللافتة في حل المشكلات. ففي مواجهة التحديات كان يسعى دائمًا إلى حلول مبتكرة. وكانت قدرته على التفكير النقدي واتخاذ قرارات سليمة عاملًا حاسمًا في تجاوز العقبات وتحقيق نجاح المشروع. وإجمالًا، أنا واثقة بأنه سيواصل التفوق في أي منصب قيادي يتولاه. فمهاراته الاستثنائية وتفانيه وموقفه الإيجابي تجعله ثروة حقيقية لأي فريق أو مؤسسة. أوصي به دون تردد، وأعتقد أنه سيحقق بلا شك نجاحًا كبيرًا في مساعيه المستقبلية.'
       }
     },
     {
-      name: 'Mina Nashat',
-      avatar: 'img/Mina.jpg',
-      role: { en: 'Data & Analytics Engineer at Ejada | Python Developer', ar: 'مهندس بيانات وتحليلات في Ejada | مطوّر Python' },
+      name: 'Rahma Yasser',
+      avatar: 'img/_web/avatars/rahma.webp',
+      role: { en: 'Teaching Assistant, Faculty of Computers and Information — Assiut University', ar: 'معيدة في كلية الحاسبات والمعلومات — جامعة أسيوط' },
       text: {
-        en: 'I am glad to recommend Mahmoud. Over four years together in the Faculty of Computers and Information, I saw his relentless diligence and constant drive to develop skills using creative problem-solving methods. As a leader, his exceptional qualities shine in managing teams effectively and creating a positive working environment.',
-        ar: 'يسعدني أن أوصي بمحمود. خلال أربع سنوات قضيناها في كلية الحاسبات والمعلومات، لاحظت اجتهاده الدؤوب وسعيه المستمر لتطوير المهارات بأساليب إبداعية لحل المشكلات. وبصفته قائدًا، تتألق صفاته الاستثنائية في إدارة الفرق بفعالية وخلق بيئة عمل إيجابية.'
+        en: 'Mahmoud is very intelligent student and helpful person. he likes to learn new things and to work with a cooperative team. he is a good leader and a good instructor. he has the ability to help you to understand ambiguous lessons in the college material. I worked with him in 3 projects and it was a valuable experience to work with him.',
+        ar: 'محمود طالب ذكي جدًا وشخص متعاون. يحب تعلّم أشياء جديدة والعمل مع فريق متعاون. وهو قائد جيد ومُعلّم جيد، ويستطيع مساعدتك على فهم الدروس الغامضة في مواد الكلية. عملتُ معه في ثلاثة مشاريع، وكانت تجربة قيّمة أن أعمل معه.'
+      }
+    },
+    {
+      name: 'Al_Hassan Mohammed Kamel',
+      avatar: 'img/_web/avatars/al-hassan-m-kamel.webp',
+      role: { en: 'MSc Bioinformatics, Assiut University | Teaching Assistant, Faculty of Computers and Information', ar: 'ماجستير المعلوماتية الحيوية — جامعة أسيوط | معيد في كلية الحاسبات والمعلومات' },
+      text: {
+        en: 'Mahmoud is a hard worker person who try to address some regions that have less focus. He had participated in a lot of activities related to our field to enrich his knowledge more and more.',
+        ar: 'محمود شخص مجتهد يحاول تناول بعض المجالات التي تحظى باهتمام أقل. وقد شارك في كثير من الأنشطة المتعلقة بمجالنا ليثري معرفته أكثر فأكثر.'
       }
     },
     {
       name: 'Nourhan Ahmed',
-      avatar: 'img/Nourhan Ahmed.jpg',
+      avatar: 'img/_web/avatars/nourhan-ahmed.webp',
       role: { en: 'Teaching Assistant at GIU | Backend Developer', ar: 'معيدة تدريس في GIU | مطوّرة الواجهة الخلفية' },
       text: {
-        en: 'Mahmoud is outstanding in teamwork. He adds fresh, unique ideas to any team he joins. We took part in the Smart Cities Hackathon together and came first — down to his leadership and the understanding that sets the team apart.',
-        ar: 'محمود شخص متميز في العمل الجماعي. يضيف أفكارًا جديدة وفريدة لأي فريق يشارك فيه. شاركنا معًا في Smart Cities Hackathon وحققنا المركز الأول — وهذا يعود لقيادته وللفهم الذي يميّز الفريق.'
+        en: 'Mahmoud is a distinguished person in teamwork. He adds new and unique ideas to any team he participates in. The work was and he does not like to be limited to a certain field, as he likes to participate in all activities and put his mark on it. We participated in the Smart Cities Hackathon and got first place and this is due to his situation The understanding that characterizes the team. We decided to repeat this achievement again. We are now in the same graduation team, hoping to repeat a greater achievement this time. I wish him success in the future.',
+        ar: 'محمود شخص متميز في العمل الجماعي. يضيف أفكارًا جديدة وفريدة إلى أي فريق يشارك فيه. وهو لا يحب أن يكون محصورًا في مجال بعينه، إذ يحب المشاركة في جميع الأنشطة وترك بصمته فيها. شاركنا معًا في Smart Cities Hackathon وحصلنا على المركز الأول، وهذا يعود إلى قيادته وإلى الفهم الذي يميّز الفريق. وقد قررنا تكرار هذا الإنجاز مرة أخرى؛ ونحن الآن في فريق التخرج نفسه، ونأمل أن نحقق إنجازًا أكبر هذه المرة. أتمنى له النجاح في المستقبل.'
+      }
+    },
+    {
+      name: 'Mohammed Nasser',
+      avatar: 'img/_web/avatars/m-nasser.webp',
+      role: { en: 'Backend Developer', ar: 'مطوّر الواجهة الخلفية' },
+      text: {
+        en: 'Mahmoud is a very energetic person with creative thinking and the ability to find innovative solutions to many problems. He is also excellent at programming. Mahmoud is also one of the few who explains the lessons to his colleagues on his YouTube channel. He explains the lessons in a very nice way that does not make you bored while listening to the explanation as he explains in a very simplified manner and Mahmoud is also an excellent leader who has the ability to lead a team on very cool projects. efficiency and tries to guide them in every way so that the final product is in the most wonderful way.\n\nI am grateful and happy to know Mahmoud Sayed Youssef',
+        ar: 'محمود شخص نشيط جدًا يتمتع بتفكير إبداعي وقدرة على إيجاد حلول مبتكرة لكثير من المشكلات. كما أنه متميز في البرمجة. ومحمود أيضًا من القلائل الذين يشرحون الدروس لزملائهم على قناته في يوتيوب؛ فهو يشرحها بطريقة لطيفة جدًا لا تجعلك تشعر بالملل أثناء الاستماع، إذ يبسّط الشرح إلى حد كبير. وهو أيضًا قائد ممتاز لديه القدرة على قيادة فريق في مشاريع رائعة جدًا، بكفاءة، ويحاول توجيههم بكل السبل ليخرج المنتج النهائي على أروع صورة ممكنة.\n\nأنا ممتن وسعيد لمعرفتي بمحمود سيد يوسف.'
+      }
+    },
+    {
+      name: 'Doaa Sayed Ibrahim',
+      avatar: 'img/_web/avatars/doaa.webp',
+      role: { en: 'Teaching Assistant at New Assiut Technological University | Software Engineer | .NET Backend Developer', ar: 'معيدة في New Assiut Technological University | مهندسة برمجيات | مطوّرة الواجهة الخلفية بـ \u200e.NET' },
+      text: {
+        en: 'Mahmoud is a good person in teamwork and a very helpful person and he always had new and beautiful ideas. Working with him was of great value. It was adding moral value to each project.',
+        ar: 'محمود شخص جيد في العمل الجماعي ومتعاون جدًا، وكانت لديه دائمًا أفكار جديدة وجميلة. وكان العمل معه ذا قيمة كبيرة، إذ كان يضيف قيمة معنوية إلى كل مشروع.'
+      }
+    },
+    {
+      name: 'Mina Nashat',
+      avatar: 'img/_web/avatars/mina.webp',
+      role: { en: 'Data & Analytics Engineer at Ejada | Python & Django Developer | BI', ar: 'مهندس بيانات وتحليلات في Ejada | مطوّر Python وDjango | ذكاء الأعمال' },
+      text: {
+        en: 'I am pleased to provide a heartfelt recommendation for Mahmoud. Throughout our four years of close collaboration at the Faculty of Computers and Information, Assiut University, I have observed his unwavering diligence in his work and his consistent efforts to develop his skills and creative problem-solving methods. As a leader, Mahmoud\'s exceptional qualities shine through in his effective management and inspiration of his team, recognizing individual strengths and fostering a positive work environment. His unique perspective and analytical mindset enable him to swiftly address challenges and devise simple yet effective solutions to complex technical problems. Mahmoud\'s dedication to personal and professional growth is evident as he actively seeks opportunities to enhance his knowledge and embrace new technologies. Moreover, his positive and supportive demeanor creates an enjoyable work atmosphere where everyone feels valued and motivated to excel. I have learned significantly from Mahmoud\'s leadership and problem-solving approach, and I highly recommend him for any leadership position, particularly within the software industry. During our collaboration on the graduation project, Vitalism, of which he was the leader, Mahmoud demonstrated his relentless commitment to producing the project with utmost accuracy and creativity. His diligence and determination in finding innovative solutions to the challenges we encountered made him a truly outstanding leader.',
+        ar: 'يسعدني أن أقدّم توصية صادقة بمحمود. خلال أربع سنوات من التعاون الوثيق في كلية الحاسبات والمعلومات بجامعة أسيوط، لاحظتُ اجتهاده الدؤوب في عمله وسعيه المستمر إلى تطوير مهاراته وأساليبه الإبداعية في حل المشكلات. وبصفته قائدًا، تتجلّى صفات محمود الاستثنائية في إدارته الفعّالة لفريقه وإلهامه له، وفي إدراكه لنقاط القوة الفردية وتعزيزه بيئة عمل إيجابية. ويمكّنه منظوره الفريد وعقليته التحليلية من مواجهة التحديات بسرعة وابتكار حلول بسيطة وفعّالة للمشكلات التقنية المعقدة. ويتضح تفانيه في النمو الشخصي والمهني من خلال سعيه الفاعل إلى فرص تعزز معرفته وتبنّيه للتقنيات الجديدة. وعلاوة على ذلك، فإن أسلوبه الإيجابي الداعم يخلق أجواء عمل ممتعة يشعر فيها الجميع بالتقدير والدافعية للتفوق. لقد تعلمتُ الكثير من قيادة محمود ومنهجه في حل المشكلات، وأوصي به بشدة لأي منصب قيادي، ولا سيما في قطاع البرمجيات. وخلال تعاوننا في مشروع التخرج Vitalism الذي كان قائده، أظهر محمود التزامًا لا يلين بإنجاز المشروع بأعلى قدر من الدقة والإبداع. وقد جعله اجتهاده وعزيمته في إيجاد حلول مبتكرة للتحديات التي واجهناها قائدًا متميزًا حقًا.'
+      }
+    },
+    {
+      name: 'Moataz Noaman',
+      avatar: 'img/_web/avatars/moataz.webp',
+      role: { en: 'Freelancer | Native Android Developer | Open Source at iTi', ar: 'مطوّر مستقل | مطوّر Android (Native) | المصدر المفتوح في iTi' },
+      text: {
+        en: 'I know Mahmoud very well as we are colleagues in the same college, he was a helpful student and a wonderful colleague throughout our college days as he did many courses on his YouTube channel explaining a lot of scientific topics to us, in addition he was an excellent leader in all college projects where he was Manages team tasks, monitors team progress and checks end results.',
+        ar: 'أعرف محمود جيدًا فنحن زملاء في الكلية نفسها؛ كان طالبًا متعاونًا وزميلًا رائعًا طوال أيام دراستنا، إذ قدّم كثيرًا من الدورات على قناته في يوتيوب يشرح لنا فيها الكثير من الموضوعات العلمية. كما كان قائدًا ممتازًا في جميع مشاريع الكلية، حيث كان يدير مهام الفريق، ويتابع تقدمه، ويراجع النتائج النهائية.'
       }
     }
   ],

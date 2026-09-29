@@ -42,7 +42,7 @@ async function isStale(src, dest) {
   return a.mtimeMs > b.mtimeMs;
 }
 
-async function derive(src, dest, max, quality) {
+async function derive(src, dest, max, quality, { square = false } = {}) {
   await fs.mkdir(path.dirname(dest), { recursive: true });
 
   const srcSize = (await fs.stat(src)).size;
@@ -56,7 +56,9 @@ async function derive(src, dest, max, quality) {
 
   await sharp(src, { failOn: 'none' })
     .rotate()                       // honour EXIF orientation
-    .resize({ width: max, height: max, fit: 'inside', withoutEnlargement: true })
+    .resize(square
+      ? { width: max, height: max, fit: 'cover', position: 'centre' }      // a thumbnail: the same crop the page makes
+      : { width: max, height: max, fit: 'inside', withoutEnlargement: true })
     .webp({ quality, effort: 5 })
     .toFile(dest);
 
@@ -103,6 +105,16 @@ async function run() {
   if (existsSync(mascot)) {
     console.log('Mascot        — 1 image');
     await derive(mascot, path.join(ROOT, 'img', '_web', 'mahmoud-bot.webp'), 600, 86);
+  }
+
+  /* ── People who wrote a recommendation — shown at 40px ─── */
+  const people = ['Rahatara.png', 'Dr_Ibrahim.jpg', 'Dr_Islam.jpg', 'Nada.png', 'Mina.jpg', 'Nourhan Ahmed.jpg',
+    'Rahma.jpg', 'Al_Hassan.M. Kamel.jpg', 'M_Nasser.jpg', 'Doaa.jpg', 'Moataz.jpg'];
+  const slug = (f) => f.toLowerCase().replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  console.log(`Recommenders  — ${people.length} photo(s)`);
+  for (const f of people) {
+    const src = path.join(ROOT, 'img', f);
+    if (existsSync(src)) await derive(src, path.join(ROOT, 'img', '_web', 'avatars', `${slug(f)}.webp`), 96, 82, { square: true });
   }
 
   /* ── Certificates (images only; PDFs pass through) ─────── */

@@ -224,10 +224,12 @@
   }
 
   function renderRecs() {
+    // A recommendation is shown whole, as its author wrote it. A blank line in
+    // the text is a paragraph break.
     $('#recs-grid').innerHTML = SITE.recommendations.map((r) => `
       <blockquote class="rec" data-reveal>
         <p class="rec__mark" aria-hidden="true">&ldquo;</p>
-        <p class="rec__text">${esc(L(r.text))}</p>
+        <div class="rec__text">${esc(L(r.text)).split(/\n{2,}/).map((p) => `<p>${p}</p>`).join('')}</div>
         <footer class="rec__who">
           <img class="rec__avatar" src="${esc(r.avatar)}" alt="${esc(r.name)}" loading="lazy" width="40" height="40" />
           <span>
