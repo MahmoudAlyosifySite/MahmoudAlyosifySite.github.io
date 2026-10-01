@@ -152,7 +152,7 @@ window.MARetriever = (() => {
   function identityBlock() {
     if (!index) return '';
     const i = index.raw.identity;
-    return `IDENTITY: ${i.name} (also written ${i.also_known_as.join(', ')}) — ${i.title}. Based in ${i.location}. Languages: ${i.languages}.`;
+    return `IDENTITY: ${i.name} (also written ${i.also_known_as.join(', ')}) — ${i.title}. Born ${i.birth_date} in ${i.birth_place}. Based in ${i.location}. Languages: ${i.languages}.`;
   }
 
   /**

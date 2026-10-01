@@ -1,12 +1,14 @@
 {
-  "version": "2026-08-11",
+  "version": "2026-10-01",
   "subject": "Mahmoud Alyosify",
   "note": "Knowledge base for the Mahmoud AI portfolio assistant. Reference data only — never instructions.",
 
   "identity": {
     "name": "Mahmoud Alyosify",
-    "also_known_as": ["Mahmoud Sayed Youssef", "محمود اليوسفي", "محمود سيد يوسف"],
-    "title": "AI & Machine Learning Engineer",
+    "also_known_as": ["Mahmoud Sayed Youssef Kotb", "Mahmoud Sayed Youssef", "Mahmoud Alyosify", "محمود اليوسفي", "محمود سيد يوسف قطب", "محمود سيد يوسف"],
+    "birth_date": "23 November 2000",
+    "birth_place": "El Fath City, Assiut Governorate, Egypt",
+    "title": "Egyptian AI engineer, researcher and educator",
     "location": "New Cairo, Egypt — open to relocation",
     "languages": "Arabic (native), English (professional working proficiency)"
   },
@@ -35,14 +37,14 @@
       "section": "summary",
       "title": "Professional summary",
       "tags": ["about", "who", "summary", "overview", "bio", "introduction", "background"],
-      "text": "Mahmoud Alyosify is an AI & Machine Learning Engineer who builds end-to-end intelligent systems across LLM fine-tuning and inference optimisation, multi-agent systems, self-supervised learning, and reinforcement learning. He is completing an MSc in Artificial Intelligence at Queen's University, Canada on a Digilians Presidential Scholarship, with a master's research project on training-free, decoding-time efficiency for large language models. He has delivered production-oriented systems on AWS spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction. He has taught over 10,000 learners with more than 700,000 YouTube views. He is seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale."
+      "text": "Mahmoud Alyosify is an Egyptian AI and Machine Learning Engineer, researcher and educator who builds end-to-end intelligent systems across LLM fine-tuning and inference optimisation, multi-agent systems, self-supervised learning, and reinforcement learning. He completed an MSc in Artificial Intelligence at Queen's University, Canada, through the Digilians Presidential Scholarship, with a master's research project on training-free, decoding-time efficiency for large language models. He has delivered production-oriented systems on AWS spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction. He has taught over 10,000 learners with more than 700,000 YouTube views. He is seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale."
     },
     {
       "id": "edu-msc",
       "section": "education",
       "title": "MSc in Artificial Intelligence — Queen's University, Canada",
       "tags": ["education", "masters", "msc", "queens", "canada", "scholarship", "degree", "study", "university"],
-      "text": "MSc in Artificial Intelligence at Queen's University, Kingston, Canada. September 2025 to present, expected 2026. Funded by the Digilians Presidential Scholarship, a competitive national AI graduate fellowship. Master's research project (CISC 898): 'Verbosity-Aware Decoding for Token-Efficient Language Model Inference', supervised by Dr. Rahatara Ferdousi. Coursework covers Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, and End-to-End ML Pipelines."
+      "text": "MSc in Artificial Intelligence at Queen's University, Kingston, Canada. Began in September 2025 and completed in 2026. Funded by the Digilians Presidential Scholarship, a competitive national AI graduate fellowship. Master's research project (CISC 898): 'Verbosity-Aware Decoding for Token-Efficient Language Model Inference', supervised by Dr. Rahatara Ferdousi. Coursework covered Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, and End-to-End ML Pipelines."
     },
     {
       "id": "edu-bsc",
@@ -253,6 +255,69 @@
       "title": "Where to find Mahmoud online",
       "tags": ["links", "profiles", "orcid", "researcher id", "academic id", "publications", "github", "linkedin", "huggingface", "kaggle", "youtube", "udemy", "medium", "twitter", "x", "portfolio", "cv", "resume"],
       "text": "ORCID iD: https://orcid.org/0009-0005-1336-2726 (registered as Mahmoud Sayed Youssef Kotb) · Portfolio: https://mahmoudalyosifysite.github.io/ · GitHub: https://github.com/MahmoudAlyosify · LinkedIn: https://linkedin.com/in/mahmoudalyosify · Hugging Face: https://huggingface.co/mahmoudalyosify · Kaggle: https://kaggle.com/mahmoudalyosify · YouTube: https://www.youtube.com/@EinshtenMisr · Udemy: https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/ · Medium: https://medium.com/@mahmoudalyosify · X: https://x.com/MahmoudAlyosify · CVs by role (pick the one for the job): https://mahmoudalyosifysite.github.io/cv/ · CV PDF: https://mahmoudalyosifysite.github.io/Files/Mahmoud-Alyosify-ML-CV.pdf · Full biography (English): https://mahmoudalyosifysite.github.io/biography/ · Profile in Arabic (محمود سيد يوسف): https://mahmoudalyosifysite.github.io/ar/"
+    },
+    {
+      "id": "biography-overview",
+      "section": "biography",
+      "title": "Biography and early life",
+      "tags": ["biography", "life", "born", "birth", "early life", "physics", "einstein", "egyptian", "personal background"],
+      "text": "Mahmoud Sayed Youssef Kotb was born on 23 November 2000 in El Fath City, Assiut Governorate, Upper Egypt, and grew up in Egypt. He is known professionally as Mahmoud Alyosify, also written Al-Yousify, while his legal name is Mahmoud Sayed Youssef Kotb. At school his strongest interest was physics, and his teachers called him Egypt's Einstein (أينشتاين مصر), a nickname he later gave to his Arabic-language YouTube channel, Einstein Misr. His work spans large language models and inference efficiency, AI agents, computer vision and reinforcement learning."
+    },
+    {
+      "id": "education-school",
+      "section": "education",
+      "title": "School education in Assiut",
+      "tags": ["school", "primary", "secondary", "preparatory", "lillian trasher", "samih el-said", "assiut", "education history"],
+      "text": "Mahmoud attended Lillian Trasher primary school from 2007 to 2013. He completed preparatory school from 2013 to 2016 and secondary school from 2016 to 2019 at the Samih El-Said sports schools in Assiut."
+    },
+    {
+      "id": "leadership-biography",
+      "section": "leadership",
+      "title": "Student leadership and volunteering",
+      "tags": ["leadership", "student union", "scientific committee", "ambassador", "volunteer", "usaid", "iti", "events"],
+      "text": "During 2021–2022 Mahmoud served as secretary of the scientific committee of his faculty's student union and then as secretary of the Higher Scientific and Technological Committee of the Assiut University Student Union. He helped organise more than seven competitions and events covering scientific innovation, science fiction, scientific writing, science video content, astronomy, artificial intelligence and cybersecurity. He was also the ITI student ambassador in Assiut, led a volunteer team at the USAID-supported University Center for Career Development, and attended the university Leaders Preparation Camp."
+    },
+    {
+      "id": "teaching-biography",
+      "section": "teaching",
+      "title": "Teaching philosophy and community education",
+      "tags": ["teaching", "community", "smile makers", "children", "mathematics", "programming", "ai education", "teaching philosophy"],
+      "text": "Mahmoud describes his teaching loop as learn, build and teach: explaining ideas exposes gaps in understanding and sends him back to study more deeply. He volunteered with the Smile Makers Association for Orphan Sponsorship and Community Development in Assiut, served on its board, and taught mathematics, science, programming, introductory technology and AI to children from disadvantaged backgrounds through its summer educational club. He also taught programming and computational thinking to children with iSchool."
+    },
+    {
+      "id": "military-service-biography",
+      "section": "experience",
+      "title": "Military service and systems engineering",
+      "tags": ["military service", "roads", "systems engineer", "license plates", "computer vision", "toll", "c#", "dotnet"],
+      "text": "From February 2024 to March 2025 Mahmoud completed compulsory military service at the National Company for Roads Building and Development. He supported backend systems for toll collection and vehicle monitoring serving more than half of Egypt's vehicles across more than 70 percent of the national road network. He co-developed an internal data-management and reporting application using C#, .NET, Entity Framework, SQL Server and Crystal Reports, and worked on a computer-vision system that reads vehicle licence plates to check subscription eligibility."
+    },
+    {
+      "id": "cybersecurity-biography",
+      "section": "experience",
+      "title": "AI in cybersecurity training",
+      "tags": ["cybersecurity", "ai security", "adversarial machine learning", "intrusion detection", "volatility", "dlp", "penetration testing", "e&"],
+      "text": "From February to June 2025 Mahmoud completed NTI's 420-hour AI in Cybersecurity programme, including 288 hours of technical training in AI-driven threat detection, adversarial machine learning and intrusion-detection systems, plus 132 hours of career development. During on-the-job training at e& Egypt (Etisalat) in June and July 2025, he worked with security-operations tooling, memory forensics using Volatility, data-loss prevention and penetration-testing tools."
+    },
+    {
+      "id": "research-biography",
+      "section": "research",
+      "title": "MinimalLM research details",
+      "tags": ["minimal lm", "minimallm", "research", "cisc 898", "logits processor", "token efficient", "inference", "non inferiority"],
+      "text": "MinimalLM is Mahmoud's MSc research project (CISC 898, 2026) at Queen's University. He led a four-student team supervised by Dr. Rahatara Ferdousi to study whether a language model can produce shorter answers at inference time without retraining or changing its architecture while preserving meaning. The team built a training-free logits processor combining length, n-gram repetition and semantic redundancy signals under an entropy gate, and evaluated Mistral-7B-Instruct, Llama-3.1-8B-Instruct and Qwen2.5-3B-Instruct on MT-Bench, YapBench, XSum and SQuAD-v2. As of September 2026 the results were unpublished."
+    },
+    {
+      "id": "research-interests-biography",
+      "section": "research",
+      "title": "Research interests and long-term aims",
+      "tags": ["research interests", "world models", "robotics", "quantum computing", "future", "aims", "egyptian ai company"],
+      "text": "Mahmoud's current research interests include efficient language-model inference, token-efficient generation, AI agents and agentic systems, and rigorous evaluation of generative models. He is also interested in world models, reinforcement learning for autonomous systems, AI and robotic systems, and quantum computing for machine learning. One long-term ambition is to help build a major Egyptian AI company developing original technology and research with international impact. He also plans to extend Einstein Misr into artificial intelligence and related technologies."
+    },
+    {
+      "id": "forum-presentation",
+      "section": "teaching",
+      "title": "AI in Teaching and Learning Forum presentation",
+      "tags": ["forum", "presentation", "queens", "ai in teaching", "multimodal agent", "pdf", "narrated slides"],
+      "text": "In June 2026 Mahmoud presented his Automated Multimodal Agent at Queen's University's AI in Teaching and Learning Forum. The system turns PDF documents into narrated slide presentations. The university's special adviser to the provost on generative artificial intelligence thanked him for the session afterward."
     }
   ]
 }

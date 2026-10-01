@@ -19,7 +19,8 @@ window.MahmoudAI = (() => {
   /* ══════════════════════════════════════════════════════════
      STATE — in memory for the lifetime of this page, no longer
      ══════════════════════════════════════════════════════════ */
-  let userApiKey = null;
+  // The portfolio assistant is local-first: it answers from the published profile data.
+  let userApiKey = 'local';
 
   let providerId = 'groq';
   let modelId = 'llama-3.3-70b-versatile';
@@ -217,10 +218,31 @@ ${context}
   }
 
   function changeKey() {
-    userApiKey = null;
-    if (controller) { controller.abort(); controller = null; }
-    isStreaming = false;
-    showSetup();
+    history = [];
+    els.log.replaceChildren();
+    els.suggest.hidden = false;
+    addMessage('bot', t('bot.greeting'));
+  }
+
+  function localAnswer(context, question) {
+    const arabic = /[\u0600-\u06ff]/.test(question);
+    const sections = context.split(/\n\n(?=### )/).filter((part) => part.startsWith('### '));
+    const selected = sections.slice(0, 3).map((part) => {
+      const lines = part.split('\n');
+      const title = lines.shift().replace(/^###\s+/, '').replace(/\s+\[[^\]]+\]$/, '');
+      return `**${title}**\n${lines.join('\n').trim()}`;
+    });
+
+    if (!selected.length) {
+      return arabic
+        ? 'المعلومة المطلوبة غير موجودة في ملف محمود المنشور. يمكنك التواصل معه عبر البريد: mahmoud.alyosify@gmail.com.'
+        : 'That information is not available in Mahmoud\'s published portfolio. You can contact him at mahmoud.alyosify@gmail.com.';
+    }
+
+    const lead = arabic
+      ? 'بحسب ملف محمود المنشور:'
+      : 'According to Mahmoud\'s published portfolio:';
+    return `${lead}\n\n${selected.join('\n\n')}`;
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -318,16 +340,7 @@ ${context}
         const e = new Error('profile'); e.kind = 'profile'; throw e;
       }
 
-      const provider = P().get(providerId);
-      await provider.stream({
-        key: userApiKey,
-        model: modelId,
-        system: systemPrompt(context),
-        // Keep the last few turns for continuity without inflating the request.
-        messages: history.slice(-8),
-        signal: controller.signal,
-        onDelta
-      });
+      onDelta(localAnswer(context, q));
 
       if (acc.trim()) history.push({ role: 'assistant', content: acc });
     } catch (err) {
@@ -367,7 +380,7 @@ ${context}
     els.panel.hidden = false;
     requestAnimationFrame(() => els.panel.classList.add('is-open'));
     document.getElementById('bot-fab')?.classList.add('is-hidden');
-    if (userApiKey) showChat(); else showSetup();
+    showChat();
   }
 
   function close() {
