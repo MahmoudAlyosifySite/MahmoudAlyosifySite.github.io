@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Gloock&family=Ysabeau+Office:ital,wght@0,400..700;1,400..600&family=Chivo+Mono:wght@400;500&family=Aref+Ruqaa:wght@700&display=swap" />
+    href="https://fonts.googleapis.com/css2?family=Gloock&family=Fraunces:ital,opsz,wght,WONK@1,9..144,600,0..1&family=Playfair+Display:ital,wght@1,600&family=Cormorant+Garamond:ital,wght@1,700&family=DM+Serif+Display:ital@1&family=Great+Vibes&family=Pinyon+Script&family=Ysabeau+Office:ital,wght@0,400..700;1,400..600&family=Chivo+Mono:wght@400;500&family=Aref+Ruqaa:wght@700&display=swap" />
   <style id="page-size">@page { size: A4 portrait; margin: 0; }</style>
   <style>
     /* ============================================================
@@ -37,6 +37,7 @@
       --pad: 7.6mm;     /* content inset                           */
       --emblem-w: 28mm;
       --emblem-r: 6mm;
+      --emblem-lift: 0.8mm; /* the emblem sits this far above centre */
 
       --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C9A55E' fill-opacity='.42'/%3E%3C/svg%3E");
       --marker-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M391 11C330 9.6 260 9 190 7.6S70 5 3 3.2L9 29.6C80 30.4 150 31.6 220 32.8S340 35.4 397.4 36.2Z' fill='%23C9A55E' fill-opacity='.42'/%3E%3C/svg%3E");
@@ -139,27 +140,39 @@
     [data-sig='off'] .sig { display: none; }
 
     /* Front ─────────────────────────────────────────────────── */
-    /* Name at the top, the thought at the foot, in the left column;
-       the emblem holds the right, centred on the card's height.     */
+    /* Name, role and thought as one block, the same gap between role
+       and thought on every card, the block centred on the emblem's
+       centre line — a short thought and a long one sit equally well. */
     .front__col {
       position: absolute;
       left: var(--pad);
       right: calc(var(--emblem-r) + var(--emblem-w) + 3mm);
-      top: 7.2mm;
-      bottom: 8.6mm;
+      top: 5.2mm;
+      bottom: calc(5.2mm + 2 * var(--emblem-lift));
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 4.4mm;
     }
+    /* The name in a display italic (or a script), chosen from the bar.
+       Each face is sized so the name runs about 43 mm, and every one
+       keeps the M and the A full-bodied — no hairline that print would
+       lose on black.                                                 */
+    [data-name='fraunces']  { --name-font: italic 600 15pt/1.05 'Fraunces', serif; --name-var: 'opsz' 72, 'WONK' 0; }
+    [data-name='playfair']  { --name-font: italic 600 15pt/1.05 'Playfair Display', serif; }
+    [data-name='cormorant'] { --name-font: italic 700 17pt/1 'Cormorant Garamond', serif; }
+    [data-name='dmserif']   { --name-font: italic 400 15.5pt/1.05 'DM Serif Display', serif; }
+    [data-name='vibes']     { --name-font: 400 19pt/1.1 'Great Vibes', cursive; --name-gap: 0.6mm; }
+    [data-name='pinyon']    { --name-font: 400 17pt/1.15 'Pinyon Script', cursive; --name-gap: 0.6mm; }
     .id__name {
-      margin: 0;
-      font: 400 14.5pt/1 var(--font-display);
-      letter-spacing: 0.004em;
+      margin: 0 0 var(--name-gap, 0);
+      font: var(--name-font);
+      font-variation-settings: var(--name-var, normal);
       color: var(--c-ink);
       white-space: nowrap;
     }
     .id__alias {
-      margin: 1.5mm 0 0;
+      margin: 2mm 0 0;
       font: 400 6.4pt/1.2 var(--font-body);
       letter-spacing: 0.035em;
       color: var(--c-ink-3);
@@ -182,7 +195,7 @@
     .emblem {
       position: absolute;
       right: var(--emblem-r);
-      top: calc(50% - 0.8mm);
+      top: calc(50% - var(--emblem-lift));
       width: var(--emblem-w);
       aspect-ratio: 351 / 314;
       transform: translateY(-50%);
@@ -417,6 +430,14 @@
       <button type="button" data-theme-set="ink">Ink</button>
       <button type="button" data-theme-set="paper">Paper</button>
     </div>
+    <select id="name-font" aria-label="Name font">
+      <option value="fraunces">Name · Fraunces Italic</option>
+      <option value="playfair">Name · Playfair Italic</option>
+      <option value="cormorant">Name · Cormorant Italic</option>
+      <option value="dmserif">Name · DM Serif Italic</option>
+      <option value="vibes">Name · Great Vibes (script)</option>
+      <option value="pinyon">Name · Pinyon (script)</option>
+    </select>
     <select id="size" aria-label="Card size">
       <option value="90x50">90 × 50 mm · Egypt</option>
       <option value="85x55">85 × 55 mm · Europe</option>
@@ -551,10 +572,12 @@
     const pad2 = n => String(n).padStart(2, '0');
 
     const SIG = ['back', 'front', 'both', 'off'];
-    const state = { theme: 'ink', size: '90x50', layout: 'sheet', sig: 'back', pick: 0 };
+    const NAME_FONTS = ['fraunces', 'playfair', 'cormorant', 'dmserif', 'vibes', 'pinyon'];
+    const state = { theme: 'ink', size: '90x50', layout: 'sheet', sig: 'back', name: 'fraunces', pick: 0 };
     try { Object.assign(state, JSON.parse(localStorage.getItem('card-state') || '{}')); } catch (e) {}
     if (!SIZES[state.size]) state.size = '90x50';
     if (!SIG.includes(state.sig)) state.sig = 'back';
+    if (!NAME_FONTS.includes(state.name)) state.name = 'fraunces';
     if (!(state.pick >= 0 && state.pick < THOUGHTS.length)) state.pick = 0;
 
     function front(i) {
@@ -617,6 +640,7 @@
       root.dataset.theme = state.theme;
       root.dataset.layout = state.layout;
       root.dataset.sig = state.sig;
+      root.dataset.name = state.name;
       root.style.setProperty('--w', w + 'mm');
       root.style.setProperty('--h', h + 'mm');
 
@@ -646,6 +670,7 @@
       $$('[data-sig-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sigSet === state.sig));
       $$('#picker button').forEach((b, i) => b.setAttribute('aria-pressed', i === state.pick));
       $('#size').value = state.size;
+      $('#name-font').value = state.name;
       $('#out-h').textContent = state.layout === 'sheet'
         ? 'The PDF · two A4 pages'
         : `The PDF · ${THOUGHTS.length + 1} pages: ${THOUGHTS.length} fronts, one back`;
@@ -681,6 +706,7 @@
     $$('[data-layout-set]').forEach(b => b.addEventListener('click', () => { state.layout = b.dataset.layoutSet; render(); }));
     $$('[data-sig-set]').forEach(b => b.addEventListener('click', () => { state.sig = b.dataset.sigSet; render(); }));
     $('#size').addEventListener('change', e => { state.size = e.target.value; render(); });
+    $('#name-font').addEventListener('change', e => { state.name = e.target.value; render(); });
     addEventListener('resize', fit);
 
     // Print only once the fonts and the emblem are in, under a file name
