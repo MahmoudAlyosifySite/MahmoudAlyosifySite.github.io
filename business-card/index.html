@@ -65,7 +65,13 @@
     [data-theme='ink'] {
       --c-bg: #0B0B0C;  --c-ink: #EEEAE2;  --c-ink-2: #C2BEB6;  --c-ink-3: #8F8B84;
       --c-gold: #C9A55E; --c-gold-ink: #D6B676; --c-rule: #393733;
-      --c-qr: var(--c-gold);
+      --c-qr: var(--c-bg);          /* the modules: the card's own black */
+      /* The QR's gold plate: dark at the top-left corner, a bright band
+         across the middle, dark again at the bottom-right — the tones
+         measured along the diagonal of the reference plate.           */
+      --qr-foil: linear-gradient(135deg,
+        #836F43 0%, #957743 9%, #A88952 18%, #C1A762 27%, #D3C193 36%, #DAC492 45%,
+        #D9BE79 55%, #BBAA79 64%, #AC8F4F 73%, #9A7C42 82%, #8A6B33 100%);
       --emblem: url(emblem-ink.png);
       --foil-1: #F2DFA8; --foil-2: #D2AE62; --foil-3: #A9843F; --foil-4: #E2C27E; --foil-5: #C49A4E;
       --sig-o: 0.13;
@@ -73,7 +79,12 @@
     [data-theme='paper'] {
       --c-bg: #F4F2ED;  --c-ink: #0B0B0C;  --c-ink-2: #2F2D2A;  --c-ink-3: #67635C;
       --c-gold: #B08A45; --c-gold-ink: #7E5F28; --c-rule: #D3CDC1;
-      --c-qr: var(--c-gold-ink);   /* the deeper gold: the light gold is only 2.9:1 on paper, too faint for a scanner */
+      --c-qr: var(--c-ink);         /* on paper the card is light, so the modules are its ink — dark on gold, as a scanner expects */
+      /* The same plate, lifted: beside light paper a darker gold reads to
+         a scanner as part of the code's dark, and the deeper tones failed
+         jsQR and ZBar. This one reads in all three.                   */
+      --qr-foil: linear-gradient(135deg,
+        #CDB174 0%, #D8C48D 20%, #E4D5AA 40%, #ECDFBC 50%, #E2D0A0 62%, #D6C185 80%, #C9AD6B 100%);
       --emblem: url(emblem-paper.png);
       --foil-1: #B8914A; --foil-2: #8E6C30; --foil-3: #6E521F; --foil-4: #A07A35; --foil-5: #7E5F28;
       --sig-o: 0.16;
@@ -324,19 +335,18 @@
       transform: translateY(-46%);
       text-align: center;
     }
-    /* The code is drawn on the card itself — no plate, no frame: gold
-       modules on the card's own colour, and the card around it is the
-       quiet zone (3 modules of it inside the box, 10 more to the line). */
+    /* A plate of gold foil, the modules cut out of it in the card's own
+       colour — the plate is the quiet zone (3 modules inside the box). */
     .scan__plate {
       display: block;
       width: 23mm;
       height: 23mm;
       padding: 0;
+      border-radius: 0.8mm;
+      background: var(--qr-foil);
       color: var(--c-qr);
     }
     .scan__plate svg { display: block; width: 100%; height: 100%; }
-    [data-theme='ink'] .qr-emblem--paper,
-    [data-theme='paper'] .qr-emblem--ink { display: none; }
     .scan__cap {
       margin: 2.1mm -2mm 0;
       font: 500 4.5pt/1 var(--font-mono);
@@ -624,8 +634,8 @@
           <span class="scan__plate">
             <svg viewBox="-3 -3 43 43" shape-rendering="crispEdges" role="img" aria-label="QR code: mahmoudalyosifysite.github.io">
               <use href="#qr-modules" />
-              <image class="qr-emblem--ink" href="emblem-ink.png" x="14.85" y="15.05" width="7.3" height="6.53" shape-rendering="geometricPrecision" />
-              <image class="qr-emblem--paper" href="emblem-paper.png" x="14.85" y="15.05" width="7.3" height="6.53" shape-rendering="geometricPrecision" />
+              <rect x="14.35" y="14.35" width="8.3" height="8.3" rx="1.1" fill="currentColor" shape-rendering="geometricPrecision" />
+              <image href="emblem-ink.png" x="14.85" y="15.05" width="7.3" height="6.53" />
             </svg>
           </span>
           <p class="scan__cap">Scan to explore</p>
@@ -645,10 +655,10 @@
   </template>
 
   <!-- QR: https://mahmoudalyosifysite.github.io/ — version 5, error
-       correction H (30%), with a 9-module hole (nothing is drawn there)
-       for the emblem. Modules take the colour of the box they sit in
-       (currentColor → --c-qr). Rows overlap by 4% of a module so no
-       hairline shows between them. -->
+       correction H (30%), with a 9-module hole (no modules there) for
+       the emblem, which sits on a block cut in the same colour as the
+       modules (currentColor → --c-qr). Rows overlap by 4% of a module
+       so no hairline shows between them. -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <!-- "Mahmoud Alyosify" in Alyosify Brush (filled outlines; the M traced). -->
