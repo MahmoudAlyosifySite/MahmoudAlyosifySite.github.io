@@ -121,6 +121,44 @@
     .edge--foot .edge__label { transform: translateY(calc(50% - var(--lw) / 2 - 0.12mm)); }
     .edge--head .edge__label { transform: translateY(calc(-50% + var(--lw) / 2 - 0.12mm)); }
 
+    /* On the front the line runs as a path through a network: two neurons
+       on it, and a short synapse branching off the second, ending in a
+       small via. All kept in the margin and the open space under the
+       emblem, clear of every card's text.                             */
+    .edge__node {
+      position: absolute;
+      width: 1.1mm;
+      height: 1.1mm;
+      border-radius: 50%;
+      background: var(--c-gold);
+      transform: translate(-50%, -50%);
+    }
+    .edge__node--a { left: calc(var(--lw) / 2); top: 46%; }
+    .edge__node--b { left: 42.4mm; top: calc(100% - var(--lw) / 2); }
+    .edge__branch {
+      position: absolute;
+      left: 42.4mm;
+      top: calc(100% - var(--lw) / 2);
+      width: 3mm;
+      height: var(--lw);
+      margin-top: calc(var(--lw) / -2);
+      background: var(--c-gold);
+      transform-origin: 0 50%;
+      transform: rotate(-45deg);
+    }
+    .edge__branch::after {
+      content: '';
+      position: absolute;
+      right: -0.65mm;
+      top: 50%;
+      width: 1.3mm;
+      height: 1.3mm;
+      margin-top: -0.65mm;
+      border: var(--lw) solid var(--c-gold);
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--c-gold) 0 0.24mm, var(--c-bg) 0.26mm);
+    }
+
     /* The signature, as a watermark: gold, faint, under everything.
        On the back it signs the card — it sweeps under the contacts and
        runs off the right edge; on the front it crosses the whole card,
@@ -509,7 +547,7 @@
     <article class="card card--front">
       <div class="card__trim">
         <svg class="sig" aria-hidden="true"><use href="#signature" /></svg>
-        <div class="edge edge--foot"><span class="edge__line"></span><span class="edge__label">I build intelligence</span></div>
+        <div class="edge edge--foot"><span class="edge__line"></span><span class="edge__label">I build intelligence</span><span class="edge__node edge__node--a"></span><span class="edge__node edge__node--b"></span><span class="edge__branch"></span></div>
         <div class="front__col">
         <header class="id">
           <svg class="id__mark" role="img" aria-label="Mahmoud Alyosify"><use href="#wordmark" /></svg>
