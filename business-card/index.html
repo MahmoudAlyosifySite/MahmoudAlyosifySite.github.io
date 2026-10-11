@@ -399,8 +399,13 @@
       overflow: hidden;
       background: #FFFFFF;
     }
-    .sheet__grid { position: absolute; display: grid; grid-template-columns: repeat(2, auto); background: var(--c-bg); }
-    .sheet__marks { position: absolute; inset: 0; width: 210mm; height: 297mm; }
+    /* The print shop's sheet: 33 × 48.7 cm. A hair under the page, as the A4. */
+    .sheet--press { width: 330mm; height: 486.6mm; }
+    .sheet__grid { position: absolute; display: grid; background: var(--c-bg); }
+    .sheet__marks { position: absolute; inset: 0; }
+    /* A card set on its side: the cell is the card turned a quarter. */
+    .sheet__cell { position: relative; }
+    .sheet__cell > .card { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
     .sheet__note {
       position: absolute;
       left: 0; right: 0;
@@ -488,7 +493,10 @@
       .sheets figure, .singles figure { margin: 0; }
       .sheets .sheet, .singles .single { zoom: var(--sheet-zoom, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,.5), 0 30px 70px rgba(0,0,0,.6); }
       .singles .single { zoom: var(--single-zoom, 1.4); }
-      [data-layout='sheet'] .singles, [data-layout='single'] .sheets { display: none; }
+      .sheets .sheet--press { zoom: var(--press-zoom, 0.4); }
+      [data-layout='sheet'] .singles, [data-layout='sheet'] #press,
+      [data-layout='single'] .sheets,
+      [data-layout='press'] #sheets, [data-layout='press'] .singles { display: none; }
       .section-h { margin: 0; padding: 26px 24px 0; text-align: center; font: 400 1.5rem/1.2 var(--font-display); }
     }
 
@@ -538,7 +546,9 @@
     @media print {
       .bar, .hint, .stage, .section-h, .sheets__label { display: none !important; }
       .sheets figure, .singles figure { margin: 0; }
-      [data-layout='sheet'] .singles, [data-layout='single'] .sheets { display: none !important; }
+      [data-layout='sheet'] .singles, [data-layout='sheet'] #press,
+      [data-layout='single'] .sheets,
+      [data-layout='press'] #sheets, [data-layout='press'] .singles { display: none !important; }
     }
   </style>
 </head>
@@ -577,6 +587,7 @@
     <div class="seg" role="group" aria-label="PDF layout">
       <button type="button" data-layout-set="sheet">A4 · 10 per sheet</button>
       <button type="button" data-layout-set="single">Print shop · one per page</button>
+      <button type="button" data-layout-set="press">Press · 33 × 48.7 cm</button>
     </div>
     <button type="button" class="btn btn--primary" id="download">Download PDF</button>
   </header>
@@ -599,6 +610,10 @@
   <section class="sheets" id="sheets">
     <figure><div class="sheet" id="sheet-front"></div><figcaption class="sheets__label">Page 1 · Fronts</figcaption></figure>
     <figure><div class="sheet" id="sheet-back"></div><figcaption class="sheets__label">Page 2 · Backs</figcaption></figure>
+  </section>
+  <section class="sheets" id="press">
+    <figure><div class="sheet sheet--press" id="press-front"></div><figcaption class="sheets__label">Page 1 · Fronts</figcaption></figure>
+    <figure><div class="sheet sheet--press" id="press-back"></div><figcaption class="sheets__label">Page 2 · Backs</figcaption></figure>
   </section>
   <section class="singles" id="singles"></section>
 
@@ -703,6 +718,7 @@
     const SIZES = { '90x50': [90, 50], '85x55': [85, 55], '88.9x50.8': [88.9, 50.8] };
     const BLEED = 3;          // mm, matches --b
     const A4 = [210, 297];
+    const PRESS = [330, 487];  // the print shop's sheet, 33 × 48.7 cm
     const MM = 96 / 25.4;     // CSS px per mm
 
     const $ = (s, r = document) => r.querySelector(s);
@@ -720,6 +736,7 @@
     if (EMBED) state.theme = root.dataset.theme;
     else try { Object.assign(state, JSON.parse(localStorage.getItem('card-state-v2') || '{}')); } catch (e) {}
     if (!SIZES[state.size]) state.size = '90x50';
+    if (!['sheet', 'single', 'press'].includes(state.layout)) state.layout = 'sheet';
     if (!SIG.includes(state.sig)) state.sig = 'back';
     if (!NAME_FONTS.includes(state.name)) state.name = 'script';
     if (!NAME_COLOURS.includes(state.ncol)) state.ncol = 'initials';
@@ -739,16 +756,26 @@
     }
     const back = () => $('#tpl-back').content.firstElementChild.cloneNode(true);
 
-    // Ten cards to a sheet, edge to edge: neighbours share a cut line,
+    // Ten cards to an A4 sheet, edge to edge: neighbours share a cut line,
     // so one cut frees two cards. The bleed runs round the outside only.
     const COLS = 2, ROWS = 5;
 
+    // The press sheet is laid out the same way, on as many cards as fit —
+    // with the cards set on their side if that fits more. 16 mm stay clear
+    // all round for the crop marks.
+    function pressPlan(w, h) {
+      const fits = (cw, ch) => [Math.floor((PRESS[0] - 16) / cw), Math.floor((PRESS[1] - 16) / ch)];
+      const [c0, r0] = fits(w, h), [c1, r1] = fits(h, w);
+      return c1 * r1 > c0 * r0 ? { cols: c1, rows: r1, turn: true } : { cols: c0, rows: r0, turn: false };
+    }
+
     // Crop marks in the page margin, one per cut line, clear of the bleed.
-    function marks(x0, y0, w, h) {
-      const xs = Array.from({ length: COLS + 1 }, (_, c) => x0 + c * w);
-      const ys = Array.from({ length: ROWS + 1 }, (_, r) => y0 + r * h);
-      const x1 = x0 + COLS * w, y1 = y0 + ROWS * h, off = BLEED + 1.5;
-      const len = (room) => Math.max(2, Math.min(6, room - off - 2));
+    // `clear` is how far from the paper's edge they stop.
+    function marks(page, x0, y0, cw, ch, cols, rows, clear) {
+      const xs = Array.from({ length: cols + 1 }, (_, c) => x0 + c * cw);
+      const ys = Array.from({ length: rows + 1 }, (_, r) => y0 + r * ch);
+      const x1 = x0 + cols * cw, y1 = y0 + rows * ch, off = BLEED + 1.5;
+      const len = (room) => Math.max(2, Math.min(6, room - off - clear));
       let d = '';
       for (const x of xs) {
         const l = len(y0);
@@ -758,24 +785,43 @@
         const l = len(x0);
         d += `M${x0 - off} ${y}h${-l}M${x1 + off} ${y}h${l}`;
       }
-      return `<svg class="sheet__marks" viewBox="0 0 ${A4[0]} ${A4[1]}" aria-hidden="true"><path d="${d}" stroke="#000" stroke-width="0.12" fill="none"/></svg>`;
+      return `<svg class="sheet__marks" width="${page[0]}mm" height="${page[1]}mm" viewBox="0 0 ${page[0]} ${page[1]}" aria-hidden="true"><path d="${d}" stroke="#000" stroke-width="0.12" fill="none"/></svg>`;
     }
 
-    function sheet(el, cards, side, w, h) {
-      const x0 = (A4[0] - COLS * w) / 2, y0 = (A4[1] - ROWS * h) / 2;
+    // A card (w × h) set on its side: a cell h wide and w tall, the card
+    // turned a quarter about its top-left corner into it — clockwise (its
+    // top to the right) for +1, anticlockwise (its top to the left) for -1.
+    function turned(card, w, h, quarter) {
+      const cell = document.createElement('div');
+      cell.className = 'sheet__cell';
+      cell.style.width = h + 'mm';
+      cell.style.height = w + 'mm';
+      card.style.transform = quarter > 0
+        ? `translateX(${h}mm) rotate(90deg)`
+        : `translateY(${w}mm) rotate(-90deg)`;
+      cell.append(card);
+      return cell;
+    }
+
+    function sheet(el, cards, side, w, h, o = {}) {
+      const { page = A4, cols = COLS, rows = ROWS, turn = 0, clear = 2 } = o;
+      const cw = turn ? h : w, ch = turn ? w : h;       // one cell, as it lies on the sheet
+      const x0 = (page[0] - cols * cw) / 2, y0 = (page[1] - rows * ch) / 2;
       const grid = document.createElement('div');
       grid.className = 'sheet__grid';
       grid.style.left = x0 - BLEED + 'mm';
       grid.style.top = y0 - BLEED + 'mm';
       grid.style.padding = BLEED + 'mm';
+      grid.style.gridTemplateColumns = `repeat(${cols}, auto)`;
       cards.forEach(card => card.classList.add('card--trimmed'));
-      grid.append(...cards);
+      grid.append(...(turn ? cards.map(card => turned(card, w, h, turn)) : cards));
       el.replaceChildren(grid);
-      el.insertAdjacentHTML('beforeend', marks(x0, y0, w, h));
-      if (y0 - BLEED >= 16) {          // room under the marks for a note
+      el.insertAdjacentHTML('beforeend', marks(page, x0, y0, cw, ch, cols, rows, clear));
+      if (o.note || y0 - BLEED >= 16) {          // room under the marks for a note
         const note = document.createElement('p');
         note.className = 'sheet__note';
-        note.textContent = `Mahmoud Alyosify · ${side} · ${cards.length} cards, ${w} × ${h} mm · cut on the marks · print at 100% · both sides: flip on long edge`;
+        note.textContent = `Mahmoud Alyosify · ${side} · ` + (o.label
+          || `${cards.length} cards, ${w} × ${h} mm · cut on the marks · print at 100% · both sides: flip on long edge`);
         el.append(note);
       }
     }
@@ -801,6 +847,22 @@
       sheet($('#sheet-front'), THOUGHTS.map((_, i) => front(i)), 'fronts', w, h);
       sheet($('#sheet-back'), THOUGHTS.map(back), 'backs', w, h);
 
+      // The press sheet: every thought the same number of times where it
+      // divides evenly (90 × 50 mm makes 30, three of each). The fronts
+      // are turned clockwise and the backs anticlockwise, so that turning
+      // the sheet over on its long edge — like a page — brings each back
+      // up the same way as its front. All the backs are alike, so the
+      // cells need no pairing.
+      if (state.layout === 'press') {
+        const plan = pressPlan(w, h), n = plan.cols * plan.rows;
+        const o = {
+          page: PRESS, cols: plan.cols, rows: plan.rows, clear: 6, note: true,
+          label: `${n} cards, ${w} × ${h} mm${plan.turn ? ', set on their side' : ''} · cut on the marks · print at 100% · sheet 33 × 48.7 cm · both sides: flip on long edge`
+        };
+        sheet($('#press-front'), Array.from({ length: n }, (_, i) => front(i % THOUGHTS.length)), 'fronts', w, h, { ...o, turn: plan.turn ? 1 : 0 });
+        sheet($('#press-back'), Array.from({ length: n }, back), 'backs', w, h, { ...o, turn: plan.turn ? -1 : 0 });
+      }
+
       const singles = [...THOUGHTS.map((_, i) => front(i)), back()].map(card => {
         const fig = document.createElement('figure');
         card.classList.add('single');
@@ -811,7 +873,9 @@
 
       $('#page-size').textContent = state.layout === 'sheet'
         ? '@page { size: A4 portrait; margin: 0; }'
-        : `@page { size: ${w + 2 * BLEED}mm ${h + 2 * BLEED}mm; margin: 0; }`;
+        : state.layout === 'press'
+          ? `@page { size: ${PRESS[0]}mm ${PRESS[1]}mm; margin: 0; }`
+          : `@page { size: ${w + 2 * BLEED}mm ${h + 2 * BLEED}mm; margin: 0; }`;
 
       $$('[data-theme-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeSet === state.theme));
       $$('[data-layout-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.layoutSet === state.layout));
@@ -821,7 +885,9 @@
       $('#name-colour').value = state.ncol;
       $('#out-h').textContent = state.layout === 'sheet'
         ? 'The PDF · two A4 pages'
-        : `The PDF · ${THOUGHTS.length + 1} pages: ${THOUGHTS.length} fronts, one back`;
+        : state.layout === 'press'
+          ? `The PDF · two sheets, 33 × 48.7 cm · ${pressPlan(w, h).cols * pressPlan(w, h).rows} cards each`
+          : `The PDF · ${THOUGHTS.length + 1} pages: ${THOUGHTS.length} fronts, one back`;
       fit();
       try { localStorage.setItem('card-state-v2', JSON.stringify(state)); } catch (e) {}
     }
@@ -843,6 +909,9 @@
       const sheetPx = A4[0] * MM;
       const sz = wide ? (avail - 40) / 2 / sheetPx : (vw - 32) / sheetPx;
       root.style.setProperty('--sheet-zoom', Math.min(0.9, sz).toFixed(3));
+      const pressPx = PRESS[0] * MM;
+      const pz = wide ? (avail - 40) / 2 / pressPx : (vw - 32) / pressPx;
+      root.style.setProperty('--press-zoom', (Math.floor(Math.min(0.9, pz) * 1000) / 1000).toFixed(3));
       const singlePx = (w + 2 * BLEED) * MM;
       root.style.setProperty('--single-zoom', Math.min(1.2, (vw - 32) / singlePx).toFixed(3));
     }
@@ -871,7 +940,9 @@
       const title = document.title;
       document.title = state.layout === 'sheet'
         ? `Mahmoud-Alyosify-Business-Cards-A4-${state.theme}`
-        : `Mahmoud-Alyosify-Business-Cards-PrintShop-${state.theme}`;
+        : state.layout === 'press'
+          ? `Mahmoud-Alyosify-Business-Cards-Press-33x48.7-${state.theme}`
+          : `Mahmoud-Alyosify-Business-Cards-PrintShop-${state.theme}`;
       window.print();
       document.title = title;
     });
