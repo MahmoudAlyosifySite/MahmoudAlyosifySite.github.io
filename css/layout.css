@@ -569,6 +569,25 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .pcard--featured .pcard__sub { font-size: 1.28rem; }
 .pcard__desc { max-width: 68ch; font-size: var(--fs-sm); line-height: 1.72; color: var(--ink-2); }
 .pcard--featured .pcard__desc { font-size: var(--fs-body); }
+/* A distinction the work earned — set off by a gold rule, the page's
+   one mark for what matters most: where, the honour, the record. */
+.pcard__honour {
+  max-width: 68ch;
+  margin-top: var(--s-5);
+  padding-block: 2px;
+  padding-inline-start: var(--s-4);
+  border-inline-start: 2px solid var(--gold);
+}
+.pcard__honour-k {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+.pcard__honour-t { margin-top: 2px; font-size: var(--fs-body); font-weight: 600; line-height: 1.45; color: var(--ink); }
+.pcard__honour-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: var(--s-3); }
 .pcard__tags { margin-top: var(--s-4); }
 .pcard__foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 22px; margin-top: var(--s-5); }
 .pcard__foot .out svg { width: 14px; height: 14px; }
@@ -1271,6 +1290,28 @@ html[dir='rtl'] .pg__nav svg { transform: scaleX(-1); }
   transition: transform 0.5s var(--ease);
 }
 html[dir='rtl'] .pg__bar-fill { transform-origin: right center; }
+
+/* ══════════════════════════════════════════════════════════
+   BUSINESS CARD — the preview from business-card/, framed
+   Full measure, like the photographs. The frame keeps a 16px
+   strip inside for the cards' shadows, so it reaches that far
+   into the gutter and the cards meet the column's edges. Its
+   height is reported by the card page (js/business-card.js);
+   the value here is only a first guess, so little moves.
+   ══════════════════════════════════════════════════════════ */
+.bcard {
+  display: block;
+  width: calc(100% + 32px);
+  height: 470px;
+  margin-inline: -16px;
+  border: 0;
+  background: transparent;
+}
+/* Narrower, the faces stack: each about 0.56 × its width tall, plus the
+   captions, the picker and the line under it. */
+@media (max-width: 947px) {
+  .bcard { height: calc(min(100vw - 2 * var(--page-px), 595px) * 1.112 + 250px); }
+}
 
 /* ══════════════════════════════════════════════════════════
    CONTACT

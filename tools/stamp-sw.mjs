@@ -15,7 +15,7 @@ import { existsSync } from 'node:fs';
 const WATCHED = [
   'index.html',
   'css/theme.css', 'css/layout.css', 'css/motion.css', 'css/chatbot.css',
-  'js/data.js', 'js/i18n.js', 'js/ui.js', 'js/photo-gallery.js',
+  'js/data.js', 'js/i18n.js', 'js/ui.js', 'js/photo-gallery.js', 'js/business-card.js',
   'js/certificates.js', 'js/motion.js', 'js/theme.js', 'js/lightbox.js',
   'js/chatbot.js', 'js/providers.js', 'js/retriever.js', 'js/security.js',
   'data/certificates.json', 'data/photo-gallery.json', 'data/mahmoud-profile.json',

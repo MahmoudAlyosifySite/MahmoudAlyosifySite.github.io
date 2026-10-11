@@ -11,6 +11,18 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Gloock&family=Fraunces:ital,opsz,wght,WONK@1,9..144,600,0..1&family=Playfair+Display:ital,wght@1,600&family=Cormorant+Garamond:ital,wght@1,700&family=DM+Serif+Display:ital@1&family=Great+Vibes&family=Pinyon+Script&family=Ysabeau+Office:ital,wght@0,400..700;1,400..600&family=Chivo+Mono:wght@400;500&family=Aref+Ruqaa:wght@700&display=swap" />
   <style id="page-size">@page { size: A4 portrait; margin: 0; }</style>
+  <!-- ?embed — the home page shows only the preview (the two faces and
+       the ten thoughts) in a frame. Ink on the site's dark theme, paper
+       on its light one, decided before anything paints.              -->
+  <script>
+    (function () {
+      if (!new URLSearchParams(location.search).has('embed')) return;
+      var root = document.documentElement, light = false;
+      try { light = localStorage.getItem('ma-theme') === 'light'; } catch (e) { /* storage blocked */ }
+      root.setAttribute('data-embed', '');
+      root.setAttribute('data-theme', light ? 'paper' : 'ink');
+    })();
+  </script>
   <style>
     /* ============================================================
        Business cards — the site's "ink, gold & paper", on card.
@@ -475,6 +487,41 @@
       .stage__cards { gap: 24px; }
     }
 
+    /* ── Embedded (?embed) ─────────────────────────────────────── */
+    /* Only the preview, on the home page's own background. The colour
+       scheme must match the page around the frame, or the browser
+       paints the frame opaque.                                       */
+    @media screen {
+      [data-embed] { color-scheme: dark; overflow: hidden; }
+      [data-embed][data-theme='paper'] { color-scheme: light; }
+      [data-embed] body { min-height: 0; background: transparent; overflow: hidden; }
+      [data-embed] .bar, [data-embed] .hint, [data-embed] .section-h,
+      [data-embed] .sheets, [data-embed] .singles { display: none; }
+      [data-embed] .stage { padding: 20px 16px 28px; }
+      /* A shadow that ends inside the 16px strip — the frame would cut a
+         wider one off in a straight line. The preview's zoom scales the
+         shadow too, so it is drawn in px divided by that zoom.        */
+      [data-embed] .pv {
+        --px: calc(1px / var(--pv-zoom, 1));
+        box-shadow: 0 var(--px) calc(2 * var(--px)) rgba(0, 0, 0, 0.5), 0 calc(5 * var(--px)) calc(12 * var(--px)) rgba(0, 0, 0, 0.42);
+      }
+      [data-embed] .picker button:hover { color: #EEEAE2; border-color: #C9A55E; }
+
+      /* Paper: the site's light theme. */
+      [data-embed][data-theme='paper'] .stage figcaption { color: #5E6679; }
+      [data-embed][data-theme='paper'] .pv {
+        box-shadow: 0 var(--px) calc(2 * var(--px)) rgba(22, 32, 47, 0.08), 0 calc(5 * var(--px)) calc(12 * var(--px)) rgba(22, 32, 47, 0.13);
+        outline-color: rgba(22, 32, 47, 0.14);
+      }
+      [data-embed][data-theme='paper'] .picker button { color: #3A4558; border-color: #7D8494; }
+      [data-embed][data-theme='paper'] .picker button:hover { color: #16202F; border-color: #C49C56; }
+      [data-embed][data-theme='paper'] .picker button[aria-pressed='true'] {
+        border-color: #C49C56; color: #7E5F28; box-shadow: inset 0 -2px 0 #C49C56;
+      }
+      [data-embed][data-theme='paper'] .picker__text { color: #3A4558; }
+      [data-embed][data-theme='paper'] button:focus-visible { outline-color: #7E5F28; }
+    }
+
     @media print {
       .bar, .hint, .stage, .section-h, .sheets__label { display: none !important; }
       .sheets figure, .singles figure { margin: 0; }
@@ -651,8 +698,12 @@
     const SIG = ['back', 'front', 'both', 'off'];
     const NAME_FONTS = ['script', 'fraunces', 'playfair', 'cormorant', 'dmserif', 'vibes', 'pinyon'];
     const NAME_COLOURS = ['initials', 'foil', 'plain'];
+    // Embedded in the home page: the card as designed, never the bar's
+    // last settings, and no print sheets to build.
+    const EMBED = root.hasAttribute('data-embed');
     const state = { theme: 'ink', size: '90x50', layout: 'sheet', sig: 'back', name: 'script', pick: 0 };
-    try { Object.assign(state, JSON.parse(localStorage.getItem('card-state-v2') || '{}')); } catch (e) {}
+    if (EMBED) state.theme = root.dataset.theme;
+    else try { Object.assign(state, JSON.parse(localStorage.getItem('card-state-v2') || '{}')); } catch (e) {}
     if (!SIZES[state.size]) state.size = '90x50';
     if (!SIG.includes(state.sig)) state.sig = 'back';
     if (!NAME_FONTS.includes(state.name)) state.name = 'script';
@@ -729,6 +780,8 @@
       $('#pv-front').replaceChildren(pf);
       $('#pv-back').replaceChildren(pb);
       $('#picker-text').textContent = THOUGHTS[state.pick].text.replace(/<[^>]+>/g, '');
+      $$('#picker button').forEach((b, i) => b.setAttribute('aria-pressed', i === state.pick));
+      if (EMBED) { fit(); return; }
 
       sheet($('#sheet-front'), THOUGHTS.map((_, i) => front(i)), 'fronts', w, h);
       sheet($('#sheet-back'), THOUGHTS.map(back), 'backs', w, h);
@@ -748,7 +801,6 @@
       $$('[data-theme-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeSet === state.theme));
       $$('[data-layout-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.layoutSet === state.layout));
       $$('[data-sig-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sigSet === state.sig));
-      $$('#picker button').forEach((b, i) => b.setAttribute('aria-pressed', i === state.pick));
       $('#size').value = state.size;
       $('#name-font').value = state.name;
       $('#name-colour').value = state.ncol;
@@ -764,10 +816,15 @@
       const vw = root.clientWidth;
       const [w] = SIZES[state.size];
       const wide = vw >= 900;
-      const avail = Math.min(vw - 48, 1440);
+      const avail = Math.min(vw - (EMBED ? 32 : 48), 1440);
       const cardPx = w * MM;
       const pv = wide ? (avail - 40) / 2 / cardPx : (vw - 32) / cardPx;
-      root.style.setProperty('--pv-zoom', Math.min(2.4, pv).toFixed(3));
+      // Rounded down: the pair fills the row exactly, and a zoom rounded
+      // up by a fraction of a pixel drops the back below the front. On the
+      // home page a card stops growing at 1.75× (about 600px wide), so two
+      // stacked faces never fill a tablet.
+      const cap = EMBED ? 1.75 : 2.4;
+      root.style.setProperty('--pv-zoom', (Math.floor(Math.min(cap, pv) * 1000) / 1000).toFixed(3));
       const sheetPx = A4[0] * MM;
       const sz = wide ? (avail - 40) / 2 / sheetPx : (vw - 32) / sheetPx;
       root.style.setProperty('--sheet-zoom', Math.min(0.9, sz).toFixed(3));
@@ -803,6 +860,20 @@
       window.print();
       document.title = title;
     });
+
+    // The home page sizes the frame to the preview, and tells it when
+    // the site's theme changes.
+    if (EMBED) {
+      const stage = $('.stage');
+      new ResizeObserver(() => {
+        parent.postMessage({ type: 'bcard:size', height: Math.ceil(stage.getBoundingClientRect().height) }, '*');
+      }).observe(stage);
+      addEventListener('message', e => {
+        if (e.source !== parent || !e.data || e.data.type !== 'bcard:theme') return;
+        const theme = e.data.theme === 'paper' ? 'paper' : 'ink';
+        if (theme !== state.theme) { state.theme = theme; render(); }
+      });
+    }
 
     render();
   </script>

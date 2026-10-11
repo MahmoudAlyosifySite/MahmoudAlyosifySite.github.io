@@ -254,6 +254,17 @@ const SITE = {
       tags: ['Generative AI', 'Agentic AI', 'Multimodal', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/Automated-Multimodal-Agent-PDF-to-Narrated-PowerPoint',
       image: 'img/portfolio 6.png',
+      honour: {
+        kicker: { en: 'Queen\'s University · 3 June 2026', ar: 'جامعة كوينز · 3 يونيو 2026' },
+        text: {
+          en: 'Presented at the AI in Teaching and Learning Forum 2026',
+          ar: 'عُرض في منتدى AI in Teaching and Learning Forum 2026'
+        },
+        links: [
+          { label: { en: 'The forum', ar: 'صفحة المنتدى' }, url: 'https://www.queensu.ca/ctl/programs-and-events/ai-teaching-and-learning-forum-2026' },
+          { label: { en: 'Thank-you letter · PDF', ar: 'خطاب الشكر · PDF' }, url: 'Files/2026%20AI%20In%20Teaching%20and%20Learning%20Forum%20%20Thank%20You.pdf' }
+        ]
+      },
       links: [
         { label: { en: 'Article', ar: 'مقال' }, url: 'https://medium.com/@mahmoudalyosify/from-static-pdf-to-talking-slides-automated-multimodal-agent-9b62c9a992c3' },
         { label: { en: 'Project page', ar: 'صفحة المشروع' }, url: 'https://mahmoudalyosifysite.github.io/Projects/Automated%20MultimodalAgent%20PDF%20to%20Narrated%20PowerPoint.html' },

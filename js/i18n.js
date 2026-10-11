@@ -115,6 +115,13 @@ const I18N = {
     'gallery.next':     'Next photo',
     'gallery.empty':    'The gallery is empty right now.',
 
+    /* Business card */
+    'card.eyebrow': 'Business card',
+    'card.title1':  'One card,',
+    'card.title2':  'ten thoughts',
+    'card.sub':     'The card I hand out, front and back. Each of the ten carries its own thought — choose a number to turn to it.',
+    'card.frame':   'Business card — front and back, with ten thoughts',
+
     /* Contact */
     'contact.eyebrow': 'Get in touch',
     'contact.title1':  'Let\'s give intelligence a purpose',
@@ -282,6 +289,12 @@ const I18N = {
     'gallery.prev':     'الصورة السابقة',
     'gallery.next':     'الصورة التالية',
     'gallery.empty':    'المعرض فارغ حاليًا.',
+
+    'card.eyebrow': 'بطاقة العمل',
+    'card.title1':  'بطاقة واحدة،',
+    'card.title2':  'وعشر حِكَم',
+    'card.sub':     'بطاقتي الشخصية بوجهيها. تحمل كل بطاقة من العشر حكمتها الخاصة — اختر رقمًا لتنتقل إليها.',
+    'card.frame':   'بطاقة العمل — الوجه والظهر، مع عشر حِكَم',
 
     'contact.eyebrow': 'تواصل',
     'contact.title1':  'لنضف الذكاء إلى',

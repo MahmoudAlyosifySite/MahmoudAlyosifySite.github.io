@@ -158,6 +158,16 @@
         });
       }
       const note = p.supervisor ? `<span class="pcard__note">${esc(p.supervisor)}</span>` : '';
+      // A distinction the work itself earned (a forum it was presented at),
+      // with the event and the letter that records it.
+      const h = p.honour;
+      const honour = h ? `
+          <div class="pcard__honour">
+            <p class="pcard__honour-k">${keepSep(esc(L(h.kicker)))}</p>
+            <p class="pcard__honour-t">${esc(L(h.text))}</p>
+            <div class="pcard__honour-links">${h.links.map((l) =>
+              `<a class="out" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))}</a>`).join('')}</div>
+          </div>` : '';
       return `
       <article class="pcard${p.featured ? ' pcard--featured' : ''}" data-reveal>
         <div class="pcard__meta">
@@ -169,7 +179,7 @@
         <div class="pcard__body">
           <h3 class="pcard__title">${esc(p.title)}</h3>
           <p class="pcard__sub">${esc(L(p.subtitle))}</p>
-          <p class="pcard__desc">${esc(L(p.desc))}</p>
+          <p class="pcard__desc">${esc(L(p.desc))}</p>${honour}
           <ul class="tags pcard__tags">${p.tags.map((tg) => `<li>${esc(tg)}</li>`).join('')}</ul>
           <div class="pcard__foot">${links.join('')}</div>
         </div>
@@ -277,7 +287,8 @@
       const id = s.id;
       const key = { hero: 'nav.about', about: 'nav.about', work: 'nav.work', projects: 'nav.projects',
         skills: 'nav.skills', impact: 'impact.eyebrow', teaching: 'nav.teaching', awards: 'nav.awards',
-        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
+        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', card: 'card.eyebrow',
+        contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
       const label = id === 'hero' ? 'Top' : t(key) || id;
       return `<a class="dots__item" href="#${id}" aria-label="${esc(label)}"><span class="dots__label">${esc(label)}</span></a>`;
     }).join('');

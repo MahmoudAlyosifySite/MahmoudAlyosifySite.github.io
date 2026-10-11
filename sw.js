@@ -12,7 +12,7 @@
    edit it by hand. Old caches are deleted on activate.
    ============================================================ */
 
-const VERSION = 'ma-40df9fe45e';
+const VERSION = 'ma-676b9c9005';
 const SHELL = `shell-${VERSION}`;
 const ASSETS = `assets-${VERSION}`;
 
@@ -27,6 +27,7 @@ const PRECACHE = [
   'js/i18n.js',
   'js/ui.js',
   'js/photo-gallery.js',
+  'js/business-card.js',
   'js/certificates.js',
   'js/motion.js',
   'js/theme.js',

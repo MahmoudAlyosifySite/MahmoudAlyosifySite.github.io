@@ -532,7 +532,30 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         12 · CONTACT — enquiry textbox
+         12 · BUSINESS CARD — the preview from business-card/, front
+         and back, with its ten thoughts. Framed, so the card is drawn
+         in one place only; js/business-card.js sizes the frame.
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section" id="card" data-section="card">
+      <div class="wrap">
+        <header class="s-head s-head--minor" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="card.eyebrow">Business card</span>
+            <span class="s-head__alt" data-i18n-alt="card.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="card.title1">One card,</span>
+            <span class="s-head__line" data-i18n="card.title2">ten thoughts</span>
+          </h2>
+          <p class="lead s-head__sub" data-i18n="card.sub"></p>
+        </header>
+        <iframe class="bcard" id="bcard" src="business-card/?embed" loading="lazy" scrolling="no"
+          title="Business card — front and back, with ten thoughts" data-i18n-attr="title:card.frame"></iframe>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         13 · CONTACT — enquiry textbox
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="contact" data-section="contact">
       <div class="wrap">
@@ -609,7 +632,7 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
-         13 · CLOSING — the artwork as a matted plate, with its caption
+         14 · CLOSING — the artwork as a matted plate, with its caption
          ══════════════════════════════════════════════════════════ -->
     <section class="fatfooter" id="fatfooter" data-section="fatfooter" aria-label="Closing">
       <div class="wrap">
@@ -751,6 +774,7 @@
   <script src="js/i18n.js" defer></script>
   <script src="js/ui.js" defer></script>
   <script src="js/photo-gallery.js" defer></script>
+  <script src="js/business-card.js" defer></script>
   <script src="js/certificates.js" defer></script>
   <script src="js/lightbox.js" defer></script>
   <script src="js/motion.js" defer></script>
