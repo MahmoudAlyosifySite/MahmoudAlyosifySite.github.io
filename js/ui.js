@@ -287,7 +287,7 @@
       const id = s.id;
       const key = { hero: 'nav.about', about: 'nav.about', work: 'nav.work', projects: 'nav.projects',
         skills: 'nav.skills', impact: 'impact.eyebrow', teaching: 'nav.teaching', awards: 'nav.awards',
-        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', card: 'card.eyebrow',
+        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', card: 'card.eyebrow', film: 'film.eyebrow',
         contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
       const label = id === 'hero' ? 'Top' : t(key) || id;
       return `<a class="dots__item" href="#${id}" aria-label="${esc(label)}"><span class="dots__label">${esc(label)}</span></a>`;
@@ -612,6 +612,34 @@
   /* ══════════════════════════════════════════════════════════
      BOOT
      ══════════════════════════════════════════════════════════ */
+  /* The film: the YouTube player is created only when Play is pressed, so the
+     page loads a 50 KB poster instead of YouTube's scripts. Warm the
+     connection when the pointer comes near. */
+  function initFilm() {
+    const btn = $('#film-play');
+    if (!btn) return;
+    const host = 'https://www.youtube-nocookie.com';
+    let warmed = false;
+    const warm = () => {
+      if (warmed) return; warmed = true;
+      for (const href of [host, 'https://www.google.com']) {
+        const l = document.createElement('link'); l.rel = 'preconnect'; l.href = href; l.crossOrigin = ''; document.head.appendChild(l);
+      }
+    };
+    btn.addEventListener('pointerenter', warm, { once: true });
+    btn.addEventListener('focus', warm, { once: true });
+    btn.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = `${host}/embed/${btn.dataset.yt}?autoplay=1&rel=0&modestbranding=1&playsinline=1&hl=${lang === 'ar' ? 'ar' : 'en'}`;
+      f.title = btn.getAttribute('aria-label');
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      btn.replaceWith(f);
+      f.focus();
+    }, { once: true });
+  }
+
   function boot() {
     $('#year').textContent = new Date().getFullYear();
     // Listeners first — initLang() renders and fires site:rendered.
@@ -619,6 +647,7 @@
     initCounters();
     initForm();
     initBotLoader();
+    initFilm();
     initLang();
   }
 

@@ -611,6 +611,45 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
+         12b · FILM — the 90-second introduction, hosted on YouTube.
+         Only the poster loads with the page; the player (privacy-
+         enhanced youtube-nocookie) is created on Play by js/ui.js.
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section" id="film" data-section="film">
+      <div class="wrap">
+        <header class="s-head s-head--minor" data-reveal>
+          <p class="s-head__index">
+            <span class="eyebrow" data-i18n="film.eyebrow">The film</span>
+            <span class="s-head__alt" data-i18n-alt="film.eyebrow" aria-hidden="true"></span>
+          </p>
+          <h2 class="s-head__title h1">
+            <span class="s-head__line" data-i18n="film.title1">Ninety seconds,</span>
+            <span class="s-head__line" data-i18n="film.title2">one journey</span>
+          </h2>
+          <p class="lead s-head__sub" data-i18n="film.sub"></p>
+        </header>
+        <figure class="film" data-reveal>
+          <div class="film__frame">
+            <button class="film__play" id="film-play" type="button" data-yt="WMvqT95dRoY"
+              aria-label="Play the film: Mahmoud Alyosify, an introduction (1:31)" data-i18n-attr="aria-label:film.play">
+              <picture>
+                <source type="image/webp" srcset="img/_web/film-poster@960.webp 960w, img/_web/film-poster.webp 1920w"
+                  sizes="(max-width: 1100px) 100vw, 1040px" />
+                <img src="img/_web/film-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async" />
+              </picture>
+              <span class="film__btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.6v12.8L19 12z" /></svg></span>
+              <span class="film__time" aria-hidden="true">1:31</span>
+            </button>
+          </div>
+          <figcaption class="film__cap">
+            <span data-i18n="film.caption">Mahmoud Alyosify — An introduction</span>
+            <a href="https://youtu.be/WMvqT95dRoY" target="_blank" rel="noopener" data-i18n="film.yt">Watch on YouTube ↗</a>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
          13 · CONTACT — enquiry textbox
          ══════════════════════════════════════════════════════════ -->
     <section class="section" id="contact" data-section="contact">

@@ -121,6 +121,13 @@ const I18N = {
     'card.title2':  'ten thoughts',
     'card.sub':     'The card I hand out, front and back. Each of the ten carries its own thought — choose a number to turn to it.',
     'card.frame':   'Business card — front and back, with ten thoughts',
+    'film.eyebrow': 'The film',
+    'film.title1':  'Ninety seconds,',
+    'film.title2':  'one journey',
+    'film.sub':     'From Assiut to Queen’s University — the story so far, in one short film.',
+    'film.play':    'Play the film: Mahmoud Alyosify, an introduction (1:31)',
+    'film.caption': 'Mahmoud Alyosify — An introduction',
+    'film.yt':      'Watch on YouTube ↗',
 
     /* Contact */
     'contact.eyebrow': 'Get in touch',
@@ -295,6 +302,13 @@ const I18N = {
     'card.title2':  'وعشر حِكَم',
     'card.sub':     'بطاقتي الشخصية بوجهيها. تحمل كل بطاقة من العشر حكمتها الخاصة — اختر رقمًا لتنتقل إليها.',
     'card.frame':   'بطاقة العمل — الوجه والظهر، مع عشر حِكَم',
+    'film.eyebrow': 'الفيلم',
+    'film.title1':  'تسعون ثانية،',
+    'film.title2':  'ورحلة واحدة',
+    'film.sub':     'من أسيوط إلى جامعة كوينز — الحكاية حتى الآن، في فيلم قصير واحد.',
+    'film.play':    'شغّل الفيلم: محمود اليوسفي، تعريف (١:٣١)',
+    'film.caption': 'محمود اليوسفي — تعريف',
+    'film.yt':      'شاهده على يوتيوب ↗',
 
     'contact.eyebrow': 'تواصل',
     'contact.title1':  'لنضف الذكاء إلى',

@@ -1314,6 +1314,121 @@ html[dir='rtl'] .pg__bar-fill { transform-origin: right center; }
 }
 
 /* ══════════════════════════════════════════════════════════
+   FILM — the introduction film in a gold frame
+   A hairline gold frame with a mat inside it, gold corner marks
+   standing just outside, and a little warm air around it. The
+   poster is a button; js/ui.js swaps it for the YouTube player.
+   ══════════════════════════════════════════════════════════ */
+.film { max-width: 1040px; margin: 0 auto; }
+.film__frame {
+  position: relative;
+  padding: clamp(6px, 1.1vw, 12px);
+  border: 1px solid color-mix(in srgb, var(--gold) 75%, transparent);
+  border-radius: var(--r);
+  background: var(--paper-2);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .75), 0 0 70px -24px var(--gold-soft);
+}
+/* corner marks: one gold border, shown only at its four corners */
+.film__frame::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1.5px solid var(--gold);
+  border-radius: 2px;
+  pointer-events: none;
+  --c: clamp(16px, 2.4vw, 26px);
+  -webkit-mask: linear-gradient(#000 0 0) top left / var(--c) var(--c) no-repeat, linear-gradient(#000 0 0) top right / var(--c) var(--c) no-repeat,
+                linear-gradient(#000 0 0) bottom left / var(--c) var(--c) no-repeat, linear-gradient(#000 0 0) bottom right / var(--c) var(--c) no-repeat;
+          mask: linear-gradient(#000 0 0) top left / var(--c) var(--c) no-repeat, linear-gradient(#000 0 0) top right / var(--c) var(--c) no-repeat,
+                linear-gradient(#000 0 0) bottom left / var(--c) var(--c) no-repeat, linear-gradient(#000 0 0) bottom right / var(--c) var(--c) no-repeat;
+}
+.film__play, .film__frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 2px;
+  background: #0B0B0C;
+}
+.film__play { position: relative; padding: 0; overflow: hidden; cursor: pointer; color: inherit; }
+/* the inner line of the mat */
+.film__play::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(201, 165, 94, .28);
+  pointer-events: none;
+}
+.film__play img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.82);
+  transition: transform var(--t-slow), filter var(--t-slow);
+}
+.film__btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 8.5vw, 96px);
+  aspect-ratio: 1;
+  border: 1px solid #C9A55E;
+  border-radius: 50%;
+  background: rgba(11, 11, 12, .55);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  transform: translate(-50%, -50%);
+  transition: background-color var(--t-mid), transform var(--t-mid);
+}
+.film__btn svg { width: 36%; margin-inline-start: 6%; fill: #C9A55E; transition: fill var(--t-mid); }
+/* one slow ring of light, breathing outward */
+.film__btn::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid #C9A55E;
+  border-radius: 50%;
+  animation: film-ring 2.8s var(--ease-soft) infinite;
+}
+@keyframes film-ring { from { transform: scale(1); opacity: .7; } to { transform: scale(1.45); opacity: 0; } }
+.film__time {
+  position: absolute;
+  inset-inline-end: 14px;
+  bottom: 12px;
+  padding: 4px 8px;
+  border-radius: 2px;
+  background: rgba(11, 11, 12, .62);
+  color: #EEEAE2;
+  font: 500 var(--fs-micro) / 1 var(--font-mono);
+  letter-spacing: .1em;
+}
+.film__play:hover img, .film__play:focus-visible img { transform: scale(1.025); filter: brightness(.94); }
+.film__play:hover .film__btn, .film__play:focus-visible .film__btn { background: #C9A55E; transform: translate(-50%, -50%) scale(1.06); }
+.film__play:hover .film__btn svg, .film__play:focus-visible .film__btn svg { fill: #0B0B0C; }
+.film__play:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.film__cap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .08em;
+  color: var(--ink-3);
+}
+.film__cap a { color: var(--gold-ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--t-fast); }
+.film__cap a:hover, .film__cap a:focus-visible { border-bottom-color: var(--gold); }
+@media (prefers-reduced-motion: reduce) {
+  .film__btn::after { animation: none; }
+  .film__play img { transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════
    CONTACT
    ══════════════════════════════════════════════════════════ */
 .contact { row-gap: var(--s-7); align-items: start; }
