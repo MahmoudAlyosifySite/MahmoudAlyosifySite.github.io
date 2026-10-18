@@ -7,7 +7,8 @@
    #prologue: down plays it, up plays it back. The first 4.5 s
    (the emblem resolving) play on their own when the page opens.
 
-   The motion is ported from intro-video/film/film.js in its
+   The motion is ported from the film project (film/film.js, kept
+   outside this repo with the other source assets) in its
    `?short` cut: the opening (0–12 s), then the closing, remapped.
    Skipped entirely for prefers-reduced-motion.
    ============================================================ */
