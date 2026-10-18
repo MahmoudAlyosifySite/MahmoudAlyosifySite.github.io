@@ -1,0 +1,131 @@
+/* ══════════════════════════════════════════════════════════
+   PROLOGUE — the 30-second film intro, scrubbed by scroll.
+   A tall section with a sticky viewport; js/prologue.js turns
+   the scroll position into film time. Always dark: it is a
+   cinema, whatever the site theme. Two stages: 1920 × 1080
+   for wide screens, 1080 × 1920 (.is-tall) for phones.
+   ══════════════════════════════════════════════════════════ */
+.prologue {
+  position: relative;
+  height: 600vh;
+  background: #0B0B0C;
+  color: #EEEAE2;
+}
+.prologue__view {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #0B0B0C;
+}
+.pl-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 0 0;
+  -webkit-font-smoothing: antialiased;
+}
+.pl-stage * { box-sizing: border-box; font-synthesis: none; }
+.pl-abs { position: absolute; }
+
+/* text */
+.pl-t { position: absolute; opacity: 0; white-space: nowrap; }
+.pl-kicker { font: 500 22px/1 'Chivo Mono', monospace; letter-spacing: .28em; text-transform: uppercase; color: #D6B676; }
+.pl-head { font: 400 72px/1.08 'Gloock', serif; letter-spacing: -.005em; color: #EEEAE2; }
+.pl-alias { font: italic 400 30px/1.2 'Ysabeau Office', sans-serif; color: #908C85; }
+.pl-url { font: 400 28px/1.2 'Chivo Mono', monospace; letter-spacing: .04em; color: #D6B676; }
+.pl-label { font: 400 24px/1.2 'Chivo Mono', monospace; letter-spacing: .08em; color: #C2BEB6; }
+.pl-mk {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C9A55E' fill-opacity='.42'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-size: 0% .4em; background-position: 0 88%;
+  padding-inline: .06em; margin-inline: -.06em;
+}
+.pl-hair { height: 1px; background: #C9A55E; transform: scaleX(0); }
+.pl-stage img { display: block; max-width: none; }
+
+/* foil light sweep, masked to the target's own alpha */
+.pl-sweep { position: absolute; inset: 0; overflow: hidden; mix-blend-mode: screen; opacity: 0;
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.pl-sweep i { position: absolute; top: -50%; height: 200%; width: 18%; left: -30%; transform: rotate(22deg);
+  background: linear-gradient(90deg, rgba(242,223,168,0), #F2DFA8 50%, rgba(242,223,168,0)); }
+
+/* the hero portrait — on black, no box, bottom melt, gold rim light */
+#pl-hero { left: 900px; top: 80px; width: 1000px; height: 1000px; transform-origin: 50% 100%; opacity: 0; }
+#pl-hero img { width: 100%; height: 100%;
+  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 100%); mask-image: linear-gradient(180deg, #000 78%, transparent 100%); }
+#pl-glow { left: 840px; top: 0; width: 1120px; height: 1120px; opacity: 0;
+  background: radial-gradient(circle 560px at 50% 41%, rgba(201,165,94,.20), rgba(201,165,94,0)); }
+#pl-sig { left: 210px; top: 301px; width: 1500px; opacity: 0; }
+
+/* wide layout (1920 × 1080) */
+#pl-hair1 { left: 750px; top: 760px; width: 420px; }
+#pl-emblem1 { left: 750px; top: 332px; width: 420px; height: 376px; }
+#pl-wm1 { left: 160px; top: 400px; width: 660px; }
+#pl-k1 { left: 160px; top: 598px; }
+#pl-line1 { left: 160px; top: 640px; width: 240px; }
+#pl-alias { left: 160px; top: 660px; }
+#pl-a { left: 960px; top: 400px; }
+#pl-b { left: 960px; top: 490px; }
+#pl-c { left: 960px; top: 580px; }
+#pl-p1 { left: 160px; top: 440px; }
+#pl-p2 { left: 160px; top: 520px; }
+#pl-emblem2 { left: 405px; top: 174px; width: 170px; }
+#pl-wm2 { left: 190px; top: 380px; width: 600px; }
+#pl-hair2 { left: 380px; top: 545px; width: 220px; }
+#pl-url { left: 490px; top: 578px; }
+#pl-mail { left: 490px; top: 636px; }
+#pl-li { left: 490px; top: 676px; }
+
+/* tall layout (1080 × 1920): the portrait stands at the foot, words above, larger */
+.is-tall #pl-hero { left: 40px; top: 920px; }
+.is-tall #pl-glow { left: -20px; top: 840px; }
+.is-tall #pl-sig { left: 40px; top: 600px; width: 1000px; }
+.is-tall #pl-hair1 { left: 330px; top: 980px; }
+.is-tall #pl-emblem1 { left: 330px; top: 560px; }
+.is-tall #pl-wm1 { left: 90px; top: 250px; width: 900px; }
+.is-tall #pl-k1 { left: 540px; top: 520px; font-size: 32px; letter-spacing: .16em; }
+.is-tall #pl-line1 { left: 420px; top: 572px; }
+.is-tall #pl-alias { left: 540px; top: 596px; font-size: 42px; }
+.is-tall #pl-a, .is-tall #pl-b, .is-tall #pl-c { left: 540px; font-size: 92px; }
+.is-tall #pl-a { top: 700px; } .is-tall #pl-b { top: 815px; } .is-tall #pl-c { top: 930px; }
+.is-tall #pl-p1, .is-tall #pl-p2 { left: 540px; font-size: 86px; }
+.is-tall #pl-p1 { top: 380px; } .is-tall #pl-p2 { top: 478px; }
+.is-tall #pl-emblem2 { left: 440px; top: 110px; width: 200px; }
+.is-tall #pl-wm2 { left: 140px; top: 350px; width: 800px; }
+.is-tall #pl-hair2 { left: 430px; top: 575px; }
+.is-tall #pl-url { left: 540px; top: 605px; font-size: 40px; }
+.is-tall #pl-mail { left: 540px; top: 670px; font-size: 34px; }
+.is-tall #pl-li { left: 540px; top: 716px; font-size: 34px; }
+
+#pl-dust { left: 0; top: 0; pointer-events: none; }
+#pl-dip { inset: 0; background: #0B0B0C; opacity: 1; }
+.pl-vignette { inset: 0; background: radial-gradient(ellipse at center, rgba(0,0,0,0) 58%, rgba(0,0,0,.55) 100%); pointer-events: none; }
+
+/* controls, outside the scaled stage */
+.prologue__skip {
+  position: absolute; top: 18px; right: 20px; z-index: 2;
+  font: 500 12px/1 'Chivo Mono', monospace; letter-spacing: .22em; text-transform: uppercase;
+  color: #C2BEB6; background: none; border: 1px solid rgba(238,234,226,.18); border-radius: 3px;
+  padding: 10px 14px; cursor: pointer; transition: color .25s, border-color .25s, opacity .4s;
+}
+.prologue__skip:hover, .prologue__skip:focus-visible { color: #D6B676; border-color: #C9A55E; outline: none; }
+.prologue__hint {
+  position: absolute; left: 50%; bottom: 26px; z-index: 2; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0; pointer-events: none;
+  font: 500 11px/1 'Chivo Mono', monospace; letter-spacing: .3em; text-transform: uppercase; color: #908C85;
+}
+.prologue__hint i { width: 1px; height: 46px; background: linear-gradient(#C9A55E, rgba(201,165,94,0)); transform-origin: top;
+  animation: pl-hint 2.2s cubic-bezier(.4,0,.2,1) infinite; }
+@keyframes pl-hint { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* the site's own chrome steps aside while the film plays */
+.nav, .dots, .scroll-rail, .bot-fab, #to-top { transition: opacity .5s cubic-bezier(.4,0,.2,1); }
+.is-prologue .nav, .is-prologue .dots, .is-prologue .scroll-rail,
+.is-prologue .bot-fab, .is-prologue #to-top { opacity: 0 !important; pointer-events: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .prologue { display: none; }
+}

@@ -12,7 +12,7 @@
    edit it by hand. Old caches are deleted on activate.
    ============================================================ */
 
-const VERSION = 'ma-676b9c9005';
+const VERSION = 'ma-b481611fa6';
 const SHELL = `shell-${VERSION}`;
 const ASSETS = `assets-${VERSION}`;
 
@@ -32,6 +32,10 @@ const PRECACHE = [
   'js/motion.js',
   'js/theme.js',
   'js/lightbox.js',
+  'css/prologue.css',
+  'js/prologue.js',
+  'img/prologue/portrait.webp',
+  'img/prologue/emblem.webp',
   'data/certificates.json',
   'data/photo-gallery.json',
   'img/FatFooter-En.png'

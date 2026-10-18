@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>LinkedIn Cover — Mahmoud Alyosify</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/icon-gold-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Ysabeau+Office:ital,wght@0,400..700;1,400..600&family=Chivo+Mono:wght@400;500&display=swap" />
+  <style>
+    /* ============================================================
+       LinkedIn cover — the business card's "ink & gold", at 1584 x 396.
+
+       The card's own parts, redrawn for a banner:
+         · the thought, in Ysabeau Office italic, with the gold marker
+           on the one word that matters;
+         · the gold line that leaves "I build intelligence", ending in
+           a neuron, with a short synapse branching off it;
+         · the signature as a faint gold watermark;
+         · the emblem, in its own colours.
+
+       LinkedIn crops and covers this image, so everything that has to
+       be read stays inside a safe zone:
+         · the profile photo covers the lower left (x < 300),
+         · desktop shows only the middle ~68 % of the height,
+         · the right edge keeps a margin for the mobile crop.
+
+       Render (PNG):
+         chrome --headless --hide-scrollbars --window-size=1584,396 \
+                --force-device-scale-factor=1 --virtual-time-budget=15000 \
+                --screenshot=linkedin-cover.png index.html
+         (and --force-device-scale-factor=2 for linkedin-cover@2x.png;
+          open index.html?cover=journey for linkedin-cover-journey*.png)
+       ============================================================ */
+
+    :root {
+      --c-bg: #0B0B0C;  --c-ink: #EEEAE2;  --c-ink-2: #C2BEB6;  --c-ink-3: #8F8B84;
+      --c-gold: #C9A55E; --c-gold-ink: #D6B676;
+
+      --font-body: 'Ysabeau Office', 'Segoe UI', sans-serif;
+      --font-mono: 'Chivo Mono', ui-monospace, Consolas, monospace;
+
+      --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C9A55E' fill-opacity='.42'/%3E%3C/svg%3E");
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--c-bg); }
+
+    .cover {
+      position: relative;
+      width: 1584px;
+      height: 396px;
+      overflow: hidden;
+      background: var(--c-bg);
+      color: var(--c-ink);
+      font-family: var(--font-body);
+    }
+
+    /* The signature, as a watermark: gold, faint, under everything. */
+    .sig {
+      position: absolute;
+      left: -70px;
+      bottom: -34px;
+      width: 1560px;
+      aspect-ratio: 1987 / 684;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    /* The gold line: leaves its label and runs left, under the thought,
+       to a neuron — then a synapse off it ends in a small via.        */
+    .edge { position: absolute; left: 0; top: 318px; width: 1186px; height: 0; }
+    .edge__line {
+      position: absolute;
+      left: 0; top: -0.75px;
+      width: 970px; height: 1.5px;
+      background: var(--c-gold);
+    }
+    .edge__label {
+      position: absolute;
+      left: 990px; top: 0;
+      transform: translateY(-50%);
+      font: 500 13.5px/1 var(--font-mono);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--c-gold-ink);
+    }
+    .ring {                                  /* the card's ringed neuron */
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--c-gold);
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--c-gold) 0 3.6px, var(--c-bg) 4.2px);
+      transform: translate(-50%, -50%);
+    }
+    .ring--via { width: 16px; height: 16px; background: radial-gradient(circle, var(--c-gold) 0 2.6px, var(--c-bg) 3.2px); }
+    .node {
+      position: absolute;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--c-gold);
+      transform: translate(-50%, -50%);
+    }
+    .edge__branch {
+      position: absolute;
+      left: 884px; top: -0.75px;
+      width: 42px; height: 1.5px;
+      background: var(--c-gold);
+      transform-origin: 0 50%;
+      transform: rotate(-45deg);
+    }
+
+    /* The thought. */
+    .thought {
+      position: absolute;
+      left: 352px;
+      top: 0; bottom: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+    .thought__text {
+      position: relative;
+      margin: 0;
+      font: italic 500 64px/1.2 var(--font-body);
+      letter-spacing: -0.003em;
+      color: var(--c-ink);
+      white-space: nowrap;
+    }
+    .thought__text::before {
+      content: '“';
+      position: absolute;
+      transform: translateX(calc(-100% - 0.03em));
+      color: var(--c-gold-ink);
+    }
+    .thought__text::after { content: '”'; color: var(--c-gold-ink); }
+    .thought__by {
+      display: block;
+      margin-top: 22px;
+      font: 400 15px/1 var(--font-mono);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-ink-3);
+    }
+    .thought__by::before { content: '— '; color: var(--c-gold); }
+
+    /* The site's highlighter: the one phrase that matters. */
+    mark {
+      color: inherit;
+      white-space: nowrap;
+      background: var(--marker) no-repeat 0 92% / 100% 0.5em;
+      padding-inline: 0.06em;
+      margin-inline: -0.06em;
+    }
+
+    /* The emblem, in its own colours. */
+    .emblem {
+      position: absolute;
+      left: 1262px;
+      top: 80px;
+      width: 262px;
+      height: auto;
+      aspect-ratio: 351 / 314;
+    }
+  </style>
+</head>
+<body>
+  <main class="cover" id="cover">
+    <img class="sig" src="signature.svg" alt="" />
+
+    <div class="edge">
+      <span class="edge__line"></span>
+      <span class="edge__label">I build intelligence</span>
+      <span class="ring" style="left: 352px"></span>
+      <span class="node" style="left: 884px"></span>
+      <span class="edge__branch"></span>
+      <span class="ring ring--via" style="left: 914px; top: -30px"></span>
+    </div>
+
+    <blockquote class="thought">
+      <p class="thought__text" id="thought-text"><mark>Imagination</mark> is more important<br />than knowledge.</p>
+      <cite class="thought__by" id="thought-by">Albert Einstein</cite>
+    </blockquote>
+
+    <img class="emblem" src="emblem.png" alt="Mahmoud Alyosify emblem" />
+  </main>
+
+  <!-- ?cover=journey swaps in the card's other thought (it has no author,
+       so the by-line goes). Without a parameter: the Einstein cover.    -->
+  <script>
+    (function () {
+      var COVERS = {
+        journey: { text: 'Savvy man on the<br /><mark>journey of a lifetime</mark>.', by: '' }
+      };
+      var c = COVERS[new URLSearchParams(location.search).get('cover')];
+      if (!c) return;
+      document.getElementById('thought-text').innerHTML = c.text;
+      var by = document.getElementById('thought-by');
+      if (c.by) by.textContent = c.by; else by.remove();
+    })();
+  </script>
+</body>
+</html>

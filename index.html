@@ -42,6 +42,9 @@
       try { if (localStorage.getItem('ma-theme') === 'light') t = 'light'; } catch (e) { /* storage blocked */ }
       document.documentElement.setAttribute('data-theme', t);
       if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F4F2ED');
+      // The scroll prologue opens the page: keep the site's chrome hidden until it ends.
+      if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) && !location.hash)
+        document.documentElement.classList.add('is-prologue');
     })();
   </script>
 
@@ -53,6 +56,7 @@
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/motion.css" />
+  <link rel="stylesheet" href="css/prologue.css" />
 
   <script type="application/ld+json">
   {
@@ -218,6 +222,58 @@
   <!-- Section index — a ruler down the right edge. After the header in
        source order so keyboard users reach the main nav first. -->
   <nav class="dots" aria-label="Section navigation"></nav>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PROLOGUE — the introduction film, played by scrolling
+       (js/prologue.js). Decorative: the same words are on the page.
+       ══════════════════════════════════════════════════════════ -->
+  <section class="prologue" id="prologue" aria-label="Introduction">
+    <div class="prologue__view">
+      <div class="pl-stage" id="pl-stage" aria-hidden="true">
+        <img class="pl-abs" id="pl-sig" src="img/prologue/signature.svg" alt="" />
+        <div class="pl-abs" id="pl-glow"></div>
+        <div class="pl-abs" id="pl-hero"><img src="img/prologue/portrait.webp" alt="" width="1400" height="1400" /></div>
+
+        <div class="pl-abs" id="pl-s1" style="inset:0">
+          <div class="pl-abs pl-hair" id="pl-hair1"></div>
+          <div class="pl-abs" id="pl-emblem1">
+            <img src="img/prologue/emblem.webp" alt="" style="width:100%" />
+            <div class="pl-sweep" data-mask="img/prologue/emblem.webp"><i></i></div>
+          </div>
+          <div class="pl-abs" id="pl-wm1">
+            <img src="img/prologue/wordmark.svg" alt="" style="width:100%" />
+            <div class="pl-sweep" data-mask="img/prologue/wordmark-caps-mask.svg"><i></i></div>
+          </div>
+          <div class="pl-t pl-kicker" id="pl-k1" data-tc>AI Engineer · Researcher · Educator</div>
+          <div class="pl-abs pl-hair" id="pl-line1"></div>
+          <div class="pl-t pl-alias" id="pl-alias" data-tc>also known as Mahmoud Sayed Youssef</div>
+        </div>
+
+        <div class="pl-abs" id="pl-s11" style="inset:0">
+          <div class="pl-t pl-head" id="pl-a" data-c>He learns.</div>
+          <div class="pl-t pl-head" id="pl-b" data-c>He builds.</div>
+          <div class="pl-t pl-head" id="pl-c" data-c>He teaches.</div>
+          <div class="pl-t pl-head" id="pl-p1" data-tc>Let’s give intelligence</div>
+          <div class="pl-t pl-head" id="pl-p2" data-tc><span class="pl-mk" id="pl-mk">a purpose.</span></div>
+          <div class="pl-abs" id="pl-emblem2">
+            <img src="img/prologue/emblem.webp" alt="" style="width:100%" />
+            <div class="pl-sweep" data-mask="img/prologue/emblem.webp"><i></i></div>
+          </div>
+          <img class="pl-abs" id="pl-wm2" src="img/prologue/wordmark.svg" alt="" />
+          <div class="pl-abs pl-hair" id="pl-hair2"></div>
+          <div class="pl-t pl-url" id="pl-url" data-c>mahmoudalyosifysite.github.io</div>
+          <div class="pl-t pl-label" id="pl-mail" data-c>mahmoud.alyosify@gmail.com</div>
+          <div class="pl-t pl-label" id="pl-li" data-c>linkedin.com/in/mahmoudalyosify</div>
+        </div>
+
+        <canvas class="pl-abs" id="pl-dust" width="1920" height="1080"></canvas>
+        <div class="pl-abs" id="pl-dip"></div>
+      </div>
+      <div class="pl-abs pl-vignette"></div>
+      <button class="prologue__skip" type="button">Skip intro</button>
+      <div class="prologue__hint" aria-hidden="true"><span>Scroll</span><i></i></div>
+    </div>
+  </section>
 
   <main id="main">
 
@@ -779,6 +835,7 @@
   <script src="js/lightbox.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/theme.js" defer></script>
+  <script src="js/prologue.js" defer></script>
 </body>
 
 </html>

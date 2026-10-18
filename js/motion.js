@@ -65,8 +65,11 @@
     const fill = $('.scroll-rail__fill');
     if (!fill) return;
     const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? (window.scrollY / max) * 100 : 0;
+      // The scroll prologue (js/prologue.js) is a film, not reading: count from its end.
+      const pro = document.getElementById('prologue');
+      const from = pro ? pro.offsetTop + pro.offsetHeight : 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight - from;
+      const p = max > 0 ? Math.max(0, (window.scrollY - from) / max) * 100 : 0;
       fill.style.width = p + '%';
     };
     onScroll();
