@@ -1550,16 +1550,9 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
   bottom: clamp(80px, 15vh, 150px);
   opacity: .05;
 }
-/* the close: the page signed under its last line */
-.sigmark--close {
-  width: min(520px, 72vw);
-  margin: clamp(28px, 4.5vw, 56px) auto 0;
-  opacity: .55;
-}
 :root[data-theme='light'] .sigmark--hero { opacity: .085; }
-:root[data-theme='light'] .sigmark--close { opacity: .8; }
 /* armed by js/ui.js, then written from left to right when it comes into view */
-.sigmark--close.is-armed {
+.sigmark--footer.is-armed {
   -webkit-mask: url('../img/prologue/signature.svg') center / contain no-repeat,
                 linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 260% 100% no-repeat;
   -webkit-mask-composite: source-in;
@@ -1568,11 +1561,11 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
           mask-composite: intersect;
   transition: -webkit-mask-position 2.4s var(--ease-soft), mask-position 2.4s var(--ease-soft);
 }
-.sigmark--close.is-armed.is-signed { -webkit-mask-position: center, 0 0; mask-position: center, 0 0; }
+.sigmark--footer.is-armed.is-signed { -webkit-mask-position: center, 0 0; mask-position: center, 0 0; }
 @media (max-width: 720px) {
   .sigmark--hero { width: 150vw; right: -40vw; bottom: 30vh; }
 }
-@media (prefers-reduced-motion: reduce) { .sigmark--close.is-armed { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .sigmark--footer.is-armed { transition: none; } }
 
 /* ══════════════════════════════════════════════════════════
    CLOSING — the artwork as a matted plate, with its caption.
@@ -1692,18 +1685,11 @@ html[dir='rtl'] .foot__logo b { order: 2; justify-self: start; font-size: 0.92re
 .foot__signature {
   grid-column: 5 / span 3;
   width: min(100%, 290px);
-  aspect-ratio: 1987 / 684;
   margin-top: calc(-1 * var(--s-4));
   justify-self: center;
-  opacity: .42;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-mask: url('../img/prologue/signature.svg') center / contain no-repeat;
-          mask: url('../img/prologue/signature.svg') center / contain no-repeat;
-  background: var(--gold);
+  opacity: .16;
 }
-:root[data-theme='light'] .foot__signature { opacity: .62; }
+:root[data-theme='light'] .foot__signature { opacity: .22; }
 .foot__link {
   width: 28px; height: 28px;
   display: grid;
