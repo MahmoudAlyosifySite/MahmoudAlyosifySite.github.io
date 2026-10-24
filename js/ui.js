@@ -640,10 +640,10 @@
     }, { once: true });
   }
 
-  /* The footer signature writes itself once, when it comes into view.
+  /* The signature at the close writes itself once, when it comes into view.
      Without this script it is simply there, whole. */
   function initSignature() {
-    const mark = $('#sigmark-footer');
+    const mark = $('#sigmark-close');
     if (!mark || !('IntersectionObserver' in window)) return;
     mark.classList.add('is-armed');
     const io = new IntersectionObserver((entries) => {
