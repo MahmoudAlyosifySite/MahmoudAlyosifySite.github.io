@@ -58,7 +58,6 @@
   -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 100%); mask-image: linear-gradient(180deg, #000 78%, transparent 100%); }
 #pl-glow { left: 840px; top: 0; width: 1120px; height: 1120px; opacity: 0;
   background: radial-gradient(circle 560px at 50% 41%, rgba(201,165,94,.20), rgba(201,165,94,0)); }
-#pl-sig { left: 210px; top: 301px; width: 1500px; opacity: 0; }
 
 /* wide layout (1920 × 1080) */
 #pl-hair1 { left: 750px; top: 760px; width: 420px; }
@@ -82,7 +81,6 @@
 /* tall layout (1080 × 1920): the portrait stands at the foot, words above, larger */
 .is-tall #pl-hero { left: 40px; top: 920px; }
 .is-tall #pl-glow { left: -20px; top: 840px; }
-.is-tall #pl-sig { left: 40px; top: 600px; width: 1000px; }
 .is-tall #pl-hair1 { left: 330px; top: 980px; }
 .is-tall #pl-emblem1 { left: 330px; top: 560px; }
 .is-tall #pl-wm1 { left: 90px; top: 250px; width: 900px; }
