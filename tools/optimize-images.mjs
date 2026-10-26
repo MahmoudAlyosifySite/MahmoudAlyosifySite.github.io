@@ -107,6 +107,14 @@ async function run() {
     await derive(mascot, path.join(ROOT, 'img', '_web', 'mahmoud-bot.webp'), 600, 86);
   }
 
+  /* ── The closing — he stands, hand raised, in the coded scene ── */
+  const raise = path.join(ROOT, 'img', 'Mahmoud up hand without backgeound.png');
+  if (existsSync(raise)) {
+    console.log('Closing       — 1 image');
+    await derive(raise, path.join(ROOT, 'img', '_web', 'closing-mahmoud.webp'), 1100, 84);
+    await derive(raise, path.join(ROOT, 'img', '_web', 'closing-mahmoud@560.webp'), 560, 82);
+  }
+
   /* ── People who wrote a recommendation — shown at 40px ─── */
   const people = ['Rahatara.png', 'Dr_Ibrahim.jpg', 'Dr_Islam.jpg', 'Nada.png', 'Mina.jpg', 'Nourhan Ahmed.jpg',
     'Rahma.jpg', 'Al_Hassan.M. Kamel.jpg', 'M_Nasser.jpg', 'Doaa.jpg', 'Moataz.jpg'];

@@ -12,7 +12,7 @@
    edit it by hand. Old caches are deleted on activate.
    ============================================================ */
 
-const VERSION = 'ma-52df3b183f';
+const VERSION = 'ma-872e6f4596';
 const SHELL = `shell-${VERSION}`;
 const ASSETS = `assets-${VERSION}`;
 
@@ -38,7 +38,7 @@ const PRECACHE = [
   'img/prologue/emblem.webp',
   'data/certificates.json',
   'data/photo-gallery.json',
-  'img/FatFooter-En.png'
+  'img/_web/closing-mahmoud.webp'
 ];
 
 self.addEventListener('install', (e) => {

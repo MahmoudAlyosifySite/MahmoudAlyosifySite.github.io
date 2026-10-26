@@ -13,7 +13,6 @@
    ============================================================ */
 
 :root {
-  --hero-art: url('../img/FatFooter-En.png');
   /* The spine, measured inside any full-measure container: three
      columns and three gutters in. Percentages resolve where used. */
   --spine: calc((100% - 11 * var(--gutter)) / 4 + 3 * var(--gutter));
@@ -1527,8 +1526,9 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
 
 /* ══════════════════════════════════════════════════════════
    SIGNATURE — his signature in two places only: a faint
-   watermark behind the title page, and under the closing plate,
-   where it writes itself once, as if the page were being signed.
+   watermark behind the title page, and in the closing artwork,
+   under its words as on the back of his card, where it writes
+   itself once, as if the page were being signed.
    Drawn in the theme's gold through a mask, so it follows dark
    and light.
    ══════════════════════════════════════════════════════════ */
@@ -1550,14 +1550,17 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
   bottom: clamp(80px, 15vh, 150px);
   opacity: .05;
 }
-/* the close: the page signed under its last line */
+/* the close: across the foot of the artwork, under the words and the
+   button, running into the pyramids — placed in the scene's own units */
 .sigmark--close {
-  width: min(520px, 72vw);
-  margin: clamp(28px, 4.5vw, 56px) auto 0;
-  opacity: .55;
+  position: absolute;
+  left: var(--sig-x, 7%);
+  top: var(--sig-y, 47%);
+  width: var(--sig-w, 46%);
+  background: #D6B676;
+  opacity: .2;
 }
 :root[data-theme='light'] .sigmark--hero { opacity: .085; }
-:root[data-theme='light'] .sigmark--close { opacity: .8; }
 /* armed by js/ui.js, then written from left to right when it comes into view */
 .sigmark--close.is-armed {
   -webkit-mask: url('../img/prologue/signature.svg') center / contain no-repeat,
@@ -1566,7 +1569,7 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
           mask: url('../img/prologue/signature.svg') center / contain no-repeat,
                 linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 260% 100% no-repeat;
           mask-composite: intersect;
-  transition: -webkit-mask-position 2.4s var(--ease-soft), mask-position 2.4s var(--ease-soft);
+  transition: -webkit-mask-position 2.4s var(--ease-soft) .9s, mask-position 2.4s var(--ease-soft) .9s;
 }
 .sigmark--close.is-armed.is-signed { -webkit-mask-position: center, 0 0; mask-position: center, 0 0; }
 @media (max-width: 720px) {
@@ -1585,12 +1588,84 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
   border: 1px solid var(--rule);
   border-radius: var(--r);
 }
+/* The artwork is night and gold in both themes. Its scene is drawn on
+   a "world" 1700 × 500 units, always as tall as the plate and pinned
+   to its right, so he and the pyramids keep their places; a narrower
+   plate only crops the empty sky on the left. */
 .fatfooter__img {
-  aspect-ratio: 1660 / 418;
-  background: var(--hero-art) center / cover no-repeat;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 1700 / 500;
+  background: #0A0A0B;
   border-radius: 1px;
-  /* The artwork is neon; on paper it is let down a little. */
-  filter: saturate(0.8);
+}
+.ff__world {
+  position: absolute;
+  top: 0;
+  right: var(--ff-r, 0%);
+  height: 100%;
+  aspect-ratio: 1700 / 500;
+}
+.ff__world--front { z-index: 2; pointer-events: none; }
+.ff__scene { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+/* A line from Ptahhotep, carved down the left edge like a temple door jamb:
+   wr mꜣꜥt wꜣḥ spdt — "Great is Maat, lasting in effect". */
+.ff__glyphs { font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', sans-serif; }
+/* He stands on the right, his raised hand leaving the top of the plate. */
+.ff__man {
+  position: absolute;
+  top: 0;
+  right: 2.35%;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  filter: drop-shadow(0 0 22px rgba(214, 182, 118, 0.16)) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+  /* The photograph is cut straight along his sleeve, 13–22% down its left
+     edge; that band alone fades into the night, so the raised fist stays
+     whole. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%),
+                      linear-gradient(#000 11%, transparent 12%, transparent 22.5%, #000 23.5%);
+          mask-image: linear-gradient(90deg, transparent, #000 4%),
+                      linear-gradient(#000 11%, transparent 12%, transparent 22.5%, #000 23.5%);
+}
+/* The card's gold line: down the left edge, round the corner, along the
+   top, a neuron at each end — he stands in front of it. */
+.ff__edge {
+  position: absolute;
+  z-index: 1;
+  inset: clamp(8px, 1.2vw, 16px) clamp(10px, 4%, 64px) auto clamp(8px, 1.2vw, 16px);
+  height: 72%;
+  border-left: 1px solid rgba(201, 165, 94, 0.55);
+  border-top: 1px solid rgba(201, 165, 94, 0.55);
+  border-top-left-radius: 6px;
+  pointer-events: none;
+}
+.ff__edge::before,
+.ff__edge::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #C9A55E;
+  border-radius: 50%;
+  background: radial-gradient(circle, #C9A55E 0 1.3px, #0A0A0B 1.5px);
+}
+.ff__edge::before { left: -4px; bottom: -7px; }
+.ff__edge::after { right: -7px; top: -4px; }
+
+/* Drawn in once when the plate arrives: the light first, then the
+   network rising off the capstone, then the line to his hand. Without
+   JS, or with reduced motion, it is simply there. */
+.motion-ready .ff__scene [data-draw] { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.motion-ready .ff__scene .ff-fade { opacity: 0; }
+.motion-ready .fatfooter__art.is-in .ff__scene [data-draw] {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.3s var(--ease-soft) var(--dd, 0s);
+}
+.motion-ready .fatfooter__art.is-in .ff__scene .ff-fade {
+  opacity: 1;
+  transition: opacity 1.2s var(--ease-soft) var(--dd, 0s);
 }
 .fatfooter__inner { align-items: baseline; row-gap: var(--s-4); margin-top: var(--s-5); }
 .fatfooter__title {
@@ -1608,7 +1683,7 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
 .fatfooter .btn { grid-column: 10 / -1; justify-self: end; }
 
 /* Wide screens: the line and the button are set on the artwork itself, in
-   the clear sky to the left of the skyline. The two share one grid cell.
+   the clear sky to the left of the pyramids. The two share one grid cell.
    The plate is always left-to-right — the man stands on its right in both
    languages — while the words inside keep their own direction. On narrower
    screens the plate is too small to carry text, so it stays underneath. */
@@ -1616,15 +1691,6 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
   .fatfooter__plate { display: grid; direction: ltr; }
   .fatfooter__plate > * { grid-area: 1 / 1; }
   html[dir='rtl'] .fatfooter__inner { direction: rtl; }
-
-  .fatfooter__img { position: relative; }
-  /* A veil of night on the left keeps the words legible on the horizon glow. */
-  .fatfooter__img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(6, 8, 22, 0.66) 0%, rgba(6, 8, 22, 0.4) 30%, rgba(6, 8, 22, 0) 58%);
-  }
 
   .fatfooter__inner {
     position: relative;
@@ -1650,6 +1716,13 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 2px 26px rgba(0, 0, 0, 0.5);
   }
+}
+/* Narrower, the words sit under the plate, which can stand taller: only
+   the empty sky on the left is cropped, never him or the pyramids. */
+@media (max-width: 999px) {
+  .fatfooter__img { aspect-ratio: 12 / 5; --sig-x: 31%; --sig-y: 49%; --sig-w: 40%; }
+  /* the inscription follows the plate's new left edge (scene units) */
+  .ff__glyphs { transform: translateX(500px); }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2077,9 +2150,12 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
 
   .pcard__period { margin-inline-start: 0; flex-basis: 100%; }
 
-  /* A 4:1 panorama leaves him a few pixels tall on a phone; the plate
-     takes his end of the artwork instead. */
-  .fatfooter__img { aspect-ratio: 16 / 10; background-position: 92% center; }
+  /* A 3.4:1 panorama leaves him a few pixels tall on a phone; the plate
+     takes his end of the artwork instead — the pyramids, the network and
+     him. The signature runs along the floor at their feet, and the
+     inscription stands in the sky between the two pyramids. */
+  .fatfooter__img { aspect-ratio: 16 / 9; --ff-r: -2.25%; --sig-x: 46.5%; --sig-y: 69%; --sig-w: 30%; }
+  .ff__glyphs { transform: translateX(790px); }
 
   /* Clear the fixed buttons so the last line is never under them. */
   .foot { padding-bottom: 116px; }

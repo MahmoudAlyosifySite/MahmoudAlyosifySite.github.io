@@ -640,8 +640,10 @@
     }, { once: true });
   }
 
-  /* The signature at the close writes itself once, when it comes into view.
-     Without this script it is simply there, whole. */
+  /* The signature at the close writes itself once, when the artwork comes
+     into view. It is watched through the plate, since the artwork crops
+     part of it on narrow screens. Without this script it is simply there,
+     whole. */
   function initSignature() {
     const mark = $('#sigmark-close');
     if (!mark || !('IntersectionObserver' in window)) return;
@@ -651,7 +653,7 @@
       mark.classList.add('is-signed');
       io.disconnect();
     }, { threshold: 0.6 });
-    io.observe(mark);
+    io.observe(mark.closest('.fatfooter__img') || mark);
   }
 
   function boot() {
