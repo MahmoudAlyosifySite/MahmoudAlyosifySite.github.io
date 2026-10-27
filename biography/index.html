@@ -365,8 +365,9 @@
               of the student union's Higher Scientific and Technological Committee and was named his faculty's Ideal Student for
               2022–2023.<sup class="bio-ref" id="r4"><a href="#cite-4">[4]</a></sup></p>
 
-            <p>His master's research project, MinimalLM, asked whether a language model can be made to say less at inference time —
-              without retraining — while keeping everything a reader needs.<sup class="bio-ref" id="r5"><a href="#cite-5">[5]</a></sup>
+            <p>His master's thesis, MinimalLM, asked whether a language model can be made to generate fewer tokens at inference time —
+              without retraining — and still give a complete answer; on three open models it generated 47.6% fewer tokens with no
+              answer cut off.<sup class="bio-ref" id="r5"><a href="#cite-5">[5]</a></sup>
               One of his long-term ambitions is to help build a major Egyptian company that develops original AI technology.</p>
           </div>
 
@@ -551,25 +552,30 @@
             <h2 id="research">Research</h2>
 
             <h3 id="minimallm">MinimalLM</h3>
-            <p>Language models often write more than a question needs, and every unnecessary token costs computation, time and
-              energy. MinimalLM, his master's research project (CISC 898, 2026), asked whether a model can be made to say less at
-              inference time — without retraining it or changing its architecture — while losing none of the content a reader
-              needs.<sup class="bio-ref"><a href="#cite-5">[5]</a></sup></p>
-            <p>Alyosify led the four-student team, which was supervised by Dr. Rahatara Ferdousi. The team built a training-free
-              <i>logits processor</i> — a component that adjusts the model's next-token scores inside the decoding loop — combining a
-              length term, an n-gram-repetition term and a semantic-redundancy term under an entropy gate. It was evaluated on three
-              open-weight models (Mistral-7B-Instruct, Llama-3.1-8B-Instruct and Qwen2.5-3B-Instruct) across the MT-Bench, YapBench,
-              XSum and SQuAD-v2 benchmarks, under a pre-registered protocol that treated "no loss of meaning" as a statistical
-              non-inferiority hypothesis and also measured latency and GPU
-              energy.<sup class="bio-ref"><a href="#cite-5">[5]</a></sup><sup class="bio-ref"><a href="#cite-1">[1]</a></sup></p>
-            <p>The project's most instructive result came from its choice of baseline. Compared with the simplest alternative —
-              cutting the model's own answer to the same length — the processor's savings turned out to come mainly from ending
-              answers earlier: in effect, it behaved as a stop controller. A survey of 23 families of training-free mechanisms, from
-              logit penalties and activation steering to search and span selection, found none that chose what to keep better than
-              matched-length truncation without access to oracle labels.<sup class="bio-ref"><a href="#cite-5">[5]</a></sup></p>
-            <p>Besides leading the project, Alyosify worked across its tracks: the evaluation track — metrics, the language-model
-              judge and claim auditing — the survey of mechanism families, the team's demonstration interface, and the
-              consolidation and final audit of the evidence. As of September 2026 the project's results had not been
+            <p>Language models often write more than a question needs, and every generated token costs computation, time and
+              energy. MinimalLM, his master's thesis (CISC 898, 2026), asked whether an unchanged model can be made to generate
+              fewer tokens at inference time — without retraining it or changing its architecture — and still give a complete
+              answer.<sup class="bio-ref"><a href="#cite-5">[5]</a></sup></p>
+            <p>Alyosify led the three-student team, with Mirna Imbabi and Eman Elkhamisi, which was supervised by Dr. Rahatara
+              Ferdousi. A model writes its answer one token at a time, so a decoder that is not trained can end an answer early but
+              cannot skip a part of it. The team's first version, a stop-token boost that raises the score of the stop token once an
+              answer is long and the model is uncertain, saved 32.6% of the generated tokens but cut off 59.3% of its answers,
+              because its rule reads the position and the model's uncertainty, never the text. MinimalLM adds guardrails: an
+              instruction asking for a complete answer of about 200 words, a completeness gate that lets the boost stop an answer
+              only at the end of a sentence, and a final check that trims an answer still cut off at the token
+              cap.<sup class="bio-ref"><a href="#cite-5">[5]</a></sup></p>
+            <p>On three open instruction-tuned models (Mistral-7B, Llama-3.1-8B and Qwen2.5-3B) and 330 questions from MT-Bench,
+              AlpacaEval and Arena-Hard-Auto, MinimalLM generated 47.6% fewer tokens than the unmodified models and answered
+              19–68% faster, with no answer cut off. An LLM judge scored its answers 8.04 out of 10, against 8.42 for the
+              unmodified models; cutting the original answers to the same length scored 6.46. On the same questions in six other
+              languages (Arabic, Chinese, French, German, Spanish and Russian) it saved 45.6% of the generated tokens. The main cost
+              is coverage: the shorter answers more often leave out a part of a broad question (the judge found missing parts in
+              22.9% of them, against 12.6% for the unmodified models).<sup class="bio-ref"><a href="#cite-5">[5]</a></sup></p>
+            <p>Besides leading the project, Alyosify led its evaluation track — metrics, the language-model judge and claim
+              auditing — and the research across 23 families of training-free mechanisms, none of which kept more content than
+              cutting an answer at the same length; he also built the team's demonstration interface and carried out the final
+              audit of the evidence. The evaluation is internal to the project, and no independent human evaluation was conducted.
+              The final report was submitted in October 2026; its results had not been
               published.<sup class="bio-ref"><a href="#cite-5">[5]</a></sup></p>
 
             <h3 id="research-interests">Research interests</h3>
@@ -728,8 +734,8 @@
                 Mahmoud Sayed Youssef Kotb, <a class="link" href="../Files/Mahmoud-Alyosify-TA-CV.pdf">Curriculum vitae</a> (PDF),
                 2025.</li>
               <li id="cite-5"><a class="bio-refs__up" href="#r5" aria-label="Back to the first citation">↑</a>
-                MinimalLM project record, CISC 898, School of Computing, Queen's University — unpublished; status as of
-                26 September 2026.</li>
+                <i>MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference</i>, master's thesis (final
+                report), CISC 898, School of Computing, Queen's University, October 2026 — unpublished; internal evaluation.</li>
               <li id="cite-6"><a class="bio-refs__up" href="#r6" aria-label="Back to the first citation">↑</a>
                 <a class="link" href="https://orcid.org/0009-0005-1336-2726">ORCID record 0009-0005-1336-2726</a>.</li>
               <li id="cite-7"><a class="bio-refs__up" href="#r7" aria-label="Back to the first citation">↑</a>

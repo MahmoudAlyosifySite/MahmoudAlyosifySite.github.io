@@ -57,8 +57,8 @@ const SITE = {
       ar: 'أبني أنظمة ذكية متكاملة — من ضبط النماذج اللغوية وتحسين الاستدلال وقت فك التشفير، إلى منصات استخبارات مفتوحة المصدر متعددة الوكلاء، والتعلّم المعزز العميق للتوسّع السحابي.'
     },
     body: {
-      en: 'I am completing an MSc in Artificial Intelligence at Queen\'s University, Canada on a Digilians Presidential Scholarship, with a master\'s research project on training-free, decoding-time efficiency for large language models. Along the way I have delivered production-oriented systems on AWS spanning autonomous threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction — and taught more than 10,000 learners in Arabic across 700K+ views.',
-      ar: 'أُكمل حاليًا ماجستير الذكاء الاصطناعي في جامعة كوينز بكندا بمنحة Digilians الرئاسية، ومشروعي البحثي عن كفاءة النماذج اللغوية وقت فك التشفير دون إعادة تدريب. وعلى الطريق سلّمت أنظمة جاهزة للإنتاج على AWS تشمل استخبارات التهديدات الذاتية، وسلاسل رؤية حاسوبية جاهزة للاسترجاع، وتوسّعًا سحابيًا بالتعلّم المعزز، والتنبؤ بمخاطر تصادم الأقمار الصناعية — ودرّست أكثر من 10,000 متعلّم بالعربية بأكثر من 700 ألف مشاهدة.'
+      en: 'I am completing an MSc in Artificial Intelligence at Queen\'s University, Canada on a Digilians Presidential Scholarship, with a master\'s thesis on training-free, decoding-time efficiency for large language models. Along the way I have delivered production-oriented systems on AWS spanning autonomous threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction — and taught more than 10,000 learners in Arabic across 700K+ views.',
+      ar: 'أُكمل حاليًا ماجستير الذكاء الاصطناعي في جامعة كوينز بكندا بمنحة Digilians الرئاسية، ورسالتي عن كفاءة النماذج اللغوية وقت فك التشفير دون إعادة تدريب. وعلى الطريق سلّمت أنظمة جاهزة للإنتاج على AWS تشمل استخبارات التهديدات الذاتية، وسلاسل رؤية حاسوبية جاهزة للاسترجاع، وتوسّعًا سحابيًا بالتعلّم المعزز، والتنبؤ بمخاطر تصادم الأقمار الصناعية — ودرّست أكثر من 10,000 متعلّم بالعربية بأكثر من 700 ألف مشاهدة.'
     },
     /* Rendered after the body copy; may contain a link. */
     note: {
@@ -162,15 +162,15 @@ const SITE = {
   projects: [
     {
       featured: true,
-      period: { en: 'Jul 2026 — Present', ar: 'يوليو 2026 — حتى الآن' },
-      kind: { en: 'MSc Research · CISC 898', ar: 'بحث الماجستير · CISC 898' },
+      period: { en: 'Jul 2026 — Oct 2026', ar: 'يوليو 2026 — أكتوبر 2026' },
+      kind: { en: 'MSc Thesis · CISC 898', ar: 'رسالة الماجستير · CISC 898' },
       title: 'Verbosity-Aware Decoding',
       subtitle: { en: 'Token-Efficient Language Model Inference', ar: 'استدلال موفّر للتوكنات في النماذج اللغوية' },
       desc: {
-        en: 'A training-free LogitsProcessor that cuts generated tokens at decoding time by combining stop-token, n-gram-repetition and semantic-redundancy signals under an entropy-driven gate — no retraining, no architecture change, no KV-cache or attention overhead. Validated across Mistral-7B, Llama-3.1-8B and Qwen2.5-3B on MT-Bench, YapBench, XSum and SQuAD-v2, with a pre-registered non-inferiority protocol measuring BERTScore, ROUGE, exact-match/F1, TTFT, inter-token latency and GPU energy via NVML.',
-        ar: 'مُعالِج Logits بدون تدريب يقلّص التوكنات المولّدة وقت فك التشفير بدمج إشارات رمز التوقف وتكرار الـ n-gram والتكرار الدلالي تحت بوابة قائمة على الإنتروبيا — بلا إعادة تدريب ولا تغيير معماري ولا عبء على ذاكرة KV أو الانتباه. جرى التحقق عبر Mistral-7B وLlama-3.1-8B وQwen2.5-3B على MT-Bench وYapBench وXSum وSQuAD-v2 ببروتوكول عدم دونية مُسجّل مسبقًا يقيس BERTScore وROUGE والمطابقة التامة وزمن أول توكن وطاقة GPU عبر NVML.'
+        en: 'A training-free decoding method that makes an unchanged language model generate fewer tokens and still give a complete answer: a guardrail instruction, an entropy-gated stop-token LogitsProcessor, a completeness gate that lets it stop only at the end of a sentence, and a final check. On Mistral-7B, Llama-3.1-8B and Qwen2.5-3B and 330 questions from MT-Bench, AlpacaEval and Arena-Hard-Auto it generates 47.6% fewer tokens and answers 19–68% faster with no answer cut off (LLM-judge score 8.04/10 against 8.42), and saves 45.6% in six other languages. Fewer generated tokens are a real saving only when the answer is still complete — MinimalLM gives both, without training.',
+        ar: 'طريقة لفك التشفير بلا تدريب تجعل نموذجًا لغويًا دون أي تعديل يولّد توكنات أقل ويظل يقدّم إجابة كاملة: تعليمة حارسة، ومعالِج Logits يرفع درجة رمز التوقف وفق الإنتروبيا، وبوابة اكتمال لا تسمح بالتوقف إلا عند نهاية جملة، وفحص نهائي. على Mistral-7B وLlama-3.1-8B وQwen2.5-3B وعلى 330 سؤالًا من MT-Bench وAlpacaEval وArena-Hard-Auto ولّدت توكنات أقل بنسبة 47.6% وأجابت أسرع بنسبة 19–68% دون أي إجابة مقطوعة (درجة المحكِّم 8.04/10 مقابل 8.42)، ووفّرت 45.6% في ست لغات أخرى. التوكنات الأقل لا تكون توفيرًا حقيقيًا إلا إذا بقيت الإجابة كاملة — وMinimalLM يحقق الاثنين بلا تدريب.'
       },
-      tags: ['LLM Inference', 'PyTorch', 'Hugging Face', 'Benchmarking', 'AWS GPU'],
+      tags: ['LLM Inference', 'PyTorch', 'Hugging Face', 'Benchmarking', 'NVIDIA A40'],
       repo: 'https://github.com/MahmoudAlyosify/minimal-lm',
       image: 'img/portfolio 1.png',
       supervisor: 'Dr. Rahatara Ferdousi'
@@ -357,7 +357,7 @@ const SITE = {
       stage: '04',
       name: { en: 'Evaluation & Research', ar: 'التقييم والبحث' },
       note: { en: 'Claims are worth what their evaluation protocol is worth.', ar: 'قيمة أي ادعاء من قيمة بروتوكول تقييمه.' },
-      items: ['MT-Bench', 'XSum', 'SQuAD-v2', 'BERTScore', 'ROUGE', 'LLM-as-Judge', 'Statistical Testing', 'Ablation Studies', 'Reproducible Experiment Design']
+      items: ['MT-Bench', 'AlpacaEval', 'Arena-Hard-Auto', 'BERTScore', 'ROUGE', 'LLM-as-Judge', 'Statistical Testing', 'Ablation Studies', 'Reproducible Experiment Design']
     },
     {
       stage: '05',

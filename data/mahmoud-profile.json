@@ -37,14 +37,14 @@
       "section": "summary",
       "title": "Professional summary",
       "tags": ["about", "who", "summary", "overview", "bio", "introduction", "background"],
-      "text": "Mahmoud Alyosify is an Egyptian AI and Machine Learning Engineer, researcher and educator who builds end-to-end intelligent systems across LLM fine-tuning and inference optimisation, multi-agent systems, self-supervised learning, and reinforcement learning. He completed an MSc in Artificial Intelligence at Queen's University, Canada, through the Digilians Presidential Scholarship, with a master's research project on training-free, decoding-time efficiency for large language models. He has delivered production-oriented systems on AWS spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction. He has taught over 10,000 learners with more than 700,000 YouTube views. He is seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale."
+      "text": "Mahmoud Alyosify is an Egyptian AI and Machine Learning Engineer, researcher and educator who builds end-to-end intelligent systems across LLM fine-tuning and inference optimisation, multi-agent systems, self-supervised learning, and reinforcement learning. He completed an MSc in Artificial Intelligence at Queen's University, Canada, through the Digilians Presidential Scholarship, with a master's thesis on training-free, decoding-time efficiency for large language models. He has delivered production-oriented systems on AWS spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction. He has taught over 10,000 learners with more than 700,000 YouTube views. He is seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale."
     },
     {
       "id": "edu-msc",
       "section": "education",
       "title": "MSc in Artificial Intelligence — Queen's University, Canada",
       "tags": ["education", "masters", "msc", "queens", "canada", "scholarship", "degree", "study", "university"],
-      "text": "MSc in Artificial Intelligence at Queen's University, Kingston, Canada. Began in September 2025 and completed in 2026. Funded by the Digilians Presidential Scholarship, a competitive national AI graduate fellowship. Master's research project (CISC 898): 'Verbosity-Aware Decoding for Token-Efficient Language Model Inference', supervised by Dr. Rahatara Ferdousi. Coursework covered Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, and End-to-End ML Pipelines."
+      "text": "MSc in Artificial Intelligence at Queen's University, Kingston, Canada. Began in September 2025 and completed in 2026. Funded by the Digilians Presidential Scholarship, a competitive national AI graduate fellowship. Master's thesis (CISC 898): 'MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference', supervised by Dr. Rahatara Ferdousi. Coursework covered Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, and End-to-End ML Pipelines."
     },
     {
       "id": "edu-bsc",
@@ -113,8 +113,8 @@
       "id": "skills-eval",
       "section": "skills",
       "title": "Evaluation & research skills",
-      "tags": ["skills", "evaluation", "benchmark", "mt-bench", "xsum", "squad", "bertscore", "rouge", "llm-as-judge", "statistics", "ablation", "reproducibility", "research methods"],
-      "text": "Evaluation & Research: Benchmarking (MT-Bench, XSum, SQuAD-v2), BERTScore, ROUGE, LLM-as-Judge, Statistical Testing, Ablation Studies, Reproducible Experiment Design."
+      "tags": ["skills", "evaluation", "benchmark", "mt-bench", "alpacaeval", "arena-hard", "bertscore", "rouge", "llm-as-judge", "statistics", "ablation", "reproducibility", "research methods"],
+      "text": "Evaluation & Research: Benchmarking (MT-Bench, AlpacaEval, Arena-Hard-Auto), BERTScore, ROUGE, LLM-as-Judge, Statistical Testing, Ablation Studies, Reproducible Experiment Design."
     },
     {
       "id": "skills-prog",
@@ -134,8 +134,8 @@
       "id": "proj-vad",
       "section": "research",
       "title": "Verbosity-Aware Decoding for Token-Efficient Language Model Inference",
-      "tags": ["research", "msc", "thesis", "minimal-lm", "verbosity", "decoding", "logitsprocessor", "inference", "efficiency", "tokens", "mt-bench", "yapbench", "xsum", "squad", "mistral", "llama", "qwen", "nvml", "energy", "latency", "publication", "cisc 898"],
-      "text": "Verbosity-Aware Decoding for Token-Efficient Language Model Inference — Mahmoud's MSc research project (CISC 898) at Queen's University, supervised by Dr. Rahatara Ferdousi, July 2026 to present. He designed a training-free LogitsProcessor that cuts generated tokens at decoding time by combining stop-token, n-gram-repetition and semantic-redundancy signals under an entropy-driven gate — with no retraining, no architecture change, and no KV-cache or attention overhead. Validated across three open-weight model families (Mistral-7B-Instruct, Llama-3.1-8B-Instruct, Qwen2.5-3B-Instruct) on MT-Bench, YapBench, XSum and SQuAD-v2. He built a pre-registered evaluation protocol proving semantic preservation through paired non-inferiority testing (BERTScore, ROUGE, exact-match/F1, length-controlled LLM judge) alongside token reduction, latency (time-to-first-token and inter-token), and GPU energy measured via NVML — fully deterministic and reproducible on pinned AWS GPU instances. Repository: https://github.com/MahmoudAlyosify/minimal-lm"
+      "tags": ["research", "msc", "thesis", "minimal-lm", "minimallm", "verbosity", "decoding", "logitsprocessor", "inference", "efficiency", "tokens", "guardrails", "completeness", "stop token", "mt-bench", "alpacaeval", "arena-hard", "mistral", "llama", "qwen", "latency", "multilingual", "publication", "cisc 898"],
+      "text": "Verbosity-Aware Decoding for Token-Efficient Language Model Inference (MinimalLM) — Mahmoud's MSc thesis (CISC 898) at Queen's University, supervised by Dr. Rahatara Ferdousi, 2026. Fewer generated tokens are a real saving only when the answer is still complete; MinimalLM gives both, without training. It combines a guardrail instruction, an entropy-gated stop-token LogitsProcessor, a completeness gate that lets the answer stop only at the end of a sentence, and a final check. On Mistral-7B, Llama-3.1-8B and Qwen2.5-3B and 330 questions from MT-Bench, AlpacaEval and Arena-Hard-Auto, it generates 47.6% fewer tokens than the unmodified models and answers 19-68% faster, with no answer cut off. An LLM judge scores its answers 8.04 out of 10 against 8.42 for the unmodified models, while cutting the original answers to the same length scores 6.46. On the same questions in six other languages (Arabic, Chinese, French, German, Spanish, Russian) it saves 45.6% of the generated tokens. The stop-token boost alone, its first version, saves 32.6% but cuts off 59.3% of its answers. The main cost is coverage: shorter answers more often leave out a part of a broad question. The evaluation is internal to the project; no independent human evaluation was conducted. Repository: https://github.com/MahmoudAlyosify/minimal-lm"
     },
     {
       "id": "proj-horus-sentinel",
@@ -302,8 +302,8 @@
       "id": "research-biography",
       "section": "research",
       "title": "MinimalLM research details",
-      "tags": ["minimal lm", "minimallm", "research", "cisc 898", "logits processor", "token efficient", "inference", "non inferiority"],
-      "text": "MinimalLM is Mahmoud's MSc research project (CISC 898, 2026) at Queen's University. He led a four-student team supervised by Dr. Rahatara Ferdousi to study whether a language model can produce shorter answers at inference time without retraining or changing its architecture while preserving meaning. The team built a training-free logits processor combining length, n-gram repetition and semantic redundancy signals under an entropy gate, and evaluated Mistral-7B-Instruct, Llama-3.1-8B-Instruct and Qwen2.5-3B-Instruct on MT-Bench, YapBench, XSum and SQuAD-v2. As of September 2026 the results were unpublished."
+      "tags": ["minimal lm", "minimallm", "research", "thesis", "cisc 898", "logits processor", "token efficient", "inference", "guardrails", "completeness", "stop token"],
+      "text": "MinimalLM is Mahmoud's MSc thesis (CISC 898, 2026) at Queen's University. He led a three-student team (with Mirna Imbabi and Eman Elkhamisi), supervised by Dr. Rahatara Ferdousi, to study whether an unchanged language model can generate fewer tokens at inference time, without retraining, and still give a complete answer. A decoder that is not trained can end an answer early but cannot skip a part of it; the first version, a stop-token boost, saved 32.6% of the tokens but cut off 59.3% of its answers. MinimalLM adds a guardrail instruction, a completeness gate and a final check: on Mistral-7B-Instruct, Llama-3.1-8B-Instruct and Qwen2.5-3B-Instruct it generated 47.6% fewer tokens with no answer cut off, and saved 45.6% in six other languages. The evaluation is internal, and the results were unpublished as of October 2026."
     },
     {
       "id": "research-interests-biography",

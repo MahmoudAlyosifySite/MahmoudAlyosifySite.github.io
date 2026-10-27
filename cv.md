@@ -13,7 +13,7 @@
 
 ## Professional Summary
 
-AI & Machine Learning Engineer building end-to-end intelligent systems across **LLM fine-tuning and inference optimisation**, **multi-agent systems**, **self-supervised learning**, and **reinforcement learning**. Completing an **MSc in Artificial Intelligence at Queen's University, Canada** on a **Digilians Presidential Scholarship**, with a master's research project on training-free, decoding-time efficiency for large language models. Delivered production-oriented systems on **AWS** spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction; taught **10,000+ learners** (**700K+ views**). Seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale.
+AI & Machine Learning Engineer building end-to-end intelligent systems across **LLM fine-tuning and inference optimisation**, **multi-agent systems**, **self-supervised learning**, and **reinforcement learning**. Completing an **MSc in Artificial Intelligence at Queen's University, Canada** on a **Digilians Presidential Scholarship**, with a master's thesis on training-free, decoding-time efficiency for large language models. Delivered production-oriented systems on **AWS** spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction; taught **10,000+ learners** (**700K+ views**). Seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale.
 
 ## Education
 
@@ -21,7 +21,7 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 **Sep 2025 – Present** | Expected 2026
 
 - **Digilians Presidential Scholarship** — competitive national AI graduate fellowship.
-- **Master's Research Project (CISC 898):** *Verbosity-Aware Decoding for Token-Efficient Language Model Inference* — Supervisor: Dr. Rahatara Ferdousi.
+- **Master's Thesis (CISC 898):** *MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference* — Supervisor: Dr. Rahatara Ferdousi.
 - Coursework: **Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, End-to-End ML Pipelines**.
 
 ### B.Sc. Computer & Information Science (Bioinformatics) — Assiut University, Egypt
@@ -36,7 +36,7 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 | **AI & LLM Systems** | Large Language Models, Fine-Tuning (LoRA, QLoRA, PEFT), RAG, Transformers, Hugging Face, LangChain, Multi-Agent Systems, Agentic Workflows, Prompt Engineering, Custom Decoding, Knowledge Graphs |
 | **ML & Deep Learning** | PyTorch, TensorFlow, Scikit-learn, XGBoost, LightGBM, CNNs, Computer Vision, NLP, Self-Supervised & Contrastive Learning, Reinforcement Learning (PPO, DQN), Optuna, SHAP |
 | **Data & MLOps** | Pandas, NumPy, PySpark, ETL Pipelines, Feature Engineering, AWS, Docker, CI/CD, ONNX, FastAPI, Streamlit, FAISS, ChromaDB, MySQL, MongoDB, Git/GitHub, Linux |
-| **Evaluation & Research** | Benchmarking (MT-Bench, XSum, SQuAD-v2), BERTScore, ROUGE, LLM-as-Judge, Statistical Testing, Ablation Studies, Reproducible Experiment Design |
+| **Evaluation & Research** | Benchmarking (MT-Bench, AlpacaEval, Arena-Hard-Auto), BERTScore, ROUGE, LLM-as-Judge, Statistical Testing, Ablation Studies, Reproducible Experiment Design |
 | **Programming** | Python, C++, C, C#, Go, JavaScript, SQL, MATLAB, Bash |
 
 ## Professional Experience
@@ -64,13 +64,13 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 ## Selected Research & Engineering Projects
 
-### Verbosity-Aware Decoding for Token-Efficient Language Model Inference
-**MSc Research Project (CISC 898), Queen's University · Supervisor: Dr. Rahatara Ferdousi** | July 2026 – Present
+### MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference
+**MSc Thesis (CISC 898), Queen's University · Supervisor: Dr. Rahatara Ferdousi** | 2026
 [GitHub](https://github.com/MahmoudAlyosify/minimal-lm)
 
-- Designed a **training-free LogitsProcessor** that cuts generated tokens at **decoding time** by combining stop-token, n-gram-repetition and semantic-redundancy signals under an **entropy-driven gate** — no retraining, no architecture change, no KV-cache or attention overhead.
-- Validated across **three open-weight model families** (Mistral-7B-Instruct, Llama-3.1-8B-Instruct, Qwen2.5-3B-Instruct) on **MT-Bench, YapBench, XSum** and **SQuAD-v2**.
-- Built a **pre-registered evaluation protocol** proving semantic preservation through paired **non-inferiority testing** (BERTScore, ROUGE, exact-match/F1, length-controlled LLM judge) alongside token reduction, latency (TTFT / inter-token) and **GPU energy** via NVML — fully deterministic and reproducible on pinned AWS GPU instances.
+- Fewer generated tokens are a real saving only when the answer is still complete. **MinimalLM gives both, without training**: a guardrail instruction, an entropy-gated stop-token **LogitsProcessor**, a completeness gate and a final check make unchanged **Mistral-7B, Llama-3.1-8B and Qwen2.5-3B** generate **47.6% fewer tokens** and answer **19–68% faster** on 330 questions (MT-Bench, AlpacaEval, Arena-Hard-Auto), with **no answer cut off**.
+- LLM-judge score **8.04/10** against 8.42 for the unmodified models (cutting the original answers to the same length: 6.46); **45.6%** fewer tokens in six other languages. The stop-token boost alone saves 32.6% but cuts off **59.3%** of answers, so the guardrails make the saving usable.
+- Cost: shorter answers more often leave out part of a broad question. The evaluation is internal; no independent human study.
 
 ### HORUS Sentinel — Autonomous Multi-Agent OSINT & Threat-Intelligence Platform
 **Python · Multi-Agent Systems · Fine-Tuned LLM · Knowledge Graphs · Self-Hosted Inference** | May 2026 – July 2026
