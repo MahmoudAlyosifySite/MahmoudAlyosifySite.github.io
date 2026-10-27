@@ -163,7 +163,7 @@ const SITE = {
     {
       featured: true,
       period: { en: 'Jul 2026 — Oct 2026', ar: 'يوليو 2026 — أكتوبر 2026' },
-      kind: { en: 'MSc Thesis · CISC 898', ar: 'رسالة الماجستير · CISC 898' },
+      kind: { en: 'MSc Thesis', ar: 'رسالة الماجستير' },
       title: 'Verbosity-Aware Decoding',
       subtitle: { en: 'Token-Efficient Language Model Inference', ar: 'استدلال موفّر للتوكنات في النماذج اللغوية' },
       desc: {

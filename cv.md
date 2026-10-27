@@ -21,7 +21,7 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 **Sep 2025 – Present** | Expected 2026
 
 - **Digilians Presidential Scholarship** — competitive national AI graduate fellowship.
-- **Master's Thesis (CISC 898):** *MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference* — Supervisor: Dr. Rahatara Ferdousi.
+- **Master's Thesis:** *MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference* — Supervisor: Dr. Rahatara Ferdousi.
 - Coursework: **Large Language Models, Generative AI, Deep Learning, Reinforcement Learning, Cloud Computing, End-to-End ML Pipelines**.
 
 ### B.Sc. Computer & Information Science (Bioinformatics) — Assiut University, Egypt
@@ -65,7 +65,7 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 ## Selected Research & Engineering Projects
 
 ### MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference
-**MSc Thesis (CISC 898), Queen's University · Supervisor: Dr. Rahatara Ferdousi** | 2026
+**MSc Thesis, Queen's University · Supervisor: Dr. Rahatara Ferdousi** | 2026
 [GitHub](https://github.com/MahmoudAlyosify/minimal-lm)
 
 - Fewer generated tokens are a real saving only when the answer is still complete. **MinimalLM gives both, without training**: a guardrail instruction, an entropy-gated stop-token **LogitsProcessor**, a completeness gate and a final check make unchanged **Mistral-7B, Llama-3.1-8B and Qwen2.5-3B** generate **47.6% fewer tokens** and answer **19–68% faster** on 330 questions (MT-Bench, AlpacaEval, Arena-Hard-Auto), with **no answer cut off**.
