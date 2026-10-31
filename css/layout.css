@@ -363,8 +363,9 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
    ABOUT — text on the spine, particulars beside it
    ══════════════════════════════════════════════════════════ */
 .about__grid { row-gap: var(--s-7); align-items: start; }
-/* The film leads the section, on the spine and out to the right edge. */
-.film.about__film { grid-column: 4 / -1; max-width: none; margin: 0; }
+/* The film leads the section, centred on the page: a picture, so it stands
+   in the middle of the measure rather than on the spine like the words. */
+.film.about__film { grid-column: 1 / -1; justify-self: center; width: 100%; max-width: 1040px; margin: 0; }
 .about__text { grid-column: 4 / span 6; }
 .about__lead {
   font-family: var(--font-display);
@@ -801,6 +802,9 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
 .award__title { font-size: var(--fs-h3); line-height: 1.2; }
 .award__desc { margin-top: var(--s-3); max-width: 64ch; font-size: var(--fs-sm); line-height: 1.72; color: var(--ink-2); }
 .award__links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: var(--s-4); }
+/* the newspapers that covered it, on their own line, labelled like a footnote */
+.award__press { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 22px; margin-top: var(--s-3); }
+.award__press-k { font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
 
 /* ══════════════════════════════════════════════════════════
    RECOMMENDATIONS — who said it in the margin, what they
@@ -835,6 +839,11 @@ html[dir='rtl'] .rec__mark { transform: scaleX(-1); }
   font-size: 1.1rem;
   line-height: 1.72;
   color: var(--ink);
+  /* Set square, both edges straight, so every letter reads as one even block. */
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+          hyphens: auto;
 }
 .rec__text p + p { margin-top: 0.85em; }
 html[dir='rtl'] .rec__text { font-size: 1.08rem; line-height: 1.95; }
@@ -1256,6 +1265,9 @@ html[dir='rtl'] .gal__nav svg { transform: scaleX(-1); }
   color: var(--ink-3);
 }
 .lb__cap[hidden] { display: none; }
+.lb__orig { margin-inline-start: 0.6em; color: var(--gold-ink); white-space: nowrap; border-bottom: 1px solid transparent; transition: border-color var(--t-fast); }
+.lb__orig:hover, .lb__orig:focus-visible { border-bottom-color: var(--gold); }
+.lb__orig[hidden] { display: none; }
 @media (max-width: 620px) {
   .lb__bar { padding: var(--s-3) var(--s-4); }
   .lb__title { font-size: 1.05rem; }
@@ -2133,7 +2145,6 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   .s-head__title,
   .s-head__sub { grid-column: 1 / -1; }
 
-  .film.about__film,
   .about__text,
   .about__facts { grid-column: 1 / -1; }
 

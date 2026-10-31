@@ -189,5 +189,39 @@
     "title": "Virtual Employability Skills Track",
     "issuer": "Aspire Training Solutions · USAID · AUC",
     "year": "2022"
+  },
+
+  "Coursera/IBM AI Developer Professional Certificate.pdf": {
+    "title": "IBM AI Developer Professional Certificate (10 courses)",
+    "issuer": "IBM · Coursera",
+    "year": "2026",
+    "verify": "https://coursera.org/verify/professional-cert/15WOCTI1CB11"
+  },
+  "Coursera/IBM AI Developer Professional Certificate - Credly badge.pdf": {
+    "title": "IBM AI Developer Professional Certificate — Credly badge",
+    "issuer": "IBM · Credly",
+    "year": "2026",
+    "verify": "https://www.credly.com/badges/3a5caec0-71d8-4da4-bfbe-1ec17a073899"
+  },
+  "Coursera/Deep Learning Specialization.pdf": {
+    "issuer": "DeepLearning.AI · Coursera",
+    "year": "2026",
+    "verify": "https://coursera.org/verify/specialization/0JEV6B0Q60GM",
+    "course": "https://www.coursera.org/specializations/deep-learning"
+  },
+  "Coursera/Developing AI Applications with Python and Flask.pdf": { "issuer": "IBM · Coursera", "year": "2026", "verify": "https://coursera.org/verify/ZKGC1GVKIV97" },
+  "Coursera/Introduction to Data Engineering.pdf": { "issuer": "IBM · Coursera", "year": "2026", "verify": "https://coursera.org/verify/U35VADYO22UV" },
+  "Coursera/Machine Learning with Python.pdf": {
+    "issuer": "IBM · Coursera",
+    "year": "2026",
+    "verify": "https://coursera.org/verify/TDBOV4TDYOJT",
+    "course": "https://www.coursera.org/learn/machine-learning-with-python"
+  },
+  "Coursera/Building Generative AI-Powered Applications with Python.pdf": { "issuer": "IBM · Coursera", "year": "2026", "verify": "https://coursera.org/verify/667A4WJIRX14" },
+  "Coursera/Generative AI - Elevate your Software Development Career.pdf": {
+    "title": "Generative AI: Elevate Your Software Development Career",
+    "issuer": "IBM · Coursera",
+    "year": "2026",
+    "verify": "https://coursera.org/verify/ETQUT7YWGQ07"
   }
 }

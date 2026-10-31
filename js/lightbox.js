@@ -4,6 +4,7 @@
 
    Anything with  data-lightbox="<image url>"  opens it. Optional:
    data-lightbox-title, data-lightbox-alt, data-lightbox-caption,
+   data-lightbox-pdf (the original document, linked under the picture),
    and data-lightbox-translation — a JSON reading of a document in
    another language, laid over each printed line where it stands
    ({ size: [w, h], lines: [{ b: [x, y, w, h], fs, bg, t, k }] },
@@ -82,7 +83,7 @@
             <div class="lb__read" lang="en" dir="ltr" aria-hidden="true"></div>
           </div>
         </div>
-        <p class="lb__cap"></p>
+        <p class="lb__cap"><span class="lb__cap-text"></span><a class="lb__orig" target="_blank" rel="noopener" hidden></a></p>
       </div>`;
     document.body.appendChild(dlg);
 
@@ -98,6 +99,8 @@
       img: dlg.querySelector('.lb__img'),
       read: dlg.querySelector('.lb__read'),
       cap: dlg.querySelector('.lb__cap'),
+      capText: dlg.querySelector('.lb__cap-text'),
+      orig: dlg.querySelector('.lb__orig'),
     };
 
     els.x.addEventListener('click', () => dlg.close());
@@ -187,21 +190,23 @@
     els.tr.title = label;
     els.trLong.textContent = label;
     els.trShort.textContent = on ? t('lightbox.originalShort', 'Original') : t('lightbox.translateShort', 'English');
-    els.cap.textContent = on && els.cap.dataset.base
+    els.capText.textContent = on && els.cap.dataset.base
       ? `${els.cap.dataset.base} ${t('lightbox.trNote', '· English translation laid over the original, for reference.')}`
       : els.cap.dataset.base || '';
     if (on) { fit(); els.doc.classList.remove('is-swept'); void els.doc.offsetWidth; els.doc.classList.add('is-swept'); }
   }
 
-  function open({ src, title = '', alt = '', caption = '', translation = null, trigger = null }) {
+  function open({ src, title = '', alt = '', caption = '', pdf = '', translation = null, trigger = null }) {
     if (!src) return;
     if (!dlg) build();
 
     lastFocus = trigger || document.activeElement;
     els.title.textContent = title;
     els.cap.dataset.base = caption;
-    els.cap.textContent = caption;
-    els.cap.hidden = !caption;
+    els.capText.textContent = caption;
+    els.orig.hidden = !pdf;
+    if (pdf) { els.orig.href = pdf; els.orig.textContent = t('lightbox.pdf', 'Open the original (PDF) ↗'); }
+    els.cap.hidden = !caption && !pdf;
     const close = t('lightbox.close', 'Close');
     els.x.setAttribute('aria-label', close);
     els.x.title = close;
@@ -232,6 +237,7 @@
       title: el.dataset.lightboxTitle,
       alt: el.dataset.lightboxAlt,
       caption: el.dataset.lightboxCaption,
+      pdf: el.dataset.lightboxPdf,
       translation: el.dataset.lightboxTranslation,
       trigger: el.matches('button, a') ? el : (el.closest('li') || el).querySelector('button.facts__open') || el,
     });

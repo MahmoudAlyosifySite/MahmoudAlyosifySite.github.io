@@ -112,6 +112,7 @@
       const c = f.cert;
       const open = c
         ? ` data-lightbox="${esc(c.img)}" data-lightbox-title="${esc(L(f.k))}" data-lightbox-alt="${esc(L(c.alt))}" data-lightbox-caption="${esc(L(c.caption))}"`
+          + (c.pdf ? ` data-lightbox-pdf="${esc(c.pdf)}"` : '')
           + (c.translation ? ` data-lightbox-translation="${esc(JSON.stringify(c.translation))}"` : '')
         : '';
       const title = c
@@ -243,6 +244,8 @@
           <p class="award__desc">${esc(L(a.desc))}</p>
           ${a.links.length ? `<div class="award__links">${a.links.map((l) =>
             `<a class="out" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))}</a>`).join('')}</div>` : ''}
+          ${a.press && a.press.length ? `<p class="award__press"><span class="award__press-k">${esc(t('awards.press'))}</span>${a.press.map((l) =>
+            `<a class="out" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))}</a>`).join('')}</p>` : ''}
         </div>
       </article>`).join('');
   }

@@ -125,11 +125,15 @@ async function run() {
     if (existsSync(src)) await derive(src, path.join(ROOT, 'img', '_web', 'avatars', `${slug(f)}.webp`), 96, 82, { square: true });
   }
 
-  /* ── Degree certificate — opens as a pop-up from the About list ── */
-  const degree = path.join(ROOT, 'img', 'degree', 'bsc-graduation-certificate-ar.jpg');
-  if (existsSync(degree)) {
-    console.log('Degree        — 1 image');
-    await derive(degree, path.join(ROOT, 'img', '_web', 'degree', 'bsc-graduation-certificate-ar.webp'), VIEW_MAX, 88);
+  /* ── Degree documents — open as pop-ups from the About list: the BSc
+        certificate, and the MSc completion letter (rendered from its PDF in
+        Files/ with pdftoppm) until the MSc certificate itself is issued ── */
+  const degrees = ['bsc-graduation-certificate-ar.jpg', 'msc-completion-letter.png']
+    .map((f) => path.join(ROOT, 'img', 'degree', f)).filter((f) => existsSync(f));
+  console.log(`Degree        — ${degrees.length} image(s)`);
+  for (const src of degrees) {
+    const stem = path.basename(src, path.extname(src));
+    await derive(src, path.join(ROOT, 'img', '_web', 'degree', `${stem}.webp`), VIEW_MAX, 88);
   }
 
   /* ── Certificates (images only; PDFs pass through) ─────── */

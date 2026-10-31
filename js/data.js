@@ -58,8 +58,8 @@ const SITE = {
       ar: 'أبني أنظمة ذكية متكاملة — من ضبط النماذج اللغوية وتحسين الاستدلال وقت فك التشفير، إلى منصات استخبارات مفتوحة المصدر متعددة الوكلاء، والتعلّم المعزز العميق للتوسّع السحابي.'
     },
     body: {
-      en: 'I am completing an MSc in Artificial Intelligence at Queen\'s University, Canada on a Digilians Presidential Scholarship, with a master\'s thesis on training-free, decoding-time efficiency for large language models. Along the way I have delivered production-oriented systems on AWS spanning autonomous threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction — and taught more than 10,000 learners in Arabic across 700K+ views.',
-      ar: 'أُكمل حاليًا ماجستير الذكاء الاصطناعي في جامعة كوينز بكندا بمنحة Digilians الرئاسية، ورسالتي عن كفاءة النماذج اللغوية وقت فك التشفير دون إعادة تدريب. وعلى الطريق سلّمت أنظمة جاهزة للإنتاج على AWS تشمل استخبارات التهديدات الذاتية، وسلاسل رؤية حاسوبية جاهزة للاسترجاع، وتوسّعًا سحابيًا بالتعلّم المعزز، والتنبؤ بمخاطر تصادم الأقمار الصناعية — ودرّست أكثر من 10,000 متعلّم بالعربية بأكثر من 700 ألف مشاهدة.'
+      en: 'I completed an MSc in Artificial Intelligence at Queen\'s University, Canada in October 2026 with a perfect 4.30 / 4.30 GPA, on a Digilians Presidential Scholarship, with a master\'s thesis on training-free, decoding-time efficiency for large language models. Along the way I have delivered production-oriented systems on AWS spanning autonomous threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction — and taught more than 10,000 learners in Arabic across 700K+ views.',
+      ar: 'أتممت ماجستير الذكاء الاصطناعي في جامعة كوينز بكندا في أكتوبر 2026 بمعدل كامل 4.30 / 4.30، بمنحة Digilians الرئاسية، ورسالتي عن كفاءة النماذج اللغوية وقت فك التشفير دون إعادة تدريب. وعلى الطريق سلّمت أنظمة جاهزة للإنتاج على AWS تشمل استخبارات التهديدات الذاتية، وسلاسل رؤية حاسوبية جاهزة للاسترجاع، وتوسّعًا سحابيًا بالتعلّم المعزز، والتنبؤ بمخاطر تصادم الأقمار الصناعية — ودرّست أكثر من 10,000 متعلّم بالعربية بأكثر من 700 ألف مشاهدة.'
     },
     /* Rendered after the body copy; may contain a link. */
     note: {
@@ -67,7 +67,16 @@ const SITE = {
       ar: 'وقدّمت مؤخرًا عرضًا في <a href="https://www.queensu.ca/ctl/programs-and-events/ai-teaching-and-learning-forum-2026" target="_blank" rel="noopener">منتدى AI Teaching and Learning Forum 2026</a> بجامعة كوينز — <a href="Files/2026%20AI%20In%20Teaching%20and%20Learning%20Forum%20%20Thank%20You.pdf" target="_blank" rel="noopener">شاهد خطاب الشكر</a>.'
     },
     facts: [
-      { iconImg: 'img/_web/logos/queens.webp', iconImgDark: 'img/_web/logos/queens-dark.webp', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — Presidential Scholarship', ar: 'جامعة كوينز، كندا — منحة رئاسية' }, url: 'https://www.queensu.ca' },
+      { iconImg: 'img/_web/logos/queens.webp', iconImgDark: 'img/_web/logos/queens-dark.webp', k: { en: 'MSc Artificial Intelligence', ar: 'ماجستير الذكاء الاصطناعي' },   v: { en: 'Queen\'s University, Canada — GPA 4.30 / 4.30 · completed Oct 2026', ar: 'جامعة كوينز، كندا — معدل 4.30 / 4.30 · أُنجز أكتوبر 2026' }, url: 'https://www.queensu.ca/',
+        // Until the degree is conferred (Spring 2027), the university's letter
+        // confirming completion opens from the title, as the BSc certificate does.
+        cert: {
+          img: 'img/_web/degree/msc-completion-letter.webp',
+          pdf: 'Files/Mahmoud%20Kotb%20MSc%20Completion%20Letter%20-%20Queens%20University%20-%2027%20Oct%202026.pdf',
+          hint:    { en: 'View the letter confirming the MSc is complete', ar: 'عرض خطاب إتمام الماجستير' },
+          alt:     { en: 'Letter from the School of Graduate Studies and Postdoctoral Affairs, Queen\'s University, dated 27 October 2026, confirming that Mahmoud Sayed Youssef Kotb completed all requirements for the Master of Science on 27 October 2026', ar: 'خطاب من كلية الدراسات العليا بجامعة كوينز بتاريخ 27 أكتوبر 2026 يؤكد إتمام محمود سيد يوسف قطب جميع متطلبات درجة الماجستير' },
+          caption: { en: 'Completion letter — School of Graduate Studies and Postdoctoral Affairs, Queen\'s University, 27 October 2026. The degree is conferred at the Spring 2027 convocation.', ar: 'خطاب إتمام الماجستير — كلية الدراسات العليا، جامعة كوينز، 27 أكتوبر 2026. تُمنح الدرجة في حفل تخرج ربيع 2027.' }
+        } },
       { iconImg: 'img/_web/logos/assiut.webp', iconImgDark: 'img/_web/logos/assiut-dark.webp', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' }, url: 'https://www.aun.edu.eg/main/',
         // The graduation certificate opens as a pop-up (js/lightbox.js) from the title.
         cert: {
@@ -96,6 +105,7 @@ const SITE = {
             ]
           }
         } },
+      { icon: '🏅', k: { en: 'IBM AI Developer Professional Certificate', ar: 'شهادة IBM AI Developer الاحترافية' }, v: { en: 'IBM · Coursera — 10 courses, Oct 2026', ar: 'IBM · Coursera — 10 دورات، أكتوبر 2026' }, url: 'https://coursera.org/verify/professional-cert/15WOCTI1CB11' },
       { icon: '🔬', k: { en: 'Research focus', ar: 'محور البحث' },                              v: { en: 'Token-efficient LLM inference · Verbosity-aware decoding', ar: 'استدلال موفّر للتوكنات · فك تشفير واعٍ بالإسهاب' } },
       { icon: '🌍', k: { en: 'Languages', ar: 'اللغات' },                                        v: { en: 'Arabic (native) · English (professional working)', ar: 'العربية (اللغة الأم) · الإنجليزية (احترافية)' } }
     ]
@@ -451,6 +461,12 @@ const SITE = {
       links: [
         { label: { en: 'Official page', ar: 'الصفحة الرسمية' }, url: 'https://bu.edu.eg/en/competitions/hackathon.php' },
         { label: { en: 'The winning moment', ar: 'لحظة الفوز' }, url: 'https://www.youtube.com/embed/9k4APPPgDyQ' }
+      ],
+      // Local newspapers that reported the win.
+      press: [
+        { label: { en: 'El Balad', ar: 'صدى البلد' }, url: 'https://www.elbalad.news/5218702' },
+        { label: { en: 'Dar Al Maaref', ar: 'دار المعارف' }, url: 'https://daralmaref.com/News/1006626.aspx' },
+        { label: { en: 'El Balad — follow-up', ar: 'صدى البلد — متابعة' }, url: 'https://www.elbalad.news/5237635' }
       ]
     },
     {

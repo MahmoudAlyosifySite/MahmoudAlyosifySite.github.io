@@ -13,12 +13,12 @@
 
 ## Professional Summary
 
-AI & Machine Learning Engineer building end-to-end intelligent systems across **LLM fine-tuning and inference optimisation**, **multi-agent systems**, **self-supervised learning**, and **reinforcement learning**. Completing an **MSc in Artificial Intelligence at Queen's University, Canada** on a **Digilians Presidential Scholarship**, with a master's thesis on training-free, decoding-time efficiency for large language models. Delivered production-oriented systems on **AWS** spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction; taught **10,000+ learners** (**700K+ views**). Seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale.
+AI & Machine Learning Engineer building end-to-end intelligent systems across **LLM fine-tuning and inference optimisation**, **multi-agent systems**, **self-supervised learning**, and **reinforcement learning**. Completed an **MSc in Artificial Intelligence at Queen's University, Canada** (October 2026, **GPA 4.30 / 4.30**) on a **Digilians Presidential Scholarship**, with a master's thesis on training-free, decoding-time efficiency for large language models. Delivered production-oriented systems on **AWS** spanning autonomous OSINT threat intelligence, retrieval-ready vision pipelines, deep-RL cloud autoscaling, and satellite collision risk prediction; taught **10,000+ learners** (**700K+ views**). Seeking AI/ML engineering roles in LLM systems, MLOps, and efficient inference at scale.
 
 ## Education
 
 ### MSc in Artificial Intelligence — Queen's University, Kingston, Canada
-**Sep 2025 – Present** | Expected 2026
+**Sep 2025 – Oct 2026** | Completed 27 Oct 2026 · GPA 4.30 / 4.30 · degree conferred Spring 2027
 
 - **Digilians Presidential Scholarship** — competitive national AI graduate fellowship.
 - **Master's Thesis:** *MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference* — Supervisor: Dr. Rahatara Ferdousi.
@@ -110,6 +110,8 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 | Certification | Issuer |
 |---------------|--------|
+| IBM AI Developer Professional Certificate (10 courses, Oct 2026) | IBM / Coursera |
+| Deep Learning Specialization | DeepLearning.AI |
 | AWS Academy — ML Foundations, ML for NLP, Data Engineering | Amazon |
 | Machine Learning Specialization | DeepLearning.AI |
 | HCIP — AI | Huawei |
@@ -121,7 +123,7 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 ## Achievements & Awards
 
-- **1st Place** — Smart Cities Hackathon 2022
+- **1st Place** — Smart Cities Hackathon 2022 (reported by [El Balad](https://www.elbalad.news/5218702), [Dar Al Maaref](https://daralmaref.com/News/1006626.aspx) and [El Balad](https://www.elbalad.news/5237635))
 - **Semi-Finalist** — Microsoft Imagine Cup 2023
 - **Ideal Student Award** — Assiut University, 2022–2023
 - **1st Place** — Science & Technology Content Competition

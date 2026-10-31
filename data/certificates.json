@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-29",
-  "total": 55,
+  "generated": "2026-10-31",
+  "total": 63,
   "categories": [
     {
       "id": "coursera",
@@ -14,7 +14,7 @@
         "ar": "دورات وتخصصات مكتملة على كورسيرا."
       },
       "icon": "coursera",
-      "count": 24,
+      "count": 32,
       "items": [
         {
           "src": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
@@ -32,6 +32,17 @@
           "file": "Advanced Tokenization and Sentiment Analysis.pdf",
           "type": "pdf",
           "title": "Advanced Tokenization and Sentiment Analysis"
+        },
+        {
+          "src": "Certificates/Coursera/Building%20Generative%20AI-Powered%20Applications%20with%20Python.pdf",
+          "thumb": "Certificates/Coursera/Building%20Generative%20AI-Powered%20Applications%20with%20Python.pdf",
+          "original": "Certificates/Coursera/Building%20Generative%20AI-Powered%20Applications%20with%20Python.pdf",
+          "file": "Building Generative AI-Powered Applications with Python.pdf",
+          "type": "pdf",
+          "title": "Building Generative AI-Powered Applications with Python",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/667A4WJIRX14"
         },
         {
           "src": "Certificates/Coursera/Convolutional%20Neural%20Networks.pdf",
@@ -97,12 +108,46 @@
           "verify": "https://coursera.org/verify/XW4Z74U0FQNJ"
         },
         {
+          "src": "Certificates/Coursera/Deep%20Learning%20Specialization.pdf",
+          "thumb": "Certificates/Coursera/Deep%20Learning%20Specialization.pdf",
+          "original": "Certificates/Coursera/Deep%20Learning%20Specialization.pdf",
+          "file": "Deep Learning Specialization.pdf",
+          "type": "pdf",
+          "title": "Deep Learning Specialization",
+          "issuer": "DeepLearning.AI · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/specialization/0JEV6B0Q60GM",
+          "course": "https://www.coursera.org/specializations/deep-learning"
+        },
+        {
+          "src": "Certificates/Coursera/Developing%20AI%20Applications%20with%20Python%20and%20Flask.pdf",
+          "thumb": "Certificates/Coursera/Developing%20AI%20Applications%20with%20Python%20and%20Flask.pdf",
+          "original": "Certificates/Coursera/Developing%20AI%20Applications%20with%20Python%20and%20Flask.pdf",
+          "file": "Developing AI Applications with Python and Flask.pdf",
+          "type": "pdf",
+          "title": "Developing AI Applications with Python and Flask",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/ZKGC1GVKIV97"
+        },
+        {
           "src": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
           "thumb": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
           "original": "Certificates/Coursera/Generative%20Ai%20-%20%20Boost%20Your%20Cybersecurity%20Career.pdf",
           "file": "Generative Ai -  Boost Your Cybersecurity Career.pdf",
           "type": "pdf",
           "title": "Generative AI: Boost Your Cybersecurity Career"
+        },
+        {
+          "src": "Certificates/Coursera/Generative%20AI%20-%20Elevate%20your%20Software%20Development%20Career.pdf",
+          "thumb": "Certificates/Coursera/Generative%20AI%20-%20Elevate%20your%20Software%20Development%20Career.pdf",
+          "original": "Certificates/Coursera/Generative%20AI%20-%20Elevate%20your%20Software%20Development%20Career.pdf",
+          "file": "Generative AI - Elevate your Software Development Career.pdf",
+          "type": "pdf",
+          "title": "Generative AI: Elevate Your Software Development Career",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/ETQUT7YWGQ07"
         },
         {
           "src": "Certificates/Coursera/Generative%20AI%20and%20LLMs%20-%20Architecture%20and%20Data%20Preparation.pdf",
@@ -129,6 +174,28 @@
           "title": "Generative AI Essentials for Cybersecurity"
         },
         {
+          "src": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
+          "thumb": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
+          "original": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
+          "file": "IBM AI Developer Professional Certificate - Credly badge.pdf",
+          "type": "pdf",
+          "title": "IBM AI Developer Professional Certificate — Credly badge",
+          "issuer": "IBM · Credly",
+          "year": "2026",
+          "verify": "https://www.credly.com/badges/3a5caec0-71d8-4da4-bfbe-1ec17a073899"
+        },
+        {
+          "src": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
+          "thumb": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
+          "original": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
+          "file": "IBM AI Developer Professional Certificate.pdf",
+          "type": "pdf",
+          "title": "IBM AI Developer Professional Certificate (10 courses)",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/professional-cert/15WOCTI1CB11"
+        },
+        {
           "src": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
           "thumb": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
           "original": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
@@ -146,6 +213,17 @@
           "title": "Introduction to Data Analytics"
         },
         {
+          "src": "Certificates/Coursera/Introduction%20to%20Data%20Engineering.pdf",
+          "thumb": "Certificates/Coursera/Introduction%20to%20Data%20Engineering.pdf",
+          "original": "Certificates/Coursera/Introduction%20to%20Data%20Engineering.pdf",
+          "file": "Introduction to Data Engineering.pdf",
+          "type": "pdf",
+          "title": "Introduction to Data Engineering",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/U35VADYO22UV"
+        },
+        {
           "src": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
           "thumb": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
           "original": "Certificates/Coursera/Introduction%20to%20Deep%20Learning%20%26%20Neural%20Networks%20with%20Keras.pdf",
@@ -161,6 +239,18 @@
           "type": "pdf",
           "title": "Machine Learning Specialization",
           "course": "https://www.coursera.org/specializations/machine-learning-introduction"
+        },
+        {
+          "src": "Certificates/Coursera/Machine%20Learning%20with%20Python.pdf",
+          "thumb": "Certificates/Coursera/Machine%20Learning%20with%20Python.pdf",
+          "original": "Certificates/Coursera/Machine%20Learning%20with%20Python.pdf",
+          "file": "Machine Learning with Python.pdf",
+          "type": "pdf",
+          "title": "Machine Learning with Python",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/TDBOV4TDYOJT",
+          "course": "https://www.coursera.org/learn/machine-learning-with-python"
         },
         {
           "src": "Certificates/Coursera/Mastering%20NLP.pdf",
