@@ -20,7 +20,7 @@ const WATCHED = [
   'js/chatbot.js', 'js/providers.js', 'js/retriever.js', 'js/security.js',
   'data/certificates.json', 'data/photo-gallery.json', 'data/mahmoud-profile.json',
   'biography/index.html', 'css/bio.css', 'js/bio.js',
-  'ar/index.html', 'cv/index.html', 'Mahmoud Resumes/style.css', 'Mahmoud Resumes/script.js'
+  'ar/index.html', 'cv/index.html', 'Mahmoud Resumes/style.css', 'Mahmoud Resumes/script.js', 'Mahmoud Resumes/assets/previews/previews.js'
 ];
 
 const hash = createHash('sha1');

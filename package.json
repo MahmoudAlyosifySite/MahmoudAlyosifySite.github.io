@@ -10,6 +10,7 @@
     "build:certs": "node tools/build-certificates.mjs",
     "build:photos": "node tools/build-photo-gallery.mjs",
     "build:closing": "node tools/build-closing-scene.mjs",
+    "build:cvs": "node tools/build-cv-previews.mjs",
     "build": "npm run build:images && npm run build:logos && npm run build:certs && npm run build:photos && npm run build:closing && npm run build:sw",
     "build:sw": "node tools/stamp-sw.mjs"
   }

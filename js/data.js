@@ -37,6 +37,7 @@ const SITE = {
     udemy:       'https://www.udemy.com/user/mahmoud-sayed-youssef-kotb-2/',
     medium:      'https://medium.com/@mahmoudalyosify',
     x:           'https://x.com/MahmoudAlyosify',
+    facebook:    'https://www.facebook.com/MahmoudAlyosify/',
     whatsapp:    'https://wa.me/+201145557959',
     cv:          'Files/Mahmoud-Alyosify-ML-CV.pdf',
     site:        'https://mahmoudalyosifysite.github.io/'
@@ -71,9 +72,29 @@ const SITE = {
         // The graduation certificate opens as a pop-up (js/lightbox.js) from the title.
         cert: {
           img: 'img/_web/degree/bsc-graduation-certificate-ar.webp',
-          hint:    { en: 'View the graduation certificate', ar: 'عرض شهادة التخرج' },
+          hint:    { en: 'View the graduation certificate, with an English translation', ar: 'عرض شهادة التخرج مع ترجمتها الإنجليزية' },
           alt:     { en: 'Graduation certificate of Mahmoud Sayed Youssef Kotb, Faculty of Computers and Information, Assiut University (in Arabic)', ar: 'شهادة تخرج محمود سيد يوسف قطب من كلية الحاسبات والمعلومات، جامعة أسيوط' },
-          caption: { en: 'Graduation certificate — Faculty of Computers and Information, Assiut University (the original, in Arabic)', ar: 'شهادة التخرج — كلية الحاسبات والمعلومات، جامعة أسيوط (النسخة الأصلية)' }
+          caption: { en: 'Graduation certificate — Faculty of Computers and Information, Assiut University (the original, in Arabic)', ar: 'شهادة التخرج — كلية الحاسبات والمعلومات، جامعة أسيوط (النسخة الأصلية)' },
+          // The certificate is printed in Arabic only. "Translate to English" lays an
+          // English reading over each printed line, where it stands (js/lightbox.js).
+          // Boxes are [x, y, w, h] in the photograph's own pixels; fs is the type size
+          // in the same pixels; bg is the paper under that line, sampled from the photo.
+          translation: {
+            size: [1183, 857],
+            lines: [
+              { b: [322, 110, 504, 70],  fs: 40, k: 'title', bg: '#dedbd3', t: 'Graduation Certificate' },
+              { b: [960, 186, 120, 22],  fs: 13, k: 'small', bg: '#e1ddd5', t: 'Assiut University' },
+              { b: [62, 208, 1024, 58],  fs: 21, bg: '#dfdcd5', t: 'Having reviewed the examination results of the Faculty of Computers and Information, Assiut University, approved by its Council on 12 July 2023,' },
+              { b: [322, 277, 556, 46],  fs: 23, bg: '#dcdad1', t: 'the University Council resolved, on 25 July 2023,' },
+              { b: [252, 327, 834, 47],  fs: 23, bg: '#dddad2', t: 'to award Mr. Mahmoud Sayed Youssef Kotb, son of Mr. Sayed Youssef Kotb,' },
+              { b: [300, 382, 540, 40],  fs: 22, bg: '#dad8cf', t: 'born in Assiut in the year 2000 AD,' },
+              { b: [226, 434, 732, 54],  fs: 21, bg: '#dad8cf', t: 'the degree of Bachelor of Computers and Information, majoring in Bioinformatics Systems,' },
+              { b: [300, 488, 506, 40],  fs: 22, bg: '#dad8d0', t: 'with the grade of Very Good with Honours.' },
+              { b: [222, 549, 712, 44],  fs: 22, bg: '#d7d5cc', t: 'Issued in Rajab 1447 AH — January 2026 AD' },
+              { b: [652, 624, 196, 44],  fs: 20, k: 'sign', bg: '#d0cdc4', t: 'Dean of the Faculty' },
+              { b: [236, 624, 206, 44],  fs: 20, k: 'sign', bg: '#dcd9d2', t: 'University President' }
+            ]
+          }
         } },
       { icon: '🔬', k: { en: 'Research focus', ar: 'محور البحث' },                              v: { en: 'Token-efficient LLM inference · Verbosity-aware decoding', ar: 'استدلال موفّر للتوكنات · فك تشفير واعٍ بالإسهاب' } },
       { icon: '🌍', k: { en: 'Languages', ar: 'اللغات' },                                        v: { en: 'Arabic (native) · English (professional working)', ar: 'العربية (اللغة الأم) · الإنجليزية (احترافية)' } }

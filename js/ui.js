@@ -49,6 +49,7 @@
     kaggle:   '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 3v11.3L14.9 8h3.4l-5.4 5.7 5.6 7.3h-3.5l-4.1-5.6L9 16.9V21H6V3h3z"/></svg>',
     medium:   '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.9 7.2a.9.9 0 0 0-.3-.75L4.5 4.2v-.3h6.4l4.95 10.9L20.2 3.9H24v.3l-1.8 1.7a.5.5 0 0 0-.2.5v12.6a.5.5 0 0 0 .2.5l1.75 1.7v.3h-8.8v-.3l1.8-1.75c.18-.18.18-.23.18-.5V8.87l-5.06 12.8h-.68L5.5 8.87v8.58c-.05.36.07.72.32.98l2.36 2.85v.3H1.5v-.3l2.36-2.85c.25-.26.36-.63.3-.98V7.2z"/></svg>',
     x:        '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.02 4.13H5.05l12.03 15.64z"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.6 22v-8.2h2.75l.42-3.2H13.6V8.56c0-.93.26-1.56 1.59-1.56h1.7V4.14A22.8 22.8 0 0 0 14.4 4c-2.45 0-4.13 1.5-4.13 4.24v2.36H7.5v3.2h2.77V22h3.33z"/></svg>',
     udemy:    '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2 1 8l11 6 11-6-11-6zM5 12.5v4c0 2.5 3.1 4.5 7 4.5s7-2 7-4.5v-4l-7 3.8-7-3.8z"/></svg>',
     whatsapp: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2zm5.5 14.2c-.24.66-1.4 1.27-1.93 1.31-.5.05-1.13.07-1.82-.11a15.3 15.3 0 0 1-6.55-5.8c-.5-.84-.82-1.8-.82-2.72 0-.92.48-1.7.87-2.06.19-.18.42-.26.62-.26h.44c.16 0 .35 0 .52.4.2.47.68 1.66.74 1.78.06.12.1.26.02.42-.34.68-.7.65-.52.96.7 1.2 1.4 1.62 2.46 2.15.18.09.29.08.4-.05.11-.13.46-.54.58-.72.12-.19.24-.15.4-.09.17.06 1.06.5 1.24.6.18.09.3.13.35.2.04.09.04.5-.2 1.16z"/></svg>',
     orcid:    '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 18.13H5.62V7.53h1.75v10.6zM6.5 6.42a1.02 1.02 0 1 1 0-2.04 1.02 1.02 0 0 1 0 2.04zm5.03 11.71H9.78V7.53h3.6c3.43 0 4.94 2.45 4.94 5.3 0 3.1-2.42 5.3-4.94 5.3h-1.85zm.34-1.6h1.4c2.5 0 3.7-1.5 3.7-3.7 0-2.02-1.28-3.7-3.7-3.7h-1.4v7.4z"/></svg>',
@@ -111,6 +112,7 @@
       const c = f.cert;
       const open = c
         ? ` data-lightbox="${esc(c.img)}" data-lightbox-title="${esc(L(f.k))}" data-lightbox-alt="${esc(L(c.alt))}" data-lightbox-caption="${esc(L(c.caption))}"`
+          + (c.translation ? ` data-lightbox-translation="${esc(JSON.stringify(c.translation))}"` : '')
         : '';
       const title = c
         ? `<button type="button" class="facts__open"${open} aria-haspopup="dialog" title="${esc(L(c.hint))}">${esc(L(f.k))}<svg class="facts__open-ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>`
@@ -272,7 +274,8 @@
       ['ORCID', l.orcid, 'orcid'], ['Credly', l.credly, 'credly'],
       ['YouTube', l.youtube, 'youtube'], ['Hugging Face', l.huggingface, 'hf'],
       ['Kaggle', l.kaggle, 'kaggle'], ['Udemy', l.udemy, 'udemy'],
-      ['Medium', l.medium, 'medium'], ['X', l.x, 'x'], ['WhatsApp', l.whatsapp, 'whatsapp']
+      ['Medium', l.medium, 'medium'], ['X', l.x, 'x'], ['Facebook', l.facebook, 'facebook'],
+      ['WhatsApp', l.whatsapp, 'whatsapp']
     ];
     $('#social-grid').innerHTML = items.map(([label, url, icon]) =>
       `<a class="soc" href="${esc(url)}" target="_blank" rel="noopener">${ICON[icon]}<span>${esc(label)}</span></a>`).join('');
@@ -287,7 +290,7 @@
       const id = s.id;
       const key = { hero: 'nav.about', about: 'nav.about', work: 'nav.work', projects: 'nav.projects',
         skills: 'nav.skills', impact: 'impact.eyebrow', teaching: 'nav.teaching', awards: 'nav.awards',
-        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', card: 'card.eyebrow', film: 'film.eyebrow',
+        recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', card: 'card.eyebrow',
         contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
       const label = id === 'hero' ? 'Top' : t(key) || id;
       return `<a class="dots__item" href="#${id}" aria-label="${esc(label)}"><span class="dots__label">${esc(label)}</span></a>`;
