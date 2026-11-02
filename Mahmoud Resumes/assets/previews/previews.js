@@ -1,67 +1,67 @@
 /* Built by tools/build-cv-previews.mjs — do not edit by hand. */
 window.CV_PREVIEWS = {
   "01-llm-generative-ai-engineer.pdf": {
-    "v": "0cc6d25b",
-    "pages": 1
+    "v": "621131c6",
+    "pages": 2
   },
   "02-machine-learning-engineer.pdf": {
-    "v": "fade46bf",
-    "pages": 1
+    "v": "d2792c2e",
+    "pages": 2
   },
   "03-computer-vision-engineer.pdf": {
-    "v": "f7953bb0",
-    "pages": 1
+    "v": "f5ef75fe",
+    "pages": 2
   },
   "04-reinforcement-learning-engineer.pdf": {
-    "v": "dce83dd6",
-    "pages": 1
+    "v": "630c1073",
+    "pages": 2
   },
   "05-ai-research-engineer.pdf": {
-    "v": "f703b38d",
-    "pages": 1
+    "v": "d39b688c",
+    "pages": 2
   },
   "06-edge-and-efficient-ai-engineer.pdf": {
-    "v": "68b29c21",
-    "pages": 1
+    "v": "688dafd7",
+    "pages": 2
   },
   "07-ai-agent-systems-engineer.pdf": {
-    "v": "2235df4b",
-    "pages": 1
+    "v": "3991ad2b",
+    "pages": 2
   },
   "08-nlp-engineer.pdf": {
-    "v": "7f743225",
-    "pages": 1
+    "v": "9e85fb18",
+    "pages": 2
   },
   "09-data-scientist.pdf": {
-    "v": "8902c911",
-    "pages": 1
+    "v": "58805651",
+    "pages": 2
   },
   "10-ai-security-and-threat-intelligence-engineer.pdf": {
-    "v": "6fce61cd",
-    "pages": 1
+    "v": "766e4517",
+    "pages": 2
   },
   "11-mlops-and-cloud-ai-engineer.pdf": {
-    "v": "4d17accd",
-    "pages": 1
+    "v": "e2119f3e",
+    "pages": 2
   },
   "12-software-engineer.pdf": {
-    "v": "df4af75b",
-    "pages": 1
+    "v": "82e436b5",
+    "pages": 2
   },
   "13-ai-instructor-and-technical-trainer.pdf": {
-    "v": "53bfe55d",
-    "pages": 1
+    "v": "3e0d8dc8",
+    "pages": 2
   },
   "14-academic-cv-phd-scholarship.pdf": {
-    "v": "a34cad14",
+    "v": "4bcfaebe",
     "pages": 2
   },
   "15-volunteering-fellowships-and-exchange-programmes.pdf": {
-    "v": "75e89da1",
-    "pages": 1
+    "v": "c26f1cbd",
+    "pages": 2
   },
   "general-cv.pdf": {
-    "v": "3534dda7",
-    "pages": 1
+    "v": "9e55c8bd",
+    "pages": 2
   }
 };
