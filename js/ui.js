@@ -149,6 +149,76 @@
       }).join('');
   }
 
+  /** A project's cover — a plate drawn by tools/build-project-covers.mjs,
+      signed — that opens the work itself. */
+  function cover(slug, url, label) {
+    if (!slug) return '';
+    const src = `img/_web/projects/${slug}`;
+    const img = `<img src="${src}@800.webp" srcset="${src}@800.webp 800w, ${src}.webp 1600w"
+            sizes="(max-width: 820px) calc(100vw - 40px), (max-width: 1180px) 24vw, 380px"
+            width="800" height="500" alt="${esc(label)}" loading="lazy" decoding="async" />`;
+    return url
+      ? `<a class="pcard__cover" href="${esc(url)}" target="_blank" rel="noopener" title="${esc(t('proj.open'))}">${img}</a>`
+      : `<span class="pcard__cover">${img}</span>`;
+  }
+
+  function renderPubs() {
+    const list = $('#pubs-list');
+    if (!list || !SITE.publications) return;
+    list.innerHTML = SITE.publications.map((p) => {
+      const authors = p.authors.map((a, i) =>
+        i === p.me ? `<b class="pub__me">${esc(a)}</b>` : esc(a)).join(', ');
+      const links = p.links.map((l) =>
+        `<a class="out" href="${esc(l.url)}" target="_blank" rel="noopener">${l.icon ? ICON[l.icon] : ''}<span>${esc(L(l.label))}</span></a>`).join('');
+      return `
+      <article class="pcard pcard--pub pcard--cover" data-reveal>
+        <div class="pcard__meta">
+          <span class="pcard__kind">${keepSep(esc(L(p.kind)))}</span>
+          <span class="pcard__period">${esc(L(p.date))}</span>
+          <span class="pcard__note">${keepSep(esc(L(p.field)))}<br>${keepSep(esc(L(p.extent)))}</span>
+        </div>
+        ${cover(p.cover, p.url, p.title)}
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></h3>
+          <p class="pub__authors">${authors}</p>
+          <p class="pub__venue">${esc(L(p.venue))}</p>
+          <p class="pcard__desc">${esc(L(p.summary))}</p>
+          <div class="pcard__foot">${links}
+            <button class="pub__cite" type="button" data-bibtex="${esc(p.bibtex)}">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>
+              <span data-cite-label>${esc(t('pubs.cite'))}</span>
+            </button>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  /* Copy BibTeX: the entry goes to the clipboard, the button says so. */
+  function initCite() {
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.pub__cite');
+      if (!btn) return;
+      const label = btn.querySelector('[data-cite-label]');
+      let ok = false;
+      try { await navigator.clipboard.writeText(btn.dataset.bibtex); ok = true; } catch (_) { /* no clipboard */ }
+      if (!ok) {
+        // older browsers, or a page without clipboard permission
+        const ta = Object.assign(document.createElement('textarea'), { value: btn.dataset.bibtex });
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+        ta.remove();
+      }
+      label.textContent = t(ok ? 'pubs.copied' : 'pubs.copyFail');
+      btn.classList.toggle('is-done', ok);
+      clearTimeout(btn._t);
+      btn._t = setTimeout(() => { label.textContent = t('pubs.cite'); btn.classList.remove('is-done'); }, 2200);
+    });
+  }
+
   function renderProjects() {
     $('#projects-grid').innerHTML = SITE.projects.map((p) => {
       const links = [];
@@ -172,13 +242,14 @@
               `<a class="out" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))}</a>`).join('')}</div>
           </div>` : '';
       return `
-      <article class="pcard${p.featured ? ' pcard--featured' : ''}" data-reveal>
+      <article class="pcard${p.featured ? ' pcard--featured' : ''}${p.cover ? ' pcard--cover' : ''}" data-reveal>
         <div class="pcard__meta">
           <span class="pcard__no" aria-hidden="true"></span>
           <span class="pcard__kind">${keepSep(esc(L(p.kind)))}</span>
           <span class="pcard__period">${esc(L(p.period))}</span>
           ${note}
         </div>
+        ${cover(p.cover, p.coverUrl || p.demo || p.repo, `${p.title} — ${L(p.subtitle)}`)}
         <div class="pcard__body">
           <h3 class="pcard__title">${esc(p.title)}</h3>
           <p class="pcard__sub">${esc(L(p.subtitle))}</p>
@@ -292,7 +363,7 @@
     $('.dots').innerHTML = sections.map((s) => {
       const id = s.id;
       const key = { hero: 'nav.about', about: 'nav.about', work: 'nav.work', projects: 'nav.projects',
-        skills: 'nav.skills', impact: 'impact.eyebrow', teaching: 'nav.teaching', awards: 'nav.awards',
+        pubs: 'nav.pubs', skills: 'nav.skills', impact: 'impact.eyebrow', teaching: 'nav.teaching', awards: 'nav.awards',
         recs: 'recs.eyebrow', certs: 'nav.certs', gallery: 'gallery.eyebrow', card: 'card.eyebrow',
         contact: 'nav.contact', fatfooter: 'nav.contact' }[id];
       const label = id === 'hero' ? 'Top' : t(key) || id;
@@ -301,7 +372,7 @@
   }
 
   function renderAll() {
-    renderHeroStats(); renderAbout(); renderTimeline(); renderProjects();
+    renderHeroStats(); renderAbout(); renderTimeline(); renderProjects(); renderPubs();
     renderRail(); renderImpact(); renderTeaching(); renderAwards();
     renderRecs(); renderSocial(); renderDots();
     document.dispatchEvent(new CustomEvent('site:rendered'));
@@ -671,6 +742,7 @@
     initBotLoader();
     initFilm();
     initSignature();
+    initCite();
     initLang();
   }
 

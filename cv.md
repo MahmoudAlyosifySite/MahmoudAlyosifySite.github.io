@@ -29,6 +29,10 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 - Graduation Project: [**Vitalism Solution**](https://vitalismsolution.github.io/) — contactless vital-sign estimation via rPPG. **Grade A+**; **Semi-Finalist, Microsoft Imagine Cup 2023**.
 
+## Publications
+
+- **Mahmoud Alyosify**, Mirna Imbabi, Eman Elkhamisi, Rahatara Ferdousi. *Say Less, Mean Better: Training-Free Verbosity Control for Language Models.* arXiv preprint [arXiv:2611.04107](https://arxiv.org/abs/2611.04107) (cs.CL), November 2026.
+
 ## Technical Skills
 
 | Category | Skills |

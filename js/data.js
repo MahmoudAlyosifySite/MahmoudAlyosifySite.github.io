@@ -203,8 +203,12 @@ const SITE = {
       },
       tags: ['LLM Inference', 'PyTorch', 'Hugging Face', 'Benchmarking', 'NVIDIA A40'],
       repo: 'https://github.com/MahmoudAlyosify/minimal-lm',
+      cover: 'minimallm',
       image: 'img/portfolio 1.png',
-      supervisor: 'Dr. Rahatara Ferdousi'
+      supervisor: 'Dr. Rahatara Ferdousi',
+      links: [
+        { label: { en: 'Paper · arXiv', ar: 'الورقة · arXiv' }, url: 'https://arxiv.org/abs/2611.04107' }
+      ]
     },
     {
       featured: true,
@@ -218,6 +222,7 @@ const SITE = {
       },
       tags: ['Multi-Agent', 'Knowledge Graphs', 'Fine-Tuned LLM', 'Self-Hosted Inference', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/horus-sentinel',
+      cover: 'horus-sentinel',
       image: 'img/portfolio 2.png',
       links: [
         { label: { en: 'Video walkthrough', ar: 'فيديو شرح' }, url: 'https://youtu.be/e6hyo1l7Dmc?si=d_bldKi4R6PeGWG3' },
@@ -235,6 +240,7 @@ const SITE = {
       },
       tags: ['PPO', 'DQN', 'Gymnasium', 'Cost Optimisation', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/RL-Cloud-Autoscaler',
+      cover: 'rl-autoscaler',
       image: 'img/portfolio 3.png',
       links: [
         { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_reinforcementlearning-cloudcomputing-mlops-activity-7486192517051404289-UF--?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
@@ -251,6 +257,7 @@ const SITE = {
       },
       tags: ['PyTorch', 'SimCLR', 'SupCon', 'ONNX', 'FAISS', '84.30% top-1'],
       repo: 'https://github.com/MahmoudAlyosify/SimCLR-Vision-SSL',
+      cover: 'simclr',
       image: 'img/portfolio 4.png',
       links: [
         { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_geoffreyhinton-deeplearning-selfsupervisedlearning-ugcPost-7470463338506960896-7l9j?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' },
@@ -268,6 +275,7 @@ const SITE = {
       },
       tags: ['Meta-Llama-3-8B', 'LoRA', 'AWS', 'OSINT', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/Horus-OSINT',
+      cover: 'horus-osint',
       image: 'img/portfolio 5.png',
       links: [
         { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_llama3-aws-qlora-ugcPost-7455881379201908736-qi2V?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
@@ -284,6 +292,8 @@ const SITE = {
       },
       tags: ['Generative AI', 'Agentic AI', 'Multimodal', 'Python'],
       repo: 'https://github.com/MahmoudAlyosify/Automated-Multimodal-Agent-PDF-to-Narrated-PowerPoint',
+      cover: 'multimodal-agent',
+      coverUrl: 'https://mahmoudalyosifysite.github.io/Projects/Automated%20MultimodalAgent%20PDF%20to%20Narrated%20PowerPoint.html',
       image: 'img/portfolio 6.png',
       honour: {
         kicker: { en: 'Queen\'s University · 3 June 2026', ar: 'جامعة كوينز · 3 يونيو 2026' },
@@ -313,6 +323,7 @@ const SITE = {
       },
       tags: ['Scikit-learn', 'XGBoost', 'Applied ML', 'Space Safety'],
       repo: 'https://github.com/MahmoudAlyosify/SCRAP-Satellite-Collision-Risk-Assessment-and-Prediction',
+      cover: 'scrap',
       demo: 'Projects/SCRAP_3D_Earth.html',
       image: 'img/Analysis 1.png',
       links: [
@@ -331,6 +342,7 @@ const SITE = {
       },
       tags: ['GitHub Analytics', 'Data Mining', 'Empirical SE'],
       repo: 'https://github.com/MahmoudAlyosify/Analyzing-Review-Effort-in-Human-vs.-Agentic-Pull-Requests',
+      cover: 'agentic-prs',
       image: 'img/Analysis 2.jpg',
       links: [
         { label: { en: 'LinkedIn post', ar: 'منشور LinkedIn' }, url: 'https://www.linkedin.com/posts/mahmoudalyosify_artificialintelligence-softwareengineering-activity-7473777297242877952-pAdO?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6DERAB9RglLdnCVHT7aMUMGVXn5TYEdYE' }
@@ -347,6 +359,7 @@ const SITE = {
       },
       tags: ['CNN', 'Audio AI', 'Streamlit', 'Deepfake Detection'],
       repo: 'https://github.com/MahmoudAlyosify/AudioShield',
+      cover: 'audioshield',
       image: 'img/Dev1.png'
     },
     {
@@ -360,7 +373,36 @@ const SITE = {
       },
       tags: ['Computer Vision', 'rPPG', 'OpenCV', 'Grade A+'],
       demo: 'https://vitalismsolution.github.io/',
+      cover: 'vitalism',
       image: 'img/vitalism_logo.png'
+    }
+  ],
+
+  /* ── Publications ─────────────────────────────────────────
+     Authors in the paper's order; `me` is his place in the list. */
+  publications: [
+    {
+      id: 'arXiv:2611.04107',
+      title: 'Say Less, Mean Better: Training-Free Verbosity Control for Language Models',
+      authors: ['Mahmoud Alyosify', 'Mirna Imbabi', 'Eman Elkhamisi', 'Rahatara Ferdousi'],
+      me: 0,
+      kind: { en: 'Preprint · arXiv', ar: 'نسخة أولية · arXiv' },
+      field: { en: 'cs.CL · Computation and Language', ar: 'cs.CL · الحوسبة واللغة' },
+      date: { en: '3 Nov 2026', ar: '3 نوفمبر 2026' },
+      extent: { en: '16 pages · 11 figures', ar: '16 صفحة · 11 شكلًا' },
+      venue: { en: 'arXiv preprint arXiv:2611.04107', ar: 'نسخة أولية على arXiv برقم arXiv:2611.04107' },
+      summary: {
+        en: 'Language models often answer at greater length than a question needs. MinimalLM, the framework the paper introduces, controls verbosity without any training: it raises the stop token according to the model\'s uncertainty and the length of the answer, and lets the model stop only when the answer is structurally complete. Across three open models and 330 questions it generates 47.6% fewer tokens and answers 19–68% faster with no answer cut off, scoring 8.04/10 for quality against 8.42 for the unmodified models and 6.46 for answers cut to the same length.',
+        ar: 'كثيرًا ما تُجيب النماذج اللغوية بأطول مما يحتاجه السؤال. يتحكم MinimalLM، الإطار الذي تقدّمه الورقة، في الإطالة دون أي تدريب: يرفع درجة رمز التوقف وفق عدم يقين النموذج وطول الإجابة، ولا يسمح له بالتوقف إلا حين تكتمل الإجابة بنيويًا. وعلى ثلاثة نماذج مفتوحة و330 سؤالًا ولّد توكنات أقل بنسبة 47.6% وأجاب أسرع بنسبة 19–68% دون أي إجابة مقطوعة، وحقق 8.04/10 في الجودة مقابل 8.42 للنماذج دون تعديل و6.46 للإجابات المقطوعة عند الطول نفسه.'
+      },
+      cover: 'paper',
+      url: 'https://arxiv.org/abs/2611.04107',
+      links: [
+        { label: { en: 'arXiv', ar: 'arXiv' }, url: 'https://arxiv.org/abs/2611.04107' },
+        { label: { en: 'PDF', ar: 'PDF' }, url: 'https://arxiv.org/pdf/2611.04107' },
+        { label: { en: 'Code', ar: 'الكود' }, url: 'https://github.com/MahmoudAlyosify/minimal-lm', icon: 'github' }
+      ],
+      bibtex: '@misc{alyosify2026sayless,\n  title         = {Say Less, Mean Better: Training-Free Verbosity Control for Language Models},\n  author        = {Alyosify, Mahmoud and Imbabi, Mirna and Elkhamisi, Eman and Ferdousi, Rahatara},\n  year          = {2026},\n  eprint        = {2611.04107},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2611.04107}\n}'
     }
   ],
 

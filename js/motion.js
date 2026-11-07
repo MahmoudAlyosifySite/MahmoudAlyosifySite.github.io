@@ -63,18 +63,29 @@
      ══════════════════════════════════════════════════════════ */
   function initScrollRail() {
     const fill = $('.scroll-rail__fill');
-    if (!fill) return;
+    // The inscription in the margin fills with gold at the same pace.
+    const maat = $('#maat');
+    if (!fill && !maat) return;
     const onScroll = () => {
       // The scroll prologue (js/prologue.js) is a film, not reading: count from its end.
       const pro = document.getElementById('prologue');
       const from = pro ? pro.offsetTop + pro.offsetHeight : 0;
       const max = document.documentElement.scrollHeight - window.innerHeight - from;
-      const p = max > 0 ? Math.max(0, (window.scrollY - from) / max) * 100 : 0;
-      fill.style.width = p + '%';
+      const p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY - from) / max)) : 0;
+      if (fill) fill.style.width = p * 100 + '%';
+      if (maat) maat.style.setProperty('--maat', p.toFixed(4));
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+
+    // The closing artwork carves the same line: the margin's steps aside for it.
+    const close = document.getElementById('fatfooter');
+    if (maat && close && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([en]) => {
+        document.documentElement.classList.toggle('is-at-close', en.isIntersecting);
+      }, { rootMargin: '0px 0px -25% 0px' }).observe(close);
+    }
   }
 
   /* ══════════════════════════════════════════════════════════
