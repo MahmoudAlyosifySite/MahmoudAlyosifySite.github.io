@@ -20,10 +20,35 @@ export const INK = {
   '𓅨': [-56, 56, -94, -16], '𓂋': [-55, 55, -29, 0], '𓌴': [-62, 62, -84, -10], '𓐙': [-59, 58, -25, 0],
   '𓂝': [-71, 71, -58, 0], '𓏏': [-28, 27, -46, -20], '𓏛': [-56, 56, -50, -20],
   '𓎝': [-25, 26, -100, 1], '𓎛': [-18, 18, -100, 0], '𓇮': [-22, 23, -99, 19],
+  // his name: m (owl), ḥ (wick), w (quail chick), d (hand)
+  '𓅓': [-52, 51, -100, 2], '𓅱': [-39, 39, -100, 1], '𓂧': [-75, 74, -61, -8],
 };
 
 /** The signs, in reading order — what a font needs to be able to set. */
-export const SIGNS = '𓅨𓂋𓌴𓐙𓂝𓏏𓏛𓎝𓎛𓇮';
+export const SIGNS = '𓅨𓂋𓌴𓐙𓂝𓏏𓏛𓎝𓎛𓇮𓅓𓅱𓂧';
+
+/* His name, محمود, spelled sign for sign: m·ḥ·m·w·d. Egyptian has the same
+   deep ḥ as Arabic ح (the twisted wick, 𓎛), so the spelling is exact:
+       𓅓 m · 𓎛 ḥ · 𓅓 m · 𓅱 w · 𓂧 d
+   carveName({ F, CX, top }) stacks them down the axis and returns the
+   <text> elements and where the name ends. */
+export function carveName({ F, CX, top: y0 }) {
+  const glyphs = [];
+  const put = (g, top, s) => {
+    const [l, r, t, b] = INK[g];
+    const k = (F * s) / 100;
+    glyphs.push(`<text x="${r1(CX - ((l + r) / 2) * k)}" y="${r1(top - t * k)}" font-size="${r1(F * s)}">${g}</text>`);
+    return (b - t) * k;
+  };
+  const gap = F * 0.12;
+  let y = y0;
+  y += put('𓅓', y, 0.6) + gap;
+  y += put('𓎛', y, 0.6) + gap;
+  y += put('𓅓', y, 0.6) + gap;
+  y += put('𓅱', y, 0.6) + gap * 1.4;
+  y += put('𓂧', y, 0.52);
+  return { glyphs, bottom: y };
+}
 
 export function carve({ F, CX, top: y0 }) {
   const glyphs = [];
