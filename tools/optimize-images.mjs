@@ -128,7 +128,7 @@ async function run() {
   /* ── Degree documents — open as pop-ups from the About list: the BSc
         certificate, and the MSc completion letter (rendered from its PDF in
         Files/ with pdftoppm) until the MSc certificate itself is issued ── */
-  const degrees = ['bsc-graduation-certificate-ar.jpg', 'msc-completion-letter.png']
+  const degrees = ['bsc-graduation-certificate-ar.jpg', 'msc-completion-letter.png', 'msc-cgpa-letter.png']
     .map((f) => path.join(ROOT, 'img', 'degree', f)).filter((f) => existsSync(f));
   console.log(`Degree        — ${degrees.length} image(s)`);
   for (const src of degrees) {

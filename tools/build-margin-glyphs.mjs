@@ -24,7 +24,7 @@ const INDENT = '  ';
 const r1 = (n) => Math.round(n * 10) / 10;
 
 const F = 34;                 // sign size, in column units
-const RAIL = 24;              // half the width between the ruled lines
+const RAIL = 21;              // half the width between the ruled lines
 const PAD = 14;               // air between the rules' ends and the signs
 const CX = RAIL + 2;          // the axis, leaving room for the rules' stroke
 const TOP = PAD + 6;

@@ -118,12 +118,18 @@
       const title = c
         ? `<button type="button" class="facts__open"${open} aria-haspopup="dialog" title="${esc(L(c.hint))}">${esc(L(f.k))}<svg class="facts__open-ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>`
         : esc(L(f.k));
+      // More documents for the same line (a GPA letter), each its own button.
+      const docs = (f.docs || []).map((d) =>
+        `<button type="button" class="facts__doc" data-lightbox="${esc(d.img)}" data-lightbox-title="${esc(L(d.title))}" data-lightbox-alt="${esc(L(d.alt))}" data-lightbox-caption="${esc(L(d.caption))}"`
+        + (d.pdf ? ` data-lightbox-pdf="${esc(d.pdf)}"` : '')
+        + ` aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>${esc(L(d.label))}</button>`).join('');
       return `
       <li>
         <span class="facts__icon${f.iconImg ? ' facts__icon--logo' : ''}"${open} aria-hidden="true">${iconHtml}</span>
         <span>
           <span class="facts__k">${title}</span>
-          <span class="facts__v">${shown}</span>
+          <span class="facts__v">${shown}</span>${docs ? `
+          <span class="facts__docs">${docs}</span>` : ''}
         </span>
       </li>`;
     }).join('');

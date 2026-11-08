@@ -434,6 +434,26 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .facts__open:hover { text-decoration-style: solid; }
 .facts__open-ico { display: inline-block; margin-inline-start: 0.42em; vertical-align: -0.1em; color: var(--gold-ink); }
 .facts__icon[data-lightbox] { cursor: pointer; }
+/* further documents for a line — the GPA letter under the MSc */
+.facts__docs { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 6px; }
+.facts__doc {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--gold-ink);
+  cursor: pointer;
+  text-decoration: underline dotted var(--gold);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.3em;
+  transition: color var(--t-fast);
+}
+.facts__doc:hover { color: var(--ink); text-decoration-style: solid; }
+.facts__doc svg { flex: none; }
+html[dir='rtl'] .facts__doc { font-family: var(--font-ar-body); font-size: var(--fs-xs); letter-spacing: 0; }
 .facts__v { display: block; margin-top: 3px; font-size: var(--fs-xs); line-height: 1.55; color: var(--ink-3); }
 .facts__v a {
   color: var(--ink-2);
@@ -2092,7 +2112,7 @@ html[dir='rtl'] .scroll-rail__fill { margin-inline-start: auto; }
   inset-inline-start: calc(var(--maat-gutter) / 2);
   z-index: 60;
   display: none;
-  height: min(calc(100vh - 200px), 470px);
+  height: min(calc(100vh - 260px), 340px);
   aspect-ratio: var(--maat-ar);
   color: var(--gold-ink);
   transform: translate(-50%, -50%);
@@ -2178,8 +2198,8 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
    it exactly — a square box let the image spill out past the screen edge. */
 .bot-fab__mark {
   position: relative;
-  width: 84px; height: 126px;
-  flex: 0 0 84px;
+  width: 64px; height: 96px;
+  flex: 0 0 64px;
 }
 .bot-fab__icon {
   position: absolute;
@@ -2188,6 +2208,29 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+/* He flies: a slow loop on his rocket, leaning into each turn, with the
+   flame breathing under him. The label stays still, so it can be read. */
+@media (prefers-reduced-motion: no-preference) {
+  .bot-fab__mark { animation: bot-orbit 7s linear infinite; }
+  .bot-fab__icon {
+    transform-origin: 50% 85%;
+    animation: bot-bank 7s ease-in-out infinite, bot-thrust 0.9s ease-in-out infinite alternate;
+  }
+  .bot-fab:hover .bot-fab__mark,
+  .bot-fab:focus-visible .bot-fab__mark { animation-duration: 3.5s; }
+}
+@keyframes bot-orbit {
+  from { transform: rotate(0deg) translateX(var(--bot-r, 13px)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--bot-r, 13px)) rotate(-360deg); }
+}
+@keyframes bot-bank {
+  0%, 100% { rotate: 7deg; }
+  50%      { rotate: -7deg; }
+}
+@keyframes bot-thrust {
+  from { filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35)) drop-shadow(0 10px 6px rgba(56, 182, 255, 0)); }
+  to   { filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35)) drop-shadow(0 12px 8px rgba(56, 182, 255, 0.45)); }
 }
 /* A soft halo of the page colour keeps the label legible wherever it lands. */
 .bot-fab__label {
@@ -2424,7 +2467,8 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
 
   .bot-fab { inset-block-end: 12px; inset-inline-end: 10px; }
   .bot-fab__label { display: none; }
-  .bot-fab__mark { width: 60px; height: 90px; flex-basis: 60px; }
+  .bot-fab__mark { width: 48px; height: 72px; flex-basis: 48px; --bot-r: 7px; }
+  .bot-fab { inset-inline-end: 16px; }
   .to-top { inset-block-end: 16px; inset-inline-start: 16px; width: 38px; height: 38px; }
 }
 

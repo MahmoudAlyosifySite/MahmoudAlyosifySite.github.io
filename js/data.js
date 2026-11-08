@@ -76,7 +76,17 @@ const SITE = {
           hint:    { en: 'View the letter confirming the MSc is complete', ar: 'عرض خطاب إتمام الماجستير' },
           alt:     { en: 'Letter from the School of Graduate Studies and Postdoctoral Affairs, Queen\'s University, dated 27 October 2026, confirming that Mahmoud Sayed Youssef Kotb completed all requirements for the Master of Science on 27 October 2026', ar: 'خطاب من كلية الدراسات العليا بجامعة كوينز بتاريخ 27 أكتوبر 2026 يؤكد إتمام محمود سيد يوسف قطب جميع متطلبات درجة الماجستير' },
           caption: { en: 'Completion letter — School of Graduate Studies and Postdoctoral Affairs, Queen\'s University, 27 October 2026. The degree is conferred at the Spring 2027 convocation.', ar: 'خطاب إتمام الماجستير — كلية الدراسات العليا، جامعة كوينز، 27 أكتوبر 2026. تُمنح الدرجة في حفل تخرج ربيع 2027.' }
-        } },
+        },
+        // Further documents, each opened from its own button under the line.
+        // The public copy of the GPA letter leaves the student number out.
+        docs: [{
+          label:   { en: 'Cumulative GPA letter', ar: 'خطاب المعدل التراكمي' },
+          title:   { en: 'Cumulative GPA letter — 4.30 / 4.30', ar: 'خطاب المعدل التراكمي — 4.30 / 4.30' },
+          img: 'img/_web/degree/msc-cgpa-letter.webp',
+          pdf: 'Files/Mahmoud%20Kotb%20MSc%20Cumulative%20GPA%20Letter%20-%20Queens%20University%20-%207%20Nov%202026.pdf',
+          alt:     { en: 'Cumulative GPA letter from the Office of the University Registrar, Queen\'s University, stating a cumulative GPA of 4.30 for Mahmoud Sayed Youssef Kotb, graduate student, signed by the University Registrar and stamped', ar: 'خطاب المعدل التراكمي من مكتب المسجّل بجامعة كوينز يثبت معدلًا تراكميًا قدره 4.30 لمحمود سيد يوسف قطب، طالب دراسات عليا، موقّعًا من مسجّل الجامعة ومختومًا' },
+          caption: { en: 'Cumulative GPA letter — Office of the University Registrar, Queen\'s University, correct as of 7 November 2026. Cumulative GPA 4.30 on a 4.30 scale. The student number is left out of this copy.', ar: 'خطاب المعدل التراكمي — مكتب مسجّل جامعة كوينز، صحيح حتى 7 نوفمبر 2026. المعدل التراكمي 4.30 من 4.30. حُذف الرقم الجامعي من هذه النسخة.' }
+        }] },
       { iconImg: 'img/_web/logos/assiut.webp', iconImgDark: 'img/_web/logos/assiut-dark.webp', k: { en: 'BSc Computer & Information Science', ar: 'بكالوريوس علوم الحاسب والمعلومات' }, v: { en: 'Bioinformatics, Assiut University — GPA 3.53 / 4.00', ar: 'المعلوماتية الحيوية، جامعة أسيوط — معدل 3.53 / 4.00' }, url: 'https://www.aun.edu.eg/main/',
         // The graduation certificate opens as a pop-up (js/lightbox.js) from the title.
         cert: {
