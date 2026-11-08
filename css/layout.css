@@ -820,9 +820,56 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
   place-items: center;
   color: var(--gold);
 }
-.impact__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; }
+.impact__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.impact__hairline { opacity: 0.55; }
+.impact__orbit { transform-origin: 120px 120px; opacity: 0; }
+.impact__stars path { opacity: 0; transform-box: fill-box; transform-origin: center; }
 .impact__ring-core { position: relative; width: 56%; height: 72%; display: grid; place-items: center; }
 .impact__ring-core img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16)); }
+
+/* In flight: he loops a slow figure of eight inside the ring, leaning
+   into each turn, his flame breathing; a comet runs round the hairline
+   and the stars twinkle as he passes. Still for anyone who asks for
+   less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .impact__ring-core { animation: impact-eight 9s ease-in-out infinite; }
+  .impact__ring-core img {
+    transform-origin: 50% 80%;
+    animation: impact-bob 3s ease-in-out infinite, impact-thrust 0.8s ease-in-out infinite alternate;
+  }
+  .impact__orbit { opacity: 1; animation: impact-orbit 7s linear infinite; }
+  .impact__stars path { animation: impact-twinkle 4.5s ease-in-out infinite; }
+  .impact__stars path:nth-child(2) { animation-delay: 1.1s; }
+  .impact__stars path:nth-child(3) { animation-delay: 2.3s; }
+  .impact__stars path:nth-child(4) { animation-delay: 3.4s; }
+  .impact__ring:hover .impact__ring-core { animation-duration: 4.5s; }
+  .impact__ring:hover .impact__orbit { animation-duration: 3.5s; }
+}
+@keyframes impact-eight {
+  0%    { translate: 0 0;           rotate: 0deg; }
+  12.5% { translate: 15px -9px;     rotate: 7deg; }
+  25%   { translate: 24px 0;        rotate: 0deg; }
+  37.5% { translate: 15px 9px;      rotate: -7deg; }
+  50%   { translate: 0 0;           rotate: 0deg; }
+  62.5% { translate: -15px -9px;    rotate: -7deg; }
+  75%   { translate: -24px 0;       rotate: 0deg; }
+  87.5% { translate: -15px 9px;     rotate: 7deg; }
+  100%  { translate: 0 0;           rotate: 0deg; }
+}
+@keyframes impact-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+@keyframes impact-thrust {
+  from { filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16)) drop-shadow(0 14px 8px rgba(56, 182, 255, 0)); }
+  to   { filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16)) drop-shadow(0 16px 12px rgba(56, 182, 255, 0.5)); }
+}
+@keyframes impact-orbit { to { transform: rotate(360deg); } }
+@keyframes impact-twinkle {
+  0%, 100% { opacity: 0;   transform: scale(0.4) rotate(0deg); }
+  45%      { opacity: 0.9; transform: scale(1) rotate(45deg); }
+  60%      { opacity: 0.5; transform: scale(0.8) rotate(60deg); }
+}
 
 /* ══════════════════════════════════════════════════════════
    TEACHING — each platform an entry: its figure in the margin,
