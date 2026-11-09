@@ -413,6 +413,28 @@ const SITE = {
         { label: { en: 'Code', ar: 'الكود' }, url: 'https://github.com/MahmoudAlyosify/minimal-lm', icon: 'github' }
       ],
       bibtex: '@misc{alyosify2026sayless,\n  title         = {Say Less, Mean Better: Training-Free Verbosity Control for Language Models},\n  author        = {Alyosify, Mahmoud and Imbabi, Mirna and Elkhamisi, Eman and Ferdousi, Rahatara},\n  year          = {2026},\n  eprint        = {2611.04107},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2611.04107}\n}'
+    },
+    {
+      id: 'arXiv:2611.08975',
+      title: 'Beyond Truncation? Entailment-Licensed Elision and the Limits of Semantic Preservation in LLM Decoding',
+      authors: ['Mahmoud Alyosify', 'Mirna Imbabi', 'Eman Elkhamisi'],
+      me: 0,
+      kind: { en: 'Preprint · arXiv', ar: 'نسخة أولية · arXiv' },
+      field: { en: 'cs.CL · Computation and Language', ar: 'cs.CL · الحوسبة واللغة' },
+      date: { en: '6 Nov 2026', ar: '6 نوفمبر 2026' },
+      extent: { en: '8 pages · 3 figures · 2 tables', ar: '8 صفحات · 3 أشكال · جدولان' },
+      venue: { en: 'arXiv preprint arXiv:2611.08975', ar: 'نسخة أولية على arXiv برقم arXiv:2611.08975' },
+      summary: {
+        en: 'Can a training-free controller in the decoding loop remove the surplus in an answer better than cutting the answer to the same length? The paper proves that an entropy-gated logits processor, which removes 19.9–34.2% of the tokens on a sealed MT-Bench test split within pre-registered BERTScore margins, always outputs a prefix of the unmodified answer: its saving is truncation. It then introduces ELIDE, which withholds a span from the reader only when a natural-language inference model judges it entailed by the text already shown. ELIDE beats matched-length truncation on three model families, yet reading 936 of its elisions shows that 59% harm the answer, a failure no automatic measure detects; scoping the licence brings that down to about one in ten on two fresh tests.',
+        ar: 'هل يستطيع متحكّم بلا تدريب داخل حلقة فك التشفير أن يحذف الزائد من الإجابة أفضل من قصّها عند الطول نفسه؟ تُثبت الورقة أن معالِج Logits القائم على الإنتروبيا، الذي يحذف 19.9–34.2% من التوكنات على قسم اختبار مغلق من MT-Bench ضمن هوامش BERTScore المسجّلة مسبقًا، يُخرج دائمًا بداية الإجابة الأصلية نفسها: أي أن توفيره قصّ. ثم تقدّم طريقة ELIDE التي تحجب مقطعًا عن القارئ فقط إذا حكم نموذج استدلال لغوي طبيعي بأن النص المعروض قبله يستلزمه. تتفوق ELIDE على القص عند الطول نفسه في ثلاث عائلات من النماذج، لكن قراءة 936 من حذوفاتها أظهرت أن 59% منها تضرّ بالإجابة، وهو فشل لا يكشفه أي مقياس آلي؛ وتقييد الترخيص بوحدته الخطابية خفّض ذلك إلى نحو حذف واحد من كل عشرة في اختبارين جديدين.'
+      },
+      cover: 'beyond-truncation',
+      url: 'https://arxiv.org/abs/2611.08975',
+      links: [
+        { label: { en: 'arXiv', ar: 'arXiv' }, url: 'https://arxiv.org/abs/2611.08975' },
+        { label: { en: 'PDF', ar: 'PDF' }, url: 'https://arxiv.org/pdf/2611.08975' }
+      ],
+      bibtex: '@misc{alyosify2026beyond,\n  title         = {Beyond Truncation? Entailment-Licensed Elision and the Limits of Semantic Preservation in {LLM} Decoding},\n  author        = {Alyosify, Mahmoud and Imbabi, Mirna and Elkhamisi, Eman},\n  year          = {2026},\n  eprint        = {2611.08975},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2611.08975}\n}'
     }
   ],
 

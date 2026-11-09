@@ -581,6 +581,20 @@
               href="https://arxiv.org/abs/2611.04107">Say Less, Mean Better: Training-Free Verbosity Control for Language
               Models</a>” (arXiv:2611.04107, cs.CL), by Mahmoud Alyosify, Mirna Imbabi, Eman Elkhamisi and Rahatara
               Ferdousi.</p>
+            <p>Three days later, on 6 November 2026, Alyosify, Imbabi and Elkhamisi published a second preprint, “<a
+              class="link" href="https://arxiv.org/abs/2611.08975">Beyond Truncation? Entailment-Licensed Elision and the Limits
+              of Semantic Preservation in LLM Decoding</a>” (arXiv:2611.08975, cs.CL). It asks whether a training-free controller
+              inside the decoding loop can remove the surplus in an answer while keeping its content, judged against the simplest
+              baseline: cutting the model's own answer to the same length. An entropy-gated logits processor removed 19.9–34.2% of
+              the tokens on a sealed MT-Bench test split within pre-registered BERTScore margins, but the paper proves, and
+              confirms by audit, that its output is always a prefix of the unmodified answer, so the saving is truncation; a survey
+              of 23 training-free mechanism families found none that selects content better than truncation without oracle
+              labels. The paper then introduces Entailment-Licensed In-Decoding Elision (ELIDE), which at each sentence boundary
+              withholds a span from the reader only when a natural-language inference model judges it entailed by the text
+              already shown, leaving the model's generation unchanged. ELIDE beat matched-length truncation on three model
+              families, but reading 936 of its elisions on 670 public prompts showed that 59% harmed the answer, a failure no
+              automatic measure detected; scoping the licence to its discourse unit reduced the harmful share to about one
+              elision in ten on two fresh tests.</p>
 
             <h3 id="research-interests">Research interests</h3>
             <p>He is currently researching the efficiency of language-model inference and token-efficient generation, AI agents and
@@ -800,6 +814,7 @@
               <li><a class="out" href="https://mahmoudalyosifysite.github.io/">Official website</a></li>
               <li><a class="out" href="../cv/">CVs by role</a></li>
               <li><a class="out" href="https://arxiv.org/abs/2611.04107">Say Less, Mean Better — paper on arXiv</a></li>
+              <li><a class="out" href="https://arxiv.org/abs/2611.08975">Beyond Truncation? — paper on arXiv</a></li>
               <li><a class="out" href="https://orcid.org/0009-0005-1336-2726" rel="me">ORCID</a></li>
               <li><a class="out" href="https://linkedin.com/in/mahmoudalyosify" rel="me">LinkedIn</a></li>
               <li><a class="out" href="https://github.com/MahmoudAlyosify" rel="me">GitHub</a></li>

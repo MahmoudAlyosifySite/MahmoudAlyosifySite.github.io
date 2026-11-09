@@ -387,6 +387,17 @@
               الواسع. والتقييم داخلي ولم يُجرَ تقييم بشري مستقل. وفي <bdi>3 نوفمبر 2026</bdi> نشر الفريق العمل نسخةً أولية على
               <span lang="en">arXiv</span> بعنوان «<a class="link" href="https://arxiv.org/abs/2611.04107" lang="en" dir="ltr">Say Less,
               Mean Better: Training-Free Verbosity Control for Language Models</a>».</p>
+            <p>وبعد ثلاثة أيام، في <bdi>6 نوفمبر 2026</bdi>، نشر محمود مع <span lang="en">Mirna Imbabi</span> و<span lang="en">Eman Elkhamisi</span>
+              ورقة ثانية على <span lang="en">arXiv</span> بعنوان «<a class="link" href="https://arxiv.org/abs/2611.08975" lang="en" dir="ltr">Beyond
+              Truncation? Entailment-Licensed Elision and the Limits of Semantic Preservation in LLM Decoding</a>». تسأل الورقة هل يستطيع
+              متحكّم بلا تدريب داخل حلقة فك التشفير أن يحذف الزائد من الإجابة ويحفظ مضمونها أفضل من قصّ الإجابة نفسها عند الطول ذاته.
+              حذف معالِج <span lang="en">Logits</span> قائم على الإنتروبيا <bdi>19.9–34.2%</bdi> من التوكنات على قسم اختبار مغلق من
+              <span lang="en">MT-Bench</span>، لكن الورقة تُثبت أن ما يُخرجه هو دائمًا بداية الإجابة الأصلية نفسها، أي أن توفيره قصّ. ثم
+              تقدّم طريقة <span lang="en">ELIDE</span> التي تحجب مقطعًا عن القارئ عند كل حدّ جملة فقط إذا حكم نموذج استدلال لغوي
+              (<span lang="en">NLI</span>) بأن النص المعروض قبله يستلزمه، دون أن تغيّر ما يولّده النموذج. تفوّقت <span lang="en">ELIDE</span>
+              على القص عند الطول نفسه في ثلاث عائلات من النماذج، لكن قراءة <bdi>936</bdi> من حذوفاتها على <bdi>670</bdi> مطالبة عامة
+              أظهرت أن <bdi>59%</bdi> منها تضرّ بالإجابة، وهو فشل لا يكشفه أي مقياس آلي؛ وتقييد الترخيص بوحدته الخطابية خفّض النسبة
+              الضارة إلى نحو حذف واحد من كل عشرة في اختبارين جديدين.</p>
             <h3 lang="en">Vitalism Solution</h3>
             <p>مشروع التخرج في جامعة أسيوط (<bdi>2022–2023</bdi>): تقدير العلامات الحيوية من فيديو عادي بالاعتماد على قياس التغيّرات الدورية
               في لون الجلد مع كل نبضة (<span lang="en">rPPG</span>). قاد محمود الفريق المكوَّن من ستة طلاب. نال المشروع تقدير A+،
@@ -423,7 +434,8 @@
               <li><a class="out" href="../" hreflang="en">Official website (English)</a></li>
               <li><a class="out" href="../biography/" hreflang="en">السيرة الكاملة بالإنجليزية</a></li>
               <li><a class="out" href="../cv/">السير الذاتية حسب الدور</a></li>
-              <li><a class="out" href="https://arxiv.org/abs/2611.04107" hreflang="en">الورقة البحثية على arXiv</a></li>
+              <li><a class="out" href="https://arxiv.org/abs/2611.04107" hreflang="en">الورقة الأولى على arXiv</a></li>
+              <li><a class="out" href="https://arxiv.org/abs/2611.08975" hreflang="en">الورقة الثانية على arXiv</a></li>
               <li><a class="out" href="https://orcid.org/0009-0005-1336-2726" rel="me">ORCID</a></li>
               <li><a class="out" href="https://linkedin.com/in/mahmoudalyosify" rel="me">LinkedIn</a></li>
               <li><a class="out" href="https://github.com/MahmoudAlyosify" rel="me">GitHub</a></li>

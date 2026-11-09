@@ -1,5 +1,5 @@
 /* ============================================================
-   Draws a cover for every project, and one for the paper.
+   Draws a cover for every project, and one for each paper.
 
        node tools/build-project-covers.mjs            all of them
        node tools/build-project-covers.mjs simclr     just one
@@ -558,6 +558,56 @@ const ART = {
     s += mono(1215, 830, 'arXiv:2611.04107 · cs.CL', 15, 0.7, 'middle');
     return s;
   },
+
+  /* the second paper — an answer whose entailed spans are withheld from the
+     reader, set against the cut that truncation makes, and the cache below
+     that still holds every span, so the generation is unchanged */
+  'beyond-truncation'() {
+    reseed(31);
+    let s = dust(60);
+    const px = 900, py = 110, pw = 500, ph = 600, x0 = px + 70, ww = 360;
+    s += `<g transform="rotate(-3 ${px + pw / 2} ${py + ph / 2})">`;
+    s += `<rect x="${px + 22}" y="${py + 18}" width="${pw}" height="${ph}" rx="3" fill="#0E0E10" stroke="${GOLD}" stroke-width="1.2" opacity=".5"/>`;
+    s += `<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="3" fill="#111113" stroke="${PALE}" stroke-width="1.6"/>`;
+    s += mono(px + pw / 2, py + 50, 'arXiv:2611.08975 · cs.CL', 13, 0.6, 'middle');
+    s += `<text x="${px + pw / 2}" y="${py + 100}" font-family="Gloock" font-size="30" fill="${INK}" text-anchor="middle">Beyond Truncation?</text>`;
+    s += line(px + 130, py + 126, px + pw - 130, py + 126, 0.5, 1.2);
+    // the answer, sentence by sentence; two spans are entailed by what came before
+    const rows = [1, 0.92, 0.97, 0.7, 1, 0.88, 0.95, 0.62, 0.9, 1, 0.8, 0.55];
+    const held = { 4: [0.18, 0.86], 9: [0.1, 0.72] };
+    const ry = (i) => py + 180 + i * 30;
+    rows.forEach((v, i) => {
+      const y = ry(i);
+      if (held[i]) {
+        const [a, b] = held[i];
+        s += line(x0, y, x0 + ww * a - 8, y, 0.55, 2.4);
+        s += `<rect x="${r1(x0 + ww * a)}" y="${y - 9}" width="${r1(ww * (b - a))}" height="18" rx="2" fill="${GOLD}" fill-opacity=".08" stroke="${LIGHT}" stroke-width="1.3" stroke-dasharray="5 4"/>`;
+        s += line(x0 + ww * b + 8, y, x0 + ww * v, y, 0.55, 2.4);
+      } else s += line(x0, y, x0 + ww * v, y, 0.55, 2.4);
+    });
+    // the licence: an arc from the text already shown to the span it entails
+    const arc = (from, to, tx) => {
+      const y1 = ry(from), y2 = ry(to), xl = x0 - 26;
+      s += `<path d="M${x0 - 8} ${y1}C${xl - 30} ${y1} ${xl - 30} ${y2} ${r1(x0 + ww * tx - 6)} ${y2 + 14}" fill="none" stroke="${PALE}" stroke-width="1.3" opacity=".75"/>`;
+      s += `<circle cx="${x0 - 8}" cy="${y1}" r="3.4" fill="${LIGHT}"/>`;
+    };
+    arc(1, 4, 0.18);
+    arc(6, 9, 0.1);
+    s += mono(x0 + ww * 0.52, ry(4) + 4, 'ENTAILED · WITHHELD', 11, 0.8, 'middle', PALE);
+    // where truncation would have cut the same answer
+    const cy = ry(7) + 15;
+    s += `<path d="M${px + 26} ${cy}L${px + pw - 26} ${cy}" stroke="${GOLD}" stroke-width="1.4" stroke-dasharray="2 7" opacity=".8"/>`;
+    s += mono(px + pw - 30, cy - 10, 'TRUNCATION', 11, 0.7, 'end');
+    s += `</g>`;
+    // the cache keeps every span, so the model's generation is unchanged
+    const kx = 920, ky = 770, n = 20, cw = 18, gap = 5;
+    for (let i = 0; i < n; i++) {
+      const hot = i === 6 || i === 7 || i === 14;
+      s += `<rect x="${kx + i * (cw + gap)}" y="${ky}" width="${cw}" height="${cw}" rx="2" fill="${hot ? 'url(#g-gold)' : '#0E0E10'}" stroke="${GOLD}" stroke-width="1" opacity="${hot ? 1 : 0.7}"/>`;
+    }
+    s += mono(kx + (n * (cw + gap) - gap) / 2, ky + 52, 'KV CACHE · GENERATION UNCHANGED', 13, 0.7, 'middle');
+    return s;
+  },
 };
 
 /* ── the covers ───────────────────────────────────────────── */
@@ -573,6 +623,7 @@ const COVERS = [
   { slug: 'audioshield', no: '09', kicker: 'Audio deep learning', title: 'AudioShield', sub: 'Deepfake audio detection', hook: 'Real or fake?', hookSize: 100, cap: 'a CNN that hears the forgery' },
   { slug: 'vitalism', no: '10', kicker: 'Graduation project · Grade A+', title: 'Vitalism Solution', sub: 'Contactless vital signs via rPPG', hook: 'Contactless', hookSize: 104, cap: 'vital signs from video · Imagine Cup semi-finalist' },
   { slug: 'paper', no: 'arXiv', kicker: 'Paper · cs.CL · 2026', title: 'Say Less, Mean Better', sub: 'Training-free verbosity control for language models', hook: '47.6%', cap: 'fewer tokens · 19–68% faster · nothing cut off', titleSize: 68 },
+  { slug: 'beyond-truncation', no: 'arXiv', kicker: 'Paper · cs.CL · 2026', title: 'Beyond Truncation?', sub: 'Entailment-licensed elision in LLM decoding', hook: '59% → 1 in 10', hookSize: 96, cap: 'harmful elisions, before and after scoping the licence', titleSize: 72 },
 ];
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
