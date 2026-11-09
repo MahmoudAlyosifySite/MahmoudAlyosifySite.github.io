@@ -1,67 +1,67 @@
 /* Built by tools/build-cv-previews.mjs — do not edit by hand. */
 window.CV_PREVIEWS = {
   "01-llm-generative-ai-engineer.pdf": {
-    "v": "aa03bf08",
+    "v": "5d59f804",
     "pages": 2
   },
   "02-machine-learning-engineer.pdf": {
-    "v": "931e0928",
+    "v": "34238deb",
     "pages": 2
   },
   "03-computer-vision-engineer.pdf": {
-    "v": "cd0b535d",
+    "v": "cc974f60",
     "pages": 2
   },
   "04-reinforcement-learning-engineer.pdf": {
-    "v": "23cbdb82",
+    "v": "00a642b8",
     "pages": 2
   },
   "05-ai-research-engineer.pdf": {
-    "v": "6324834d",
+    "v": "e9397c0e",
     "pages": 2
   },
   "06-edge-and-efficient-ai-engineer.pdf": {
-    "v": "7c0da1f5",
+    "v": "8c4d98c6",
     "pages": 2
   },
   "07-ai-agent-systems-engineer.pdf": {
-    "v": "3a2bbc53",
+    "v": "e268652c",
     "pages": 2
   },
   "08-nlp-engineer.pdf": {
-    "v": "63c83ab9",
+    "v": "1e54b5ba",
     "pages": 2
   },
   "09-data-scientist.pdf": {
-    "v": "b6374683",
+    "v": "13c68393",
     "pages": 2
   },
   "10-ai-security-and-threat-intelligence-engineer.pdf": {
-    "v": "8850fa01",
+    "v": "ba104424",
     "pages": 2
   },
   "11-mlops-and-cloud-ai-engineer.pdf": {
-    "v": "726e7e01",
+    "v": "0d236f29",
     "pages": 2
   },
   "12-software-engineer.pdf": {
-    "v": "28bdbcc8",
+    "v": "7946e0a6",
     "pages": 2
   },
   "13-ai-instructor-and-technical-trainer.pdf": {
-    "v": "e769a4b4",
+    "v": "933f6ac9",
     "pages": 2
   },
   "14-academic-cv-phd-scholarship.pdf": {
-    "v": "10d3e946",
+    "v": "83371680",
     "pages": 2
   },
   "15-volunteering-fellowships-and-exchange-programmes.pdf": {
-    "v": "6c2d82af",
+    "v": "26a8d5a2",
     "pages": 2
   },
   "general-cv.pdf": {
-    "v": "de25913f",
+    "v": "258fe121",
     "pages": 2
   }
 };
