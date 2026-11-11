@@ -1002,9 +1002,11 @@ html[dir='rtl'] .rail__hint::after { content: '←'; }
 html[dir='rtl'] .rec__mark { transform: scaleX(-1); }
 /* Whole letters, some of them long: set to be read — the text face, a
    comfortable measure, paragraphs kept. (The display face is for headings.) */
-.rec__text {
+.rec__body {
   grid-column: 4 / span 7;
   grid-row: 1;
+}
+.rec__text {
   max-width: 68ch;
   font-family: var(--font-body);
   font-size: 1.1rem;
@@ -1018,6 +1020,36 @@ html[dir='rtl'] .rec__mark { transform: scaleX(-1); }
 }
 .rec__text p + p { margin-top: 0.85em; }
 html[dir='rtl'] .rec__text { font-size: 1.08rem; line-height: 1.95; }
+
+/* Every letter opens on its first three lines; the rest is a press away
+   (initRecs in js/ui.js). The last visible line fades, so it reads as cut,
+   not ended. A letter of three lines or fewer simply shows whole. */
+.rec__text { overflow: hidden; transition: max-height 0.45s var(--ease); }
+.rec:not(.is-open) .rec__text { max-height: 5.16em; max-height: 3lh; }
+html[dir='rtl'] .rec:not(.is-open) .rec__text { max-height: 5.85em; max-height: 3lh; }
+.rec.has-more:not(.is-open) .rec__text {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.15em), transparent);
+          mask-image: linear-gradient(to bottom, #000 calc(100% - 1.15em), transparent);
+}
+.rec__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: var(--s-3);
+  padding-block: 4px 2px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-2);
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.rec__more svg { color: var(--gold-ink); transition: transform var(--t-mid); }
+.rec__more:hover { border-bottom-color: var(--gold); }
+.rec.is-open .rec__more svg { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .rec__text, .rec__more svg { transition: none; }
+}
 .rec__who {
   grid-column: 1 / span 3;
   grid-row: 1;
@@ -2329,7 +2361,7 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   .plat__name,
   .plat__cta { grid-column: 4 / -1; }
   .plat__desc,
-  .rec__text { grid-column: 4 / -1; }
+  .rec__body { grid-column: 4 / -1; }
 }
 
 /* The full bar: a label never breaks. Arabic labels run longer, so the
@@ -2459,7 +2491,7 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   .award__body { grid-column: 1 / -1; }
 
   .rec__mark { position: static; margin-bottom: -0.3em; grid-column: 1 / -1; grid-row: 1; }
-  .rec__text { grid-column: 1 / -1; grid-row: 2; }
+  .rec__body { grid-column: 1 / -1; grid-row: 2; }
   .rec__who { grid-column: 1 / -1; grid-row: 3; margin-top: var(--s-4); }
 
   .cert-cat::before { grid-column: 1 / span 2; }
@@ -2607,15 +2639,16 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
    target (44px). The bar's look is unchanged — only the area that answers a
    tap grows; the footer icons take the room they need. */
 @media (pointer: coarse) {
-  .nav__actions > :is(a, button), .nav__burger, .facts__open, .facts__doc, .pub__cite { position: relative; }
+  .nav__actions > :is(a, button), .nav__burger, .facts__open, .facts__doc, .pub__cite, .rec__more { position: relative; }
   .nav__actions > :is(a, button)::before, .nav__burger::before,
-  .facts__open::before, .facts__doc::before, .pub__cite::before {
+  .facts__open::before, .facts__doc::before, .pub__cite::before, .rec__more::before {
     content: '';
     position: absolute;
     inset-block: -6px;
     inset-inline: -3px;
   }
   .facts__open::before, .facts__doc::before { inset-block: -11px; }
+  .rec__more::before { inset-block: -10px; }
   .foot__link { width: 44px; height: 44px; }
   .foot__links { gap: 0 2px; margin-inline-start: -14px; }
 }

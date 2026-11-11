@@ -93,6 +93,8 @@ const I18N = {
     /* Recommendations */
     'recs.eyebrow': 'What people say',
     'recs.title1':  'Recommendations',
+    'recs.more':    'See more',
+    'recs.less':    'See less',
     'recs.title2':  '',
 
     /* Certificates */
@@ -292,6 +294,8 @@ const I18N = {
 
     'recs.eyebrow': 'ما يقوله الناس',
     'recs.title1':  'التوصيات',
+    'recs.more':    'عرض المزيد',
+    'recs.less':    'عرض أقل',
     'recs.title2':  '',
 
     'certs.eyebrow': 'الاعتمادات',

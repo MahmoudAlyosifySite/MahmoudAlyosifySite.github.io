@@ -334,12 +334,20 @@
   }
 
   function renderRecs() {
-    // A recommendation is shown whole, as its author wrote it. A blank line in
-    // the text is a paragraph break.
-    $('#recs-grid').innerHTML = SITE.recommendations.map((r) => `
+    // A recommendation is kept whole, as its author wrote it — every word is in
+    // the page. Each opens on its first three lines; "See more" shows the rest
+    // (initRecs). A blank line in the text is a paragraph break.
+    $('#recs-grid').innerHTML = SITE.recommendations.map((r, i) => `
       <blockquote class="rec" data-reveal>
         <p class="rec__mark" aria-hidden="true">&ldquo;</p>
-        <div class="rec__text">${esc(L(r.text)).split(/\n{2,}/).map((p) => `<p>${p}</p>`).join('')}</div>
+        <div class="rec__body">
+          <div class="rec__text" id="rec-text-${i}">${esc(L(r.text)).split(/\n{2,}/).map((p) => `<p>${p}</p>`).join('')}</div>
+          <button class="rec__more" type="button" aria-expanded="false" aria-controls="rec-text-${i}" hidden>
+            <span class="rec__more-label">${esc(t('recs.more'))}</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
         <footer class="rec__who">
           <img class="rec__avatar" src="${esc(r.avatar)}" alt="${esc(r.name)}" loading="lazy" width="40" height="40" />
           <span>
@@ -348,6 +356,83 @@
           </span>
         </footer>
       </blockquote>`).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     RECOMMENDATIONS — three lines each, "See more" for the rest
+     ══════════════════════════════════════════════════════════ */
+  function initRecs() {
+    const grid = $('#recs-grid');
+    if (!grid) return;
+    const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Which letters run past three lines depends on the width and the font, so
+    // this is measured again whenever either changes. A letter that fits shows
+    // whole, with no button.
+    const measure = () => {
+      $$('.rec', grid).forEach((rec) => {
+        if (rec.classList.contains('is-open')) return;
+        const text = $('.rec__text', rec);
+        const more = text.scrollHeight > text.clientHeight + 2;
+        rec.classList.toggle('has-more', more);
+        $('.rec__more', rec).hidden = !more;
+      });
+    };
+
+    const settle = (text) => {
+      text.style.maxHeight = '';
+      // Everything below has moved: let the scroll-driven effects re-measure.
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    };
+
+    const toggle = (rec) => {
+      const text = $('.rec__text', rec);
+      const btn = $('.rec__more', rec);
+      const open = !rec.classList.contains('is-open');
+      const from = text.getBoundingClientRect().height;
+
+      // Closing a long letter from its foot: bring its top back into view first,
+      // so the reader is not left further down the page.
+      if (!open) {
+        const top = rec.getBoundingClientRect().top;
+        const bar = ($('#nav') || {}).offsetHeight || 0;
+        if (top < bar) window.scrollTo({ top: window.scrollY + top - bar - 16, behavior: 'instant' });
+      }
+
+      rec.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      $('.rec__more-label', btn).textContent = t(open ? 'recs.less' : 'recs.more');
+
+      if (reduced()) { settle(text); return; }
+      const to = open
+        ? text.scrollHeight
+        : parseFloat(getComputedStyle(text).lineHeight) * 3;
+      text.style.maxHeight = `${from}px`;
+      void text.offsetHeight;                 // start the transition from here
+      text.style.maxHeight = `${to}px`;
+      let done = false;
+      const end = () => { if (!done) { done = true; settle(text); } };
+      text.addEventListener('transitionend', end, { once: true });
+      setTimeout(end, 700);                   // in case no transition runs
+    };
+
+    // One listener for the grid: it survives the re-render a language switch does.
+    grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('.rec__more');
+      if (btn) toggle(btn.closest('.rec'));
+    });
+
+    document.addEventListener('site:rendered', () => requestAnimationFrame(measure));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    if ('ResizeObserver' in window) {
+      let w = 0;
+      new ResizeObserver((entries) => {
+        const now = Math.round(entries[0].contentRect.width);
+        if (now !== w) { w = now; measure(); }
+      }).observe(grid);
+    } else {
+      window.addEventListener('resize', measure, { passive: true });
+    }
   }
 
   /* Certificates are rendered by js/certificates.js from
@@ -770,6 +855,7 @@
     initFilm();
     initSignature();
     initCite();
+    initRecs();
     initLang();
   }
 
