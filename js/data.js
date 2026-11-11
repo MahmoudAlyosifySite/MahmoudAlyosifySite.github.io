@@ -203,7 +203,7 @@ const SITE = {
   projects: [
     {
       featured: true,
-      period: { en: 'Jul 2026 — Oct 2026', ar: 'يوليو 2026 — أكتوبر 2026' },
+      period: { en: 'Jun 2026 — Oct 2026', ar: 'يونيو 2026 — أكتوبر 2026' },
       kind: { en: 'MSc Thesis', ar: 'رسالة الماجستير' },
       title: 'Verbosity-Aware Decoding',
       subtitle: { en: 'Token-Efficient Language Model Inference', ar: 'استدلال موفّر للتوكنات في النماذج اللغوية' },
@@ -216,6 +216,14 @@ const SITE = {
       cover: 'minimallm',
       image: 'img/portfolio 1.png',
       supervisor: 'Dr. Rahatara Ferdousi',
+      honour: {
+        kicker: { en: 'Industry mentorship · June — October 2026', ar: 'إشراف صناعي · يونيو — أكتوبر 2026' },
+        text: {
+          en: 'Mentored throughout the project by Deloitte\'s AI team',
+          ar: 'بإشراف فريق الذكاء الاصطناعي في Deloitte طوال فترة المشروع'
+        },
+        links: []
+      },
       links: [
         { label: { en: 'Paper · arXiv', ar: 'الورقة · arXiv' }, url: 'https://arxiv.org/abs/2611.04107' }
       ]
