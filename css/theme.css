@@ -2,16 +2,16 @@
    Mahmoud Alyosify — Design System
    "Ink, gold & paper."
 
-   Palette sampled from Mahmoud's own portrait
-   (img/img-mahmoud- april 2026.PNG): the navy of the suit, the
-   gold of the tie and pocket square, and the warm paper they
-   were first set on.
+   Black, gold and warm paper. The gold is sampled from Mahmoud's
+   own portrait (img/img-mahmoud- april 2026.PNG) — the tie and
+   pocket square. The ink is a warm near-black in both themes;
+   there is no navy anywhere in the system.
 
    Two themes share one set of tokens:
      · dark (the default) — deep near-black, warm paper-white
        text, gold for the few things that matter most;
      · light — the same system on warm paper.
-   The theme is chosen before first paint (inline script in each
+   The theme is chosen before first paint (js/boot.js in each
    page head) and switched by js/theme.js.
 
    One accent, used as a mark — never as decoration. Gold means
@@ -130,40 +130,40 @@
   --paper-2:    #ECE8DF;
   --paper-3:    #FBFAF7;
 
-  --ink:        #16202F;   /* suit navy, deepened for text  14.6:1  */
-  --ink-2:      #3A4558;   /* the suit itself                8.6:1  */
-  --ink-3:      #5E6679;   /*                                5.1:1  */
+  --ink:        #161513;   /* warm near-black               16.3:1  */
+  --ink-2:      #45423C;   /*                                8.9:1  */
+  --ink-3:      #66625B;   /*                                5.4:1  */
 
   --gold:       #C49C56;
   --gold-ink:   #7E5F28;   /*                                5.3:1  */
   --gold-soft:  rgba(196, 156, 86, 0.42);
 
-  --rule:       rgba(22, 32, 47, 0.13);
-  --rule-2:     rgba(22, 32, 47, 0.26);
-  --control:    #7D8494;
-  --placeholder:#8A909D;
-  --tint:       rgba(22, 32, 47, 0.035);
+  --rule:       rgba(22, 21, 19, 0.13);
+  --rule-2:     rgba(22, 21, 19, 0.26);
+  --control:    #85817A;
+  --placeholder:#918D86;
+  --tint:       rgba(22, 21, 19, 0.035);
   --nav-bg:     rgba(244, 242, 237, 0.97);
 
-  --btn-bg:     #16202F;
+  --btn-bg:     #161513;
   --btn-fg:     #F4F2ED;
-  --btn-hover:  #26344D;
+  --btn-hover:  #2E2B27;
 
   --danger:     #9E3B2A;   /* 6.0:1 */
   --ok:         #2F6B4F;   /* 5.6:1 */
-  --scrim:      rgba(17, 26, 40, 0.78);
+  --scrim:      rgba(14, 13, 12, 0.78);
 
-  --shadow-lift: 0 1px 2px rgba(22, 32, 47, 0.06), 0 8px 24px rgba(22, 32, 47, 0.08);
-  --shadow-over: 0 2px 6px rgba(22, 32, 47, 0.08), 0 28px 64px rgba(10, 16, 28, 0.28);
+  --shadow-lift: 0 1px 2px rgba(22, 21, 19, 0.06), 0 8px 24px rgba(22, 21, 19, 0.08);
+  --shadow-over: 0 2px 6px rgba(22, 21, 19, 0.08), 0 28px 64px rgba(10, 10, 9, 0.28);
 
-  --scroll-thumb: rgba(22, 32, 47, 0.28);
-  --scroll-thumb-hover: rgba(22, 32, 47, 0.45);
+  --scroll-thumb: rgba(22, 21, 19, 0.28);
+  --scroll-thumb-hover: rgba(22, 21, 19, 0.45);
 
   --emblem-filter: url(#duo-ink-gold);
 
   --marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M9 11C70 9.6 140 9 210 7.6S330 5 397 3.2L391 29.6C320 30.4 250 31.6 180 32.8S60 35.4 2.6 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
   --marker-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M391 11C330 9.6 260 9 190 7.6S70 5 3 3.2L9 29.6C80 30.4 150 31.6 220 32.8S340 35.4 397.4 36.2Z' fill='%23C49C56' fill-opacity='.52'/%3E%3C/svg%3E");
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316202F' stroke-width='1.5'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23161513' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
 /* ── Reset ────────────────────────────────────────────────── */
@@ -396,6 +396,11 @@ html[dir='rtl'] .btn[data-arrow]:hover::after { transform: translateX(-3px); }
 html[dir='rtl'] .out::after { content: '↖'; }
 html[dir='rtl'] .out:hover::after { transform: translate(-1px, -1px); }
 .out svg { align-self: center; color: var(--ink-3); }
+/* Touch screens: the link keeps its size; the area that answers a tap grows to 44px. */
+@media (pointer: coarse) {
+  .out { position: relative; }
+  .out::before { content: ''; position: absolute; inset-block: -9px; inset-inline: -4px; }
+}
 
 /* ── Panels — a surface, not a glass card ─────────────────── */
 .panel {

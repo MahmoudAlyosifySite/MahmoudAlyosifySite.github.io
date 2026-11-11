@@ -13,7 +13,8 @@ import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 
 const WATCHED = [
-  'index.html',
+  'index.html', '404.html',
+  'js/boot.js', 'js/analytics.js', 'js/sw-register.js', 'js/cv-bot.js', 'js/not-found.js',
   'css/theme.css', 'css/layout.css', 'css/motion.css', 'css/chatbot.css', 'css/prologue.css', 'js/prologue.js',
   'js/data.js', 'js/i18n.js', 'js/ui.js', 'js/photo-gallery.js', 'js/business-card.js',
   'js/certificates.js', 'js/motion.js', 'js/theme.js', 'js/lightbox.js',

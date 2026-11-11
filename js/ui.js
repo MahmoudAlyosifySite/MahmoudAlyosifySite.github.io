@@ -23,7 +23,13 @@
 
      Optional hardening: once activated, FormSubmit gives you a
      hashed endpoint id. Put it in FORMSUBMIT_ID to stop the address
-     appearing in the page source.                                */
+     appearing in the page source.
+
+     Spam: FormSubmit's AJAX endpoint has no captcha step, so the
+     page does what a page can — a honeypot field, a pause between
+     first touching the form and sending it, and length limits.
+     None of that stops someone posting to the endpoint directly;
+     only a form service with its own spam filter can.            */
   const NOTIFY_EMAIL  = 'mahmoudalyosify@gmail.com';
   const FORMSUBMIT_ID = '';   // e.g. 'a1b2c3d4e5f6...' — optional
 
@@ -566,6 +572,15 @@
       status.className = 'form-status' + (kind ? ' is-' + kind : '');
     };
 
+    // A person takes a few seconds between first touching the form and sending
+    // it; a script that fills and submits in one go does not. Too fast is never
+    // dropped silently — the visitor is asked to press Send again.
+    const MIN_FILL_MS = 2500;
+    let touchedAt = 0;
+    const touch = () => { if (!touchedAt) touchedAt = performance.now(); };
+    form.addEventListener('focusin', touch);
+    form.addEventListener('input', touch);
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearErrs();
@@ -574,16 +589,22 @@
       // Honeypot — a bot filled the hidden field. Pretend success, send nothing.
       if ($('#company').value.trim() !== '') { say(t('contact.ok'), 'ok'); form.reset(); return; }
 
-      const name = $('#f-name').value.trim();
-      const email = $('#f-email').value.trim();
+      const name = $('#f-name').value.trim().slice(0, 120);
+      const email = $('#f-email').value.trim().slice(0, 254);
       const topic = $('#f-topic').value;
-      const message = $('#f-message').value.trim();
+      const message = $('#f-message').value.trim().slice(0, 5000);
 
       let bad = false;
       if (!name)                        { setErr('f-name', 'contact.errName');  bad = true; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { setErr('f-email', 'contact.errEmail'); bad = true; }
       if (message.length < 10)          { setErr('f-message', 'contact.errMsg'); bad = true; }
       if (bad) { $('.field.is-bad input, .field.is-bad textarea', form)?.focus(); return; }
+
+      if (!touchedAt || performance.now() - touchedAt < MIN_FILL_MS) {
+        touch();
+        say(t('contact.errFast'), 'err');
+        return;
+      }
 
       const topicLabel = $('#f-topic').selectedOptions[0].textContent.trim();
       const subject = `Portfolio enquiry — ${topicLabel} — ${name}`;

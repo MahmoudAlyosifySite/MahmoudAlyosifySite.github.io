@@ -126,6 +126,10 @@
 .is-prologue .nav, .is-prologue .dots, .is-prologue .scroll-rail,
 .is-prologue .bot-fab, .is-prologue #to-top, .is-prologue .maat { opacity: 0 !important; pointer-events: none !important; }
 
+/* Already watched or skipped in this tab: js/prologue.js carries the page to the
+   hero as it loads. Until it has, the film stays undrawn so it never flashes. */
+.intro-seen .prologue__view { visibility: hidden; }
+
 @media (prefers-reduced-motion: reduce) {
   .prologue { display: none; }
 }

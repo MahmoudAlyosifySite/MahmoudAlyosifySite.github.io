@@ -168,6 +168,7 @@ const I18N = {
     'contact.errName':   'Please enter your name.',
     'contact.errEmail':  'Please enter a valid email address.',
     'contact.errMsg':    'Please write a message (at least 10 characters).',
+    'contact.errFast':   'That was quick — please press Send once more.',
     'contact.direct':    'Prefer email? Reach me directly:',
     'contact.elsewhere': 'Elsewhere',
 
@@ -362,6 +363,7 @@ const I18N = {
     'contact.errName':   'من فضلك اكتب اسمك.',
     'contact.errEmail':  'من فضلك اكتب بريدًا إلكترونيًا صحيحًا.',
     'contact.errMsg':    'من فضلك اكتب رسالة (10 أحرف على الأقل).',
+    'contact.errFast':   'كان ذلك سريعًا — اضغط «إرسال» مرة أخرى من فضلك.',
     'contact.direct':    'تفضّل البريد؟ راسلني مباشرة:',
     'contact.elsewhere': 'في أماكن أخرى',
 

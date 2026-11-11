@@ -12,7 +12,7 @@
    edit it by hand. Old caches are deleted on activate.
    ============================================================ */
 
-const VERSION = 'ma-b2504a5da3';
+const VERSION = 'ma-6ba4ec969d';
 const SHELL = `shell-${VERSION}`;
 const ASSETS = `assets-${VERSION}`;
 
@@ -23,6 +23,9 @@ const PRECACHE = [
   'css/theme.css',
   'css/layout.css',
   'css/motion.css',
+  'js/boot.js',
+  'js/analytics.js',
+  'js/sw-register.js',
   'js/data.js',
   'js/i18n.js',
   'js/ui.js',

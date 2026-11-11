@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Only this site's own files, and the few services named here, may load or be
+     contacted. No inline script runs: every script is a file (see js/boot.js). -->
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://formsubmit.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; frame-src 'self' https://www.youtube-nocookie.com; worker-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <title>Page not found — Mahmoud Alyosify</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0B0B0C">
@@ -10,31 +14,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/img/icon-gold-32.png">
 
 <!-- Dark is the default; a saved choice of the light theme is applied before the first paint. -->
-<script>
-  (function () {
-    var t = 'dark';
-    try { if (localStorage.getItem('ma-theme') === 'light') t = 'light'; } catch (e) { /* storage blocked */ }
-    document.documentElement.setAttribute('data-theme', t);
-  })();
-</script>
+<script src="/js/boot.js"></script>
 
 <!-- Web addresses on GitHub Pages are case-sensitive, and people type them from memory.
      The ones worth catching are sent to where they were meant to go. -->
-<script>
-  (function () {
-    var path;
-    try { path = decodeURIComponent(location.pathname); } catch (e) { path = location.pathname; }
-    path = path.toLowerCase().replace(/\/index\.html$/, '').replace(/\/+$/, '');
-    var to = {
-      '/cv': '/cv/', '/cvs': '/cv/', '/cv.html': '/cv/', '/resume': '/cv/', '/resumes': '/cv/', '/resume.html': '/cv/',
-      '/mahmoud-cv': '/cv/', '/mahmoud-alyosify-cv': '/cv/', '/mahmoudalyosify-cv': '/cv/', '/mahmoudalyosify.cv': '/cv/',
-      '/mahmoud resumes': '/cv/',
-      '/ar': '/ar/', '/arabic': '/ar/', '/عربي': '/ar/', '/العربية': '/ar/',
-      '/bio': '/biography/', '/biography': '/biography/', '/about': '/biography/'
-    }[path];
-    if (to && location.pathname !== to) location.replace(to + location.search + location.hash);
-  })();
-</script>
+<script src="/js/not-found.js"></script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Ysabeau+Office:wght@400;600&family=Chivo+Mono:wght@400&family=Readex+Pro:wght@300..600&display=swap">
 <link rel="stylesheet" href="/css/theme.css">

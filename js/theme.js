@@ -1,7 +1,7 @@
 /* ============================================================
    Mahmoud Alyosify — theme switch
-   Dark is the default. The first paint is decided by a tiny
-   inline script in each page's <head> (so nothing flashes);
+   Dark is the default. The first paint is decided by
+   js/boot.js in each page's <head> (so nothing flashes);
    this file wires the switch buttons and remembers the choice.
 
    Shared by the home page, the biography and the CV page. On

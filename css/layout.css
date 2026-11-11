@@ -143,7 +143,7 @@ main { counter-reset: sec; }
   gap: var(--s-5);
 }
 
-/* The emblem, brought into the palette: gold medallion, navy line. */
+/* The emblem, brought into the palette: gold medallion, ink line. */
 .nav__logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .nav__logo-mark { width: 40px; height: 36px; flex-shrink: 0; }
 .nav__logo-mark img { width: 100%; height: 100%; object-fit: contain; filter: var(--emblem-filter); }
@@ -311,6 +311,17 @@ html[dir='rtl'] .hero__line--mark { background-image: var(--marker-rtl); backgro
 .hero__roles li.is-current::before { color: var(--ink); }
 
 .hero__foot { position: relative; margin-top: clamp(36px, 5vh, 72px); }
+
+/* A wide but short screen (a laptop at 1491 × 660): the three-line title is
+   sized by the height as well as the width, so the two buttons under it sit
+   on the first screen instead of just below its edge. */
+@media (min-width: 901px) and (max-height: 780px) {
+  .hero {
+    --fs-display: min(clamp(3.4rem, 8.2vw, 7.75rem), 15vh);
+    padding-top: clamp(92px, 13vh, 150px);
+  }
+  .hero__title { margin-bottom: clamp(18px, 3.4vh, 38px); }
+}
 
 /* ── Ledger — figures on a ruled line ─────────────────────── */
 .ledger {
@@ -647,7 +658,7 @@ a.pcard__cover:focus-visible {
 }
 a.pcard__cover:hover img { transform: scale(1.025); }
 :root[data-theme='light'] a.pcard__cover:hover,
-:root[data-theme='light'] a.pcard__cover:focus-visible { box-shadow: 0 0 0 1px var(--gold-soft), 0 18px 40px rgba(22, 32, 47, 0.2); }
+:root[data-theme='light'] a.pcard__cover:focus-visible { box-shadow: 0 0 0 1px var(--gold-soft), 0 18px 40px rgba(22, 21, 19, 0.2); }
 @media (prefers-reduced-motion: reduce) {
   a.pcard__cover:hover, a.pcard__cover:focus-visible { transform: none; }
   a.pcard__cover:hover img { transform: none; }
@@ -1939,6 +1950,7 @@ html[dir='rtl'] .field select { background-position: left 16px center; }
   font-size: clamp(1.4rem, 2.3vw, 2rem);
   line-height: 1.25;
   letter-spacing: -0.01em;
+  text-wrap: balance;
   color: var(--ink);
 }
 .fatfooter__title br { display: none; }
@@ -2292,6 +2304,13 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   white-space: nowrap;
   text-shadow: 0 0 10px var(--paper), 0 0 18px var(--paper), 0 0 2px var(--paper);
 }
+/* Above phone widths the name sits under the mascot instead of beside it: the
+   pair is then narrow enough to stay in the page margin, off the text column
+   (beside it, the mascot stood on the right edge of every paragraph). */
+@media (min-width: 621px) {
+  .bot-fab { flex-direction: column; gap: 2px; }
+  .bot-fab__label { font-size: 0.84rem; }
+}
 
 /* ══════════════════════════════════════════════════════════
    RESPONSIVE
@@ -2523,6 +2542,8 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
   .bot-fab { inset-block-end: 12px; inset-inline-end: 10px; }
   .bot-fab__label { display: none; }
   .bot-fab__mark { width: 48px; height: 72px; flex-basis: 48px; --bot-r: 7px; }
+  /* A phone's line is too short to justify: the words drift apart. Set ragged. */
+  .rec__text { text-align: start; }
   .bot-fab { inset-inline-end: 16px; }
   .to-top { inset-block-end: 16px; inset-inline-start: 16px; width: 38px; height: 38px; }
 }
@@ -2580,6 +2601,23 @@ body:has(.nav__links.is-open) :is(.bot-fab, .to-top) { opacity: 0; pointer-event
 
   .gal__strip { padding: var(--s-2) var(--s-4) calc(var(--s-3) + env(safe-area-inset-bottom)); gap: 6px; }
   .gal__thumb { width: 60px; height: 44px; }
+}
+
+/* Touch screens: the bar's buttons and the footer's icons get a finger-sized
+   target (44px). The bar's look is unchanged — only the area that answers a
+   tap grows; the footer icons take the room they need. */
+@media (pointer: coarse) {
+  .nav__actions > :is(a, button), .nav__burger, .facts__open, .facts__doc, .pub__cite { position: relative; }
+  .nav__actions > :is(a, button)::before, .nav__burger::before,
+  .facts__open::before, .facts__doc::before, .pub__cite::before {
+    content: '';
+    position: absolute;
+    inset-block: -6px;
+    inset-inline: -3px;
+  }
+  .facts__open::before, .facts__doc::before { inset-block: -11px; }
+  .foot__link { width: 44px; height: 44px; }
+  .foot__links { gap: 0 2px; margin-inline-start: -14px; }
 }
 
 /* Landscape phone: the strip and meta eat the whole screen otherwise. */

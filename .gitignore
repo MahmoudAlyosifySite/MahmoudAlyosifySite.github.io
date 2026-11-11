@@ -7,3 +7,6 @@ config.bat
 # Source assets that build the site locally (video project, raw audio) live outside the repo
 intro-video/
 audio/
+
+# Editor settings are personal, not part of the site
+.vscode/

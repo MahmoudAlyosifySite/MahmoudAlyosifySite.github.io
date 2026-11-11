@@ -162,6 +162,18 @@
   const t0 = performance.now();
   let shown = 0, last = -1, raf = 0;
   const progress = () => clamp((scrollY - root.offsetTop) / (root.offsetHeight - innerHeight));
+  // The film is remembered for this tab once the visitor has scrolled through it
+  // or skipped it, so coming back to the home page does not replay it.
+  let inside = false;
+  const remember = () => { try { sessionStorage.setItem('ma-intro', '1'); } catch (_) { /* storage blocked */ } };
+  function setChrome() {
+    const on = scrollY < root.offsetTop + root.offsetHeight - innerHeight * .9;
+    html.classList.toggle('is-prologue', on);
+    // Only a visitor who has actually scrolled into the film counts — not one who
+    // arrived on a #section link and never saw it.
+    if (on) { if (progress() > 0.02) inside = true; }
+    else if (inside) { inside = false; remember(); }
+  }
   function tick(now) {
     raf = 0;
     const p = progress();
@@ -172,7 +184,7 @@
     if (Math.abs(shown - last) > .0005) { frame(shown); last = shown; }
     hint.style.opacity = clamp(span(auto, 3.8, 4.5)) * (1 - clamp(p * 25));
     skip.style.opacity = 1 - clamp(span(p, .9, 1));
-    html.classList.toggle('is-prologue', scrollY < root.offsetTop + root.offsetHeight - innerHeight * .9);
+    setChrome();
     if (shown !== target || auto < AUTO) raf = requestAnimationFrame(tick);
   }
   const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
@@ -180,11 +192,18 @@
   addEventListener('resize', () => { fit(); wake(); });
   skip.addEventListener('click', () => {
     const main = document.getElementById('main');
+    remember();
     scrollTo({ top: root.offsetTop + root.offsetHeight, behavior: 'instant' });
     main && main.focus({ preventScroll: true });
   });
 
-  html.classList.toggle('is-prologue', scrollY < root.offsetTop + root.offsetHeight - innerHeight * .9);
+  // Watched or skipped earlier in this tab (js/boot.js marks it): the page opens
+  // at the hero instead of playing the film again. It is still there, one scroll up.
+  if (html.classList.contains('intro-seen')) {
+    scrollTo({ top: root.offsetTop + root.offsetHeight, behavior: 'instant' });
+    html.classList.remove('intro-seen');
+  }
+  setChrome();
   const start = () => { fit(); frame(0); wake(); };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else start();
 })();

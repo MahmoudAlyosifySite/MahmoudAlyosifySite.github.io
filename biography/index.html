@@ -4,6 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Only this site's own files, and the few services named here, may load or be
+       contacted. No inline script runs: every script is a file (see js/boot.js). -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://formsubmit.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; frame-src 'self' https://www.youtube-nocookie.com; worker-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <title>Mahmoud Alyosify (محمود سيد يوسف · محمود اليوسفي) — Biography</title>
 
   <meta name="description"
@@ -36,14 +40,7 @@
 
   <!-- Dark is the default; a saved choice of the light theme is applied
        before anything paints, so the page never flashes the wrong one. -->
-  <script>
-    (function () {
-      var t = 'dark';
-      try { if (localStorage.getItem('ma-theme') === 'light') t = 'light'; } catch (e) { /* storage blocked */ }
-      document.documentElement.setAttribute('data-theme', t);
-      if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F4F2ED');
-    })();
-  </script>
+  <script src="../js/boot.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -118,12 +115,7 @@
   </script>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6FMWGT0F7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-G6FMWGT0F7');
-  </script>
+  <script src="../js/analytics.js" defer></script>
 </head>
 
 <body class="bio-page">
@@ -143,8 +135,8 @@
       <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0" />
       <feComponentTransfer>
         <feFuncR type="table" tableValues="0.086 0.769" />
-        <feFuncG type="table" tableValues="0.125 0.612" />
-        <feFuncB type="table" tableValues="0.184 0.337" />
+        <feFuncG type="table" tableValues="0.082 0.612" />
+        <feFuncB type="table" tableValues="0.075 0.337" />
       </feComponentTransfer>
     </filter>
   </svg>
