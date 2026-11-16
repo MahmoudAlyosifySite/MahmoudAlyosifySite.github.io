@@ -596,12 +596,39 @@ const SITE = {
   /* ── Recommendations ────────────────────────────────────── */
   recommendations: [
     {
+      name: 'Prof. Mona Farouk',
+      avatar: 'img/_web/avatars/dr-mona.webp',
+      role: { en: 'Professor of Computer Engineering, Cairo University | Queen\'s Program Director at DEBI & Digilians · Mahmoud\'s mentor', ar: 'أستاذة هندسة الحاسبات، جامعة القاهرة | مديرة برنامج Queen\'s في DEBI وDigilians · مرشدة محمود' },
+      text: {
+        en: 'Mahmoud is a skilled AI/GenAI Engineer with strong hands-on experience. He combines research depth with engineering discipline and consistently pursues goals independently and reliably',
+        ar: 'محمود مهندس ذكاء اصطناعي وذكاء اصطناعي توليدي ماهر، يتمتع بخبرة عملية قوية. يجمع بين العمق البحثي والانضباط الهندسي، ويسعى باستمرار إلى تحقيق أهدافه باستقلالية وموثوقية.'
+      }
+    },
+    {
       name: 'Rahatara Ferdousi, PhD',
       avatar: 'img/_web/avatars/rahatara.webp',
       role: { en: 'Applied AI · Mahmoud\'s Generative AI professor', ar: 'دكتوراه ذكاء اصطناعي تطبيقي · أستاذ الذكاء الاصطناعي التوليدي لمحمود' },
       text: {
         en: 'I had the pleasure of teaching Mahmoud in my Generative AI course, and I highly recommend him for any opportunity in the AI and technology space. Mahmoud was an exceptionally active and engaged student who consistently demonstrated strong curiosity and initiative. He not only kept up with rapidly evolving concepts in generative AI but also applied them thoughtfully in discussions and hands-on activities. His ability to connect theoretical ideas with practical implementation stood out throughout the course. What impressed me most was his willingness to explore beyond the basics. He actively contributed to discussions, asked insightful questions, and showed a clear passion for learning and innovation. Mahmoud is a dedicated learner with a growth mindset, and I am confident he will continue to excel in any academic or professional setting. I wish him all the best in his future endeavors.',
         ar: 'كان لي شرف تدريس محمود في مساق الذكاء الاصطناعي التوليدي الذي أدرّسه، وأوصي به بشدة لأي فرصة في مجال الذكاء الاصطناعي والتقنية. كان محمود طالبًا نشطًا ومشاركًا بدرجة استثنائية، وأظهر باستمرار فضولًا ومبادرة قويين. لم يكتفِ بمواكبة المفاهيم المتسارعة التطور في الذكاء الاصطناعي التوليدي، بل طبّقها بعناية في النقاشات والأنشطة العملية. وتميّزت قدرته على ربط الأفكار النظرية بالتنفيذ العملي طوال المساق. وكان أكثر ما أثار إعجابي رغبته في استكشاف ما هو أبعد من الأساسيات؛ فقد أسهم بفاعلية في النقاشات، وطرح أسئلة ثاقبة، وأظهر شغفًا واضحًا بالتعلّم والابتكار. محمود متعلّم مجتهد يتحلّى بعقلية النمو، وأنا واثقة بأنه سيواصل التفوق في أي بيئة أكاديمية أو مهنية. أتمنى له كل التوفيق في مساعيه المستقبلية.'
+      }
+    },
+    {
+      name: 'Ahmed Magdy El-Gohary',
+      avatar: 'img/_web/avatars/ahmed-el-gohary.webp',
+      role: { en: 'Deputy Chief Executive Officer at NEXUS Training Solutions · Mahmoud\'s trainer in the Digilians program', ar: 'نائب الرئيس التنفيذي في NEXUS Training Solutions · مدرّب محمود في برنامج Digilians' },
+      text: {
+        en: 'I had the pleasure of being the trainer for Mahmoud during the Digiliance program. Throughout the program, he consistently demonstrated strong discipline and commitment to deadlines and deliverables. He has an excellent ability to present ideas clearly and confidently, with well-structured thinking and strong audience awareness. Mahmoud communicates effectively, listens attentively, and contributes positively in team settings. He also shows a solid ability to plan, prioritize, and manage time—often making task lists seem more organized simply by being involved. In addition, he has clear intellectual curiosity and a particular interest in Albert Einstein\'s philosophy and quotations, which is reflected in his analytical and learning approach.',
+        ar: 'كان من دواعي سروري أن أكون مدرّب محمود خلال برنامج Digilians. وطوال البرنامج أظهر باستمرار انضباطًا قويًا والتزامًا بالمواعيد النهائية والمخرجات المطلوبة. يتمتع بقدرة ممتازة على عرض الأفكار بوضوح وثقة، بتفكير منظّم ووعي قوي بالجمهور. يتواصل محمود بفاعلية، ويُصغي باهتمام، ويسهم إسهامًا إيجابيًا في العمل الجماعي. كما يُظهر قدرة متينة على التخطيط وترتيب الأولويات وإدارة الوقت، حتى إن قوائم المهام كثيرًا ما تبدو أكثر تنظيمًا لمجرد مشاركته فيها. وإضافةً إلى ذلك، يتمتع بفضول فكري واضح واهتمام خاص بفلسفة ألبرت أينشتاين وأقواله، وهو ما ينعكس في منهجه التحليلي وأسلوبه في التعلّم.'
+      }
+    },
+    {
+      name: 'Mena Yousef',
+      avatar: 'img/_web/avatars/mina-yousef.webp',
+      role: { en: 'Regional Program Director, Hope for MENA | Senior Project Manager, AUC · Mahmoud\'s direct manager', ar: 'المدير الإقليمي للبرامج في Hope for MENA | مدير مشروعات أول في الجامعة الأمريكية بالقاهرة · المدير المباشر لمحمود' },
+      text: {
+        en: 'Mahmoud Alyosify, is a wonderful person who consistently exemplifies commitment and professionalism. He has an impressive ability to develop himself, lead teams, and deliver results. He combines practical intelligence with a kind spirit. I highly recommend working with him.',
+        ar: 'محمود اليوسفي شخص رائع يجسّد باستمرار الالتزام والاحترافية. يمتلك قدرة لافتة على تطوير نفسه وقيادة الفرق وتحقيق النتائج. ويجمع بين الذكاء العملي وروح طيبة. أوصي بشدة بالعمل معه.'
       }
     },
     {

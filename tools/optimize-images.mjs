@@ -116,7 +116,7 @@ async function run() {
   }
 
   /* ── People who wrote a recommendation — shown at 40px ─── */
-  const people = ['Rahatara.png', 'Dr_Ibrahim.jpg', 'Dr_Islam.jpg', 'Nada.png', 'Mina.jpg', 'Nourhan Ahmed.jpg',
+  const people = ['dr_Mona.jpeg', 'Ahmed El-Gohary.png', 'Mina_Yousef.jpeg', 'Rahatara.png', 'Dr_Ibrahim.jpg', 'Dr_Islam.jpg', 'Nada.png', 'Mina.jpg', 'Nourhan Ahmed.jpg',
     'Rahma.jpg', 'Al_Hassan.M. Kamel.jpg', 'M_Nasser.jpg', 'Doaa.jpg', 'Moataz.jpg'];
   const slug = (f) => f.toLowerCase().replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   console.log(`Recommenders  — ${people.length} photo(s)`);
