@@ -450,6 +450,53 @@ const ART = {
     return s;
   },
 
+  /* BA — a voice given with consent, held in a cartouche, spoken in three
+     languages, and sealed with a watermark in every output */
+  ba() {
+    reseed(37);
+    let s = dust(50);
+    const wave = (x0, n, cy, amp, step, col, w, o, phase = 0, dash = '') => {
+      let d = '';
+      for (let i = 0; i < n; i++) {
+        const x = x0 + i * step;
+        const env = Math.exp(-Math.pow((i - n / 2) / (n / 2.6), 2)) * 0.85 + 0.15;
+        const a = Math.abs(Math.sin(i * 0.83 + phase) * 0.6 + Math.sin(i * 0.29 + phase * 2) * 0.4) * env * amp + 4;
+        d += `<path d="M${r1(x)} ${r1(cy - a)}V${r1(cy + a)}" stroke="${col}" stroke-width="${w}" stroke-linecap="round" opacity="${o}" ${dash}/>`;
+      }
+      return d;
+    };
+    // consent, ticked before anything is spoken
+    const bx = 694, by = 300;
+    s += `<rect x="${bx}" y="${by}" width="26" height="26" rx="4" fill="none" stroke="${PALE}" stroke-width="1.8"/>`;
+    s += `<path d="M${bx + 6} ${by + 13}l5 6l10 -12" fill="none" stroke="${LIGHT}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
+    s += mono(bx + 40, by + 19, 'CONSENT', 14, 0.75);
+    // your voice: a short reference clip
+    s += wave(704, 26, 450, 70, 7, PALE, 3, 0.95);
+    s += `<path d="M694 370v-10h196v10M694 530v10h196v-10" fill="none" stroke="${GOLD}" stroke-width="1.3" opacity=".7"/>`;
+    s += mono(792, 584, 'YOUR VOICE', 14, 0.8, 'middle', PALE);
+    s += arrow(908, 450, 966, 450, 0.75);
+    // the cartouche that holds it
+    const cx0 = 980, cx1 = 1196, cy0 = 386, cy1 = 514;
+    s += `<circle cx="${(cx0 + cx1) / 2}" cy="450" r="150" fill="${GOLD}" opacity=".10" filter="url(#g-wide)"/>`;
+    s += `<rect x="${cx0}" y="${cy0}" width="${cx1 - cx0}" height="${cy1 - cy0}" rx="64" fill="#0E0E10" stroke="${PALE}" stroke-width="2.2"/>`;
+    s += `<rect x="${cx0 + 10}" y="${cy0 + 10}" width="${cx1 - cx0 - 20}" height="${cy1 - cy0 - 20}" rx="54" fill="none" stroke="${GOLD}" stroke-width="1" opacity=".6"/>`;
+    s += `<path d="M${cx1 + 14} ${cy0 - 6}V${cy1 + 6}" stroke="${PALE}" stroke-width="5" stroke-linecap="round"/>`;
+    s += `<text x="${(cx0 + cx1) / 2}" y="482" font-family="Gloock" font-size="88" fill="url(#g-gold)" text-anchor="middle" letter-spacing="6">BA</text>`;
+    // spoken in three languages
+    [[300, 'ARZ', 0.95, ''], [450, 'EN', 0.85, ''], [600, 'FR · BETA', 0.6, 'stroke-dasharray="5 5"']].forEach(([y, label, o, dash], k) => {
+      s += `<path d="M${cx1 + 20} 450C${cx1 + 60} 450 ${cx1 + 50} ${y} 1290 ${y}" fill="none" stroke="${GOLD}" stroke-width="1.3" opacity=".55"/>`;
+      s += wave(1300, 32, y, 46, 7, k ? GOLD : PALE, 2.4, o, k * 1.7, dash);
+      s += mono(1300, y - 62, label, 14, 0.8, 'start', PALE);
+    });
+    // and sealed: a 16-bit watermark in every output
+    const bits = (0x4241).toString(2).padStart(16, '0');
+    [...bits].forEach((b, i) => {
+      s += `<rect x="${1300 + i * 14}" y="700" width="10" height="10" rx="1.5" fill="${b === '1' ? 'url(#g-gold)' : 'none'}" stroke="${GOLD}" stroke-width="1" opacity="${b === '1' ? 1 : 0.6}"/>`;
+    });
+    s += mono(1300, 740, 'WATERMARK · 16 BITS', 13, 0.7);
+    return s;
+  },
+
   /* AudioShield — one voice, real on one side, forged on the other */
   audioshield() {
     reseed(17);
@@ -612,16 +659,17 @@ const ART = {
 
 /* ── the covers ───────────────────────────────────────────── */
 const COVERS = [
-  { slug: 'minimallm', no: '01', kicker: 'MSc thesis · Queen\'s University', title: 'MinimalLM', sub: 'Verbosity-aware decoding', hook: '47.6%', cap: 'fewer generated tokens · no answer cut off' },
-  { slug: 'horus-sentinel', no: '02', kicker: 'Multi-agent system', title: 'HORUS Sentinel', sub: 'Autonomous OSINT & threat intelligence', hook: 'Hours → minutes', hookSize: 92, cap: 'of analyst work, by a swarm of agents' },
-  { slug: 'rl-autoscaler', no: '03', kicker: 'Deep reinforcement learning', title: 'RL-Cloud-Autoscaler', titleSize: 60, sub: 'Autonomous cloud provisioning', hook: 'PPO · DQN', hookSize: 112, cap: 'agents that scale the cloud in real time' },
-  { slug: 'simclr', no: '04', kicker: 'Self-supervised learning', title: 'SimCLR-Vision-SSL', titleSize: 62, sub: 'Contrastive representation learning', hook: '84.30%', cap: 'top-1 accuracy · 42-experiment sweep' },
-  { slug: 'horus-osint', no: '05', kicker: 'LLM fine-tuning · cloud', title: 'Horus-OSINT', sub: 'Threat-intelligence assistant', hook: '159,826', cap: 'GTD / GDELT records · Llama-3-8B on AWS' },
-  { slug: 'multimodal-agent', no: '06', kicker: 'Agentic workflow', title: 'Multimodal Agent', sub: 'PDF → narrated PowerPoint', hook: 'PDF → slides', hookSize: 104, cap: 'presented at Queen\'s · AI in Teaching & Learning 2026' },
-  { slug: 'scrap', no: '07', kicker: 'Applied ML · space safety', title: 'SCRAP', sub: 'Satellite collision risk prediction', hook: '48 h', cap: 'or more of warning before closest approach' },
-  { slug: 'agentic-prs', no: '08', kicker: 'Empirical software engineering', title: 'Human vs. Agentic PRs', sub: 'Analysing review effort', hook: 'Which takes more review?', hookSize: 84, cap: 'agent vs. human pull requests, mined from GitHub' },
-  { slug: 'audioshield', no: '09', kicker: 'Audio deep learning', title: 'AudioShield', sub: 'Deepfake audio detection', hook: 'Real or fake?', hookSize: 100, cap: 'a CNN that hears the forgery' },
-  { slug: 'vitalism', no: '10', kicker: 'Graduation project · Grade A+', title: 'Vitalism Solution', sub: 'Contactless vital signs via rPPG', hook: 'Contactless', hookSize: 104, cap: 'vital signs from video · Imagine Cup semi-finalist' },
+  { slug: 'ba', no: '01', kicker: 'Voice AI · in development', title: 'BA', titleSize: 124, sub: 'Your voice. Your identity.', hook: '10–15 s', cap: 'of your own voice · Egyptian Arabic, English, French' },
+  { slug: 'minimallm', no: '02', kicker: 'MSc thesis · Queen\'s University', title: 'MinimalLM', sub: 'Verbosity-aware decoding', hook: '47.6%', cap: 'fewer generated tokens · no answer cut off' },
+  { slug: 'horus-sentinel', no: '03', kicker: 'Multi-agent system', title: 'HORUS Sentinel', sub: 'Autonomous OSINT & threat intelligence', hook: 'Hours → minutes', hookSize: 92, cap: 'of analyst work, by a swarm of agents' },
+  { slug: 'rl-autoscaler', no: '04', kicker: 'Deep reinforcement learning', title: 'RL-Cloud-Autoscaler', titleSize: 60, sub: 'Autonomous cloud provisioning', hook: 'PPO · DQN', hookSize: 112, cap: 'agents that scale the cloud in real time' },
+  { slug: 'simclr', no: '05', kicker: 'Self-supervised learning', title: 'SimCLR-Vision-SSL', titleSize: 62, sub: 'Contrastive representation learning', hook: '84.30%', cap: 'top-1 accuracy · 42-experiment sweep' },
+  { slug: 'horus-osint', no: '06', kicker: 'LLM fine-tuning · cloud', title: 'Horus-OSINT', sub: 'Threat-intelligence assistant', hook: '159,826', cap: 'GTD / GDELT records · Llama-3-8B on AWS' },
+  { slug: 'multimodal-agent', no: '07', kicker: 'Agentic workflow', title: 'Multimodal Agent', sub: 'PDF → narrated PowerPoint', hook: 'PDF → slides', hookSize: 104, cap: 'presented at Queen\'s · AI in Teaching & Learning 2026' },
+  { slug: 'scrap', no: '08', kicker: 'Applied ML · space safety', title: 'SCRAP', sub: 'Satellite collision risk prediction', hook: '48 h', cap: 'or more of warning before closest approach' },
+  { slug: 'agentic-prs', no: '09', kicker: 'Empirical software engineering', title: 'Human vs. Agentic PRs', sub: 'Analysing review effort', hook: 'Which takes more review?', hookSize: 84, cap: 'agent vs. human pull requests, mined from GitHub' },
+  { slug: 'audioshield', no: '10', kicker: 'Audio deep learning', title: 'AudioShield', sub: 'Deepfake audio detection', hook: 'Real or fake?', hookSize: 100, cap: 'a CNN that hears the forgery' },
+  { slug: 'vitalism', no: '11', kicker: 'Graduation project · Grade A+', title: 'Vitalism Solution', sub: 'Contactless vital signs via rPPG', hook: 'Contactless', hookSize: 104, cap: 'vital signs from video · Imagine Cup semi-finalist' },
   { slug: 'paper', no: 'arXiv', kicker: 'Paper · cs.CL · 2026', title: 'Say Less, Mean Better', sub: 'Training-free verbosity control for language models', hook: '47.6%', cap: 'fewer tokens · 19–68% faster · nothing cut off', titleSize: 68 },
   { slug: 'beyond-truncation', no: 'arXiv', kicker: 'Paper · cs.CL · 2026', title: 'Beyond Truncation?', sub: 'Entailment-licensed elision in LLM decoding', hook: '59% → 1 in 10', hookSize: 96, cap: 'harmful elisions, before and after scoping the licence', titleSize: 72 },
 ];

@@ -203,6 +203,24 @@ const SITE = {
   projects: [
     {
       featured: true,
+      period: { en: 'Nov 2026 — Present', ar: 'نوفمبر 2026 — حتى الآن' },
+      kind: { en: 'Voice AI · in development', ar: 'ذكاء اصطناعي صوتي · قيد التطوير' },
+      title: 'BA',
+      subtitle: { en: 'Your Voice. Your Identity. — Personalised Voice Generation', ar: 'صوتك. هويتك. — توليد صوت شخصي' },
+      desc: {
+        en: 'A personalised voice-generation model that speaks any text in your own voice, from a 10–15 second recording, in Egyptian Arabic, English and French (beta) — named after the Ba, the part of the soul that in ancient Egyptian belief carries a person\'s individuality. Chosen after a bake-off of eight voice-cloning systems on Egyptian Arabic, the unchanged VoxCPM2 weights are driven by BA\'s own engine: it cleans the reference and transcribes it with Whisper, writes numbers, prices and English loanwords the Egyptian way, checks every chunk and regenerates failures, and embeds an inaudible AudioSeal watermark in every output. On held-out Egyptian sentences it more than halves the character error rate (0.069 → 0.030) and raises the share labelled Egyptian from 0.82 to 0.89, with no failed output (automatic metrics); the watermark survived 64 kbit/s MP3 in 60 of 60 files. Nothing is generated until the user confirms the voice is theirs or that they have the speaker\'s permission.',
+        ar: 'نموذج شخصي لتوليد الصوت ينطق أي نص بصوتك أنت، انطلاقًا من تسجيل مدته 10–15 ثانية، باللهجة المصرية والإنجليزية والفرنسية (تجريبية) — وقد سُمّي على اسم «البا»، الجزء من الروح الذي يحمل في المعتقد المصري القديم شخصية الإنسان وتفرّده. بعد مقارنة ثمانية أنظمة لاستنساخ الصوت على اللهجة المصرية وقع الاختيار على VoxCPM2، وتُستخدم أوزانه دون أي تعديل ويقودها محرّك BA الخاص: ينظّف التسجيل المرجعي ويفرّغه نصيًا بـ Whisper، ويكتب الأرقام والأسعار والكلمات الإنجليزية الدخيلة بالطريقة المصرية، ويفحص كل مقطع ويعيد توليد ما يفشل منه، ويضمّن في كل مخرَج علامة مائية صوتية غير مسموعة من AudioSeal. وعلى جمل مصرية لم تُستخدم في الضبط خفّض معدل الخطأ في الحروف إلى أقل من النصف (من 0.069 إلى 0.030)، ورفع نسبة ما يُصنَّف مصريًا من 0.82 إلى 0.89، دون أي مخرَج فاشل (بمقاييس آلية)؛ وظلّت العلامة المائية قابلة للكشف في 60 من 60 ملفًا بعد ضغطها بصيغة MP3 بمعدل 64 كيلوبت/ث. ولا يولّد شيئًا قبل أن يؤكد المستخدم أن الصوت صوته أو أن لديه إذن صاحبه.'
+      },
+      tags: ['Text-to-Speech', 'Voice Cloning', 'Egyptian Arabic', 'VoxCPM2', 'Whisper', 'AudioSeal', 'Gradio · ZeroGPU'],
+      cover: 'ba',
+      coverUrl: 'https://huggingface.co/spaces/mahmoudalyosify/BA',
+      links: [
+        { label: { en: 'Try it · Space', ar: 'جرّبه · Space' }, url: 'https://huggingface.co/spaces/mahmoudalyosify/BA' },
+        { label: { en: 'Model · Hugging Face', ar: 'النموذج · Hugging Face' }, url: 'https://huggingface.co/mahmoudalyosify/BA' }
+      ]
+    },
+    {
+      featured: true,
       period: { en: 'Jun 2026 — Oct 2026', ar: 'يونيو 2026 — أكتوبر 2026' },
       kind: { en: 'MSc Thesis', ar: 'رسالة الماجستير' },
       title: 'Verbosity-Aware Decoding',

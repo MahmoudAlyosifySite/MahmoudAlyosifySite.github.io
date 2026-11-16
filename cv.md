@@ -69,6 +69,14 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 ## Selected Research & Engineering Projects
 
+### BA — Personalised Voice Generation in Egyptian Arabic, English & French (in development)
+**Python · Text-to-Speech · VoxCPM2 · Whisper · AudioSeal · Gradio (ZeroGPU)** | Nov 2026 – Present
+[Model](https://huggingface.co/mahmoudalyosify/BA) · [Demo Space](https://huggingface.co/spaces/mahmoudalyosify/BA)
+
+- Speaks any text in the user's own voice from a **10–15 s recording**, built around **voice ownership and consent**: generation is blocked until the user confirms the voice is theirs, and every output carries an inaudible **AudioSeal watermark** (detected in **60/60** files, even after 64 kbit/s MP3).
+- Chose **VoxCPM2** (weights unchanged) in a **bake-off of eight voice-cloning systems** on Egyptian Arabic, then built the engine around it: reference cleaning, **Whisper** transcription, Egyptian/English/French text normalisation (numbers, prices, loanwords), per-chunk checks with regeneration, loudness normalisation.
+- On held-out Egyptian sentences: character error rate **0.069 → 0.030**, share labelled Egyptian **0.82 → 0.89**, **no failed output** (automatic metrics; native-listener review still to come).
+
 ### MinimalLM: Verbosity-Aware Decoding for Token-Efficient Language Model Inference
 **MSc Thesis, Queen's University · Supervisor: Dr. Rahatara Ferdousi · Industry mentor: Deloitte's AI team** | Jun – Oct 2026
 [GitHub](https://github.com/MahmoudAlyosify/minimal-lm)

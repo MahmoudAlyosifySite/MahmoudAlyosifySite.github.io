@@ -89,7 +89,7 @@
         { "@type": "CollegeOrUniversity", "name": "Assiut University", "url": "https://www.aun.edu.eg/" }
       ],
       "knowsAbout": ["Large language models", "Efficient LLM inference", "AI agents", "Multi-agent systems",
-        "Computer vision", "Reinforcement learning", "Self-supervised learning", "Bioinformatics", "Machine learning education"],
+        "Computer vision", "Reinforcement learning", "Self-supervised learning", "Speech synthesis", "Bioinformatics", "Machine learning education"],
       "knowsLanguage": ["ar", "en"],
       "award": [
         "Ideal Student, Faculty of Computers and Information, Assiut University (2022–2023)",
@@ -267,7 +267,8 @@
                   <li><a href="#vitalism"><span>10.1</span>Vitalism Solution</a></li>
                   <li><a href="#horus"><span>10.2</span>Horus-OSINT and HORUS Sentinel</a></li>
                   <li><a href="#audioshield"><span>10.3</span>AudioShield</a></li>
-                  <li><a href="#other-work"><span>10.4</span>Other work</a></li>
+                  <li><a href="#ba"><span>10.4</span>BA</a></li>
+                  <li><a href="#other-work"><span>10.5</span>Other work</a></li>
                 </ol>
               </li>
               <li><a href="#views"><span>11</span>Views on artificial intelligence</a></li>
@@ -641,6 +642,21 @@
               produces a PDF report, all behind a Streamlit interface. He trained it on 81,000 spectrogram images, a dataset he
               published on Kaggle and Hugging Face.<sup class="bio-ref" id="r20"><a href="#cite-20">[20]</a></sup></p>
 
+            <h3 id="ba">BA</h3>
+            <p>BA (2026), which he is developing now, turns the question AudioShield asked around: not how to tell a synthetic
+              voice from a real one, but how to make a person's own voice speak, with their consent, in a way that can always be
+              recognised as synthetic. The name comes from the <i>ba</i>, the part of the soul that in ancient Egyptian belief
+              carries a person's individuality. From a recording of 10–15 seconds, BA speaks any text in that voice in Egyptian
+              Arabic, English and French (the last still in beta). After comparing eight voice-cloning systems on Egyptian Arabic,
+              he built BA on the unmodified weights of VoxCPM2, an open text-to-speech model by OpenBMB, and wrote the engine that
+              drives it: it cleans and transcribes the reference recording with Whisper, writes numbers, prices and English
+              loanwords the way an Egyptian would say them, checks every chunk of the output and regenerates failures, and embeds
+              an inaudible AudioSeal watermark in everything it produces. On held-out Egyptian sentences it more than halved the
+              character error rate of the unmodified model, from 0.069 to 0.030, and raised the share of outputs a dialect
+              classifier labelled Egyptian from 0.82 to 0.89; these figures are automatic, and BA's own outputs have not yet been
+              rated by native listeners. Its public demonstration will not generate anything until the user confirms that the voice
+              is theirs or that they have the speaker's permission.<sup class="bio-ref" id="r21"><a href="#cite-21">[21]</a></sup></p>
+
             <h3 id="other-work">Other work</h3>
             <p>His other projects include a self-supervised vision pipeline built on SimCLR, with a 42-experiment augmentation study,
               a semi-supervised SupCon extension and ONNX/FAISS retrieval, reaching 84.30% top-1 accuracy; a cloud autoscaler
@@ -648,7 +664,7 @@
               repository-mining study of code-review effort on pull requests written by AI agents and by people; the Automated
               Multimodal Agent, which turns PDF documents into narrated slide presentations; and SCRAP, which predicts satellite
               collision risk from conjunction data available 48 hours or more before the closest
-              approach.<sup class="bio-ref"><a href="#cite-1">[1]</a></sup><sup class="bio-ref" id="r21"><a href="#cite-21">[21]</a></sup></p>
+              approach.<sup class="bio-ref"><a href="#cite-1">[1]</a></sup><sup class="bio-ref" id="r22"><a href="#cite-22">[22]</a></sup></p>
           </section>
 
           <!-- 11 ────────────────────────────────────────────── -->
@@ -664,7 +680,7 @@
               AI as potentially "the last invention of humanity", in the sense that ever more capable systems could accelerate much
               of what comes after them — an idea with a long history: in 1965 the statistician I. J. Good wrote that the first
               ultraintelligent machine would be "the last invention that man need ever
-              make".<sup class="bio-ref" id="r22"><a href="#cite-22">[22]</a></sup> Alyosify presents this as a personal
+              make".<sup class="bio-ref" id="r23"><a href="#cite-23">[23]</a></sup> Alyosify presents this as a personal
               perspective, not a prediction.</p>
             <p>He has also thought about closer integration between people and AI — AI-assisted augmentation of memory and
               cognition, brain–computer interfaces, human–AI symbiosis — and about intelligent robotics, world models and autonomous
@@ -716,7 +732,7 @@
                 <tr><td>2023</td><td>Imagine Cup semi-finalist and ISEIC finalist; ITIDA machine-learning internship</td></tr>
                 <tr><td>2024–25</td><td>Military service with the National Company for Roads Building and Development</td></tr>
                 <tr><td>2025</td><td>NTI AI in Cybersecurity programme and e&amp; Egypt training; first NTI machine-learning programme; begins MSc at Queen's University</td></tr>
-                <tr><td>2026</td><td>MinimalLM, mentored by Deloitte's AI team; AI in Teaching and Learning Forum; completes MSc in Artificial Intelligence; paper accepted at ACLing 2026</td></tr>
+                <tr><td>2026</td><td>MinimalLM, mentored by Deloitte's AI team; AI in Teaching and Learning Forum; completes MSc in Artificial Intelligence; paper accepted at ACLing 2026; begins BA, a voice-generation model</td></tr>
               </tbody>
             </table>
           </section>
@@ -793,9 +809,12 @@
                 <a class="link" href="https://www.kaggle.com/datasets/mahmoudalyosify/audioshield-fake-real-audio-spectrogram-dataset">spectrogram
                 dataset</a>.</li>
               <li id="cite-21"><a class="bio-refs__up" href="#r21" aria-label="Back to the first citation">↑</a>
+                <a class="link" href="https://huggingface.co/mahmoudalyosify/BA">BA</a>, model card, and
+                <a class="link" href="https://huggingface.co/spaces/mahmoudalyosify/BA">demonstration</a>, Hugging Face, 2026.</li>
+              <li id="cite-22"><a class="bio-refs__up" href="#r22" aria-label="Back to the first citation">↑</a>
                 <a class="link" href="https://github.com/MahmoudAlyosify?tab=repositories">Repositories</a> of Mahmoud Alyosify,
                 GitHub.</li>
-              <li id="cite-22"><a class="bio-refs__up" href="#r22" aria-label="Back to the first citation">↑</a>
+              <li id="cite-23"><a class="bio-refs__up" href="#r23" aria-label="Back to the first citation">↑</a>
                 I. J. Good, “<a class="link" href="https://doi.org/10.1016/S0065-2458(08)60418-0">Speculations Concerning the First
                 Ultraintelligent Machine</a>”, <i>Advances in Computers</i> 6 (1965), pp. 31–88.</li>
             </ol>
