@@ -31,8 +31,8 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 ## Publications
 
+- **Mahmoud Alyosify**, Mirna Imbabi, Eman Elkhamisi. *Beyond Truncation: When Can LLMs Safely Omit Generated Text?* Accepted at ACLing 2026 (8th International Conference on AI in Computational Linguistics), Procedia Computer Science (Elsevier). Preprint: [arXiv:2611.08975](https://arxiv.org/abs/2611.08975) (cs.CL), November 2026.
 - **Mahmoud Alyosify**, Mirna Imbabi, Eman Elkhamisi, Rahatara Ferdousi. *Say Less, Mean Better: Training-Free Verbosity Control for Language Models.* arXiv preprint [arXiv:2611.04107](https://arxiv.org/abs/2611.04107) (cs.CL), November 2026.
-- **Mahmoud Alyosify**, Mirna Imbabi, Eman Elkhamisi. *Beyond Truncation? Entailment-Licensed Elision and the Limits of Semantic Preservation in LLM Decoding.* arXiv preprint [arXiv:2611.08975](https://arxiv.org/abs/2611.08975) (cs.CL), November 2026.
 
 ## Technical Skills
 
