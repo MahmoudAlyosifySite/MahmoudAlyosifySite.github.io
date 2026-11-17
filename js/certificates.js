@@ -1,5 +1,5 @@
 /* ============================================================
-   Certificates — five categories, in-page gallery
+   Certificates — six categories, in-page gallery
 
    Everything is driven by data/certificates.json, which is
    generated from the Certificates/ folders by:

@@ -144,10 +144,9 @@
     "issuer": "Microsoft · edX",
     "year": "2020"
   },
-  "Technical-Courses/Screenshot 2025-06-24 102044.png": {
-    "title": "Fortinet Certified Associate in Cybersecurity",
-    "issuer": "Fortinet Training Institute",
-    "year": "2025"
+  "Professional-Certifications/Fortinet Certified Associate in Cybersecurity.png": {
+    "issuer": "Fortinet Training Institute · validation no. 5452474953MS",
+    "year": "Apr 2025 – Apr 2027"
   },
   "Technical-Courses/IMG_0340.JPG": {
     "title": "Full Stack Web Development Diploma",
@@ -191,13 +190,13 @@
     "year": "2022"
   },
 
-  "Coursera/IBM AI Developer Professional Certificate.pdf": {
+  "Professional-Certifications/IBM AI Developer Professional Certificate.pdf": {
     "title": "IBM AI Developer Professional Certificate (10 courses)",
     "issuer": "IBM · Coursera",
     "year": "2026",
     "verify": "https://coursera.org/verify/professional-cert/15WOCTI1CB11"
   },
-  "Coursera/IBM AI Developer Professional Certificate - Credly badge.pdf": {
+  "Professional-Certifications/IBM AI Developer Professional Certificate - Credly badge.pdf": {
     "title": "IBM AI Developer Professional Certificate — Credly badge",
     "issuer": "IBM · Credly",
     "year": "2026",
@@ -225,7 +224,7 @@
     "verify": "https://coursera.org/verify/ETQUT7YWGQ07"
   },
 
-  "Technical-Courses/AWS Certified Cloud Practitioner.pdf": {
+  "Professional-Certifications/AWS Certified Cloud Practitioner.pdf": {
     "title": "AWS Certified Cloud Practitioner",
     "issuer": "Amazon Web Services",
     "year": "Nov 2026 – Nov 2029",

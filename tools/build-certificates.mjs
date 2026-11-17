@@ -22,8 +22,16 @@ const CERT_DIR = join(ROOT, 'Certificates');
 const OUT = join(ROOT, 'data', 'certificates.json');
 const OVERRIDES = join(ROOT, 'tools', 'certificate-titles.json');
 
-/* The five categories, in display order. Folder name is the source of truth. */
+/* The six categories, in display order. Folder name is the source of truth. */
 const CATEGORIES = [
+  {
+    // Industry certifications, first: the credentials an employer checks.
+    id: 'professional',
+    folder: 'Professional-Certifications',
+    name: { en: 'Professional Certifications', ar: 'الشهادات الاحترافية' },
+    blurb: { en: 'Industry certifications from AWS, IBM and Fortinet, each one checkable with its issuer.', ar: 'شهادات مهنية من AWS وIBM وFortinet، يمكن التحقق من كلٍّ منها لدى الجهة المانحة.' },
+    icon: 'badge'
+  },
   {
     id: 'coursera',
     folder: 'Coursera',

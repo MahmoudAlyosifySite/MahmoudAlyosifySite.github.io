@@ -4,8 +4,10 @@
    Every frame is a pure function of film time, so instead of a
    video or an image sequence the page draws the film itself and
    takes its time from how far the visitor has scrolled through
-   #prologue: down plays it, up plays it back. The first 4.5 s
-   (the emblem resolving) play on their own when the page opens.
+   #prologue: down plays it, up plays it back. The first 3.5 s
+   play on their own when the page opens: the emblem resolves
+   from the first moment (so the visitor never waits on a black
+   screen), the gold light crosses it, then "Scroll" appears.
 
    The motion is ported from the film project (film/film.js, kept
    outside this repo with the other source assets) in its
@@ -116,7 +118,7 @@
     let dip = Math.max(1 - Math.abs(t - 12) / .375, 1 - Math.abs(t - 78) / .375, 1 - span(t, 0, .01));
     if (t >= 89.5) dip = 1;
     $('dip').style.opacity = S(clamp(dip));
-    dust(s, t < 40 ? clamp(span(t, .75, 3.75)) : .8 * out(t, 88.5, 1, x => x));
+    dust(s, t < 40 ? clamp(span(t, .2, 2.5)) : .8 * out(t, 88.5, 1, x => x));
 
     if (t < 40) {
       portrait(inn(t, 6, 2.25, S) * out(t, 11.7, .5), lerp(.4, .98, inn(t, 6, 2.25, S)),
@@ -127,12 +129,13 @@
     }
 
     if (t < 12) {                                     // the mark, the portrait, the name
-      hair($('hair1'), t, 1.5, 1.5, 6, 1.5); $('hair1').style.opacity = .8;
-      const em = $('emblem1'), ei = inn(t, 3, 2.25), eo = E(span(t, 6, 7.5));
+      // The emblem comes first and fast: in from 0.35 s, resolved by about 1.5 s.
+      hair($('hair1'), t, .2, 1.2, 6, 1.5); $('hair1').style.opacity = .8;
+      const em = $('emblem1'), ei = inn(t, .35, 1.8), eo = E(span(t, 6, 7.5));
       em.style.opacity = ei * (1 - eo);
       em.style.transform = `translateY(${-40 * eo}px) scale(${lerp(.965, 1, ei)})`;
       em.style.filter = ei < 1 ? `blur(${(1 - ei) * 10}px)` : 'none';
-      sweep(em.querySelector('.pl-sweep'), t, 4.5, 1.5, .55);
+      sweep(em.querySelector('.pl-sweep'), t, 2, 1.5, .55);
       const wm = $('wm1'); wipe(wm, lerp(-80, wmW1 + 80, S(span(t, 6.75, 8.25))), 80);
       wm.style.opacity = out(t, 11.25);
       sweep(wm.querySelector('.pl-sweep'), t, 10.5, 1.2, .45);
@@ -157,9 +160,9 @@
   }
 
   // ── scroll → time, eased like a film gate, not a jump cut ─────
-  const AUTO = 4.5, END = 29.4;
+  const AUTO = 3.5, END = 29.4;
   const hint = root.querySelector('.prologue__hint'), skip = root.querySelector('.prologue__skip');
-  const t0 = performance.now();
+  let t0 = performance.now();
   let shown = 0, last = -1, raf = 0;
   const progress = () => clamp((scrollY - root.offsetTop) / (root.offsetHeight - innerHeight));
   // The film is remembered for this tab once the visitor has scrolled through it
@@ -182,7 +185,8 @@
     shown += (target - shown) * (Math.abs(target - shown) > 4 ? 1 : .14);
     if (Math.abs(target - shown) < .002) shown = target;
     if (Math.abs(shown - last) > .0005) { frame(shown); last = shown; }
-    hint.style.opacity = clamp(span(auto, 3.8, 4.5)) * (1 - clamp(p * 25));
+    // "Scroll" once the emblem has resolved, while the light crosses it.
+    hint.style.opacity = clamp(span(auto, 2.6, 3.2)) * (1 - clamp(p * 25));
     skip.style.opacity = 1 - clamp(span(p, .9, 1));
     setChrome();
     if (shown !== target || auto < AUTO) raf = requestAnimationFrame(tick);
@@ -199,11 +203,31 @@
 
   // Watched or skipped earlier in this tab (js/boot.js marks it): the page opens
   // at the hero instead of playing the film again. It is still there, one scroll up.
+  // This script now runs before the others, so the jump waits for DOMContentLoaded,
+  // when the rest of the page has been built and is tall enough to land on the hero.
   if (html.classList.contains('intro-seen')) {
-    scrollTo({ top: root.offsetTop + root.offsetHeight, behavior: 'instant' });
-    html.classList.remove('intro-seen');
-  }
-  setChrome();
-  const start = () => { fit(); frame(0); wake(); };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else start();
+    const jump = () => {
+      scrollTo({ top: root.offsetTop + root.offsetHeight, behavior: 'instant' });
+      html.classList.remove('intro-seen');
+      setChrome();
+    };
+    if (document.readyState === 'complete') jump();
+    else addEventListener('DOMContentLoaded', jump, { once: true });
+  } else setChrome();
+
+  // Start as soon as the emblem can be drawn (preloaded in <head>), not after the
+  // web fonts: the opening has no text, and the words that come later get their
+  // fonts long before a visitor scrolls to them. A slow image does not hold the
+  // film back for more than 0.9 s.
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    fit(); t0 = performance.now(); frame(0); wake();
+  };
+  const mark = $('emblem1').querySelector('img');
+  const loaded = mark.complete ? Promise.resolve()
+    : new Promise(r => { mark.addEventListener('load', r, { once: true }); mark.addEventListener('error', r, { once: true }); });
+  Promise.race([loaded.then(() => mark.decode ? mark.decode().catch(() => {}) : 0), new Promise(r => setTimeout(r, 900))]).then(start);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (started) { fit(); wake(); } });
 })();

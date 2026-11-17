@@ -3,6 +3,65 @@
   "total": 64,
   "categories": [
     {
+      "id": "professional",
+      "folder": "Professional-Certifications",
+      "name": {
+        "en": "Professional Certifications",
+        "ar": "الشهادات الاحترافية"
+      },
+      "blurb": {
+        "en": "Industry certifications from AWS, IBM and Fortinet, each one checkable with its issuer.",
+        "ar": "شهادات مهنية من AWS وIBM وFortinet، يمكن التحقق من كلٍّ منها لدى الجهة المانحة."
+      },
+      "icon": "badge",
+      "count": 4,
+      "items": [
+        {
+          "src": "Certificates/Professional-Certifications/AWS%20Certified%20Cloud%20Practitioner.pdf",
+          "thumb": "Certificates/Professional-Certifications/AWS%20Certified%20Cloud%20Practitioner.pdf",
+          "original": "Certificates/Professional-Certifications/AWS%20Certified%20Cloud%20Practitioner.pdf",
+          "file": "AWS Certified Cloud Practitioner.pdf",
+          "type": "pdf",
+          "title": "AWS Certified Cloud Practitioner",
+          "issuer": "Amazon Web Services",
+          "year": "Nov 2026 – Nov 2029",
+          "verify": "https://cp.certmetrics.com/amazon/en/public/verify/credential/5a3adcfa56824d2d99888e036cc2e657"
+        },
+        {
+          "src": "Certificates/_web/Professional-Certifications/Fortinet%20Certified%20Associate%20in%20Cybersecurity.webp",
+          "thumb": "Certificates/_web/Professional-Certifications/Fortinet%20Certified%20Associate%20in%20Cybersecurity%40thumb.webp",
+          "original": "Certificates/Professional-Certifications/Fortinet%20Certified%20Associate%20in%20Cybersecurity.png",
+          "file": "Fortinet Certified Associate in Cybersecurity.png",
+          "type": "image",
+          "title": "Fortinet Certified Associate in Cybersecurity",
+          "issuer": "Fortinet Training Institute · validation no. 5452474953MS",
+          "year": "Apr 2025 – Apr 2027"
+        },
+        {
+          "src": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
+          "thumb": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
+          "original": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
+          "file": "IBM AI Developer Professional Certificate - Credly badge.pdf",
+          "type": "pdf",
+          "title": "IBM AI Developer Professional Certificate — Credly badge",
+          "issuer": "IBM · Credly",
+          "year": "2026",
+          "verify": "https://www.credly.com/badges/3a5caec0-71d8-4da4-bfbe-1ec17a073899"
+        },
+        {
+          "src": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
+          "thumb": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
+          "original": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
+          "file": "IBM AI Developer Professional Certificate.pdf",
+          "type": "pdf",
+          "title": "IBM AI Developer Professional Certificate (10 courses)",
+          "issuer": "IBM · Coursera",
+          "year": "2026",
+          "verify": "https://coursera.org/verify/professional-cert/15WOCTI1CB11"
+        }
+      ]
+    },
+    {
       "id": "coursera",
       "folder": "Coursera",
       "name": {
@@ -14,7 +73,7 @@
         "ar": "دورات وتخصصات مكتملة على كورسيرا."
       },
       "icon": "coursera",
-      "count": 32,
+      "count": 30,
       "items": [
         {
           "src": "Certificates/Coursera/Advanced%20Learning%20Algorithms.pdf",
@@ -172,28 +231,6 @@
           "file": "generative-ai-essentials-for-cybersecurity.pdf",
           "type": "pdf",
           "title": "Generative AI Essentials for Cybersecurity"
-        },
-        {
-          "src": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
-          "thumb": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
-          "original": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
-          "file": "IBM AI Developer Professional Certificate - Credly badge.pdf",
-          "type": "pdf",
-          "title": "IBM AI Developer Professional Certificate — Credly badge",
-          "issuer": "IBM · Credly",
-          "year": "2026",
-          "verify": "https://www.credly.com/badges/3a5caec0-71d8-4da4-bfbe-1ec17a073899"
-        },
-        {
-          "src": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
-          "thumb": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
-          "original": "Certificates/Coursera/IBM%20AI%20Developer%20Professional%20Certificate.pdf",
-          "file": "IBM AI Developer Professional Certificate.pdf",
-          "type": "pdf",
-          "title": "IBM AI Developer Professional Certificate (10 courses)",
-          "issuer": "IBM · Coursera",
-          "year": "2026",
-          "verify": "https://coursera.org/verify/professional-cert/15WOCTI1CB11"
         },
         {
           "src": "Certificates/Coursera/Improving%20Deep%20Neural%20Networks%20Hyperparameter.pdf",
@@ -483,7 +520,7 @@
         "ar": "تدريب من جامعات ومعاهد ومنصات مختلفة."
       },
       "icon": "code",
-      "count": 15,
+      "count": 13,
       "items": [
         {
           "src": "Certificates/_web/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI.webp",
@@ -512,17 +549,6 @@
           "title": "DEV276x: Learn to Program in Java",
           "issuer": "Microsoft · edX",
           "year": "2020"
-        },
-        {
-          "src": "Certificates/Technical-Courses/AWS%20Certified%20Cloud%20Practitioner.pdf",
-          "thumb": "Certificates/Technical-Courses/AWS%20Certified%20Cloud%20Practitioner.pdf",
-          "original": "Certificates/Technical-Courses/AWS%20Certified%20Cloud%20Practitioner.pdf",
-          "file": "AWS Certified Cloud Practitioner.pdf",
-          "type": "pdf",
-          "title": "AWS Certified Cloud Practitioner",
-          "issuer": "Amazon Web Services",
-          "year": "Nov 2026 – Nov 2029",
-          "verify": "https://cp.certmetrics.com/amazon/en/public/verify/credential/5a3adcfa56824d2d99888e036cc2e657"
         },
         {
           "src": "Certificates/_web/Technical-Courses/IMG_0340.webp",
@@ -613,16 +639,6 @@
           "title": "DEV210x: Introduction to C++",
           "issuer": "Microsoft · edX",
           "year": "2020"
-        },
-        {
-          "src": "Certificates/_web/Technical-Courses/Screenshot%202025-06-24%20102044.webp",
-          "thumb": "Certificates/_web/Technical-Courses/Screenshot%202025-06-24%20102044%40thumb.webp",
-          "original": "Certificates/Technical-Courses/Screenshot%202025-06-24%20102044.png",
-          "file": "Screenshot 2025-06-24 102044.png",
-          "type": "image",
-          "title": "Fortinet Certified Associate in Cybersecurity",
-          "issuer": "Fortinet Training Institute",
-          "year": "2025"
         }
       ]
     },

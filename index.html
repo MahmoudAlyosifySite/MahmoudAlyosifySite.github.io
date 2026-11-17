@@ -57,6 +57,8 @@
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/motion.css" />
   <link rel="stylesheet" href="css/prologue.css" />
+  <!-- The intro opens on the emblem: fetch it first, so it is ready the moment the film starts. -->
+  <link rel="preload" href="img/prologue/emblem.webp" as="image" type="image/webp" fetchpriority="high" />
 
   <script type="application/ld+json">
   {
@@ -302,7 +304,7 @@
         <div class="pl-abs" id="pl-s1" style="inset:0">
           <div class="pl-abs pl-hair" id="pl-hair1"></div>
           <div class="pl-abs" id="pl-emblem1">
-            <img src="img/prologue/emblem.webp" alt="" style="width:100%" />
+            <img src="img/prologue/emblem.webp" alt="" style="width:100%" fetchpriority="high" decoding="async" />
             <div class="pl-sweep" data-mask="img/prologue/emblem.webp"><i></i></div>
           </div>
           <div class="pl-abs" id="pl-wm1">
@@ -1001,6 +1003,10 @@
   </button>
   <div id="bot-root"></div>
 
+  <!-- The intro film first: it needs nothing from the scripts below, so it starts
+       without waiting for GSAP (from the CDN) or the site's data to download. -->
+  <script src="js/prologue.js" defer></script>
+
   <!-- GSAP drives scrubbed reveals only. It reads scroll position; it never
        intercepts wheel events. Native browser scrolling is untouched. -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
@@ -1022,7 +1028,6 @@
   <script src="js/lightbox.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/theme.js" defer></script>
-  <script src="js/prologue.js" defer></script>
 </body>
 
 </html>

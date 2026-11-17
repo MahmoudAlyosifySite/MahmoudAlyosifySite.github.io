@@ -19,6 +19,7 @@ image or PDF, then commit and push.
 
    ```
    Certificates/
+   ├── Professional-Certifications/ → industry certifications (AWS, IBM, Fortinet), shown first
    ├── Coursera/                 → Coursera courses & specialisations
    ├── Competitions/             → hackathons, awards, competition certificates
    ├── Activities-Volunteering/  → volunteering, leadership, student activities
@@ -67,7 +68,7 @@ Every field is optional. Delete an entry once the filename says it all.
 
 ### Files still carrying camera names
 
-These 21 files show a cleaned filename because they haven't been renamed yet.
+These 20 files show a cleaned filename because they haven't been renamed yet.
 The build script lists them each run. Renaming them is the whole fix:
 
 ```
@@ -76,7 +77,7 @@ Activities-Volunteering/  IMG_1602, IMG_3993, IMG_3994, IMG_3995, IMG_5413,
 Competitions/             IMG_0598, IMG_0600, IMG_2648, IMG_7887
 Technical-Courses/        IMG_0340, IMG_0342, IMG_3992, IMG_6131,
                           Annotation 2020-07-04…, Annotation 2020-07-25…,
-                          Screenshot 2025-06-10 155852, Screenshot 2025-06-24 102044,
+                          Screenshot 2025-06-10 155852,
                           iti 1 … iti 5
 Other/                    IMG_4014, IMG_4015, IMG_4832, IMG_4833
 ```
@@ -102,7 +103,7 @@ course URL into the `course` field.
 
 ## What the visitor sees
 
-Five category cards → click one → an **in-page gallery** opens. The visitor is
+Six category cards → click one → an **in-page gallery** opens. The visitor is
 never navigated away from the portfolio.
 
 The gallery has: previous / next, a thumbnail strip, a close button, keyboard
