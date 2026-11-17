@@ -223,5 +223,12 @@
     "issuer": "IBM · Coursera",
     "year": "2026",
     "verify": "https://coursera.org/verify/ETQUT7YWGQ07"
+  },
+
+  "Technical-Courses/AWS Certified Cloud Practitioner.pdf": {
+    "title": "AWS Certified Cloud Practitioner",
+    "issuer": "Amazon Web Services",
+    "year": "Nov 2026 – Nov 2029",
+    "verify": "https://cp.certmetrics.com/amazon/en/public/verify/credential/5a3adcfa56824d2d99888e036cc2e657"
   }
 }

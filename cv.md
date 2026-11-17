@@ -123,6 +123,7 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 | Certification | Issuer |
 |---------------|--------|
+| [AWS Certified Cloud Practitioner](https://cp.certmetrics.com/amazon/en/public/verify/credential/5a3adcfa56824d2d99888e036cc2e657) (Nov 2026 – Nov 2029) | Amazon Web Services |
 | IBM AI Developer Professional Certificate (10 courses, Oct 2026) | IBM / Coursera |
 | Deep Learning Specialization | DeepLearning.AI |
 | AWS Academy — ML Foundations, ML for NLP, Data Engineering | Amazon |

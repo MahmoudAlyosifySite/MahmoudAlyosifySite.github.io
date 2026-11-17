@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-31",
-  "total": 63,
+  "generated": "2026-11-17",
+  "total": 64,
   "categories": [
     {
       "id": "coursera",
@@ -483,7 +483,7 @@
         "ar": "تدريب من جامعات ومعاهد ومنصات مختلفة."
       },
       "icon": "code",
-      "count": 14,
+      "count": 15,
       "items": [
         {
           "src": "Certificates/_web/Technical-Courses/AI%20in%20Cybersecurity%20From%20NTI.webp",
@@ -512,6 +512,17 @@
           "title": "DEV276x: Learn to Program in Java",
           "issuer": "Microsoft · edX",
           "year": "2020"
+        },
+        {
+          "src": "Certificates/Technical-Courses/AWS%20Certified%20Cloud%20Practitioner.pdf",
+          "thumb": "Certificates/Technical-Courses/AWS%20Certified%20Cloud%20Practitioner.pdf",
+          "original": "Certificates/Technical-Courses/AWS%20Certified%20Cloud%20Practitioner.pdf",
+          "file": "AWS Certified Cloud Practitioner.pdf",
+          "type": "pdf",
+          "title": "AWS Certified Cloud Practitioner",
+          "issuer": "Amazon Web Services",
+          "year": "Nov 2026 – Nov 2029",
+          "verify": "https://cp.certmetrics.com/amazon/en/public/verify/credential/5a3adcfa56824d2d99888e036cc2e657"
         },
         {
           "src": "Certificates/_web/Technical-Courses/IMG_0340.webp",
