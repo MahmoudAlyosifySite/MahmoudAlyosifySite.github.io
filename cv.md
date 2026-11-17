@@ -123,8 +123,11 @@ AI & Machine Learning Engineer building end-to-end intelligent systems across **
 
 | Certification | Issuer |
 |---------------|--------|
+| **Professional certifications** | |
 | [AWS Certified Cloud Practitioner](https://cp.certmetrics.com/amazon/en/public/verify/credential/5a3adcfa56824d2d99888e036cc2e657) (Nov 2026 – Nov 2029) | Amazon Web Services |
-| IBM AI Developer Professional Certificate (10 courses, Oct 2026) | IBM / Coursera |
+| [IBM AI Developer Professional Certificate](https://www.credly.com/badges/3a5caec0-71d8-4da4-bfbe-1ec17a073899) (10 courses, Oct 2026) | IBM / Coursera |
+| [Fortinet Certified Associate in Cybersecurity](https://training.fortinet.com/admin/tool/certificate/index.php?code=5452474953MS) (Apr 2025 – Apr 2027) | Fortinet |
+| **Courses and training** | |
 | Deep Learning Specialization | DeepLearning.AI |
 | AWS Academy — ML Foundations, ML for NLP, Data Engineering | Amazon |
 | Machine Learning Specialization | DeepLearning.AI |

@@ -146,7 +146,8 @@
   },
   "Professional-Certifications/Fortinet Certified Associate in Cybersecurity.png": {
     "issuer": "Fortinet Training Institute · validation no. 5452474953MS",
-    "year": "Apr 2025 – Apr 2027"
+    "year": "Apr 2025 – Apr 2027",
+    "verify": "https://training.fortinet.com/admin/tool/certificate/index.php?code=5452474953MS"
   },
   "Technical-Courses/IMG_0340.JPG": {
     "title": "Full Stack Web Development Diploma",

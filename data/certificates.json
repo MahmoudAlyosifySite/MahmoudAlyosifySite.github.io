@@ -35,7 +35,8 @@
           "type": "image",
           "title": "Fortinet Certified Associate in Cybersecurity",
           "issuer": "Fortinet Training Institute · validation no. 5452474953MS",
-          "year": "Apr 2025 – Apr 2027"
+          "year": "Apr 2025 – Apr 2027",
+          "verify": "https://training.fortinet.com/admin/tool/certificate/index.php?code=5452474953MS"
         },
         {
           "src": "Certificates/Professional-Certifications/IBM%20AI%20Developer%20Professional%20Certificate%20-%20Credly%20badge.pdf",
